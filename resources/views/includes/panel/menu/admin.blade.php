@@ -25,11 +25,6 @@
 </li>
 <li class="nav-item">
   <a class="nav-link" href="#">
-    <i class="ni ni-money-coins text-danger"></i> Retiros
-  </a>
-</li>
-<li class="nav-item">
-  <a class="nav-link" href="#">
     <i class="ni ni-support-16 text-info"></i> Ayuda
   </a>
 </li>
