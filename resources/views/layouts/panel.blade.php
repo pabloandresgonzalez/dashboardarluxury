@@ -48,7 +48,7 @@
           <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <div class="media align-items-center">
               <span class="avatar avatar-sm rounded-circle">
-                <img alt="" src="{{ asset('img/theme/avatar.png') }}">
+                 @include('includes.avatar')
               </span>
             </div>
           </a>
@@ -62,7 +62,7 @@
           <div class="row">
             <div class="col-6 collapse-brand">
               <a href="/">
-                <img src="{{ asset('img/brand/iconfuturs.PNG') }}">
+                <img src="{{ asset('img/brand/logo ARL.png') }}">
               </a>
             </div>
             <div class="col-6 collapse-close">
@@ -101,7 +101,7 @@
             <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <div class="media align-items-center">
                 <span class="avatar avatar-sm rounded-circle">
-                  <img alt="Avatar" src="{{ asset('img/theme/avatar.png') }}">
+                  @include('includes.avatar')
                 </span>
                 <div class="media-body ml-2 d-none d-lg-block">
                   <span class="mb-0 text-sm  font-weight-bold">{{ auth()->user()->name }}</span>

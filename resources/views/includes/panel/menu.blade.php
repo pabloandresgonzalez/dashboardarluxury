@@ -5,6 +5,7 @@
   Menu
 @endif
 </h6>
+<hr class="my-3">
   <ul class="navbar-nav">
       @include('includes.panel.menu.admin')
     <li class="nav-item">

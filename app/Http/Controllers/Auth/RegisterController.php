@@ -49,10 +49,24 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
+        //dd($data);
+
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
+            'lastname' => ['required', 'string', 'max:255'],
+            'typeDoc' => ['required', 'string', 'max:255'],
+            'numberDoc' => ['required', 'string', 'max:255', 'unique:users'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'phone' => ['required', 'string', 'max:255'],
+            'cellphone' => ['required', 'string', 'max:255'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'country' => ['required', 'string', 'max:255'],
+            //'level' => ['required', 'string', 'max:255'],
+            //'photo' => ['required', 'string', 'max:255'],
+            //'photoDoc' => ['required', 'string', 'max:255'],
+            //'isActive' => ['required', 'Boolean', 'max:255'],
+            'ownerId' => ['required', 'string', 'max:255'],
+            //'role' => ['required', 'string', 'max:255'],
         ]);
     }
 
@@ -64,10 +78,29 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $urlphoto = asset('img/theme/avatar.png');
+        $urlphotoDoc = asset('img/theme/avatar.png');
+        $role = 'user';
+
+
         return User::create([
+            'ownerId' => $data['ownerId'],
+            'role' => $role,
             'name' => $data['name'],
+            'lastname' => $data['lastname'],
+            'typeDoc' => $data['typeDoc'],
+            'numberDoc' => $data['numberDoc'],
+            'phone' => $data['phone'],
+            'cellphone' => $data['cellphone'],
+            'country' => $data['country'],
             'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-        ]);
+            'level' => 'user',
+            'photo' => $urlphoto,
+            'photoDoc' => $urlphotoDoc,
+            'isActive' => true,
+            'password' => Hash::make($data['password'])
+
+            ]);
+
     }
 }
