@@ -7,7 +7,7 @@
       <div class="row align-items-center">
         <div class="col">
           <h3 class="mb-0"><i class="ni ni-single-02"></i> Editar usuario - {{ $user->name }}</h3><br>
-          <h6 class="mb-0">  Código de referido {{ $user->ownerId }}</h6>
+          <h6 class="mb-0">  Código de referido:  {{ $user->ownerId }}</h6>
         </div>
         <div class="col-md-6">
           <a href="/user" class="btn btn-outline-default">

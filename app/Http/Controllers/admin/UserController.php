@@ -256,16 +256,23 @@ class UserController extends Controller
 
       //dd($request->all());
 
-
       $this->perfomrValidationUpdate($request);
+
 
       $user = User::findOrFail($id);
 
+
         $data = $request->only('name', 'lastname', 'typeDoc', 'numberDoc', 'role', 'phone',
-        'cellphone', 'country', 'level', 'isActive', 'ownerId', 'email');
+        'cellphone', 'country', 'level', 'isActive', 'ownerId', 'email')
+        + [
+            'photo' => 'photo',
+            'photoDoc' => 'photoDoc'
+
+        ];
         $password = $request->input('password');
         if($password)
             $data['password'] = bcrypt($password);
+
 
       /*
       $user->name = $request->input('name');
@@ -283,35 +290,35 @@ class UserController extends Controller
       */
 
 
-
       //Subir la imagen photo
-        $image_photo = $request->file('photo');
-        if ($image_photo) {
+      $image_photo = $request->file('photo');
+      if ($image_photo) {
 
-          //Poner nombre unico
-          $image_photo_name = time() . $image_photo->getClientOriginalName();
+        //Poner nombre unico
+        $image_photo_name = time() . $image_photo->getClientOriginalName();
 
-          //Guardarla en la carpeta storage (storage/app/users)
-          Storage::disk('photousers')->put($image_photo_name, File::get($image_photo));
+        //Guardarla en la carpeta storage (storage/app/users)
+        Storage::disk('photousers')->put($image_photo_name, File::get($image_photo));
 
-          //Seteo el nombre de la imagen en el objeto
-          $user->photo = $image_photo_name;
-        }
+        //Seteo el nombre de la imagen en el objeto
+        $user->photo = $image_photo_name;
+      }
 
-        //Subir la imagen photoDoc
-        $image_photoDoc = $request->file('photoDoc');
+      //Subir la imagen photoDoc
+      $image_photoDoc = $request->file('photoDoc');
 
-        if ($image_photoDoc) {
+      if ($image_photoDoc) {
 
-          //Poner nombre unico
-          $image_photoDoc_name = time() . $image_photoDoc->getClientOriginalName();
+        //Poner nombre unico
+        $image_photoDoc_name = time() . $image_photoDoc->getClientOriginalName();
 
-          //Guardarla en la carpeta storage (storage/app/users)
-          Storage::disk('photoDocusers')->put($image_photoDoc_name, File::get($image_photoDoc));
+        //Guardarla en la carpeta storage (storage/app/users)
+        Storage::disk('photoDocusers')->put($image_photoDoc_name, File::get($image_photoDoc));
 
-          //Seteo el nombre de la imagen en el objeto
-          $user->photoDoc = $image_photoDoc_name;
-        }
+        //Seteo el nombre de la imagen en el objeto
+        $user->photoDoc = $image_photoDoc_name;
+      }
+
 
         $user->fill($data);
         $user->save();
@@ -323,20 +330,11 @@ class UserController extends Controller
         ]);
 
 
-
-
-
-
-
         //Conseguir usuario identificado
         //$user = \Auth::user();
         //$id = $user->id;
         //$photo = $user->photo;
         //$photoDoc = $user->photoDoc;
-
-
-
-
 
         //Validacion del formulario
         $validate = $this->validate($request, [

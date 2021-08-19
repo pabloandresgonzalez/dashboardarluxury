@@ -29,8 +29,8 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
     Route::get('/user/{user}/edit', [App\Http\Controllers\admin\UserController::class, 'edit']); //form edit
     Route::get('/user/avatar/{filename?}', [App\Http\Controllers\admin\UserController::class, 'getImage'])->name('user.avatar');
     Route::get('/user/avatardoc/{filename?}', [App\Http\Controllers\admin\UserController::class, 'getImageDoc'])->name('user.avatardoc');
-    Route::put('/user/{user}', [App\Http\Controllers\Admin\UserController::class, 'update']);
-    Route::delete('/user/{user}', [App\Http\Controllers\Admin\SpeciaUserControllerltyController::class, 'destroy']);
+    Route::put('/user/{user}', [App\Http\Controllers\admin\UserController::class, 'update']);
+    //Route::delete('/user/{user}', [App\Http\Controllers\Admin\SpeciaUserControllerltyController::class, 'destroy']);
 
 
 

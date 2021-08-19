@@ -4,11 +4,6 @@
   </a>
 </li>
 <li class="nav-item">
-  <a class="nav-link" href="/user">
-    <i class="ni ni-circle-08 text-info"></i> Usuarios
-  </a>
-</li>
-<li class="nav-item">
   <a class="nav-link" href="#">
     <i class="ni ni-planet text-blue"></i> Noticias
   </a>
