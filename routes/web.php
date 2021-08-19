@@ -24,13 +24,20 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 //Users
 
     Route::get('/user', [App\Http\Controllers\admin\UserController::class, 'index']);
-    Route::get('/user/create', [App\Http\Controllers\Admin\UserController::class, 'create']);
-    Route::post('/user', [App\Http\Controllers\admin\UserController::class, 'store']);
+    Route::get('/user/create', [App\Http\Controllers\Admin\UserController::class, 'create']);//form create
+    Route::post('/user', [App\Http\Controllers\admin\UserController::class, 'store']);// envio form
     Route::get('/user/{user}/edit', [App\Http\Controllers\admin\UserController::class, 'edit']); //form edit
+    Route::put('/user/{user}', [App\Http\Controllers\admin\UserController::class, 'update']);//envio form
     Route::get('/user/avatar/{filename?}', [App\Http\Controllers\admin\UserController::class, 'getImage'])->name('user.avatar');
     Route::get('/user/avatardoc/{filename?}', [App\Http\Controllers\admin\UserController::class, 'getImageDoc'])->name('user.avatardoc');
-    Route::put('/user/{user}', [App\Http\Controllers\admin\UserController::class, 'update']);
+
     //Route::delete('/user/{user}', [App\Http\Controllers\Admin\SpeciaUserControllerltyController::class, 'destroy']);
+
+    //Users perfil
+    Route::get('/user/indexperfil', [App\Http\Controllers\admin\UserController::class, 'indexperfil']);
+    Route::put('/user/{user}/editperfil', [App\Http\Controllers\admin\UserController::class, 'editperfil']);//form edit
+    Route::post('/user', [App\Http\Controllers\admin\UserController::class, 'storeperfil']);// envio form
+
 
 
 

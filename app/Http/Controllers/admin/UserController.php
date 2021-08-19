@@ -98,6 +98,7 @@ class UserController extends Controller
 
     private function perfomrValidationUpdate(Request $request)
     {
+
       $rules = [
         'name' => 'required|string|max:255',
         'lastname' => 'required|string|max:255',
@@ -250,85 +251,13 @@ class UserController extends Controller
 
     }
 
-
     public function update(Request $request, $id)
     {
 
       //dd($request->all());
 
-      $this->perfomrValidationUpdate($request);
-
 
       $user = User::findOrFail($id);
-
-
-        $data = $request->only('name', 'lastname', 'typeDoc', 'numberDoc', 'role', 'phone',
-        'cellphone', 'country', 'level', 'isActive', 'ownerId', 'email')
-        + [
-            'photo' => 'photo',
-            'photoDoc' => 'photoDoc'
-
-        ];
-        $password = $request->input('password');
-        if($password)
-            $data['password'] = bcrypt($password);
-
-
-      /*
-      $user->name = $request->input('name');
-      $user->lastname = $request->input('lastname');
-      $user->typeDoc = $request->input('typeDoc');
-      $user->numberDoc = $request->input('numberDoc');
-      $user->role = $request->input('role');
-      $user->phone = $request->input('phone');
-      $user->cellphone = $request->input('cellphone');
-      $user->country = $request->input('country');
-      $user->level = $request->input('level');
-      $user->isActive = $request->input('isActive');
-      $user->ownerId = $request->input('ownerId');
-      $user->email = $request->input('email');
-      */
-
-
-      //Subir la imagen photo
-      $image_photo = $request->file('photo');
-      if ($image_photo) {
-
-        //Poner nombre unico
-        $image_photo_name = time() . $image_photo->getClientOriginalName();
-
-        //Guardarla en la carpeta storage (storage/app/users)
-        Storage::disk('photousers')->put($image_photo_name, File::get($image_photo));
-
-        //Seteo el nombre de la imagen en el objeto
-        $user->photo = $image_photo_name;
-      }
-
-      //Subir la imagen photoDoc
-      $image_photoDoc = $request->file('photoDoc');
-
-      if ($image_photoDoc) {
-
-        //Poner nombre unico
-        $image_photoDoc_name = time() . $image_photoDoc->getClientOriginalName();
-
-        //Guardarla en la carpeta storage (storage/app/users)
-        Storage::disk('photoDocusers')->put($image_photoDoc_name, File::get($image_photoDoc));
-
-        //Seteo el nombre de la imagen en el objeto
-        $user->photoDoc = $image_photoDoc_name;
-      }
-
-
-        $user->fill($data);
-        $user->save();
-
-      //$user->save(); //UPDATE
-
-      return redirect('user')->with([
-                'message' => 'El usuario '.$user->name.' fue actualizado correctamente!'
-        ]);
-
 
         //Conseguir usuario identificado
         //$user = \Auth::user();
@@ -341,7 +270,7 @@ class UserController extends Controller
           'name' => 'required|string|max:255',
           'lastname' => 'required|string|max:255',
           'typeDoc' => 'required|string|max:255',
-          'numberDoc' => 'required|string|max:255|unique:users',
+          'numberDoc' => 'required|string|max:255',
           'role' => 'required|string|max:255',
           'phone' => 'required|string|max:255',
           'cellphone' => 'required|string|max:255',
@@ -349,32 +278,28 @@ class UserController extends Controller
           'level' => 'required|string|max:255',
           'isActive' => 'required|string|max:255',
           'ownerId' => 'required|string|max:255',
-          'email' => 'required|string|max:255|unique:users,email',
+          'email' => 'required|string|max:255',
+          'photo' => 'file',
+          'photo' => 'file',
         ]);
 
 
         //Recoger los datos del formulario
-        $name = $request->input('name');
-        $lastname =  $request->input('lastname');
-        $phone = $request->input('phone');
-        $cellphone = $request->input('cellphone');
-        $country = $request->input('country');
-        $level = $request->input('level');
-        $isActive = $request->input('isActive');
-        $ownerId = $request->input('ownerId');
-        $typeDoc = $request->input('typeDoc');
+        $user->name = $request->input('name');
+        $user->lastname = $request->input('lastname');
+        $user->typeDoc = $request->input('typeDoc');
+        $user->numberDoc = $request->input('numberDoc');
+        $user->role = $request->input('role');
+        $user->phone = $request->input('phone');
+        $user->cellphone = $request->input('cellphone');
+        $user->country = $request->input('country');
+        $user->level = $request->input('level');
+        $user->isActive = $request->input('isActive');
+        $user->ownerId = $request->input('ownerId');
+        $user->email = $request->input('email');
+        //$user->password = $request->input('password');
 
 
-        //Asignar nuevos valores al objeto del usuario
-        $user->name = $name;
-        $user->lastname = $lastname;
-        $user->phone = $phone;
-        $user->cellphone = $cellphone;
-        $user->country = $country;
-        $user->level = $level;
-        $user->isActive = $isActive;
-        $user->ownerId = $ownerId;
-        $user->typeDoc = $typeDoc;
 
 
         //Subir la imagen photo
@@ -390,11 +315,7 @@ class UserController extends Controller
           //Seteo el nombre de la imagen en el objeto
           $user->photo = $image_photo_name;
         }
-        else {
 
-          $user->photo = $photo;
-
-        }
 
         //Subir la imagen photoDoc
         $image_photoDoc = $request->file('photoDoc');
@@ -410,24 +331,30 @@ class UserController extends Controller
           //Seteo el nombre de la imagen en el objeto
           $user->photoDoc = $image_photoDoc_name;
         }
-        else {
 
-          $user->photoDoc = $photoDoc;
-
-        }
 
 
         //Ejecutar consulta y actualizar registro de BD
-        $user->update();
+        $user->save();
 
 
         return redirect('user')->with([
                 'message' => 'El usuario '.$user->name.' fue actualizado correctamente!'
         ]);
 
-
     }
 
+
+    public function indexperfil()
+    {
+      //Conseguir usuario identificado
+        $user = \Auth::user();
+
+      return Response()->view('users.indexperfil', [
+        'user' => $user
+      ]);
+
+    }
 
 
 }

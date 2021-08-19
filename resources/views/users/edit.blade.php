@@ -418,15 +418,7 @@
               <input class="form-control" placeholder="Email" type="email" name="email" autocomplete="email" value="{{ $user->email }}" autofocus >
           </div>
         </div>
-        <div class="col-md-12">
-          <p>Ingrese un valor sólo si desea modificar la contraseña.</p>
-          <div class="input-group input-group-alternative mb-3">
-            <div class="input-group-prepend">
-              <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
-            </div>
-            <input class="form-control" placeholder="Cambiar contraseña" type="password" name="password" autocomplete="new-password" value="" autofocus>
-          </div>
-        </div>
+
 
         <div class="col-md-12" >
           <p>Ingrese un valor sólo si desea cambiar el código de referido.</p>
@@ -476,8 +468,3 @@
   </div>
 </div>
 @endsection
-
-
-
-
-
