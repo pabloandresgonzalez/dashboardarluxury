@@ -19,8 +19,10 @@
                     </div>
                 @endif
 
+
               <form class="row g-3" role="form" method="POST" action="{{ route('register') }}">
                 @csrf
+
 
 
                 <div class="col-md-12">
@@ -28,17 +30,19 @@
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="ni ni-pin-3"></i></span>
                     </div>
-                    <input class="form-control" placeholder="Código referido" type="text" name="ownerId" value="{{ old('ownerId') }}" required autocomplete="ownerId" autofocus>
+                    <input class="form-control" placeholder="Código referido" id="ownerId" type="text" name="ownerId" value="{{ old('ownerId') }}" required autocomplete="ownerId" autofocus>
                   </div>
                 </div>
+
                 <div class="col-md-6">
                   <div class="input-group input-group-alternative mb-3">
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="ni ni-single-02"></i></span>
                     </div>
-                    <input class="form-control" placeholder="Nombre" type="text" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                    <input class="form-control" placeholder="Nombre" id="name" type="text" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
                   </div>
                 </div>
+
                 <div class="col-md-6">
                   <div class="input-group input-group-alternative mb-3">
                     <div class="input-group-prepend">
@@ -377,7 +381,7 @@
                   </div>
                 </div>
                 <div class="col-12">
-                  <button type="submit" class="btn btn-primary mt-4">Sign in</button>
+                  <button type="submit" class="btn btn-primary mt-4">Registrase</button>
                 </div>
               </form>
             </div>

@@ -8,6 +8,8 @@ use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Ramsey\Uuid\Uuid;
+
 
 class RegisterController extends Controller
 {
@@ -51,7 +53,7 @@ class RegisterController extends Controller
     {
         //dd($data);
 
-        return Validator::make($data, [
+            return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'lastname' => ['required', 'string', 'max:255'],
             'typeDoc' => ['required', 'string', 'max:255'],
@@ -67,7 +69,9 @@ class RegisterController extends Controller
             //'isActive' => ['required', 'Boolean', 'max:255'],
             'ownerId' => ['required', 'string', 'max:255'],
             //'role' => ['required', 'string', 'max:255'],
-        ]);
+            ]);
+
+
     }
 
     /**

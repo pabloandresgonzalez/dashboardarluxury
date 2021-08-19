@@ -25,11 +25,10 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
     Route::get('/user', [App\Http\Controllers\admin\UserController::class, 'index']);
     Route::get('/user/create', [App\Http\Controllers\Admin\UserController::class, 'create']);
-    Route::post('/user', [App\Http\Controllers\Admin\UserController::class, 'store']); // envio de form
+    Route::post('/user', [App\Http\Controllers\admin\UserController::class, 'store']);
     Route::get('/user/{user}/edit', [App\Http\Controllers\admin\UserController::class, 'edit']); //form edit
     Route::get('/user/avatar/{filename?}', [App\Http\Controllers\admin\UserController::class, 'getImage'])->name('user.avatar');
     Route::get('/user/avatardoc/{filename?}', [App\Http\Controllers\admin\UserController::class, 'getImageDoc'])->name('user.avatardoc');
-    Route::post('/user', [App\Http\Controllers\Admin\UserController::class, 'store']); // envio de form
     Route::put('/user/{user}', [App\Http\Controllers\Admin\UserController::class, 'update']);
     Route::delete('/user/{user}', [App\Http\Controllers\Admin\SpeciaUserControllerltyController::class, 'destroy']);
 

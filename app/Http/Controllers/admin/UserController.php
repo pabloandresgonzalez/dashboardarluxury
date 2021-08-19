@@ -8,6 +8,8 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use App\Models\User;
+use App\Traits\UsesUuid;
+use App\Traits\AutoGenerateUuid;
 
 class UserController extends Controller
 {
@@ -21,7 +23,7 @@ class UserController extends Controller
       //Conseguir usuario identificado
       //$user = \Auth::user();
 
-      $users = User::orderBy('id', 'Desc')->get();
+      $users = User::orderBy('id', 'Desc')->paginate(10);;
       $data = ['users' => $users];
 
       return view('users.index', $data);
@@ -35,6 +37,8 @@ class UserController extends Controller
 
     public function edit($id)
     {
+      //dd($id);
+
       $user = User::find($id);
 
       return view('users.edit', [
@@ -54,52 +58,160 @@ class UserController extends Controller
       return new Response($file, 200);
     }
 
+    private function perfomrValidationCreate(Request $request)
+    {
+      $rules = [
+        'name' => 'required|string|max:255',
+        'lastname' => 'required|string|max:255',
+        'typeDoc' => 'required|string|max:255',
+        'numberDoc' => 'required|string|max:255|unique:users',
+        'role' => 'required|string|max:255',
+        'phone' => 'required|string|max:255',
+        'cellphone' => 'required|string|max:255',
+        'country' => 'required|string|max:255',
+        'level' => 'required|string|max:255',
+        'isActive' => 'required|string|max:255',
+        'ownerId' => 'required|string|max:255',
+        'email' => 'required|string|max:255|unique:users,email',
+      ];
+
+    $messages =[
+
+      'name' => 'Es necesario ingresar el nombre',
+      'lastname' => 'Es necesario ingresar el apellido',
+      'typeDoc' => 'Es necesario ingresar el tipo de documento',
+      'numberDoc' => 'Es necesario ingresar el numero docuemnto',
+      'role' => 'Es necesario ingresar el tipo de rol',
+      'phone' => 'Es necesario ingresar el telefono',
+      'cellphone' => 'Es necesario ingresar el numero de movil',
+      'country' => 'Es necesario ingresar el país',
+      'level' => 'Es necesario ingresar el nivel',
+      'isActive' => 'Es necesario ingresar el estado',
+      'ownerId' => 'Es necesario ingresar el Código de referido',
+      'email' => 'Es necesario ingresar el email',
+      'password' => 'Es necesario ingresar el password',
+    ];
+
+    $this->validate($request, $rules, $messages);
+
+    }
+
+    private function perfomrValidationUpdate(Request $request)
+    {
+      $rules = [
+        'name' => 'required|string|max:255',
+        'lastname' => 'required|string|max:255',
+        'typeDoc' => 'required|string|max:255',
+        'numberDoc' => 'string|max:255',
+        'role' => 'required|string|max:255',
+        'phone' => 'required|string|max:255',
+        'cellphone' => 'required|string|max:255',
+        'country' => 'required|string|max:255',
+        'level' => 'required|string|max:255',
+        'isActive' => 'required|string|max:255',
+        'ownerId' => 'string|max:255',
+        'email' => 'string|max:255',
+      ];
+
+    $messages =[
+
+      'name' => 'Es necesario ingresar el nombre',
+      'lastname' => 'Es necesario ingresar el apellido',
+      'typeDoc' => 'Es necesario ingresar el tipo de documento',
+      'numberDoc' => 'Es necesario ingresar el numero docuemnto',
+      'role' => 'Es necesario ingresar el tipo de rol',
+      'phone' => 'Es necesario ingresar el telefono',
+      'cellphone' => 'Es necesario ingresar el numero de movil',
+      'country' => 'Es necesario ingresar el país',
+      'level' => 'Es necesario ingresar el nivel',
+      'isActive' => 'Es necesario ingresar el estado',
+      'ownerId' => 'Es necesario ingresar el Código de referido',
+      'email' => 'Es necesario ingresar el email',
+      'password' => 'Es necesario ingresar el password',
+    ];
+
+    $this->validate($request, $rules, $messages);
+
+    }
+
     public function store(Request $request)
     {
+      //dd($request->all());
 
-      //Conseguir usuario identificado
-      //$userAuth = \Auth::user();
+      $this->perfomrValidationCreate($request);
 
+      /*
+      $rules = [
+        'name' => 'required|string|max:255',
+        'lastname' => 'required|string|max:255',
+        'typeDoc' => 'required|string|max:255',
+        'numberDoc' => 'required|string|max:255|unique:users',
+        'role' => 'required|string|max:255',
+        'phone' => 'required|string|max:255',
+        'cellphone' => 'required|string|max:255',
+        'country' => 'required|string|max:255',
+        'level' => 'required|string|max:255',
+        'isActive' => 'required|string|max:255',
+        'ownerId' => 'required|string|max:255',
+        'email' => 'required|string|max:255|unique:users,email',
 
-        //Validacion del formulario
-        $validate = $this->validate($request, [
-          'name' => 'required|string|max:255',
-          'lastname' => 'required|string|max:255',
-          'numberDoc' => 'required|string|max:255|unique:users,email,'. $id,
-          'phone' => 'required|string|max:255',
-          'cellphone' => 'required|string|max:255',
-          'country' => 'required|string|max:255',
-          'level' => 'required|string|max:255',
-          'isActive' => 'required|string|max:255',
-          'ownerId' => 'required|string|max:255',
-        ]);
+      ];
 
+      $messages =[
 
-        //Recoger los datos del formulario
-        $name = $request->input('name');
-        $lastname =  $request->input('lastname');
-        $phone = $request->input('phone');
-        $cellphone = $request->input('cellphone');
-        $country = $request->input('country');
-        $level = $request->input('level');
-        $isActive = $request->input('isActive');
-        $ownerId = $request->input('ownerId');
-        $typeDoc = $request->input('typeDoc');
+        'name' => 'Es necesario ingresar el nombre',
+        'lastname' => 'Es necesario ingresar el apellido',
+        'typeDoc' => 'Es necesario ingresar el tipo de documento',
+        'numberDoc' => 'Es necesario ingresar el numero docuemnto',
+        'role' => 'Es necesario ingresar el tipo de rol',
+        'phone' => 'Es necesario ingresar el telefono',
+        'cellphone' => 'Es necesario ingresar el numero de movil',
+        'country' => 'Es necesario ingresar el país',
+        'level' => 'Es necesario ingresar el nivel',
+        'isActive' => 'Es necesario ingresar el estado',
+        'ownerId' => 'Es necesario ingresar el Código de referido',
+        'email' => 'Es necesario ingresar el email',
+        'password' => 'Es necesario ingresar el password',
+      ];
 
+      $this->validate($request, $rules, $messages);
 
-        //Asignar nuevos valores al objeto del usuario
-        $user->name = $name;
-        $user->lastname = $lastname;
-        $user->phone = $phone;
-        $user->cellphone = $cellphone;
-        $user->country = $country;
-        $user->level = $level;
-        $user->isActive = $isActive;
-        $user->ownerId = $ownerId;
-        $user->typeDoc = $typeDoc;
+      //Validacion del formulario
+      $validate = $this->validate($request, [
+        'name' => 'required|string|max:255',
+        'lastname' => 'required|string|max:255',
+        'typeDoc' => 'required|string|max:255',
+        'numberDoc' => 'required|string|max:255|unique:users',
+        'role' => 'required|string|max:255',
+        'phone' => 'required|string|max:255',
+        'cellphone' => 'required|string|max:255',
+        'country' => 'required|string|max:255',
+        'level' => 'required|string|max:255',
+        'isActive' => 'required|string|max:255',
+        'ownerId' => 'required|string|max:255',
+        'email' => 'required|string|max:255|unique:users,email',
+        'password' => 'required|string|min:8|max:255',
 
+      ]);
 
-        //Subir la imagen photo
+      */
+
+      $user = new User();
+      $user->name = $request->input('name');
+      $user->lastname = $request->input('lastname');
+      $user->typeDoc = $request->input('typeDoc');
+      $user->numberDoc = $request->input('numberDoc');
+      $user->role = $request->input('role');
+      $user->phone = $request->input('phone');
+      $user->cellphone = $request->input('cellphone');
+      $user->country = $request->input('country');
+      $user->level = $request->input('level');
+      $user->isActive = $request->input('isActive');
+      $user->ownerId = $request->input('ownerId');
+      $user->email = $request->input('email');
+      $user->password = $request->input('password');
+
+      //Subir la imagen photo
         $image_photo = $request->file('photo');
         if ($image_photo) {
 
@@ -111,11 +223,6 @@ class UserController extends Controller
 
           //Seteo el nombre de la imagen en el objeto
           $user->photo = $image_photo_name;
-        }
-        else {
-
-          $user->photo = $photo;
-
         }
 
         //Subir la imagen photoDoc
@@ -132,46 +239,119 @@ class UserController extends Controller
           //Seteo el nombre de la imagen en el objeto
           $user->photoDoc = $image_photoDoc_name;
         }
-        else {
-
-          $user->photoDoc = $photoDoc;
-
-        }
 
 
-        //Ejecutar consulta y actualizar registro de BD
-        $user->create();
+      $user->save(); //INSERT EN BD
 
 
-        return redirect('users')->with([
-                'message' => 'Usuario creado correctamente!'
+      return redirect('user')->with([
+                'message' => 'El usuario '.$user->name.' fue creado correctamente!'
         ]);
-
 
     }
 
 
-
-    public function update(Request $request)
+    public function update(Request $request, $id)
     {
+
+      //dd($request->all());
+
+
+      $this->perfomrValidationUpdate($request);
+
+      $user = User::findOrFail($id);
+
+        $data = $request->only('name', 'lastname', 'typeDoc', 'numberDoc', 'role', 'phone',
+        'cellphone', 'country', 'level', 'isActive', 'ownerId', 'email');
+        $password = $request->input('password');
+        if($password)
+            $data['password'] = bcrypt($password);
+
+      /*
+      $user->name = $request->input('name');
+      $user->lastname = $request->input('lastname');
+      $user->typeDoc = $request->input('typeDoc');
+      $user->numberDoc = $request->input('numberDoc');
+      $user->role = $request->input('role');
+      $user->phone = $request->input('phone');
+      $user->cellphone = $request->input('cellphone');
+      $user->country = $request->input('country');
+      $user->level = $request->input('level');
+      $user->isActive = $request->input('isActive');
+      $user->ownerId = $request->input('ownerId');
+      $user->email = $request->input('email');
+      */
+
+
+
+      //Subir la imagen photo
+        $image_photo = $request->file('photo');
+        if ($image_photo) {
+
+          //Poner nombre unico
+          $image_photo_name = time() . $image_photo->getClientOriginalName();
+
+          //Guardarla en la carpeta storage (storage/app/users)
+          Storage::disk('photousers')->put($image_photo_name, File::get($image_photo));
+
+          //Seteo el nombre de la imagen en el objeto
+          $user->photo = $image_photo_name;
+        }
+
+        //Subir la imagen photoDoc
+        $image_photoDoc = $request->file('photoDoc');
+
+        if ($image_photoDoc) {
+
+          //Poner nombre unico
+          $image_photoDoc_name = time() . $image_photoDoc->getClientOriginalName();
+
+          //Guardarla en la carpeta storage (storage/app/users)
+          Storage::disk('photoDocusers')->put($image_photoDoc_name, File::get($image_photoDoc));
+
+          //Seteo el nombre de la imagen en el objeto
+          $user->photoDoc = $image_photoDoc_name;
+        }
+
+        $user->fill($data);
+        $user->save();
+
+      //$user->save(); //UPDATE
+
+      return redirect('user')->with([
+                'message' => 'El usuario '.$user->name.' fue actualizado correctamente!'
+        ]);
+
+
+
+
+
+
+
         //Conseguir usuario identificado
-        $user = \Auth::user();
-        $id = $user->id;
-        $photo = $user->photo;
-        $photoDoc = $user->photoDoc;
+        //$user = \Auth::user();
+        //$id = $user->id;
+        //$photo = $user->photo;
+        //$photoDoc = $user->photoDoc;
+
+
+
 
 
         //Validacion del formulario
         $validate = $this->validate($request, [
           'name' => 'required|string|max:255',
           'lastname' => 'required|string|max:255',
-          'numberDoc' => 'required|string|max:255|unique:users,email,'. $id,
+          'typeDoc' => 'required|string|max:255',
+          'numberDoc' => 'required|string|max:255|unique:users',
+          'role' => 'required|string|max:255',
           'phone' => 'required|string|max:255',
           'cellphone' => 'required|string|max:255',
           'country' => 'required|string|max:255',
           'level' => 'required|string|max:255',
           'isActive' => 'required|string|max:255',
           'ownerId' => 'required|string|max:255',
+          'email' => 'required|string|max:255|unique:users,email',
         ]);
 
 
@@ -249,5 +429,7 @@ class UserController extends Controller
 
 
     }
+
+
 
 }

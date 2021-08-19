@@ -34,6 +34,7 @@
                   <th scope="col">Nivel</th>
                   <th scope="col">Estado</th>
                   <th scope="col">Id de propietario</th>
+                  <th scope="col">Id de referido</th>
                   <th scope="col">Encender|Apagar</th>
                   <th scope="col">Detalle</th>
                   <th scope="col">Editar</th>
@@ -59,6 +60,9 @@
                   </td>
                   <td>
                     {{ $user->isActive }}
+                  </td>
+                  <td>
+                    {{ $user->id }}
                   </td>
                   <td>
                     {{ $user->ownerId }}
@@ -167,8 +171,8 @@
           </div>
 
 
-        <div class="col-md-4">
-                </div>
+          <div class="col-md-4">
+        </div>
     </div>
   </div>
 
