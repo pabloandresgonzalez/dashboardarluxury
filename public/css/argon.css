@@ -8029,7 +8029,7 @@ button.bg-dark:focus
 
 .bg-default
 {
-    background-color: #172b4d !important;
+    background-color: #000000 !important;
 }
 
 a.bg-default:hover,
@@ -15049,12 +15049,12 @@ button.bg-lighter:focus
 
 .bg-gradient-primary-verde
 {
-    background: linear-gradient(87deg, #26ed05 0, #070c0e  100%) !important;
+    background: linear-gradient(87deg, #26ed05 0, #2dce89  100%) !important;
 }
 
 .bg-gradient-primary-formulario
 {
-    background: linear-gradient(87deg, #0d961c 0, #070c0e 100%) !important;
+    background: linear-gradient(87deg, #0d961c 0, #2dce89 100%) !important;
 }
 
 .bg-gradient-secondary

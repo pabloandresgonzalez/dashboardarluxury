@@ -30,8 +30,8 @@
             </div>
             <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
               <div class="d-flex justify-content-between">
-                <a href="#" class="btn btn-sm btn-info mr-4">Contactar</a>
-                <a href="#" class="btn btn-sm btn-default float-right">Mensaje</a>
+                <a href="#" class="btn btn-sm btn-info mr-4"><i class="ni ni-email-83"></i> ar_luxury</a>
+                <a href="#" class="btn btn-sm btn-default float-right"><i class="ni ni-chat-round"></i> Mensaje</a>
               </div>
             </div>
             <div class="card-body pt-0 pt-md-4">
@@ -70,7 +70,7 @@
                   <h3 class="mb-0">{{ Auth::user()->name }}</h3>
                 </div>
                 <div class="col-4 text-right">
-                  <a href="#" class="btn btn-outline-secondary"><i class="ni ni-settings"></i> Billetera</a>
+                  <a href="#" class="btn btn-outline-secondary"><i class="ni ni-money-coins"></i> Billetera</a>
                 </div>
               </div>
             </div>
@@ -100,7 +100,7 @@
                     <div class="col-lg-12">
                     <div class="form-group">
 
-                    <button type="submit" class="btn btn-outline-default" ><i class="ni ni-image"></i> Cambiar iamgen</button>
+                    <button type="" class="btn btn-outline-default" ><i class="ni ni-image"></i> Cambiar iamgen</button>
                 </div>
                 </div>
                 <hr class="my-4" />

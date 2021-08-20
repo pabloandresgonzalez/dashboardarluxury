@@ -1,7 +1,5 @@
 @extends('layouts.form')
 
-@section('title', 'Regitro')
-@section('subtitle', 'Ingresa tus datos para registrarte.')
 
 
 @section('content')
