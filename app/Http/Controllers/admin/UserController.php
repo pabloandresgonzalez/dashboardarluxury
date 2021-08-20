@@ -96,6 +96,7 @@ class UserController extends Controller
 
     }
 
+
     private function perfomrValidationUpdate(Request $request)
     {
 
@@ -112,50 +113,6 @@ class UserController extends Controller
         'isActive' => 'required|string|max:255',
         'ownerId' => 'string|max:255',
         'email' => 'string|max:255',
-      ];
-
-    $messages =[
-
-      'name' => 'Es necesario ingresar el nombre',
-      'lastname' => 'Es necesario ingresar el apellido',
-      'typeDoc' => 'Es necesario ingresar el tipo de documento',
-      'numberDoc' => 'Es necesario ingresar el numero docuemnto',
-      'role' => 'Es necesario ingresar el tipo de rol',
-      'phone' => 'Es necesario ingresar el telefono',
-      'cellphone' => 'Es necesario ingresar el numero de movil',
-      'country' => 'Es necesario ingresar el país',
-      'level' => 'Es necesario ingresar el nivel',
-      'isActive' => 'Es necesario ingresar el estado',
-      'ownerId' => 'Es necesario ingresar el Código de referido',
-      'email' => 'Es necesario ingresar el email',
-      'password' => 'Es necesario ingresar el password',
-    ];
-
-    $this->validate($request, $rules, $messages);
-
-    }
-
-    public function store(Request $request)
-    {
-      //dd($request->all());
-
-      $this->perfomrValidationCreate($request);
-
-      /*
-      $rules = [
-        'name' => 'required|string|max:255',
-        'lastname' => 'required|string|max:255',
-        'typeDoc' => 'required|string|max:255',
-        'numberDoc' => 'required|string|max:255|unique:users',
-        'role' => 'required|string|max:255',
-        'phone' => 'required|string|max:255',
-        'cellphone' => 'required|string|max:255',
-        'country' => 'required|string|max:255',
-        'level' => 'required|string|max:255',
-        'isActive' => 'required|string|max:255',
-        'ownerId' => 'required|string|max:255',
-        'email' => 'required|string|max:255|unique:users,email',
-
       ];
 
       $messages =[
@@ -175,27 +132,16 @@ class UserController extends Controller
         'password' => 'Es necesario ingresar el password',
       ];
 
-      $this->validate($request, $rules, $messages);
+    $this->validate($request, $rules, $messages);
 
-      //Validacion del formulario
-      $validate = $this->validate($request, [
-        'name' => 'required|string|max:255',
-        'lastname' => 'required|string|max:255',
-        'typeDoc' => 'required|string|max:255',
-        'numberDoc' => 'required|string|max:255|unique:users',
-        'role' => 'required|string|max:255',
-        'phone' => 'required|string|max:255',
-        'cellphone' => 'required|string|max:255',
-        'country' => 'required|string|max:255',
-        'level' => 'required|string|max:255',
-        'isActive' => 'required|string|max:255',
-        'ownerId' => 'required|string|max:255',
-        'email' => 'required|string|max:255|unique:users,email',
-        'password' => 'required|string|min:8|max:255',
+    }
 
-      ]);
+    public function store(Request $request)
+    {
+      //dd($request->all());
 
-      */
+      $this->perfomrValidationCreate($request);
+
 
       $user = new User();
       $user->name = $request->input('name');
@@ -210,7 +156,7 @@ class UserController extends Controller
       $user->isActive = $request->input('isActive');
       $user->ownerId = $request->input('ownerId');
       $user->email = $request->input('email');
-      $user->password = $request->input('password');
+      $user->password = bcrypt($request->input('password'));
 
       //Subir la imagen photo
         $image_photo = $request->file('photo');

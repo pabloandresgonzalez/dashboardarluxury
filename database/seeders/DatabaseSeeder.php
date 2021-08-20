@@ -27,9 +27,9 @@ class DatabaseSeeder extends Seeder
             'level' => '1',
             'isActive' => 'on',
             'ownerId' => 'Administrador',
-            'email' => 'pabloandres6@gmail.com',
+            'email' => 'admin@arluxury.net',
             'email_verified_at' => now(),
-            'password' => bcrypt('12345678') // password
+            'password' => bcrypt('4ARluxur1n3t2021*') // password
 
         ]);
     }

@@ -36,7 +36,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
     //Users perfil
     Route::get('/user/indexperfil', [App\Http\Controllers\admin\UserController::class, 'indexperfil']);
     Route::put('/user/{user}/editperfil', [App\Http\Controllers\admin\UserController::class, 'editperfil']);//form edit
-    Route::post('/user', [App\Http\Controllers\admin\UserController::class, 'storeperfil']);// envio form
+    // Route::post('/user', [App\Http\Controllers\admin\UserController::class, 'storeperfil']);// envio form
 
 
 
