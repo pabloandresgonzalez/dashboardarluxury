@@ -23,7 +23,7 @@ class UserController extends Controller
       //Conseguir usuario identificado
       //$user = \Auth::user();
 
-      $users = User::orderBy('id', 'Desc')->paginate(10);;
+      $users = User::orderBy('id', 'Desc')->paginate(10);
       $data = ['users' => $users];
 
       return view('users.index', $data);
@@ -77,16 +77,16 @@ class UserController extends Controller
 
     $messages =[
 
-      'name' => 'Es necesario ingresar el nombre',
-      'lastname' => 'Es necesario ingresar el apellido',
-      'typeDoc' => 'Es necesario ingresar el tipo de documento',
-      'numberDoc' => 'Es necesario ingresar el numero docuemnto',
-      'role' => 'Es necesario ingresar el tipo de rol',
-      'phone' => 'Es necesario ingresar el telefono',
-      'cellphone' => 'Es necesario ingresar el numero de movil',
-      'country' => 'Es necesario ingresar el país',
-      'level' => 'Es necesario ingresar el nivel',
-      'isActive' => 'Es necesario ingresar el estado',
+      'name.required' => 'Es necesario ingresar el nombre',
+      'lastname.required' => 'Es necesario ingresar el apellido',
+      'typeDoc.required' => 'Es necesario ingresar el tipo de documento',
+      'numberDoc.required' => 'Es necesario ingresar el numero docuemnto',
+      'role.required' => 'Es necesario ingresar el tipo de rol',
+      'phone.required' => 'Es necesario ingresar el telefono',
+      'cellphone.required' => 'Es necesario ingresar el numero de movil',
+      'country.required' => 'Es necesario ingresar el país',
+      'level.required' => 'Es necesario ingresar el nivel',
+      'isActive.required' => 'Es necesario ingresar el estado',
       'ownerId' => 'Es necesario ingresar el Código de referido',
       'email' => 'Es necesario ingresar el email',
       'password' => 'Es necesario ingresar el password',
@@ -117,16 +117,16 @@ class UserController extends Controller
 
       $messages =[
 
-        'name' => 'Es necesario ingresar el nombre',
-        'lastname' => 'Es necesario ingresar el apellido',
-        'typeDoc' => 'Es necesario ingresar el tipo de documento',
-        'numberDoc' => 'Es necesario ingresar el numero docuemnto',
-        'role' => 'Es necesario ingresar el tipo de rol',
-        'phone' => 'Es necesario ingresar el telefono',
-        'cellphone' => 'Es necesario ingresar el numero de movil',
-        'country' => 'Es necesario ingresar el país',
-        'level' => 'Es necesario ingresar el nivel',
-        'isActive' => 'Es necesario ingresar el estado',
+        'name.required' => 'Es necesario ingresar el nombre',
+        'lastname.required' => 'Es necesario ingresar el apellido',
+        'typeDoc.required' => 'Es necesario ingresar el tipo de documento',
+        'numberDoc.required' => 'Es necesario ingresar el numero docuemnto',
+        'role.required' => 'Es necesario ingresar el tipo de rol',
+        'phone.required' => 'Es necesario ingresar el telefono',
+        'cellphone.required' => 'Es necesario ingresar el numero de movil',
+        'country.required' => 'Es necesario ingresar el país',
+        'level.required' => 'Es necesario ingresar el nivel',
+        'isActive.required' => 'Es necesario ingresar el estado',
         'ownerId' => 'Es necesario ingresar el Código de referido',
         'email' => 'Es necesario ingresar el email',
         'password' => 'Es necesario ingresar el password',

@@ -1,7 +1,5 @@
 @extends('layouts.form')
 
-@section('title', 'Registro')
-@section('subtitle', 'Ingresa tus datos para registrarte.')
 
 @section('content')
     <div class="container mt--8 pb-5">
@@ -21,13 +19,14 @@
               <form role="form" method="POST" action="{{ route('register') }}">
                 @csrf
 
+                <!--
                 <div class="form-group">
                   <div class="input-group input-group-alternative mb-3">
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
                     </div>
                     <input class="form-control" placeholder="Nombre" type="text" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
-                  </div>
+                  </div> -->
                 </div>
                 <div class="form-group">
                   <div class="input-group input-group-alternative mb-3">
@@ -54,7 +53,7 @@
                   </div>
                 </div>
                 <div class="text-center">
-                  <button type="submit" class="btn btn-primary mt-4">Confirmar registro</button>
+                  <button type="submit" class="btn btn-primary mt-4">Cambiar contraseña</button>
                 </div>
               </form>
             </div>

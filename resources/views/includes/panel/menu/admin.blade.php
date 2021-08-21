@@ -14,7 +14,12 @@
   </a>
 </li>
 <li class="nav-item">
-  <a class="nav-link" href="#">
+  <a class="nav-link" href="/membresias">
+    <i class="ni ni-trophy text-danger"></i> Gestión membresías
+  </a>
+</li>
+<li class="nav-item">
+  <a class="nav-link" href="/membresiasuser">
     <i class="ni ni-trophy text-danger"></i> Membresía
   </a>
 </li>
