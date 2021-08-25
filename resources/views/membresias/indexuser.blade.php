@@ -171,7 +171,7 @@
       </div>
       <br>
         <hr class="my-3">
-           <h5> &nbsp;De la misma forma que pagues tu paquete, así mismo será tu pago. Ejemplo: si compras con Dash tus pagos serán en Dash<br><h5/>
+           <h5> &nbsp; &nbsp; &nbsp;De la misma forma que pagues tu paquete, así mismo será tu pago. Ejemplo: si compras con Dash tus pagos serán en Dash<br><h5/>
 
         <main class="py-4">
             @yield('content')
