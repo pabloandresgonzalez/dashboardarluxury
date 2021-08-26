@@ -17,6 +17,11 @@ Route::get('/', function () {
     return redirect('login'); // view('welcome');
 });
 
+Route::get('/consulta', [App\Http\Controllers\ConsultId::class, 'index'])->name('consulta');
+Route::post('/consultasuser', [App\Http\Controllers\ConsultId::class, 'consuluser'])->name('consultasuser');
+
+
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

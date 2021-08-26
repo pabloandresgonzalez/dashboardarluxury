@@ -49,9 +49,9 @@
           <!-- Navbar items -->
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <a class="nav-link nav-link-icon" href="{{ route('register') }}">
+              <a class="nav-link nav-link-icon" href="{{ route('consulta') }}">
                 <i class="ni ni-circle-08"></i>
-                <span class="nav-link-inner--text">Register</span>
+                <span class="nav-link-inner--text">Consultar</span>
               </a>
             </li>
             <li class="nav-item">

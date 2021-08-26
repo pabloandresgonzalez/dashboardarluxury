@@ -91,7 +91,8 @@
               <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-search"></i></span>
               </div>
-              <input class="form-control" placeholder="Search" type="text">
+              <input name="" class="form-control" placeholder="Search" type="text">
+              <!-- <button class="btn btn-secondary btn-sm" type="submit">Buscar</button> -->
             </div>
           </div>
         </form>

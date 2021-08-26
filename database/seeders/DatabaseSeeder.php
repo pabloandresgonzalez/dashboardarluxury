@@ -29,7 +29,7 @@ class DatabaseSeeder extends Seeder
             'ownerId' => 'Administrador',
             'email' => 'admin@arluxury.net',
             'email_verified_at' => now(),
-            'password' => bcrypt('4ARluxur1n3t2021*') // password
+            'password' => bcrypt('ARluxury2021*') // password
 
         ]);
     }

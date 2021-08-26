@@ -18,15 +18,45 @@ class UserController extends Controller
       $this->middleware('auth');
     }
 
-    public function index()
+    public function index(Request $request)
     {
+
+      /*
+
+      $nombre = $request->get('buscarpor');
+
+      $users = User::where('name', 'LIKE', "%$nombre%")
+      ->orwhere('lastname', 'LIKE', "%$nombre%")
+      ->orwhere('role', 'LIKE', "%$nombre%")
+      ->orwhere('email', 'LIKE', "%$nombre%")
+      ->orderBy('id', 'desc')
+      ->paginate(3);
+
+      return view('users.index', [
+      'users' => $users
+      ]);
+
+
+      if (count($users) ) {
+
+        return view('users.index', [
+        'users' => $users
+        ]);
+
+      }*/
+
+      //dd($request->all());
+    
       //Conseguir usuario identificado
       //$user = \Auth::user();
 
       $users = User::orderBy('id', 'Desc')->paginate(10);
       $data = ['users' => $users];
+      
 
       return view('users.index', $data);
+      
+
     }
 
     public function create()

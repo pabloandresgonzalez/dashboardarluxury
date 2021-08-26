@@ -18,6 +18,7 @@
                 @endif
 
 
+
               <form class="row g-3" role="form" method="POST" action="{{ route('register') }}">
                 @csrf
 
