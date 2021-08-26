@@ -13,21 +13,15 @@
 
                 @if($errors->any())
                     <div class="alert alert-danger" role="alert">
-                        {{ $errors->first() }}
+                        {{ $errors->first() }}                        
                     </div>
                 @endif
 
                 @if(session('message'))
-                        <div class="alert alert-success">
-                          {{ session('message') }}
-                        </div>
-                    @endif
-
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
+                    <div class="alert alert-danger">                      
+                      {{ session('message') }}
+                    </div>
+                @endif
 
 
               <form class="row g-3" role="form" method="POST" action="{{ route('consultasuser') }}">

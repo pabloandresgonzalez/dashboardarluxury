@@ -28,11 +28,8 @@ class ConsultId extends Controller
 
             return redirect('consulta')->with([
                 'message' => 'Referido incorrecto, por favor verifique el id de referido!'
-        ]);
-
+        ]);      
         
-        
-
     }
 
 }
