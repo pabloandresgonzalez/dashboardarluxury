@@ -44,7 +44,7 @@
                 <div class="col">
                   <div class="card-profile-stats d-flex justify-content-center mt-md-5">
                     <div>
-                      <span class="heading">22</span>
+                      <span class="heading">x</span>
                       <span class="description">Referidos</span>
                     </div>
                   </div>
@@ -62,7 +62,7 @@
                 </div>
                 <hr class="my-4" />
 
-                <a href="#">Noticias</a>
+                <a href="/home">Noticias</a>
               </div>
             </div>
           </div>

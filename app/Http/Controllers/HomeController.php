@@ -24,6 +24,14 @@ class HomeController extends Controller
      */
     public function index()
     {
+
+       $url = "https://blockchain.info/ticker";
+       $data = json_decode(file_get_contents($url), true);
+
+       //var_dump($data);
+
         return view('home');
+        
     }
+
 }
