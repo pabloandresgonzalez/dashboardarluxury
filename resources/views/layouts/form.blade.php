@@ -21,7 +21,7 @@
     <script type="text/javascript">
       $(document).ready(function() {
           setTimeout(function() {
-              $(".alert").fadeOut(1500);
+              $(".alert").fadeOut(6000);
           });
       });
   </script>
@@ -58,17 +58,23 @@
           <!-- Navbar items -->
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <a class="nav-link nav-link-icon" href="{{ route('consulta') }}">
-                <i class="ni ni-circle-08"></i>
-                <span class="nav-link-inner--text">Register</span>
-              </a>
-            </li>
-            <li class="nav-item">
               <a class="nav-link nav-link-icon" href="{{ route('login') }}">
                 <i class="ni ni-key-25"></i>
                 <span class="nav-link-inner--text">Login</span>
               </a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link nav-link-icon" href="{{ route('consulta') }}">
+                <i class="ni ni-circle-08"></i>
+                <span class="nav-link-inner--text">Consultar Id</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link nav-link-icon" href="{{ route('register') }}">
+                <i class="ni ni-circle-08"></i>
+                <span class="nav-link-inner--text">Register</span>
+              </a>
+            </li>            
           </ul>
         </div>
       </div>
@@ -107,17 +113,17 @@
       <div class="row align-items-center justify-content-xl-between">
         <div class="col-xl-6">
           <div class="copyright text-center text-xl-left text-muted">
-            &copy; 2021 <a href="/" class="font-weight-bold ml-1">{{ config('app.name') }}</a>
+            &copy; 2021 <a href="/" class="font-weight-bold ml-1 text-default">{{ config('app.name') }}</a>
 
           </div>
         </div>
         <div class="col-xl-6">
           <ul class="nav nav-footer justify-content-center justify-content-xl-end">
             <li class="nav-item">
-              <a href="https://www.creative-tim.com" class="nav-link" target="_blank">Template</a>
+              <a href="https://www.creative-tim.com" class="nav-link text-default" target="_blank">Template</a>
             </li>
             <li class="nav-item">
-              <a href="" class="nav-link" target="_blank">Acerca de</a>
+              <a href="" class="nav-link text-default" target="_blank">Acerca de</a>
             </li>
           </ul>
         </div>

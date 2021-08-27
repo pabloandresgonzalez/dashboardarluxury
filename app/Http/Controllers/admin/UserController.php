@@ -49,9 +49,10 @@ class UserController extends Controller
     
       //Conseguir usuario identificado
       //$user = \Auth::user();
-
+      //$totalusers = User::count(); 
       $users = User::orderBy('id', 'Desc')->paginate(10);
       $data = ['users' => $users];
+
       
 
       return view('users.index', $data);
@@ -61,6 +62,8 @@ class UserController extends Controller
 
     public function create()
     {
+      //$totalusers = User::count();
+
       return view('users.create');
 
     }
@@ -69,6 +72,7 @@ class UserController extends Controller
     {
       //dd($id);
 
+      //$totalusers = User::count(); 
       $user = User::find($id);
 
       return view('users.edit', [
@@ -130,6 +134,8 @@ class UserController extends Controller
     public function store(Request $request)
     {
       //dd($request->all());
+            
+      //$totalusers = User::count();
 
       $this->perfomrValidationCreate($request);
 
@@ -193,7 +199,7 @@ class UserController extends Controller
 
       //dd($request->all());
 
-
+      //$totalusers = User::count();
       $user = User::findOrFail($id);
 
         //Conseguir usuario identificado
@@ -286,6 +292,7 @@ class UserController extends Controller
     {
       //Conseguir usuario identificado
         $user = \Auth::user();
+      //$totalusers = User::count();
 
       return Response()->view('users.indexperfil', [
         'user' => $user

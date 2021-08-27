@@ -6,7 +6,7 @@
 <div class="container mt--8 pb-5">
       <div class="row justify-content-center">
         <div class="col-lg-5 col-md-7">
-          <div class="card bg-gradient-primary-formulario shadow border-0">
+          <div class="card bg-secondary shadow border-0">
             <div class="card-body px-lg-5 py-lg-5">
 
                 @if($errors->any())
@@ -45,8 +45,8 @@
                     <span class="text-muted">Recordar sesión</span>
                   </label>
                 </div>
-                <div class="text-center">
-                  <button type="submit" class="btn btn-primary my-4">Ingresar</button>
+                <div class="text-center"><br>
+                  <button type="submit" class="btn btn-outline-default">Ingresar</button>
                 </div>
               </form>
             </div>
