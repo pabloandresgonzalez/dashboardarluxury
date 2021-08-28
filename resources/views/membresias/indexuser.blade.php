@@ -193,12 +193,26 @@
                     <div class="text-muted text-center mt-2 mb-3"><small>Depósito USDT</small><br><br>
                       <img src="{{ asset('img/brand/qrusdt.PNG') }}">                      
                     </div> 
-                </div>
-                <div class="card-body px-lg-5 py-lg-5">
                     <div class="text-center text-muted mb-4">
                         <small>TVDHJ4U95TJFBJng1kwPB9NxDsXCEQ4gV1</small>
-                    </div>
-                    <a href="/membresiasuser" class="btn btn-outline-success btn-lg btn-block"><i class="ni ni-check-bold"></i>&nbsp; Comprar</a><br>              
+                    </div>                      
+                </div>
+                <div class="card-body px-lg-5 py-lg-5">
+
+                    <form role="form" action="/membresiasuser">
+                      <div class="form-group mb-3">
+                          <div class="input-group input-group-alternative">
+                              <div class="input-group-prepend">
+                                  <span class="input-group-text"><i class="ni ni-money-coins"></i></span>
+                              </div>
+                              <input class="form-control" placeholder="hashUSDT" type="text">
+                          </div>
+                      </div>
+
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-outline-success btn-lg btn-block"><i class="ni ni-check-bold"></i>&nbsp; Enviar</button>
+                        </div>
+                      </form>            
 
                 </div>
               </div>
@@ -222,12 +236,27 @@
                     <div class="text-muted text-center mt-2 mb-3"><small>Depósito BTC</small><br><br>
                       <img src="{{ asset('img/brand/qrBTC.PNG') }}">                      
                     </div> 
-                </div>
-                <div class="card-body px-lg-5 py-lg-5">
                     <div class="text-center text-muted mb-4">
                         <small>17r3QBum9gibzv12fsa21b1qA3kHL1Kksj</small>
                     </div>
-                    <a href="/membresiasuser" class="btn btn-outline-success btn-lg btn-block"><i class="ni ni-check-bold"></i>&nbsp; Comprar</a><br>              
+                </div>
+                <div class="card-body px-lg-5 py-lg-5">
+
+                  <form role="form" action="/membresiasuser">
+                      <div class="form-group mb-3">
+                          <div class="input-group input-group-alternative">
+                              <div class="input-group-prepend">
+                                  <span class="input-group-text"><i class="ni ni-money-coins"></i></span>
+                              </div>
+                              <input class="form-control" placeholder="hashBTC" type="text">
+                          </div>
+                      </div><br>
+
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-outline-success btn-lg btn-block"><i class="ni ni-check-bold"></i>&nbsp; Enviar</button>
+                        </div>
+                      </form>                   
+                                  
 
                 </div>
               </div>
