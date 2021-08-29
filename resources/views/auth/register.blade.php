@@ -21,15 +21,26 @@
 
               <form class="row g-3" role="form" method="POST" action="{{ route('register') }}">
                 @csrf
-
-
+                
 
                 <div class="col-md-12">
                   <div class="input-group input-group-alternative mb-3">
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="ni ni-pin-3"></i></span>
                     </div>
-                    <input class="form-control" placeholder="Código referido" id="ownerId" type="text" name="ownerId" value="{{ old('ownerId') }}" required autocomplete="ownerId" autofocus>
+
+                    <?php
+                      if( isset($_GET["ownerId"]) ){
+                        $consulta = ($_GET['ownerId']);
+                        
+                        echo('<input class="form-control" placeholder="Código referido" id="ownerId" type="text" name="ownerId" value="'.$consulta.'" autocomplete="ownerId" autofocus>');
+                      }else{
+
+                        echo('<input class="form-control" placeholder="Código referido" id="ownerId" type="text" name="ownerId" value="Código referido" autocomplete="ownerId" autofocus>');
+                      }
+
+                    ?> 
+                  
                   </div>
                 </div>
 
@@ -370,7 +381,7 @@
                     </div>
                     <input class="form-control" placeholder="Contraseña" type="password" name="password" required autocomplete="new-password">
                   </div>
-                </div>
+                </div><br><br>
                 <div class="col-md-6">
                   <div class="input-group input-group-alternative">
                     <div class="input-group-prepend">

@@ -67,7 +67,7 @@ class RegisterController extends Controller
             //'photo' => ['required', 'string', 'max:255'],
             //'photoDoc' => ['required', 'string', 'max:255'],
             //'isActive' => ['required', 'Boolean', 'max:255'],
-            'ownerId' => ['required', 'string', 'max:255'],
+            'ownerId' => ['string', 'max:255'],
             //'role' => ['required', 'string', 'max:255'],
             ]);
 
