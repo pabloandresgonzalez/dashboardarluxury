@@ -94,6 +94,8 @@ class MembresiaController extends Controller
         $membresias = Membresia::orderBy('id', 'Desc')->paginate(10);
         $data = ['membresias' => $membresias];
 
+        
+
         return view('membresias.indexuser', compact('membresias'));
 
     }

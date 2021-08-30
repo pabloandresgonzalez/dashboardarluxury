@@ -3,6 +3,7 @@
 
 @section('content')
         <div class="card shadow">
+
           <div class="card-header border-0">
             <div class="row align-items-center">
               <div class="col">
@@ -18,153 +19,40 @@
           </div>
 
 
-      <div class="container-fluid">
+          <div class="container-fluid">
         <div class="header-body">
-
-          
-
-          <!-- Card stats -->
-          <div class="row">
-            <div class="col-xl-4 col-lg-6">
+            <div class="row-fluid ">
               <div class="row">
-                <div class="card" style="width: 18rem;">
-                  <img class="card-img-top" src="{{ asset('img/brand/membresia1.PNG') }}" alt="Card image cap">
-                  <div class="card-body" style="text-align: center;">
-                    <h4 class="card-title">100 Usd</h4> 
-                    <span> <p class="card-text">
-                    50 puntos<br></p></span><br>
-                    <h5 class="card-title">5 % de Administración</h5>                   
-                    <a data-toggle="modal" data-target="#modal-form1" href="#" class="badge badge-warning"><i class="ni ni-cart"></i>&nbsp; Pago con USDT</a> |
-                    <a data-toggle="modal" data-target="#modal-form" href="#" class="badge badge-warning"><i class="ni ni-cart"></i>&nbsp; Pago con BTC</a> 
+
+              @foreach($membresias as $membresia)
+
+                <!-- Card stats -->
+                
+                  <div class="col-xl-4 col-lg-6">
+                    
+                      <div class="card" style="width: 18rem;">
+                        <img class="card-img-top" src="{{ asset('img/brand/membresia1.PNG') }}" alt="Card image cap">
+                        <div class="card-body" style="text-align: center;">
+                          <h3 class="card-title"></h3> 
+                          <span> <p class="card-text">
+                          {{ $membresia->name }}<br></p></span><br>
+                          <h4 class="card-title">{{ $membresia->detail }}</h4> 
+                          <h5 class="card-title">{{ $membresia->isActive }}</h5>              
+                          <a data-toggle="modal" data-target="#modal-form1" href="#" class="badge badge-warning"><i class="ni ni-cart"></i>&nbsp; Pago con USDT</a> |
+                          <a data-toggle="modal" data-target="#modal-form" href="#" class="badge badge-warning"><i class="ni ni-cart"></i>&nbsp; Pago con BTC</a> 
+                        </div>
+                      </div>
+                      <hr>
+                 
                   </div>
-                </div>
+
+
+              @endforeach
+
+            
               </div>
             </div>
-
-            <div class="col-xl-4 col-lg-6">
-              <div class="row">
-                <div class="card" style="width: 18rem;">
-                  <img class="card-img-top" src="{{ asset('img/brand/membresia2.PNG') }}"  alt="Card image cap">
-                  <div class="card-body" style="text-align: center;">
-                    <h4 class="card-title">250 Usd</h4> 
-                    <span> <p class="card-text">
-                    125 puntos<br></p></span><br>
-                    <h5 class="card-title">5 % de Administración</h5>                   
-                    <a data-toggle="modal" data-target="#modal-form1" href="#" class="badge badge-warning"><i class="ni ni-cart"></i>&nbsp; Pago con USDT</a> |
-                    <a data-toggle="modal" data-target="#modal-form" href="#" class="badge badge-warning"><i class="ni ni-cart"></i>&nbsp; Pago con BTC</a> 
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-xl-4 col-lg-6">
-              <div class="row">
-                <div class="card" style="width: 18rem;">
-                  <img class="card-img-top" src="{{ asset('img/brand/membresia3.PNG') }}" alt="Card image cap">
-                  <div class="card-body" style="text-align: center;">
-                    <h4 class="card-title">500 Usd</h4> 
-                    <span> <p class="card-text">
-                    250 puntos<br></p></span><br>
-                    <h5 class="card-title">5 % de Administración</h5>                     
-                    <a data-toggle="modal" data-target="#modal-form1" href="#" class="badge badge-warning"><i class="ni ni-cart"></i>&nbsp; Pago con USDT</a> |
-                    <a data-toggle="modal" data-target="#modal-form" href="#" class="badge badge-warning"><i class="ni ni-cart"></i>&nbsp; Pago con BTC</a> 
-                  </div>
-                </div>
-              </div>
-            </div>
-
           </div>
-        </div>
-      </div>
-
-      <hr class="my-3">
-
-            <div class="container-fluid">
-        <div class="header-body">
-
-          <!-- Card stats -->
-          <div class="row">
-            <div class="col-xl-4 col-lg-6">
-              <div class="row">
-                <div class="card" style="width: 18rem;">
-                  <img class="card-img-top" src="{{ asset('img/brand/membresia4.PNG') }}" alt="Card image cap">
-                  <div class="card-body" style="text-align: center;">
-                    <h4 class="card-title">1000 Usd</h4> 
-                    <span> <p class="card-text">
-                    500 puntos<br></p></span><br>
-                    <h5 class="card-title">5 % de Administración</h5>                    
-                    <a data-toggle="modal" data-target="#modal-form1" href="#" class="badge badge-warning"><i class="ni ni-cart"></i>&nbsp; Pago con USDT</a> |
-                    <a data-toggle="modal" data-target="#modal-form" href="#" class="badge badge-warning"><i class="ni ni-cart"></i>&nbsp; Pago con BTC</a> 
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-xl-4 col-lg-6">
-              <div class="row">
-                <div class="card" style="width: 18rem;">
-                  <img class="card-img-top" src="{{ asset('img/brand/membresia5.PNG') }}"  alt="Card image cap">
-                  <div class="card-body" style="text-align: center;">
-                    <h4 class="card-title">2000 Usd</h4> 
-                    <span> <p class="card-text">
-                    1000 puntos<br></p></span><br>
-                    <h5 class="card-title">5 % de Administración</h5>                     
-                    <a data-toggle="modal" data-target="#modal-form1" href="#" class="badge badge-warning"><i class="ni ni-cart"></i>&nbsp; Pago con USDT</a> |
-                    <a data-toggle="modal" data-target="#modal-form" href="#" class="badge badge-warning"><i class="ni ni-cart"></i>&nbsp; Pago con BTC</a> 
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-xl-4 col-lg-6">
-              <div class="row">
-                <div class="card" style="width: 18rem;">
-                  <img class="card-img-top" src="{{ asset('img/brand/membresia7.PNG') }}" alt="Card image cap">
-                  <div class="card-body" style="text-align: center;">                    
-                    <h4 class="card-title">3000 Usd</h4> 
-                    <span> <p class="card-text">
-                    1500 puntos<br></p></span><br>
-                    <h5 class="card-title">5 % de Administración</h5>                   
-                    <a data-toggle="modal" data-target="#modal-form1" href="#" class="badge badge-warning"><i class="ni ni-cart"></i>&nbsp; Pago con USDT</a> |
-                    <a data-toggle="modal" data-target="#modal-form" href="#" class="badge badge-warning"><i class="ni ni-cart"></i>&nbsp; Pago con BTC</a> 
-                  </div>
-                </div>
-              </div>
-            </div>
-
-
-
-          </div>
-        </div>
-      </div>
-
-            <hr class="my-3">
-
-            <div class="container-fluid">
-        <div class="header-body">
-
-          
-            <!-- Card stats -->
-            <div class="col-xl-4 col-lg-6">
-              <div class="row">
-                <div class="card" style="width: 18rem;">
-                  <img class="card-img-top" src="{{ asset('img/brand/membresia6.PNG') }}" alt="Card image cap">
-                  <div class="card-body" style="text-align: center;">
-                    <h4 class="card-title">5000 Usd</h4> 
-                    <span> <p class="card-text">
-                    2500 puntos<br></p></span><br>
-                    <h5 class="card-title">5 % de Administración</h5>                    
-                    <a data-toggle="modal" data-target="#modal-form1" href="#" class="badge badge-warning"><i class="ni ni-cart"></i>&nbsp; Pago con USDT</a> |
-                    <a data-toggle="modal" data-target="#modal-form" href="#" class="badge badge-warning"><i class="ni ni-cart"></i>&nbsp; Pago con BTC</a> 
-                  </div>
-                </div>
-              </div>
-            </div>
-
-
-          </div>
-        </div>
-      </div>
 
 
     <div class="col-md-4">
@@ -256,12 +144,17 @@
     </div>
 
 
-      <br>
+
+
+  </div>
+
+  <br>
         <hr class="my-3">
-           <h5> &nbsp; &nbsp; &nbsp;De la misma forma que pagues tu paquete, así mismo será tu pago. Ejemplo: si compras con BTC tus pagos serán en BTC<br><h5/>
+           <h5 style="text-align: center;"> &nbsp; De la misma forma que pagues tu paquete, así mismo será tu pago. Ejemplo: si compras con BTC tus pagos serán en BTC<br><h5/>
 
         <main class="py-4">
             @yield('content')
         </main>
+
 
 @endsection
