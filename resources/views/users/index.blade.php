@@ -37,8 +37,8 @@
                   <th scope="col">Id de propietario</th>
                   <th scope="col">Id de referido</th>
                   <th scope="col">Encender|Apagar</th>
-                  <th scope="col">Detalle</th>
                   <th scope="col">Editar</th>
+                  <th scope="col">Detalle</th>                  
                 </tr>
               </thead>
               <tbody>

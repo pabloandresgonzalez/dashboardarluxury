@@ -146,7 +146,7 @@
                   </div>
                   <p class="mt-3 mb-0 text-muted text-sm">
                     <span class="text-success mr-2"><i class="fas fa-dollar-sign"></i> 43.303</span>
-                    <span class="text-nowrap">Bitcoing</span>
+                    <span class="text-nowrap">Bitcoin</span>
                   </p>
                 </div>
               </div>
