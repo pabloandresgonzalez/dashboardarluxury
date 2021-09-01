@@ -56,9 +56,9 @@ return [
             'visibility' => 'public',
         ],
 
-        'photoMembership' => [
+        'imagehash' => [
             'driver' => 'local',
-            'root' => storage_path('app/photoMembership'),
+            'root' => storage_path('app/imagehash'),
             'url' => env('APP_URL').'/storage',
             'visibility' => 'public',
         ],

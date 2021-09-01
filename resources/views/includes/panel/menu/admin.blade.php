@@ -14,13 +14,18 @@
   </a>
 </li>
 <li class="nav-item">
-  <a class="nav-link" href="/membresias">
-    <i class="ni ni-trophy text-danger"></i> Gestión membresías
+  <a class="nav-link" href="/membresiasuser">
+    <i class="ni ni-trophy text-danger"></i> Membresías
   </a>
 </li>
 <li class="nav-item">
-  <a class="nav-link" href="/membresiasuser">
-    <i class="ni ni-trophy text-danger"></i> Membresía
+  <a class="nav-link" href="/membresias">
+    <i class="ni ni-trophy text-danger"></i> Gestión Membresías
+  </a>
+</li>
+<li class="nav-item">
+  <a class="nav-link" href="/membership">
+    <i class="ni ni-trophy text-danger"></i> Gestión Memberships
   </a>
 </li>
 <li class="nav-item">

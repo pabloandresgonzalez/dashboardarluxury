@@ -10,7 +10,7 @@
 </li>
 <li class="nav-item">
   <a class="nav-link" href="/membresiasuser">
-    <i class="ni ni-trophy text-danger"></i> Membresía
+    <i class="ni ni-trophy text-danger"></i> Membresías
   </a>
 </li>
 <li class="nav-item">

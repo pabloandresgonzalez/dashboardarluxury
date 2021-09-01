@@ -2,62 +2,85 @@
 
 
 @section('content')
-        <div class="card shadow">
-          <div class="card-header border-0">
-            <div class="row align-items-center">
-              <div class="col">
-                <h3 class="mb-0">Membresía</h3>
-              </div>
-              @if(session('message'))
-                    <div class="alert alert-success">
-                      {{ session('message') }}
-                    </div>
-              @endif
-
+  <div class="card shadow">
+    <div class="card-header border-0">
+      <div class="row align-items-center">
+        <div class="col">
+          <h3 class="mb-0"><i class="ni ni-single-02"></i> Gestíon Memberships</h3>
         </div>
-          </div>
-          <div class="card-body">
         <div class="col-md-6">
-          <a href="/membresias/create" class="btn btn-outline-default">
-          <i class="ni ni-trophy"></i> Nueva membresía
+          <a href="membresiasuser" class="btn btn-outline-default">
+          <i class="ni ni-trophy"></i> Membresías
           </a>
         </div>
-          </div>
-          <div class="table-responsive">
+      </div>
+    </div>
+    <div class="table-responsive">
+    <div class="card-body">
+
+      @if($errors->any())
+        <div class="alert alert-danger" role="alert">
+          <ul>
+          @foreach ($errors->all() as $error)
+          <li>{{ $error }}
+          </li>
+          @endforeach
+          <ul>
+        </div>
+      @endif
+
+
+                <div class="table-responsive">
             <table class="table align-items-center table-dark">
               <thead class="thead-dark">
                 <tr>
                   <th scope="col" class="sort">Nombre</th>
+                  <th scope="col">Hash</th>
+                  <th scope="col">Tipo de Hash</th>
                   <th scope="col">Estado</th>
+                  <th scope="col">Fecha Cierre</th>
+                  <th scope="col">Soporte de pago</th>
                   <th scope="col">Detalle</th>
-                  <th scope="col">Detalle</th>
+                  <th scope="col">+ Detalles</th>
                   <th scope="col">Editar</th>
                 </tr>
               </thead>
               <tbody>
-                @foreach ($membresias as $membresia)
+                @foreach ($memberships as $membership)
                 <tr>
                   <td scope="row">
-                    {{ $membresia->name }}
+                    {{ $membership->membership }}
                   </td>
                   <td>
-                    {{ $membresia->isActive }}
+                    {{ $membership->hash }}
                   </td>
                   <td>
-                    {{ $membresia->detail }}
+                    {{ $membership->typeHash }}
                   </td>
+                  <td>
+                    {{ $membership->status }}
+                  </td>
+                  <td>
+                    {{ $membership->closedAt }}
+                  </td>
+                  <td>
+                    {{ $membership->image }}
+                  </td>   
+                  <td>
+                    {{ $membership->detail }}
+                  </td>                
                   <td>
                     <form action="" method="POST">
                       @csrf
                       @method('DELETE')
-                      <a href="{{ url('/membresias/'.$membresia->id.'/edit') }}" class="btn btn-outline-secondary"><i class="ni ni-settings"></i> Editar</a>
+                      <a href="{{ url('/membership/'.$membership->id.'/edit') }}" class="btn btn-outline-secondary"><i class="ni ni-settings"></i> Editar</a>
                     </form>
                   </td>
                   <td>
                       <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#modal-default"><i class="ni ni-bullet-list-67"></i> Detalle</button>
                   </td>
                 </tr>
-                @endforeach
+                 @endforeach
               </tbody>
             </table>
 
@@ -78,18 +101,27 @@
 
                             <div class="modal-body">
 
-                            <img src="" class="avatar"/> <br>
-
                             Nombre: <td scope="row">
 
-                            </td><br>
-                            Estado: <td>
+                            </td><br>                            
+                            Hash: <td>
 
                             </td><br>
-                            Detalle: <td>
+                            Tipo de Hash: <td>
 
                             </td><br>
+                            Fecha Cierre: <td>
 
+                            </td><br>
+                            Soporte de pago: <td>
+
+                            </td><br>
+                            Fecha Registro: <td>
+
+                            </td><br>
+                            
+
+                            
                             </div>
 
                             <div class="modal-footer">
@@ -126,6 +158,16 @@
           <div class="col-md-4">
         </div>
     </div>
-  </div>
 
+
+      
+
+      </div>
+    </div>
+  </div>
 @endsection
+
+
+
+
+

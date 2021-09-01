@@ -50,7 +50,7 @@ class UserController extends Controller
       //Conseguir usuario identificado
       //$user = \Auth::user();
       //$totalusers = User::count(); 
-      $users = User::orderBy('id', 'Desc')->paginate(10);
+      $users = User::orderBy('id', 'Desc')->paginate(50);
       $data = ['users' => $users];
 
       

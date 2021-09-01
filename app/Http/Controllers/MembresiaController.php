@@ -7,6 +7,7 @@ use App\Models\Membresia;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Response;
+use App\Models\Membership;
 
 class MembresiaController extends Controller
 {
@@ -153,5 +154,13 @@ class MembresiaController extends Controller
         ]);
 
     }
+
+    public function createMemberchip()
+    {  
+        
+        return view('memberchip.index');        
+
+    }
+
 
 }
