@@ -51,6 +51,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
     Route::post('/membresias', [App\Http\Controllers\MembresiaController::class, 'store']);// envio form
     Route::get('/membresias/{membresias}/edit', [App\Http\Controllers\MembresiaController::class, 'edit']); //form edit
     Route::put('/membresias/{membresias}', [App\Http\Controllers\MembresiaController::class, 'update']);//envio form
+    Route::get('/membresias/{membresias}/detail', [App\Http\Controllers\MembresiaController::class, 'detail']);//detalle
 
 
     //Memberchip

@@ -158,5 +158,14 @@ class MembresiaController extends Controller
 
     }
 
+    public function detail($id) {
+
+      $membresia = Membresia::find($id);
+
+      return view('membresias.detail', [
+          'membresia' => $membresia
+      ]);
+    }
+
 
 }
