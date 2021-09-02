@@ -128,7 +128,6 @@ class UserController extends Controller
 
     }
 
-
     public function store(Request $request)
     {
                   
@@ -292,5 +291,13 @@ class UserController extends Controller
 
     }
 
+    public function detail($id) {
+
+      $user = User::find($id);
+
+      return view('users.detail', [
+          'user' => $user
+      ]);
+    }
 
 }
