@@ -19,7 +19,6 @@ class ConsultId extends Controller
 
         //dd($id);
 
-
         if (User::where('id', $id)->first()) {
             
             return view('auth.register');

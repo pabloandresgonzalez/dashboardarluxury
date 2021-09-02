@@ -57,7 +57,6 @@ class MembresiaController extends Controller
 
     public function store(Request $request)
     {
-        //dd($request->all());
 
         $this->perfomrValidationCreate($request);
 
@@ -115,10 +114,7 @@ class MembresiaController extends Controller
 
     public function update(Request $request, $id)
     {
-        //dd($request->all());
         
-      
-
         //Validacion del formulario
         $validate = $this->validate($request, [
             'name' => 'required|string|min:4|max:255',

@@ -137,7 +137,7 @@
                   <div class="row">
                     <div class="col">
                       <h5 class="card-title text-uppercase text-muted mb-0">BTC | (USD)</h5>
-                      <span class="h2 font-weight-bold mb-0">43.303,07</span>
+                      <span class="h2 font-weight-bold mb-0"></span>
                     </div>
                     <div class="col-auto">
                       <div class="icon icon-shape bg-danger text-white rounded-circle shadow">
@@ -146,8 +146,8 @@
                     </div>
                   </div>
                   <p class="mt-3 mb-0 text-muted text-sm">
-                    <span class="text-success mr-2"><i class="fas fa-dollar-sign"></i> 43.303</span>
-                    <span class="text-nowrap">Bitcoin</span>
+                    <span class="text-success mr-2"><i class="fas fa-dollar-sign"></i> </span>
+                    <span class="text-nowrap"></span>
                   </p>
                 </div>
               </div>

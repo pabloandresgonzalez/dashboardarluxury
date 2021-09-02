@@ -128,4 +128,12 @@
     </div>
   </div>
 
+    <br>
+        <hr class="my-3">
+           
+
+        <main class="py-4">
+            @yield('content')
+        </main>
+
 @endsection

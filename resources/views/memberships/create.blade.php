@@ -39,7 +39,7 @@
         <div class="col-md-6">
           <div class="input-group input-group-alternative mb-3">
             <div class="input-group-prepend">
-              <span class="input-group-text"><i class="ni ni-badge"></i></span>
+              <span class="input-group-text"><i class="ni ni-paper-diploma"></i></span>
             </div>
               <select id="membership" name="membership" class="form-control" >
                 <option value="">Membresía</option>
@@ -56,7 +56,7 @@
         <div class="col-md-6">
           <div class="input-group input-group-alternative mb-3">
             <div class="input-group-prepend">
-              <span class="input-group-text"><i class="ni ni-badge"></i></span>
+              <span class="input-group-text"><i class="ni ni-credit-card"></i></span>
             </div>
               <select id="typeHash" name="typeHash" class="form-control" required>
                   <option value=""  >Forma de pago del paquete</option>
@@ -68,7 +68,7 @@
         <div class="col-md-6">
           <div class="input-group input-group-alternative mb-3">
             <div class="input-group-prepend">
-              <span class="input-group-text"><i class="ni ni-paper-diploma"></i></span>
+              <span class="input-group-text"><i class="ni ni-key-25"></i></span>
             </div>                        
             <input class="form-control" placeholder="hash" type="text" name="hash" value="" autocomplete="hash" autofocus>             
           </div>
@@ -91,10 +91,16 @@
 
       </div>
     </div>
-
-    <hr class="my-3">
-           <h5 style="text-align: center;"> &nbsp; De la misma forma que pagues tu paquete, así mismo será tu pago. Ejemplo: si compras con BTC tus pagos serán en BTC<br><h5/>
+    
   </div>
+
+    <br>
+        <hr class="my-3">
+           <h5 style="text-align: center;"> &nbsp; De la misma forma que pagues tu paquete, así mismo será tu pago. Ejemplo: si compras con BTC tus pagos serán en BTC<br><h5/>
+
+        <main class="py-4">
+            @yield('content')
+        </main>
 @endsection
 
 

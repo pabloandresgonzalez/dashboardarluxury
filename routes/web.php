@@ -56,6 +56,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
     Route::get('/membership/create', [App\Http\Controllers\UserMembershipController::class, 'create']);
     Route::get('/membership/{membership}/edit', [App\Http\Controllers\UserMembershipController::class, 'edit']);
     Route::post('/membership', [App\Http\Controllers\UserMembershipController::class, 'store']);
+    Route::put('/membership/{membership}', [App\Http\Controllers\UserMembershipController::class, 'update']);
     
 
 

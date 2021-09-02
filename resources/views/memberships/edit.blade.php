@@ -30,15 +30,16 @@
       @endif
 
 
-      <form class="row g-3" action="" enctype="multipart/form-data" method="">
+      <form class="row g-3" action="{{ url('membership/'.$memberships->id) }}" enctype="multipart/form-data" method="post">
         @csrf
+        @method('PUT')
 
         
          
         <div class="col-md-6">
           <div class="input-group input-group-alternative mb-3">
             <div class="input-group-prepend">
-              <span class="input-group-text"><i class="ni ni-badge"></i></span>
+              <span class="input-group-text"><i class="ni ni-paper-diploma"></i></span>
             </div>
               <select id="membership" name="membership" class="form-control" >
                 <option value="{{ $memberships->membership}}">{{ $memberships->membership}}</option>
@@ -49,7 +50,7 @@
         <div class="col-md-6">
           <div class="input-group input-group-alternative mb-3">
             <div class="input-group-prepend">
-              <span class="input-group-text"><i class="ni ni-badge"></i></span>
+              <span class="input-group-text"><i class="ni ni-credit-card"></i></span>
             </div>
               <select id="typeHash" name="typeHash" class="form-control" required>
                 <option value="{{ $memberships->typeHash}}">{{ $memberships->typeHash}}</option>
@@ -60,7 +61,7 @@
         <div class="col-md-6">
           <div class="input-group input-group-alternative mb-3">
             <div class="input-group-prepend">
-              <span class="input-group-text"><i class="ni ni-paper-diploma"></i></span>
+              <span class="input-group-text"><i class="ni ni-key-25"></i></span>
             </div>  
             <label class="form-control">{{ $memberships->hash}}</label>                      
                          
@@ -69,7 +70,7 @@
         <div class="col-md-6">
           <div class="input-group input-group-alternative mb-3">
             <div class="input-group-prepend">
-              <span class="input-group-text"><i class="ni ni-badge"></i></span>
+              <span class="input-group-text"><i class="ni ni-active-40"></i></span>
             </div>
               <select id="status" name="status" class="form-control" required>
                 <option value="{{ $memberships->status}}">{{ $memberships->status}}</option>

@@ -22,7 +22,6 @@ class UserController extends Controller
     {
 
       /*
-
       $nombre = $request->get('buscarpor');
 
       $users = User::where('name', 'LIKE', "%$nombre%")
@@ -70,8 +69,7 @@ class UserController extends Controller
 
     public function edit($id)
     {
-      //dd($id);
-
+      
       //$totalusers = User::count(); 
       $user = User::find($id);
 
@@ -133,8 +131,7 @@ class UserController extends Controller
 
     public function store(Request $request)
     {
-      //dd($request->all());
-            
+                  
       //$totalusers = User::count();
 
       $this->perfomrValidationCreate($request);
@@ -197,8 +194,6 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
 
-      //dd($request->all());
-
       //$totalusers = User::count();
       $user = User::findOrFail($id);
 
@@ -243,8 +238,6 @@ class UserController extends Controller
         //$user->password = $request->input('password');
 
 
-
-
         //Subir la imagen photo
         $image_photo = $request->file('photo');
         if ($image_photo) {
@@ -274,7 +267,6 @@ class UserController extends Controller
           //Seteo el nombre de la imagen en el objeto
           $user->photoDoc = $image_photoDoc_name;
         }
-
 
 
         //Ejecutar consulta y actualizar registro de BD
