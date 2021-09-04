@@ -58,7 +58,7 @@
               </a>
             </div>
             <div class="col-6 text-right">
-              <a href="{{ route('consulta') }}" class="text-light">
+              <a href="{{ route('register') }}" class="text-light">
                 <small>¿Aun no te has registrado?</small>
             </a>
             </div>

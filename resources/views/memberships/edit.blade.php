@@ -100,7 +100,7 @@
           <div class="input-group input-group-alternative mb-3">
             <div class="input-group-prepend">
 
-              <span class="input-group-text"><i class="ni ni-image"></i>&nbsp; Imagen</span>
+              <span class="input-group-text"><i class="ni ni-image"></i>&nbsp;Solo archivo de imagen</span>
             </div>
             <input class="form-control" placeholder="image"  type="file" name="image"  autocomplete="image" autofocus>
           </div>

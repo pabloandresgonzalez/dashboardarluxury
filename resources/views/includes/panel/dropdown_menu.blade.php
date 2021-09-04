@@ -10,9 +10,9 @@
               <i class="ni ni-settings-gear-65"></i>
               <span>Configuración</span>
             </a>
-            <a href="# " class="dropdown-item">
+            <a href="{{ route('mismembership') }}" class="dropdown-item">
               <i class="ni ni-calendar-grid-58"></i>
-              <span>Retirement</span>
+              <span>Mis membresías</span>
             </a>
             <a href="#" class="dropdown-item">
               <i class="ni ni-support-16"></i>

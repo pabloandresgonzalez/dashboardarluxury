@@ -20,12 +20,17 @@
 </li>
 <li class="nav-item">
   <a class="nav-link" href="/membresias">
-    <i class="ni ni-trophy text-danger"></i> Gestión Membresías
+    <i class="ni ni-trophy text-info"></i> Gestión Membresías
   </a>
 </li>
 <li class="nav-item">
   <a class="nav-link" href="/membership">
-    <i class="ni ni-trophy text-danger"></i> Gestión Memberships
+    <i class="ni ni-atom text-danger"></i> Gestión Memberships
+  </a>
+</li>
+<li class="nav-item">
+  <a class="nav-link" href="{{ route('mismembership') }}">
+    <i class="ni ni-box-2 "></i> Mis membresías
   </a>
 </li>
 <li class="nav-item">

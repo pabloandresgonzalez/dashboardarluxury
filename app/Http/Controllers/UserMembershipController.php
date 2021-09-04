@@ -4,6 +4,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use App\Models\UserMembership;
 use DateTime;
 use Illuminate\Support\Facades\Storage;
@@ -154,9 +155,44 @@ class UserMembershipController extends Controller
                     'message' => 'Membership editado correctamente!'
         ]);
 
+    }
+
+    public function indexUserMemberships() {
+
+    //Conseguir usuario identificado
+    $user = \Auth::user();
+    //$id = $user->id;
+    //$name = $user->name;
+    //$image = $user->image;
+    //$users = User::orderBy('id', 'desc')->get();
+    $memberships = UserMembership::where('user', $user->id)->orderBy('id', 'desc')
+            ->paginate(5);
+
+        //dd($memberships);
+
+        return view('memberships.mismemberships', [
+            'memberships' => $memberships,
+            'user' => $user
+        ]);
 
     }
 
+    public function getImage($filename)
+    {
+
+        $file = Storage::disk('imagehash')->get($filename);
+        return new Response($file, 200);
+    }
+
+    public function orden($id)
+    {
+        $membership = UserMembership::find($id);
+
+        return view('memberships.soporte', [
+            'membership' => $membership
+        ]);
+
+    }
 
     
 }

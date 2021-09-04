@@ -60,5 +60,13 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function UserMembership() {
+        return $this->hasMany('App\UserMembership');
+    }
+
+    public function asUserMembership() {
+        return $this->hasMany(UserMembership::class, 'user')->orderBy('id', 'desc');
+    }
+
 
 }

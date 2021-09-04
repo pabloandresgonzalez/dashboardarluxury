@@ -14,6 +14,11 @@
   </a>
 </li>
 <li class="nav-item">
+  <a class="nav-link" href="{{ route('mismembership') }}">
+    <i class="ni ni-box-2 "></i> Mis membresías
+  </a>
+</li>
+<li class="nav-item">
   <a class="nav-link" href="#">
     <i class="ni ni-satisfied text-info"></i> Red
   </a>

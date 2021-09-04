@@ -9,7 +9,7 @@
           <h3 class="mb-0"><i class="ni ni-bullet-list-67"></i> &nbsp;Detalle</h3>
         </div>
         <div class="col-md-6">
-          <a href="/user" class="btn btn-outline-default">
+          <a href="/membresias" class="btn btn-outline-default">
           <i class="ni ni-bold-left"></i> Volver
           </a>
         </div>

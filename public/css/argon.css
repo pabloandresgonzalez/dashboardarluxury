@@ -21870,3 +21870,21 @@ html:not([dir='rtl']) .noUi-horizontal .noUi-handle
 
     height: 3px;
 }
+
+.avatarsoporte
+{
+
+    width: 45%;
+    height: 45%;
+    border-radius: 4px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
+    margin-top: 20px;
+
+}
+
+
+
+
+
