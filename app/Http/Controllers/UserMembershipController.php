@@ -21,7 +21,7 @@ class UserMembershipController extends Controller
     public function index()
     {
 
-        $memberships = UserMembership::orderBy('id', 'Desc')->paginate(50);
+        $memberships = UserMembership::orderBy('id', 'Desc')->paginate(10);
         $data = ['memberships' => $memberships];
 
         return view('memberships.index', compact('memberships'));

@@ -60,15 +60,10 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
     Route::post('/membership', [App\Http\Controllers\UserMembershipController::class, 'store']);
     Route::put('/membership/{membership}', [App\Http\Controllers\UserMembershipController::class, 'update']);
     Route::get('/membership/mismembership', [App\Http\Controllers\UserMembershipController::class, 'indexUserMemberships'])->name('mismembership'); 
-
     Route::get('/orden/{id}', [App\Http\Controllers\UserMembershipController::class, 'orden'])->name('prestamo.orden');
     Route::get('/membership/avatar/{filename?}', [App\Http\Controllers\UserMembershipController::class, 'getImage'])->name('prestamo.avatar');
     
 
-    //Route::get('/membership/imgmembership/{id}', [App\Http\Controllers\UserMembershipController::class, 'imgSoporte']);
-    
-
-    //Route::get('/membership/avatar/{filename?}', [App\Http\Controllers\UserMembershipController::class, 'getImage'])->name('bici.avatar');
     
     
 

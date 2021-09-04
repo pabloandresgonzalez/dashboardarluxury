@@ -70,46 +70,16 @@
               </tbody>
             </table>
 
+            <br>
+            {{ $memberships->links() }}
+
+                 
 
           <div class="col-md-4">
         </div>
     </div>
 
     <hr>
-
-    
-      <div class="container-fluid">
-        <div class="header-body">
-            <div class="row-fluid ">
-              <div class="row">
-
-              @foreach($memberships as $membership)
-
-                                
-                  <div class="col-xl-4 col-lg-6">
-                    
-                      <div class="card" style="width: 18rem;">
-                        <img class="card-img-top" src="{{ asset('img/brand/membresia1.PNG') }}" alt="Card image cap">
-                        <div class="card-body" style="text-align: center;">
-                          <h3 class="card-title"></h3> 
-                          <span> <p class="card-text">
-                          {{ $membership->membership }}<br></p></span><br>
-                          <h4 class="card-membership">{{ $membership->detail }}</h4> 
-                          <h5 class="card-title">{{ $membership->status }}</h5>
-                        </div>
-                      </div>
-                      <hr>
-                 
-                  </div>   
-
-              @endforeach
-
-              </div>
-            </div>
-          </div>
-        </div>
-      
-
 
 
 

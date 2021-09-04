@@ -68,12 +68,9 @@
                     {{ $membership->closedAt }}
                   </td>
                   <td>
-
                     <a href="{{ route('prestamo.orden', ['id' =>$membership->id]) }}"  style="text-decoration: none;" >
                     <img src="{{ route('prestamo.avatar',['filename'=>$membership->image]) }}" class="avatar" />
-                    </a>
-
-                    
+                    </a>                    
                   </td>   
                   <td>
                     {{ $membership->detail }}
@@ -93,13 +90,17 @@
               </tbody>
             </table>
 
+            <br>
+
+            {{ $memberships->links() }}
 
           <div class="col-md-4">
         </div>
     </div>
 
 
-      
+
+
 
       </div>
     </div>

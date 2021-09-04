@@ -89,87 +89,8 @@
               </tbody>
             </table>
 
-
-            <div class="row">
-              <div class="col-md-4">
-
-                <div class="modal fade" id="modal-default" tabindex="-1" role="dialog" aria-labelledby="modal-default" aria-hidden="true">
-                    <div class="modal-dialog modal- modal-dialog-centered modal-" role="document">
-                        <div class="modal-content">
-
-                            <div class="modal-header">
-                                <h6 class="modal-title" id="modal-title-default">Información del usuario </h6>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">×</span>
-                                </button>
-                            </div>
-
-                            <div class="modal-body">
-
-
-                            <img src="" class="avatar"/> <br>
-
-                            Nombre completo: <td scope="row">
-
-                            </td><br>
-                            Correo eletronco: <td>
-
-                            </td><br>
-                            Tipo de documento: <td>
-
-                            </td><br>
-                            Numero de identificación: <td>
-
-                            </td><br>
-                            Telefono: <td>
-
-                            </td><br>
-                            Celular: <td>
-
-                            </td><br>
-                            Pais: <td>
-
-                            </td><br>
-                            Nivel: <td>
-
-                            </td><br>
-                            Estado: <td>
-
-                            </td><br>
-                            Id de propietario: <td>
-
-                            </td>
-                            </div>
-
-                            <div class="modal-footer">
-                            <td>
-                              <form action="" method="POST">
-                                @csrf
-                                @method('')
-                                <a href="{{ url('/user/'.$user->id.'/edit') }}" class="btn btn-outline-secondary"><i class="ni ni-settings"></i> Editar</a>
-                              </form>
-                            </td>
-                                <button type="button" class="btn btn-link ml-auto" data-dismiss="modal">Close</button>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-
-                </div>
-                <div class="card-body">
-                  <nav aria-label="Page navigation example">
-                    <ul class="pagination">
-                      <li class="page-item"><a class="page-link" href="#"><</a></li>
-                      <li class="page-item"><a class="page-link" href="#">1</a></li>
-                      <li class="page-item"><a class="page-link" href="#">2</a></li>
-                      <li class="page-item"><a class="page-link" href="#">3</a></li>
-                      <li class="page-item"><a class="page-link" href="#">></a></li>
-                    </ul>
-                  </nav>
-                </div>
-
-          </div>
+            <hr>
+            {{ $users->links() }}
           
     </div>
   </div>
