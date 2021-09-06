@@ -15,15 +15,32 @@
               @endif
 
 
+
+            <!-- Form -->
+            <form class="">
+              <div class="form-group mb-0">
+                <div class="input-group input-group-alternative">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text thead-dark"><i class="fas fa-search"></i></span>
+                  </div>
+                  <input name="buscarpor" class="form-control" placeholder="Buscar" type="text">
+                    <!-- <button class="btn btn-secondary btn-sm" type="submit">Buscar</button> -->
+                  </div>
+              </div>
+            </form>
+
+           </div>
+          </div>
+        
+
+          <div class="card-body">          
+            <div class="col-md-6">
+              <a href="/user/create" class="btn btn-outline-default">
+              <i class="ni ni-single-02"></i> Nuevo usuario
+              </a>
             </div>
           </div>
-          <div class="card-body">
-            <div class="col-md-6">
-          <a href="/user/create" class="btn btn-outline-default">
-          <i class="ni ni-single-02"></i> Nuevo usuario
-          </a>
-        </div>
-          </div>
+
           <div class="table-responsive">
             <table class="table align-items-center table-dark">
               <thead class="thead-dark">

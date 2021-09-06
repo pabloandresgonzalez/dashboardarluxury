@@ -21,7 +21,7 @@ class UserController extends Controller
     public function index(Request $request)
     {
 
-      /*
+      
       $nombre = $request->get('buscarpor');
 
       $users = User::where('name', 'LIKE', "%$nombre%")
@@ -29,13 +29,13 @@ class UserController extends Controller
       ->orwhere('role', 'LIKE', "%$nombre%")
       ->orwhere('email', 'LIKE', "%$nombre%")
       ->orderBy('id', 'desc')
-      ->paginate(3);
+      ->paginate(10);
 
       return view('users.index', [
       'users' => $users
       ]);
 
-
+      /*
       if (count($users) ) {
 
         return view('users.index', [
@@ -49,12 +49,12 @@ class UserController extends Controller
       //Conseguir usuario identificado
       //$user = \Auth::user();
       //$totalusers = User::count(); 
-      $users = User::orderBy('id', 'Desc')->paginate(10);
-      $data = ['users' => $users];
+      //$users = User::orderBy('id', 'Desc')->paginate(10);
+      //$data = ['users' => $users];
 
       
 
-      return view('users.index', $data);
+      //return view('users.index', $data);
       
 
     }
