@@ -368,7 +368,6 @@
         <div class="col-md-6">
           <div class="input-group input-group-alternative mb-3">
             <div class="input-group-prepend">
-
               <span class="input-group-text"><i class="ni ni-camera-compact"></i>&nbsp; Avatar</span>
             </div>
             <input class="form-control" placeholder="photo"  type="file" name="photo"  autocomplete="photo" autofocus>
@@ -385,15 +384,15 @@
         <div class="col-md-6">
           <div class="input-group input-group-alternative mb-3">
             <div class="input-group-prepend">
-              <span class="input-group-text"><i class="ni ni-button-power"></i>&nbsp;  Desactivar</span>
+              <span class="input-group-text"><i class="ni ni-button-power"></i>&nbsp; </span>
             </div>
-              <label class="custom-toggle" >
-                  <input type="checkbox" name="isActive"  checked>
-                  <span class="custom-toggle-slider rounded-circle " data-label-off="No" data-label-on="Yes"></span>
-              </label><span class="input-group-text"> Activar</span>
+              <select id="isActive" name="isActive" class="form-control" required>
+                  <option value="{{ $user->isActive }}">Estado</option>
+                    <option value="Activo"  >Activo</option>
+                    <option value="Desactivado"  >Desactivado</option>
+                </select>
           </div>
         </div>
-
         <div class="col-md-6">
           <div class="input-group input-group-alternative mb-3">
             <div class="input-group-prepend">

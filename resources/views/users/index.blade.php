@@ -15,8 +15,7 @@
               @endif
 
 
-
-            <!-- Form -->
+              <!-- Form -->
             <form class="">
               <div class="form-group mb-0">
                 <div class="input-group input-group-alternative">
@@ -29,18 +28,16 @@
               </div>
             </form>
 
-           </div>
-          </div>
-        
 
-          <div class="card-body">          
-            <div class="col-md-6">
-              <a href="/user/create" class="btn btn-outline-default">
-              <i class="ni ni-single-02"></i> Nuevo usuario
-              </a>
             </div>
           </div>
-
+          <div class="card-body">
+            <div class="col-md-6">
+          <a href="/user/create" class="btn btn-outline-default">
+          <i class="ni ni-single-02"></i> Nuevo usuario
+          </a>
+        </div>
+          </div>
           <div class="table-responsive">
             <table class="table align-items-center table-dark">
               <thead class="thead-dark">
@@ -53,7 +50,6 @@
                   <th scope="col">Estado</th>
                   <th scope="col">Id de propietario</th>
                   <th scope="col">Id de referido</th>
-                  <th scope="col">Encender|Apagar</th>
                   <th scope="col">Editar</th>
                   <th scope="col">Detalle</th>                  
                 </tr>
@@ -86,12 +82,6 @@
                     {{ $user->ownerId }}
                   </td>
                   <td>
-                  <label class="custom-toggle">
-                      <input type="checkbox" checked>
-                      <span class="custom-toggle-slider rounded-circle " data-label-off="No" data-label-on="Yes"></span>
-                  </label>
-                  </td>
-                  <td>
                     <form action="" method="POST">
                       @csrf
                       @method('')
@@ -105,9 +95,11 @@
                 @endforeach
               </tbody>
             </table>
+            <br>
 
-            <hr>
             {{ $users->links() }}
+
+           
           
     </div>
   </div>
