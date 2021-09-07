@@ -20,9 +20,9 @@ class UserController extends Controller
 
     public function index(Request $request)
     {
-
       
       $nombre = $request->get('buscarpor');
+      
 
       $users = User::where('name', 'LIKE', "%$nombre%")
       ->orwhere('lastname', 'LIKE', "%$nombre%")
