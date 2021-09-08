@@ -50,7 +50,9 @@
               <thead class="thead-dark">
                 <tr>
                   <th scope="col" class="sort">Nombre</th>
+                  <th scope="col">email</th>
                   <th scope="col">user</th>
+                  <th scope="col">Nombre</th>
                   <th scope="col">Hash</th>
                   <th scope="col">Tipo de Hash</th>
                   <th scope="col">Estado</th>
@@ -68,7 +70,13 @@
                     {{ $membership->membership }}
                   </td>
                   <td>
+                    {{ $membership->user_email }}
+                  </td>
+                  <td>
                     {{ $membership->user }}
+                  </td>
+                  <td>
+                    {{ $membership->user_name }}
                   </td>
                   <td>
                     {{ $membership->hash }}

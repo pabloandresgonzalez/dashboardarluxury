@@ -6,7 +6,7 @@
     <div class="card-header border-0">
       <div class="row align-items-center">
         <div class="col">
-          <h3 class="mb-0"><i class="ni ni-single-02"></i> Hash de pago</h3>
+          <h3 class="mb-0"><i class="ni ni-single-02"></i> Hash de pago - {{ $memberships->user_email }}</h3>
         </div>
         <div class="col-md-6">
           <a href="/membership" class="btn btn-outline-default">
@@ -42,7 +42,7 @@
               <span class="input-group-text"><i class="ni ni-paper-diploma"></i></span>
             </div>
               <select id="membership" name="membership" class="form-control" >
-                <option value="{{ $memberships->membership}}">{{ $memberships->membership}}</option>
+                <option value="{{ $memberships->membership}}">{{ $memberships->membership }}</option>
                   
               </select>
           </div>
@@ -53,7 +53,7 @@
               <span class="input-group-text"><i class="ni ni-credit-card"></i></span>
             </div>
               <select id="typeHash" name="typeHash" class="form-control" required>
-                <option value="{{ $memberships->typeHash}}">{{ $memberships->typeHash}}</option>
+                <option value="{{ $memberships->typeHash}}">{{ $memberships->typeHash }}</option>
                   
               </select>
           </div>
@@ -63,7 +63,7 @@
             <div class="input-group-prepend">
               <span class="input-group-text"><i class="ni ni-key-25"></i></span>
             </div>  
-            <label class="form-control">{{ $memberships->hash}}</label>                      
+            <label class="form-control">{{ $memberships->hash }}</label>                      
                          
           </div>
         </div>
@@ -73,7 +73,7 @@
               <span class="input-group-text"><i class="ni ni-active-40"></i></span>
             </div>
               <select id="status" name="status" class="form-control" required>
-                <option value="{{ $memberships->status}}">{{ $memberships->status}}</option>
+                <option value="{{ $memberships->status}}">{{ $memberships->status }}</option>
                   <option value="Activo"  >Activo</option>
                   <option value="Cerrado"  >Cerrado</option>
                   

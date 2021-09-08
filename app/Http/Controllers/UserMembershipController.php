@@ -20,6 +20,7 @@ class UserMembershipController extends Controller
 
     public function index(Request $request)
     {
+
         $nombre = $request->get('buscarpor');
 
         $memberships = UserMembership::where('membership', 'LIKE', "%$nombre%")
@@ -29,12 +30,12 @@ class UserMembershipController extends Controller
         ->orderBy('id', 'desc')
         ->paginate(10);
 
+        //dd($memberships);
+ 
+        
         return view('memberships.index', [
         'memberships' => $memberships
         ]);
-
-
-
 
 
         /*
@@ -70,7 +71,7 @@ class UserMembershipController extends Controller
 
         $rules = ([
             
-            'membership' => 'required|string|min:4',        
+            'membership' => 'required|string|min:4|unique:user_memberships',        
             'hash' => 'required|max:255|unique:user_memberships', 
             'typeHash' => 'required|max:255',       
             'image' => 'file',             
@@ -84,6 +85,8 @@ class UserMembershipController extends Controller
         //Conseguir usuario identificado
         $user = \Auth::user();
         $id = $user->id;
+        $name = $user->name;
+        $email = $user->email;
            
 
         $fecha_actual = date("Y-m-d H:i:s");
@@ -91,7 +94,9 @@ class UserMembershipController extends Controller
 
         $membership = new UserMembership();
         $membership->membership = $request->input('membership');
+        $membership->user_email = $email;
         $membership->user = $id;
+        $membership->user_name = $name;
         $membership->hash = $request->input('hash');
         $membership->typeHash = $request->input('typeHash');     
         $membership->detail = 'Pendiente';

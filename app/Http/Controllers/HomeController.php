@@ -24,8 +24,12 @@ class HomeController extends Controller
      */
     public function index()
     {     
+        $totalusers = User::count();
 
-       return view('home');
+        //dd($totalusers);
+       return view('home', [
+        'totalusers' => $totalusers
+        ]);
         
     }
 
