@@ -9,12 +9,13 @@ class UserMembership extends Model
 {
     use HasFactory;
 
-    //Relacion
-    public function users(){
-       return $this->belongsTo('App\User', 'id');
-    }
+   //Relacion
+   public function users(){
+      return $this->belongsTo('App\User', 'id');
+   }
 
-    public function user(){
-       return$this->belongsTo(User::class);
-    }
+   public function asuser(){
+      return$this->belongsTo(User::class);
+   }
+
 }

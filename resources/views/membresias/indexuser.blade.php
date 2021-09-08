@@ -7,7 +7,7 @@
           <div class="card-header border-0">
             <div class="row align-items-center">
               <div class="col">
-                <h1 class="mb-0">Membresías</h1>
+                <h1 class="mb-0">Vitrina Membrecías</h1>
               </div>
               @if(session('message'))
                     <div class="alert alert-success">

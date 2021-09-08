@@ -10,7 +10,7 @@
         </div>
         <div class="col-md-6">
           <a href="membresiasuser" class="btn btn-outline-default">
-          <i class="ni ni-trophy"></i> Membresías
+          <i class="ni ni-trophy"></i> Vitrina membrecías
           </a>
         </div>
             <!-- Form -->

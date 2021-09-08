@@ -15,12 +15,12 @@
 </li>
 <li class="nav-item">
   <a class="nav-link" href="/membresiasuser">
-    <i class="ni ni-trophy text-danger"></i> Membresías
+    <i class="ni ni-shop text-danger"></i> Tienda
   </a>
 </li>
 <li class="nav-item">
   <a class="nav-link" href="/membresias">
-    <i class="ni ni-trophy text-info"></i> Gestión Membresías
+    <i class="ni ni-trophy text-info"></i> Gestión Vitrina
   </a>
 </li>
 <li class="nav-item">
