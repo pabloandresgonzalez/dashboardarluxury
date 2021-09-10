@@ -6,7 +6,7 @@
     <div class="card-header border-0">
       <div class="row align-items-center">
         <div class="col">
-          <h3 class="mb-0"><i class="ni ni-bullet-list-67"></i> &nbsp;Historial </h3>
+          <h3 class="mb-0"><i class="ni ni-bullet-list-67"></i> &nbsp;Historial membresias</h3>
         </div>
         <div class="col-md-6">
           <a href="/home" class="btn btn-outline-default">
@@ -45,6 +45,7 @@
                   <th scope="col">Estado</th>
                   <th scope="col">Fecha Cierre</th>
                   <th scope="col">Detalle</th>
+                  <th scope="col">Historial de pagos</th>
                 </tr>
               </thead>
               <tbody>
@@ -64,7 +65,10 @@
                   </td>
                   <td>
                     {{ $membership->detail }}
-                  </td>              
+                  </td>  
+                  <td>
+                    <a href="{{ route('membership.pagos', ['id' =>$membership->id]) }}" class="btn btn-outline-secondary"><i class="ni ni-archive-2"></i> Historial pagos</a>
+                  </td>             
                  </tr>
                  @endforeach
               </tbody>

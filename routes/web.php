@@ -62,6 +62,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
     Route::get('/membership/mismembership', [App\Http\Controllers\UserMembershipController::class, 'indexUserMemberships'])->name('mismembership'); 
     Route::get('/orden/{id}', [App\Http\Controllers\UserMembershipController::class, 'orden'])->name('prestamo.orden');
     Route::get('/membership/avatar/{filename?}', [App\Http\Controllers\UserMembershipController::class, 'getImage'])->name('prestamo.avatar');
+    Route::get('/pagos{id}', [App\Http\Controllers\UserMembershipController::class, 'pagos'])->name('membership.pagos');
     
 
     
