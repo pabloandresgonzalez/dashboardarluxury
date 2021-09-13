@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class UserMembership extends Model
+class NetworkTransaction extends Model
 {
     use HasFactory;
 
@@ -19,12 +19,11 @@ class UserMembership extends Model
    }
 
    //Relacion
-   public function membresias(){
-      return $this->belongsTo('App\Membresia', 'id');
-   }
+   public function UserMembership() {
+        return $this->hasMany('App\UserMembership');
+    }
 
-   public function amembresia(){
-      return$this->belongsTo(Membresia::class);
-   }
-
+    public function asUserMembership() {
+        return $this->hasMany(UserMembership::class, 'user')->orderBy('id', 'desc');
+    }
 }

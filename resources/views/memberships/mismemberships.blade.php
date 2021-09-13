@@ -58,7 +58,14 @@
                     {{ $membership->hash }}
                   </td>
                   <td>
-                    {{ $membership->status }}
+
+                    {{ $membership->status }}&nbsp;
+                    
+                    @if($membership->status == "Cerrado" )
+                    <a href="{{ url('/membership/'.$membership->id.'/') }}" class=""> Renovar</a> &nbsp;&nbsp;              
+                    @endif  
+
+                    
                   </td>
                   <td>
                     {{ $membership->closedAt }}

@@ -300,6 +300,16 @@ class UserController extends Controller
       ]);
     }
 
+    function getVideo()
+    {
+
+    $video = Storage::disk('photousers')->get("uploadpath_here");
+    $response = Response::make($video, 200);
+    $response->header('Content-Type', 'video/mp4');
+    return $response;
+    
+    }
+
     
 
 }

@@ -9,6 +9,7 @@ use App\Models\UserMembership;
 use DateTime;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
+use App\Models\User;
 
 
 class UserMembershipController extends Controller
@@ -49,8 +50,10 @@ class UserMembershipController extends Controller
 
     public function create()
     {
-        return view('memberships.create');
+        $users = User::all();
+        //dd($users);
 
+        return view('memberships.create', compact('users'));
 
     }
 
@@ -72,7 +75,7 @@ class UserMembershipController extends Controller
         $rules = ([
             
             'membership' => 'required|string|min:4',  //|unique:user_memberships      
-            'hash' => 'required|max:255', //|unique:user_memberships
+            'hash' => 'required|max:255|unique:user_memberships', //|unique:user_memberships
             'typeHash' => 'required|max:255',       
             'image' => 'file',             
             
@@ -87,7 +90,8 @@ class UserMembershipController extends Controller
         $id = $user->id;
         $name = $user->name;
         $email = $user->email;
-           
+
+
 
         $fecha_actual = date("Y-m-d H:i:s");
 
@@ -225,6 +229,59 @@ class UserMembershipController extends Controller
         return view('memberships.historialpagos');
 
     }
+
+    public function editrenovar($id) {
+        
+        $memberships = UserMembership::find($id);
+        //dd($memberships);
+
+        return view('memberships.renovar', [
+          'memberships' => $memberships
+      ]);
+
+    }
+
+    public function renovar(Request $request, $id)
+    {
+        
+
+        /*
+        //Conseguir usuario identificado
+        $user = \Auth::user();
+        $id = $user->id;
+
+        $membership = UserMembership::findOrFail($id);
+        $membership->hash;
+        */
+
+
+        //Validacion del formulario
+        $validate = $this->validate($request, [
+            //'membership' => 'required|string|min:4',        
+            //'hash' => 'required|max:255|unique:user_memberships', 
+            //'typeHash' => 'required|max:255',  
+            //'detail' => 'required|max:255',     
+            //'image' => 'file',
+        ]);
+
+
+        $membership = UserMembership::findOrFail($id);
+        //$membership->membership = $request->input('membership');
+        //$membership->typeHash = $request->input('typeHash');
+        //$membership->detail = $request->input('detail');
+        $membership->detail = 'Pendiente';
+        $membership->status = 'X Renovar';
+
+        $membership->save(); //INSERT BD
+
+        return redirect()->route('home')->with([
+                    'message' => 'Membership editado correctamente!'
+        ]);
+
+    }
+
+
+
 
     
 }
