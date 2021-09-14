@@ -10,6 +10,8 @@ use DateTime;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
 use App\Models\User;
+use App\Models\Membresia;
+use DB;
 
 
 class UserMembershipController extends Controller
@@ -50,10 +52,8 @@ class UserMembershipController extends Controller
 
     public function create()
     {
-        $users = User::all();
-        //dd($users);
 
-        return view('memberships.create', compact('users'));
+        return view('memberships.create');
 
     }
 
@@ -70,10 +70,16 @@ class UserMembershipController extends Controller
 
     public function store(Request $request)
     {
-        
+
+        //Conseguir usuario identificado
+        $user = \Auth::user();
+        $id = $user->id;
+        $name = $user->name;
+        $email = $user->email;
 
         $rules = ([
             
+            //'membership' => 'exists:App\Models\UserMembership',
             'membership' => 'required|string|min:4',  //|unique:user_memberships      
             'hash' => 'required|max:255|unique:user_memberships', //|unique:user_memberships
             'typeHash' => 'required|max:255',       
@@ -82,19 +88,14 @@ class UserMembershipController extends Controller
         ]);
 
 
+
        $this->validate($request, $rules);
 
 
-        //Conseguir usuario identificado
-        $user = \Auth::user();
-        $id = $user->id;
-        $name = $user->name;
-        $email = $user->email;
-
-
-
+        
         $fecha_actual = date("Y-m-d H:i:s");
 
+        
 
         $membership = new UserMembership();
         $membership->membership = $request->input('membership');
@@ -280,7 +281,23 @@ class UserMembershipController extends Controller
 
     }
 
+    public function consuluser(Request $request)
+    {
+        $id = $request->input('ownerId');
 
+        //dd($id);
+
+        if (User::where('id', $id)->first()) {
+            
+            return view('auth.register');
+
+        }
+
+            return redirect('consulta')->with([
+                'message' => 'Referido incorrecto, por favor verifique el id de referido!'
+        ]);      
+        
+    }
 
 
     

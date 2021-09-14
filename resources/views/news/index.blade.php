@@ -23,11 +23,56 @@
           </a>
         </div>
           </div>
+          <div class="table-responsive">
+            <table class="table align-items-center table-dark">
+              <thead class="thead-dark">
+                <tr>
+                  <th scope="col" class="sort">Titulo</th>
+                  <th scope="col">Intro</th>
+                  <th scope="col">Estado</th>
+                  <th scope="col">Editar</th>
+                  <th scope="col">Detalles</th>
+                </tr>
+              </thead>
+              <tbody>
+                @foreach ($news as $new)
+                <tr>
+                  <td scope="row">
+                    {{ $new->title }}
+                  </td>
+                  <td>
+                    {{ $new->intro }}
+                  </td>
+                  <td>
+                    {{ $new->isActive }}
+                  </td>
+                  <td>
+                    <form action="" method="POST">
+                      @csrf
+                      @method('DELETE')
+                      <a href="{{ url('/news/'.$new->id.'/edit') }}" class="btn btn-outline-secondary"><i class="ni ni-settings"></i> Editar</a>
+                    </form>
+                  </td>
+                  <td>
+                      <a href="" class="btn btn-outline-secondary"><i class="ni ni-bullet-list-67"></i> Detalle</a>
+                  </td>
+                </tr>
+                @endforeach
+              </tbody>
+            </table>
+            <br>
+
+            {{ $news->links() }}
+
+            
 
 
-      </div>
+          <div class="col-md-4">
+        </div>
+    </div>
+  </div>
 
-      <br>
+    <br>
         <hr class="my-3">
            
 

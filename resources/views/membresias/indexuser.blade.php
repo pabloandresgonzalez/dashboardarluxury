@@ -9,11 +9,15 @@
               <div class="col">
                 <h1 class="mb-0">Vitrina Membrecías</h1>
               </div>
+              
+
               @if(session('message'))
-                    <div class="alert alert-success">
+                    <div class="alert alert-danger">
                       {{ session('message') }}
                     </div>
               @endif
+
+
 
             </div>
           </div>
