@@ -74,6 +74,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
     Route::post('/news', [App\Http\Controllers\NewsController::class, 'store']); // envio form
     Route::get('/newsuser', [App\Http\Controllers\NewsController::class, 'indexuser']);
     Route::put('/news/{new}', [App\Http\Controllers\NewsController::class, 'update']);
+    Route::get('/news/avatar/{filename?}', [App\Http\Controllers\NewsController::class, 'getImagevideo'])->name('new.avatar');
 
 
 

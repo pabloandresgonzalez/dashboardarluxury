@@ -298,18 +298,7 @@ class UserController extends Controller
       return view('users.detail', [
           'user' => $user
       ]);
-    }
+    } 
 
-    function getVideo()
-    {
-
-    $video = Storage::disk('photousers')->get("uploadpath_here");
-    $response = Response::make($video, 200);
-    $response->header('Content-Type', 'video/mp4');
-    return $response;
-    
-    }
-
-    
 
 }

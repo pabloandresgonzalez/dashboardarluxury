@@ -36,22 +36,17 @@
         @csrf
 
 
+       
         
-         
         <div class="col-md-6">
           <div class="input-group input-group-alternative mb-3">
             <div class="input-group-prepend">
               <span class="input-group-text"><i class="ni ni-paper-diploma"></i></span>
             </div>
               <select id="membership" name="membership" class="form-control" >
-                <option value="">Membresía</option>
-                  <option value="100 Usd"  >100 Usd</option>
-                  <option value="250 Usd"  >250 Usd</option>
-                  <option value="500 Usd"  >500 Usd</option>
-                  <option value="1000 Usd"  >1000 Usd</option>
-                  <option value="2000 Usd"  >2000 Usd</option>
-                  <option value="3000 Usd"  >3000 Usd</option>
-                  <option value="5000 Usd"  >5000 Usd</option>
+                @foreach($resultado as $bc)
+                  <option value="{{ $bc }}"> {{ $bc }} </option>
+                @endforeach
               </select>
           </div>
         </div>

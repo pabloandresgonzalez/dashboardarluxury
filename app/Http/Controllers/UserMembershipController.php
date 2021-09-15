@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\File;
 use App\Models\User;
 use App\Models\Membresia;
 use DB;
+use Illuminate\Support\Arr;
 
 
 class UserMembershipController extends Controller
@@ -51,9 +52,37 @@ class UserMembershipController extends Controller
     }
 
     public function create()
-    {
+    {       
 
-        return view('memberships.create');
+        //Conseguir usuario identificado
+        $user = \Auth::user();
+
+        //Conseguir UserMembership de usuario identificado
+        $memberships = UserMembership::where('user', $user->id)->orderBy('id', 'desc')->get()->toArray();
+
+        //Conseguir membresias 
+        $membresias = DB::table('membresias')->pluck('name')->toArray();
+
+        //dd($membresias);           
+
+
+        $info = [$membresias];
+        $dato = Arr::flatten($info);
+        //print_r($datos);
+
+        //dd($dato);
+
+        $info = [$memberships];
+        $datos = Arr::flatten($info);
+        //print_r($datos);
+
+        //dd($datos);
+        
+        //Comparar arrays para mostrar solo los que puede selecionar
+        $resultado = array_diff($dato, $datos);
+
+
+        return view('memberships.create', compact('resultado'));
 
     }
 
@@ -76,7 +105,8 @@ class UserMembershipController extends Controller
         $id = $user->id;
         $name = $user->name;
         $email = $user->email;
-
+   
+        
         $rules = ([
             
             //'membership' => 'exists:App\Models\UserMembership',
@@ -87,14 +117,13 @@ class UserMembershipController extends Controller
             
         ]);
 
+         //dd($request->input('membership'));
 
 
        $this->validate($request, $rules);
 
-
         
         $fecha_actual = date("Y-m-d H:i:s");
-
         
 
         $membership = new UserMembership();
@@ -121,7 +150,7 @@ class UserMembershipController extends Controller
           //Seteo el nombre de la imagen en el objeto
           $membership->image = $image_photo_name;
         }
-
+       
 
         $membership->save();// INSERT BD
 
@@ -134,8 +163,7 @@ class UserMembershipController extends Controller
     }
 
     public function update(Request $request, $id)
-    {
-        
+    {       
 
         /*
         //Conseguir usuario identificado

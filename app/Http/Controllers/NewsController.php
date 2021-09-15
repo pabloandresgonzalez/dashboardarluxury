@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Storage;
 use App\Models\News;
 
@@ -161,6 +162,28 @@ class NewsController extends Controller
           'news' => $news
       ]);
     }
+
+    
+    public function getImagevideo($filename)
+    {
+      $file = Storage::disk('photoNews')->get($filename);
+      return new Response($file, 200);
+    }
+
+    
+    
+
+   /*
+    public function getVideo(Video $video)
+    {
+        $name = $video->name;
+        $fileContents = Storage::disk('photoNews')->get("app/photoNews/{$name}");
+        $response = Response::make($fileContents, 200);
+        $response->header('Content-Type', "video/mp4");
+        return $response;
+    }
+    */
+    
 
 
 }
