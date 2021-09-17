@@ -34,9 +34,6 @@ class UserMembershipController extends Controller
         ->orderBy('id', 'desc')
         ->paginate(10);
 
-        //dd($memberships);
- 
-        
         return view('memberships.index', [
         'memberships' => $memberships
         ]);
@@ -116,9 +113,6 @@ class UserMembershipController extends Controller
             'image' => 'file',             
             
         ]);
-
-         //dd($request->input('membership'));
-
 
        $this->validate($request, $rules);
 
@@ -283,12 +277,14 @@ class UserMembershipController extends Controller
         $membership->hash;
         */
 
+        //dd($request);
+
 
         //Validacion del formulario
         $validate = $this->validate($request, [
             //'membership' => 'required|string|min:4',        
             //'hash' => 'required|max:255|unique:user_memberships', 
-            //'typeHash' => 'required|max:255',  
+            'typeHash' => 'required|max:255',  
             //'detail' => 'required|max:255',     
             //'image' => 'file',
         ]);
@@ -296,7 +292,7 @@ class UserMembershipController extends Controller
 
         $membership = UserMembership::findOrFail($id);
         //$membership->membership = $request->input('membership');
-        //$membership->typeHash = $request->input('typeHash');
+        $membership->typeHash = $request->input('typeHash');
         //$membership->detail = $request->input('detail');
         $membership->detail = 'Pendiente';
         $membership->status = 'X Renovar';
@@ -309,23 +305,7 @@ class UserMembershipController extends Controller
 
     }
 
-    public function consuluser(Request $request)
-    {
-        $id = $request->input('ownerId');
 
-        //dd($id);
-
-        if (User::where('id', $id)->first()) {
-            
-            return view('auth.register');
-
-        }
-
-            return redirect('consulta')->with([
-                'message' => 'Referido incorrecto, por favor verifique el id de referido!'
-        ]);      
-        
-    }
 
 
     

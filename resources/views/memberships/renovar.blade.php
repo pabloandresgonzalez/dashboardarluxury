@@ -53,12 +53,13 @@
               <span class="input-group-text"><i class="ni ni-credit-card"></i></span>
             </div>
               <select id="typeHash" name="typeHash" class="form-control" required>
-                <option value="{{ $memberships->typeHash}}">{{ $memberships->typeHash }}</option>
-                  
+                  <option value=""  >Forma de pago del paquete</option>
+                  <option value="USDT"  >USDT</option>
+                  <option value="BTC"  >BTC</option>
               </select>
           </div>
-        </div>
-        <div class="col-md-6">
+        </div>        
+        <div class="col-md-12">
           <div class="input-group input-group-alternative mb-3">
             <div class="input-group-prepend">
               <span class="input-group-text"><i class="ni ni-key-25"></i></span>

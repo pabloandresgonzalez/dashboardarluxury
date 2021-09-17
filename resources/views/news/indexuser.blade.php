@@ -22,6 +22,9 @@
 
           @foreach($news as $new)
 
+
+
+
       
           <div class="row mt-5">
             <div class="col-xl-8 mb-5 mb-xl-0">
@@ -34,20 +37,23 @@
                             
                         </div>
                     </div>
-                    <div class="card-body" style="text-align:center;">
 
-                      @if($new->image)
+                    @if(in_array(strtolower(pathinfo($new->image,PATHINFO_EXTENSION)),["png","jpg"]))
+                    <div class="card-body" style="text-align:center;"> 
+                        <img class="table-responsive" width="240" height="320" controls src="{{ route('new.avatar',['filename'=>$new->image]) }}"> 
+                    </div>
+
+                    @else                        
+
+                    <div class="card-body" style="text-align:center;">
                       <video class="table-responsive" width="320" height="240" controls>
                               <source src="{{ route('new.avatar',['filename'=>$new->image]) }}" type="video/mp4">
                               Your browser does not support the video tag.
-                      </video>
-                      @else
-                      <img src="">
-                      @endif
-
-
-                        
+                      </video>                        
                     </div>
+
+                    @endif
+
                 </div>
             </div>
             <div class="col-xl-4">

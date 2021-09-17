@@ -92,7 +92,7 @@ class NewsController extends Controller
     public function indexuser()
     {
         //$news = News::all();
-        $news = News::orderBy('id', 'Desc')->paginate(10);
+        $news = News::where('isActive', 'Activa')->orderBy('id', 'Desc')->paginate(10);
         $data = ['news' => $news];
 
         
