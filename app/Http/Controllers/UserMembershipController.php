@@ -174,7 +174,8 @@ class UserMembershipController extends Controller
             'membership' => 'required|string|min:4',        
             //'hash' => 'required|max:255|unique:user_memberships', 
             'typeHash' => 'required|max:255',  
-            'detail' => 'required|max:255',     
+            'detail' => 'required|max:255', 
+            'closedAt' => 'required|max:255',    
             'image' => 'file',
         ]);
 
@@ -183,6 +184,7 @@ class UserMembershipController extends Controller
         $membership->membership = $request->input('membership');
         $membership->typeHash = $request->input('typeHash');
         $membership->detail = $request->input('detail');
+        $membership->closedAt = $request->input('closedAt');
         $membership->status = $request->input('status');
 
         //Subir la imagen photo
