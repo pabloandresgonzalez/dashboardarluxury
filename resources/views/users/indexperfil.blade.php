@@ -48,7 +48,7 @@
                         </button>
                       </div>
                       <div class="modal-body">
-                        https://dashboard.futursstrong.com/register?ownerId={{ $user->id }}
+                        https://dashboard.lifearluxury.com/register?ownerId={{ $user->id }}
                       </div>
                       <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
