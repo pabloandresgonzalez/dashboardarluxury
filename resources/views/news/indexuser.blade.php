@@ -80,72 +80,8 @@
         </div>
         <br><br>
         <hr class="my-4" />
-      
-
-          
-
-
-
 
           @endforeach
-
-          
-          
-
-      <!--
-        <div class="row">
-            <div class="col-xl-6 mb-5 mb-xl-0">
-                <div class="card bg-gradient-default shadow">
-                    <div class="card-header bg-transparent">
-                        <div class="row align-items-center">
-                            <div class="col">
-                                
-                                <h2 class="text-white mb-0">{{ $new->title }}</h2>
-                            </div>
-                            
-                        </div>
-                    </div>
-                    <div class="card-body" style="text-align:center;">
-                        
-                      <video width="320" height="240" controls>
-                              <source src="" type="video/mp4">
-                              Your browser does not support the video tag.
-                      </video>
-
-
-
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-4">
-                <div class="card shadow">
-                    <div class="card-header bg-transparent">
-                        <div class="row align-items-center">
-                            <div class="col">
-                                <h6 class="text-uppercase text-muted ls-1 mb-1">{{ $new->isActive }}</h6>
-                                <h2 class="mb-0">{{ $new->intro }}</h2>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-body">
-
-                      {{ $new->detail }}
-                        
-                    </div>
-                      
-                </div>
-            </div>
-        </div>
-        <br>
-        <hr class="my-4" />
-      -->
-
-        
-
-
-
-
-
 
 
           </div>
