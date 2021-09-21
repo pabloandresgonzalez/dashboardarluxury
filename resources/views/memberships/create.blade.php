@@ -37,19 +37,21 @@
 
 
        
+
+        
         
         <div class="col-md-6">
           <div class="input-group input-group-alternative mb-3">
             <div class="input-group-prepend">
               <span class="input-group-text"><i class="ni ni-paper-diploma"></i></span>
             </div>
-              <select id="membership" name="membership" class="form-control" >
-                @foreach($resultado as $bc)
-                  <option value="{{ $bc }}"> {{ $bc }} </option>
+              <select id="id_membresia" name="id_membresia" class="form-control" >
+                @foreach($membresias as $bc)
+                  <option value="{{ $bc->id }}"> {{ $bc->id }} - "{{ $bc->name }}"</option>
                 @endforeach
               </select>
           </div>
-        </div>
+        </div>     
         <div class="col-md-6">
           <div class="input-group input-group-alternative mb-3">
             <div class="input-group-prepend">
@@ -100,6 +102,8 @@
             @yield('content')
         </main>
 @endsection
+
+
 
 
 

@@ -48,8 +48,9 @@ class UserMembershipController extends Controller
 
     }
 
-    public function create()
+    public function create(Request $request)
     {       
+
 
         //Conseguir usuario identificado
         $user = \Auth::user();
@@ -57,29 +58,17 @@ class UserMembershipController extends Controller
         //Conseguir UserMembership de usuario identificado
         $memberships = UserMembership::where('user', $user->id)->orderBy('id', 'desc')->get()->toArray();
 
+        //dd($memberships);
+
         //Conseguir membresias 
-        $membresias = DB::table('membresias')->pluck('name')->toArray();
+        //$membresias = DB::table('membresias')->pluck()->toArray();
+        $membresias = Membresia::orderBy('id', 'Desc')->get();
 
-        //dd($membresias);           
-
-
-        $info = [$membresias];
-        $dato = Arr::flatten($info);
-        //print_r($datos);
-
-        //dd($dato);
-
-        $info = [$memberships];
-        $datos = Arr::flatten($info);
-        //print_r($datos);
-
-        //dd($datos);
-        
-        //Comparar arrays para mostrar solo los que puede selecionar
-        $resultado = array_diff($dato, $datos);
+        //dd($membresias); 
 
 
-        return view('memberships.create', compact('resultado'));
+
+        return view('memberships.create', compact('membresias'));
 
     }
 
@@ -96,18 +85,19 @@ class UserMembershipController extends Controller
 
     public function store(Request $request)
     {
-
+   
         //Conseguir usuario identificado
         $user = \Auth::user();
         $id = $user->id;
         $name = $user->name;
         $email = $user->email;
-   
-        
+
+                
         $rules = ([
             
-            //'membership' => 'exists:App\Models\UserMembership',
-            'membership' => 'required|string|min:4',  //|unique:user_memberships      
+            //'id_membresia' => 'exists:App\Models\UserMembership',
+            'id_membresia' => 'required|string',  //|unique:user_memberships|min:4
+            //'membership' => 'required|string',  //|unique:user_memberships|min:4      
             'hash' => 'required|max:255|unique:user_memberships', //|unique:user_memberships
             'typeHash' => 'required|max:255',       
             'image' => 'file',             
@@ -116,12 +106,22 @@ class UserMembershipController extends Controller
 
        $this->validate($request, $rules);
 
-        
+       //dd($request);
+
+       $id_membresia = Membresia::find($id);
+
+       $membresia = Membresia::find($request->input('id_membresia'));
+       $namemembresia =$membresia->name;
+       
+        //dd($namemembresia);
+
+              
         $fecha_actual = date("Y-m-d H:i:s");
         
 
         $membership = new UserMembership();
-        $membership->membership = $request->input('membership');
+        $membership->id_membresia = $request->input('id_membresia');
+        $membership->membership = $namemembresia;
         $membership->user_email = $email;
         $membership->user = $id;
         $membership->user_name = $name;

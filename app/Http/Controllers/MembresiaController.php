@@ -90,12 +90,12 @@ class MembresiaController extends Controller
 
     public function indexuser()
     {
+
         //$membresias = Membresia::all();
         $membresias = Membresia::orderBy('id', 'Desc')->paginate(10);
         $data = ['membresias' => $membresias];
 
         
-
         return view('membresias.indexuser', compact('membresias'));
 
     }

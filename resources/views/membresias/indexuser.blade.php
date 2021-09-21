@@ -33,6 +33,8 @@
                 <!-- Card stats -->
                 
                   <div class="col-xl-4 col-lg-6">
+
+                     <label>{{ $membresia->id}}</label>
                     
                       <div class="card" style="width: 18rem;">
                         <img class="card-img-top" src="{{ asset('img/brand/membresia1.PNG') }}" alt="Card image cap">
@@ -72,7 +74,7 @@
                     <div class="card-body px-lg-5 py-lg-5">                        
 
                             <div class="text-center">
-                                <a type="button" href="/membership/create" class="btn btn-outline-success btn-lg btn-block"><i class="ni ni-check-bold"></i>&nbsp; Registrar Hash de pago</a>
+                                <a type="button" href="/membership/create/" class="btn btn-outline-success btn-lg btn-block"><i class="ni ni-check-bold"></i>&nbsp; Registrar Hash de pago</a>
                             </div>                                    
 
                     </div>
@@ -102,7 +104,7 @@
                           <div class="card-body px-lg-5 py-lg-5">                        
 
                                   <div class="text-center">
-                                      <a type="button" href="/membership/create" class="btn btn-outline-success btn-lg btn-block"><i class="ni ni-check-bold"></i>&nbsp; Registrar Hash de pago</a>
+                                      <a type="button" href="/membership/create/" class="btn btn-outline-success btn-lg btn-block"><i class="ni ni-check-bold"></i>&nbsp; Registrar Hash de pago</a>
                                   </div>                                    
 
                           </div>
