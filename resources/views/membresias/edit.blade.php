@@ -55,11 +55,11 @@
         <div class="col-md-6">
           <div class="input-group input-group-alternative mb-3">
             <div class="input-group-prepend">
-              <span class="input-group-text"><i class="ni ni-bullet-list-67"></i></span>
-            </div>            
-            <input class="form-control" placeholder="Detalle" type="text" name="detail" value="{{ old('detail', $membresias->detail) }}" required autocomplete="detail" autofocus>
-          </div>
-        </div>
+              <span class="input-group-text"><i class="ni ni-active-40"></i></span>
+            </div>
+            <input class="form-control" placeholder="valor" type="number" name="valor" value="{{ old('valor', $membresias->valor) }}" required autocomplete="valor" autofocus>
+         </div>
+        </div>        
         <div class="col-md-6">
           <div class="input-group input-group-alternative mb-3">
             <div class="input-group-prepend">
@@ -67,6 +67,14 @@
               <span class="input-group-text"><i class="ni ni-image"></i>&nbsp; Imagen</span>
             </div>
             <input class="form-control" placeholder="image" value=""  type="file" name="image"  autocomplete="image" autofocus>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="input-group input-group-alternative mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><i class="ni ni-bullet-list-67"></i></span>
+            </div>            
+            <input class="form-control" placeholder="Detalle" type="text" name="detail" value="{{ old('detail', $membresias->detail) }}" required autocomplete="detail" autofocus>
           </div>
         </div>
 

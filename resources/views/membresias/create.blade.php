@@ -54,12 +54,11 @@
         <div class="col-md-6">
           <div class="input-group input-group-alternative mb-3">
             <div class="input-group-prepend">
-              <span class="input-group-text"><i class="ni ni-bullet-list-67"></i></span>
+              <span class="input-group-text"><i class="ni ni-money-coins"></i></span>
             </div>
-            <textarea class="form-control" id="detail" rows="3" type="text" name="detail" placeholder="Detalle" value="{{ old('detail') }}" required autocomplete="detail" autofocus></textarea> <!--
-            <input class="form-control" placeholder="Detalle" type="text" name="detail" value="{{ old('detail') }}" required autocomplete="detail" autofocus>-->
-          </div>
-        </div>
+            <input class="form-control" placeholder="valor" type="number" name="valor" value="{{ old('valor') }}" required autocomplete="valor" autofocus>
+         </div>
+        </div>        
         <div class="col-md-6">
           <div class="input-group input-group-alternative mb-3">
             <div class="input-group-prepend">
@@ -67,6 +66,15 @@
               <span class="input-group-text"><i class="ni ni-image"></i>&nbsp; Imagen</span>
             </div>
             <input class="form-control" placeholder="photo"  type="file" name="photo"  autocomplete="photo" autofocus>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="input-group input-group-alternative mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><i class="ni ni-bullet-list-67"></i></span>
+            </div>
+            <textarea class="form-control" id="detail" rows="3" type="text" name="detail" placeholder="Detalle" value="{{ old('detail') }}" required autocomplete="detail" autofocus></textarea> <!--
+            <input class="form-control" placeholder="Detalle" type="text" name="detail" value="{{ old('detail') }}" required autocomplete="detail" autofocus>-->
           </div>
         </div>
 

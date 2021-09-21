@@ -38,6 +38,7 @@ class MembresiaController extends Controller
         'name' => 'required|string|min:4|max:255',
         'isActive' => 'required|string|max:255',
         'detail' => 'required|string|max:255',
+        'valor' => 'required|string|max:255',
         'image' => 'file',
 
       ];
@@ -47,6 +48,7 @@ class MembresiaController extends Controller
           'name.required' => 'Es necesario ingresar el nombre',
           'name.min' => 'El nombre de la membresía debe tener al menos 4 caracteres',
           'isActive.required' => 'Es necesario ingresar el estado',
+          'valor.required' => 'Es necesario ingresar el valor',
           'detail.required' => 'Es necesario ingresar el detalle de la membresía ',
 
         ];
@@ -64,6 +66,7 @@ class MembresiaController extends Controller
         $membresia = new Membresia();
         $membresia->name = $request->input('name');
         $membresia->isActive = $request->input('isActive');
+        $membresia->valor = $request->input('valor');
         $membresia->detail = $request->input('detail');
 
         //Subir la imagen photo
@@ -120,6 +123,7 @@ class MembresiaController extends Controller
             'name' => 'required|string|min:4|max:255',
             'isActive' => 'required|string|max:255',
             'detail' => 'required|string|max:255',
+            'valor' => 'required|string|max:255',
             'image' => 'file'
         ]);
 
@@ -127,6 +131,7 @@ class MembresiaController extends Controller
         $membresia = Membresia::findOrFail($id);
         $membresia->name = $request->input('name');
         $membresia->isActive = $request->input('isActive');
+        $membresia->valor = $request->input('valor');
         $membresia->detail = $request->input('detail');
 
         //Subir la imagen photo

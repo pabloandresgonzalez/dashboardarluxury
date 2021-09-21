@@ -47,6 +47,10 @@
               <li class="list-inline-item"><h4>{{ $membresia->isActive }}</h4></li>
             </ul>
             <ul>
+              Valor: &nbsp;
+              <li class="list-inline-item"><h4>{{ $membresia->valor }}</h4></li>
+            </ul>
+            <ul>
               Detalle:  &nbsp
               <li class="list-inline-item"><h4>{{ $membresia->detail }}</h4></li>
             </ul>

@@ -29,9 +29,10 @@
                 <tr>
                   <th scope="col" class="sort">Nombre</th>
                   <th scope="col">Estado</th>
-                  <th scope="col">Detalle</th>
+                  <th scope="col">Valor</th>
                   <th scope="col">Detalle</th>
                   <th scope="col">Editar</th>
+                  <th scope="col">+ Detalles</th>
                 </tr>
               </thead>
               <tbody>
@@ -44,6 +45,9 @@
                     {{ $membresia->isActive }}
                   </td>
                   <td>
+                    {{ $membresia->valor }}
+                  </td>
+                  <td>
                     {{ $membresia->detail }}
                   </td>
                   <td>
@@ -54,7 +58,7 @@
                     </form>
                   </td>
                   <td>
-                      <a href="{{ url('/membresias/'.$membresia->id.'/detail') }}" class="btn btn-outline-secondary"><i class="ni ni-bullet-list-67"></i> Detalle</a>
+                      <a href="{{ url('/membresias/'.$membresia->id.'/detail') }}" class="btn btn-outline-secondary"><i class="ni ni-bullet-list-67"></i> + Detalles</a>
                   </td>
                 </tr>
                 @endforeach
