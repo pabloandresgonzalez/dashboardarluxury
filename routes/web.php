@@ -46,6 +46,8 @@ Route::get('/membership/mismembership', [App\Http\Controllers\UserMembershipCont
 Route::get('/pagos{id}', [App\Http\Controllers\UserMembershipController::class, 'pagos'])->name('membership.pagos');
 Route::get('/membership/{membership}', [App\Http\Controllers\UserMembershipController::class, 'editrenovar']);
 Route::put('/membershiprenovar/{membership}', [App\Http\Controllers\UserMembershipController::class, 'renovar']);
+Route::get('/membership/{membership}/detail', [App\Http\Controllers\UserMembershipController::class, 'detail']);//detalle
+
 
 //News
 Route::get('/newsuser', [App\Http\Controllers\NewsController::class, 'indexuser']);

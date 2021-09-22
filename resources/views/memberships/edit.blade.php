@@ -99,12 +99,14 @@
         <div class="col-md-6">
           <div class="input-group input-group-alternative mb-3">
             <div class="input-group-prepend">
-
               <span class="input-group-text"><i class="ni ni-image"></i>&nbsp;Solo archivo de imagen</span>
             </div>
             <input class="form-control" placeholder="image"  type="file" name="image"  autocomplete="image" autofocus>
           </div>
         </div>
+        <div class="col-md-6">
+        </div>
+
         <div class="col-md-4">
           <button type="" class="btn btn-outline-default" ><i class="ni ni-satisfied"></i> Enviar</button>
         </div>

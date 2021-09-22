@@ -28,6 +28,8 @@ class UserMembershipController extends Controller
         $nombre = $request->get('buscarpor');
 
         $memberships = UserMembership::where('membership', 'LIKE', "%$nombre%")
+        ->orwhere('user_name', 'LIKE', "%$nombre%")
+        ->orwhere('user_email', 'LIKE', "%$nombre%")
         ->orwhere('hash', 'LIKE', "%$nombre%")
         ->orwhere('typeHash', 'LIKE', "%$nombre%")
         ->orwhere('status', 'LIKE', "%$nombre%")
@@ -305,6 +307,15 @@ class UserMembershipController extends Controller
                     'message' => 'Membership editado correctamente!'
         ]);
 
+    }
+
+    public function detail($id) {
+
+      $membership = UserMembership::find($id);
+
+      return view('memberships.detail', [
+          'membership' => $membership
+      ]);
     }
 
 
