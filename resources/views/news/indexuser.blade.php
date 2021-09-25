@@ -38,7 +38,7 @@
                         </div>
                     </div>
 
-                    @if(in_array(strtolower(pathinfo($new->image,PATHINFO_EXTENSION)),["png","jpg","jpeg"]))
+                    @if(in_array(strtolower(pathinfo($new->image,PATHINFO_EXTENSION)),["png","jpg","gif","avg"]))
                     <div class="card-body" style="text-align:center;"> 
                         <img class="table-responsive" width="240" height="320" controls src="{{ route('new.avatar',['filename'=>$new->image]) }}"> 
                     </div>
