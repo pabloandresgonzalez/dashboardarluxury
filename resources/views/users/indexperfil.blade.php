@@ -103,6 +103,7 @@
               </div>
             </div>
             <div class="card-body">
+              
     <form class="row g-3" action="{{ url('user/'.$user->id) }}" enctype="multipart/form-data" method="post">
     @csrf
     @method('PUT')
@@ -455,31 +456,23 @@
         <div class="col-md-6" hidden="true">
           <div class="input-group input-group-alternative mb-3">
             <div class="input-group-prepend">
-              <span class="input-group-text"><i class="ni ni-button-power"></i>&nbsp;  Desactivar</span>
+              <span class="input-group-text"><i class="ni ni-button-power"></i>&nbsp; </span>
             </div>
-              <label class="custom-toggle" >
-                  <input type="checkbox" name="isActive"  checked>
-                  <span class="custom-toggle-slider rounded-circle " data-label-off="No" data-label-on="Yes"></span>
-              </label><span class="input-group-text"> Activar</span>
+              <select id="isActive" name="isActive" class="form-control" required>
+                <option value="{{ $user->isActive }}"></option>
+                </select>
           </div>
         </div>
-
         <div class="col-md-6" hidden="true">
           <div class="input-group input-group-alternative mb-3">
             <div class="input-group-prepend">
               <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
             </div>
               <select id="level" name="level" class="form-control" required>
-                <option value="{{ $user->level }}">Tipo de nivel</option>
-                  <option value="1"  >USUARIO</option>
-                  <option value="2"  >DIRECTOR</option>
-                  <option value="3"  >DIRECTOR JUNIOR</option>
-                  <option value="4"  >DIRECTOR SENIOR</option>
-                  <option value="5"  >VICE PRESIDENTE</option>
+                <option value="{{ $user->level }}"></option>
               </select>
           </div>
         </div>
-
         <div class="col-md-12" hidden="true">
           <div class="input-group input-group-alternative mb-3">
             <div class="input-group-prepend">
@@ -488,8 +481,6 @@
               <input class="form-control" placeholder="Email" type="email" name="email" autocomplete="email" value="{{ $user->email }}" autofocus >
           </div>
         </div>
-
-
         <div class="col-md-12" hidden="true">
           <p>Ingrese un valor sólo si desea cambiar el código de referido.</p>
           <div class="input-group input-group-alternative mb-3">
@@ -506,31 +497,7 @@
         </div>
 
         <div class="col-md-4">
-            <div class="modal fade" id="modal-notification" tabindex="-1" role="dialog" aria-labelledby="modal-notification" aria-hidden="true">
-          <div class="modal-dialog modal- modal-dialog-centered modal-" role="document">
-                        <div class="modal-content">
-                  <div class="modal-header">
-                      <h6 class="modal-title" id="modal-title-notification">Se requiere tu atención</h6>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                          <span aria-hidden="true">×</span>
-                      </button>
-                  </div>
-                  <div class="modal-body">
-                      <div class="py-3 text-center">
-                          <i class="ni ni-bell-55 ni-3x"></i>
-                          <h4 class="heading mt-4">¡Deberías leer esto!</h4>
-                          <p>Precaución esta acción cambiara los datos del usuario.</p>
-                      </div>
-                  </div>
-                  <div class="modal-footer">
-                      <button type="submit" class="btn btn-outline-default">
-                        <i class="ni ni-check-bold"></i> Guardar Cambios
-                      </button>
-                      <button type="button" class="btn btn-link text-white ml-auto" data-dismiss="modal">Close</button>
-                  </div>
-              </div>
-          </div>
-        </div>
+            
 
   </form>
             </div>

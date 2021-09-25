@@ -66,8 +66,8 @@
             </div>
               <select id="isActive" name="isActive" class="form-control" required>
                 <option value="">Estado</option>
-                  <option value="Activa"  >Activa</option>
-                  <option value="Cerrada"  >Cerrada</option>
+                  <option value="1"  >Activa</option>
+                  <option value="0"  >Cerrada</option>
                   
               </select>
           </div>

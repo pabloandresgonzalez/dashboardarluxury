@@ -387,9 +387,16 @@
               <span class="input-group-text"><i class="ni ni-button-power"></i>&nbsp; </span>
             </div>
               <select id="isActive" name="isActive" class="form-control" required>
-                  <option value="{{ $user->isActive }}">Estado</option>
-                    <option value="Activo"  >Activo</option>
-                    <option value="Desactivado"  >Desactivado</option>
+                <option value="{{ $user->isActive }}">Estado actual
+                  @if($user->isActive == 1)
+                    Activo
+                  @elseif($user->isActive == 0)
+                    Desactivado
+
+                </option>
+                  @endif
+                    <option value="1"  >Activo</option>
+                    <option value="0"  >Desactivado</option>
                 </select>
           </div>
         </div>
@@ -399,7 +406,19 @@
               <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
             </div>
               <select id="level" name="level" class="form-control" required>
-                <option value="{{ $user->level }}">Tipo de nivel</option>
+                <option value="{{ $user->level }}">
+                  @if($user->level == 1)
+                    Nivel actual USUARIO
+                  @elseif($user->level == 2)
+                    Nivel actual DIRECTOR
+                  @elseif($user->level == 3)
+                    Nivel actual DIRECTOR JUNIOR
+                  @elseif($user->level == 4)
+                    Nivel actual DIRECTOR SENIOR
+                  @elseif($user->level == 5)
+                    Nivel actual VICE PRESIDENTE
+                </option>
+                  @endif
                   <option value="1"  >USUARIO</option>
                   <option value="2"  >DIRECTOR</option>
                   <option value="3"  >DIRECTOR JUNIOR</option>
@@ -408,7 +427,6 @@
               </select>
           </div>
         </div>
-
         <div class="col-md-12">
           <div class="input-group input-group-alternative mb-3">
             <div class="input-group-prepend">
@@ -435,31 +453,7 @@
         </div>
 
         <div class="col-md-4">
-            <div class="modal fade" id="modal-notification" tabindex="-1" role="dialog" aria-labelledby="modal-notification" aria-hidden="true">
-          <div class="modal-dialog modal- modal-dialog-centered modal-" role="document">
-                        <div class="modal-content">
-                  <div class="modal-header">
-                      <h6 class="modal-title" id="modal-title-notification">Se requiere tu atención</h6>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                          <span aria-hidden="true">×</span>
-                      </button>
-                  </div>
-                  <div class="modal-body">
-                      <div class="py-3 text-center">
-                          <i class="ni ni-bell-55 ni-3x"></i>
-                          <h4 class="heading mt-4">¡Deberías leer esto!</h4>
-                          <p>Precaución esta acción cambiara los datos del usuario.</p>
-                      </div>
-                  </div>
-                  <div class="modal-footer">
-                      <button type="submit" class="btn btn-outline-default">
-                        <i class="ni ni-check-bold"></i> Guardar Cambios
-                      </button>
-                      <button type="button" class="btn btn-link text-white ml-auto" data-dismiss="modal">Close</button>
-                  </div>
-              </div>
-          </div>
-        </div>
+            
 
   </form>
 

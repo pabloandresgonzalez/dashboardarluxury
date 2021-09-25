@@ -98,7 +98,7 @@ class RegisterController extends Controller
             'cellphone' => $data['cellphone'],
             'country' => $data['country'],
             'email' => $data['email'],
-            'level' => 'user',
+            'level' => '1',
             'photo' => $urlphoto,
             'photoDoc' => $urlphotoDoc,
             'isActive' => true,

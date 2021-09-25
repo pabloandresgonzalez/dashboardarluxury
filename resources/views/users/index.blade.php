@@ -70,10 +70,24 @@
                     {{ $user->cellphone }}
                   </td>
                   <td>
-                    {{ $user->level }}
+                    @if($user->level == 1)
+                      USUARIO
+                    @elseif($user->level == 2)
+                      DIRECTOR
+                    @elseif($user->level == 3)
+                      DIRECTOR JUNIOR
+                    @elseif($user->level == 4)
+                      DIRECTOR SENIOR
+                    @elseif($user->level == 5)
+                      VICE PRESIDENTE
+                    @endif
                   </td>
                   <td>
-                    {{ $user->isActive }}
+                    @if($user->isActive == 1)
+                      Activo
+                    @elseif($user->isActive == 0)
+                      Desactivado
+                    @endif
                   </td>
                   <td>
                     {{ $user->id }}

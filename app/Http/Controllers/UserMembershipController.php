@@ -123,6 +123,7 @@ class UserMembershipController extends Controller
 
         $membership = new UserMembership();
         $membership->id_membresia = $request->input('id_membresia');
+        //$membership->membresiaPadre = '';
         $membership->membership = $namemembresia;
         $membership->user_email = $email;
         $membership->user = $id;
@@ -184,6 +185,7 @@ class UserMembershipController extends Controller
 
         $membership = UserMembership::findOrFail($id);
         $membership->membership = $request->input('membership');
+        //$membership->membresiaPadre = '';
         $membership->typeHash = $request->input('typeHash');
         $membership->detail = $request->input('detail');
         $membership->closedAt = $request->input('closedAt');

@@ -92,9 +92,8 @@ class NewsController extends Controller
     public function indexuser()
     {
         //$news = News::all();
-        $news = News::where('isActive', 'Activa')->orderBy('id', 'Desc')->paginate(10);
+        $news = News::where('isActive', '1')->orderBy('id', 'Desc')->paginate(10);
         $data = ['news' => $news];
-
         
 
         return view('news.indexuser', compact('news'));

@@ -44,7 +44,11 @@
                     {{ $new->intro }}
                   </td>
                   <td>
-                    {{ $new->isActive }}
+                  @if($new->isActive == 1)
+                    Activa
+                  @elseif($new->isActive == 0)
+                    Cerrada
+                  @endif
                   </td>
                   <td>
                     <form action="" method="POST">

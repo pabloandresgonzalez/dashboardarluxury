@@ -47,6 +47,18 @@
               <li class="list-inline-item"><h4>{{ $user->id }}</h4></li>
             </ul>
             <ul>
+              Estado:  &nbsp;
+              <li class="list-inline-item">
+                <h4>
+                @if($user->isActive == 1)
+                    Activo
+                  @elseif($user->isActive == 0)
+                    Desactivado
+                  @endif
+                </h4>
+              </li>
+            </ul>
+            <ul>
               Tipo de documento:  &nbsp
               <li class="list-inline-item"><h4>{{ $user->typeDoc }}</h4></li>
             </ul>
@@ -76,7 +88,21 @@
             </ul>
             <ul>
               Nivel:  &nbsp;
-              <li class="list-inline-item"><h4>{{ $user->level }}</h4></li>
+              <li class="list-inline-item">
+                <h4>
+                  @if($user->level == 1)
+                     USUARIO
+                  @elseif($user->level == 2)
+                    DIRECTOR
+                  @elseif($user->level == 3)
+                    DIRECTOR JUNIOR
+                  @elseif($user->level == 4)
+                    DIRECTOR SENIOR
+                  @elseif($user->level == 5)
+                    VICE PRESIDENTE
+                  @endif
+                </h4>
+              </li>
             </ul>
             <ul>
               Id de referido:  &nbsp;

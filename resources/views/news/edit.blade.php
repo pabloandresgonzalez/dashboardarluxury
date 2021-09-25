@@ -66,9 +66,15 @@
               <span class="input-group-text"><i class="ni ni-active-40"></i></span>
             </div>
               <select id="isActive" name="isActive" class="form-control" required>
-                <option value="{{ $news->isActive}}">{{ $news->isActive}}</option>
-                  <option value="Activa"  >Activa</option>
-                  <option value="Cerrada"  >Cerrada</option>
+                <option value="{{ $news->isActive}}">Estado actual
+                  @if($news->isActive == 1)
+                    Activa
+                  @elseif($news->isActive == 0)
+                    Cerrada
+                </option>
+                  @endif
+                  <option value="1"  >Activa</option>
+                  <option value="0"  >Cerrada</option>
                   
               </select>
           </div>
