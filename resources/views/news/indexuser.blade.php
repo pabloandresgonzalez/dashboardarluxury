@@ -37,20 +37,17 @@
                             
                         </div>
                     </div>
+                    
+                    @if (!empty(in_array(strtolower(pathinfo($new->image,PATHINFO_EXTENSION)),["png","jpg","gif","avg"]))) 
 
-                    @if(in_array(strtolower(pathinfo($new->image,PATHINFO_EXTENSION)),["png","jpg","gif","avg"]))
+                   
                     <div class="card-body" style="text-align:center;"> 
                         <img class="table-responsive" width="240" height="320" controls src="{{ route('new.avatar',['filename'=>$new->image]) }}"> 
                     </div>
 
                     @else                        
 
-                    <div class="card-body" style="text-align:center;">
-                      <video class="table-responsive" width="320" height="240" controls>
-                              <source src="{{ route('new.avatar',['filename'=>$new->image]) }}" type="video/mp4">
-                              Your browser does not support the video tag.
-                      </video>                        
-                    </div>
+                    <iframe width="560" height="315" src="{{ $new->url_video }}" frameborder="0" allowfullscreen></iframe>
 
                     @endif
 

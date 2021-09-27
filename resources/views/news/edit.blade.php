@@ -63,6 +63,14 @@
         <div class="col-md-6">
           <div class="input-group input-group-alternative mb-3">
             <div class="input-group-prepend">
+              <span class="input-group-text"><i class="ni ni-tag"></i></span>
+            </div>
+            <input class="form-control" placeholder="URL del video" type="text" name="url_video" value="{{ old('url_video', $news->url_video) }}" autocomplete="url_video" autofocus>
+         </div>
+        </div>
+        <div class="col-md-6">
+          <div class="input-group input-group-alternative mb-3">
+            <div class="input-group-prepend">
               <span class="input-group-text"><i class="ni ni-active-40"></i></span>
             </div>
               <select id="isActive" name="isActive" class="form-control" required>
@@ -83,7 +91,7 @@
           <div class="input-group input-group-alternative mb-3">
             <div class="input-group-prepend">
 
-              <span class="input-group-text"><i class="ni ni-image"></i>&nbsp; Imagen</span>
+              <span class="input-group-text"><i class="ni ni-image"></i>&nbsp;Solo archivo de imagen</span>
             </div>
             <input class="form-control" placeholder="image"  type="file" name="image"  autocomplete="image" autofocus>
           </div>

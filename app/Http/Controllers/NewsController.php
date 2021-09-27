@@ -37,6 +37,7 @@ class NewsController extends Controller
         'title' => 'required|string|min:4|max:255',
         'intro' => 'required|string|max:255',
         'detail' => 'required|string|max:255',
+        //'url_video' => 'string|max:255',
         'isActive' => 'required|string|max:255',
         'image' => 'file',
 
@@ -65,8 +66,11 @@ class NewsController extends Controller
         $news->title = $request->input('title');
         $news->intro = $request->input('intro');
         $news->detail = $request->input('detail');
+        $news->url_video = $request->input('url_video');
         $news->isActive = $request->input('isActive');
+        $news->image = $request->input('image');
 
+        
         //Subir la imagen photo
         $image_photo = $request->file('image');
         if ($image_photo) {
@@ -80,6 +84,7 @@ class NewsController extends Controller
           //Seteo el nombre de la imagen en el objeto
           $news->image = $image_photo_name;
         }
+        
 
         $news->save(); //INSERT BD
 
@@ -94,6 +99,8 @@ class NewsController extends Controller
         //$news = News::all();
         $news = News::where('isActive', '1')->orderBy('id', 'Desc')->paginate(10);
         $data = ['news' => $news];
+
+
         
 
         return view('news.indexuser', compact('news'));
@@ -120,6 +127,7 @@ class NewsController extends Controller
             'title' => 'required|string|min:4|max:255',
             'intro' => 'required|string|min:4|max:255',
             'detail' => 'required|string|max:255',
+            //'url_video' => 'string|max:255',
             'isActive' => 'required|string|max:255',            
             'image' => 'file'
         ]);        
@@ -129,6 +137,7 @@ class NewsController extends Controller
         $news->title = $request->input('title');
         $news->intro = $request->input('intro');
         $news->detail = $request->input('detail');
+        $news->url_video = $request->input('url_video');
         $news->isActive = $request->input('isActive');
 
         //Subir la imagen photo
@@ -168,21 +177,5 @@ class NewsController extends Controller
       $file = Storage::disk('photoNews')->get($filename);
       return new Response($file, 200);
     }
-
-    
-    
-
-   /*
-    public function getVideo(Video $video)
-    {
-        $name = $video->name;
-        $fileContents = Storage::disk('photoNews')->get("app/photoNews/{$name}");
-        $response = Response::make($fileContents, 200);
-        $response->header('Content-Type', "video/mp4");
-        return $response;
-    }
-    */
-    
-
 
 }

@@ -38,7 +38,7 @@
         <div class="col-md-6">
           <div class="input-group input-group-alternative mb-3">
             <div class="input-group-prepend">
-              <span class="input-group-text"><i class="ni ni-paper-diploma"></i></span>
+              <span class="input-group-text"><i class="ni ni-caps-small"></i></span>
             </div>
             <input class="form-control" placeholder="Titulo" type="text" name="title" value="{{ old('title') }}" required autocomplete="title" autofocus>
           </div>
@@ -46,7 +46,7 @@
         <div class="col-md-6">
           <div class="input-group input-group-alternative mb-3">
             <div class="input-group-prepend">
-              <span class="input-group-text"><i class="ni ni-active-40"></i></span>
+              <span class="input-group-text"><i class="ni ni-single-copy-04"></i></span>
             </div>
             <input class="form-control" placeholder="Intro" type="text" name="intro" value="{{ old('intro') }}" required autocomplete="intro" autofocus>
          </div>
@@ -54,9 +54,17 @@
         <div class="col-md-6">
           <div class="input-group input-group-alternative mb-3">
             <div class="input-group-prepend">
-              <span class="input-group-text"><i class="ni ni-active-40"></i></span>
+              <span class="input-group-text"><i class="ni ni-bullet-list-67"></i></span>
             </div>
             <input class="form-control" placeholder="Detalle" type="text" name="detail" value="{{ old('detail') }}" required autocomplete="detail" autofocus>
+         </div>
+        </div>
+        <div class="col-md-6">
+          <div class="input-group input-group-alternative mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><i class="ni ni-tag"></i></span>
+            </div>
+            <input class="form-control" placeholder="URL del video" type="text" name="url_video" value="{{ old('url_video') }}"  autocomplete="url_video" autofocus>
          </div>
         </div>
         <div class="col-md-6">
@@ -76,9 +84,9 @@
           <div class="input-group input-group-alternative mb-3">
             <div class="input-group-prepend">
 
-              <span class="input-group-text"><i class="ni ni-image"></i>&nbsp; Imagen</span>
+              <span class="input-group-text"><i class="ni ni-image"></i>&nbsp;Solo archivo de imagen</span>
             </div>
-            <input class="form-control" placeholder="image"  type="file" name="image"  autocomplete="image" autofocus>
+            <input class="form-control" placeholder="Solo archi"  type="file" name="image"  autocomplete="image" autofocus>
           </div>
         </div>
 
