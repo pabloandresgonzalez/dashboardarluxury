@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
 use App\Models\User;
 use App\Models\Membresia;
+use App\Models\NetworkTransaction;
 use DB;
 use Illuminate\Support\Arr;
 
@@ -123,7 +124,7 @@ class UserMembershipController extends Controller
 
         $membership = new UserMembership();
         $membership->id_membresia = $request->input('id_membresia');
-        //$membership->membresiaPadre = '';
+        $membership->membresiaPadre = 0;
         $membership->membership = $namemembresia;
         $membership->user_email = $email;
         $membership->user = $id;
@@ -185,7 +186,6 @@ class UserMembershipController extends Controller
 
         $membership = UserMembership::findOrFail($id);
         $membership->membership = $request->input('membership');
-        //$membership->membresiaPadre = '';
         $membership->typeHash = $request->input('typeHash');
         $membership->detail = $request->input('detail');
         $membership->closedAt = $request->input('closedAt');
@@ -252,10 +252,11 @@ class UserMembershipController extends Controller
 
     public function pagos(Request $request, $id)
     {
-        
-        $membership = UserMembership::findOrFail($id);
+
+        $membership = UserMembership::findOrFail($id);        
+        //$networktransaction = NetworkTransaction::findOrFail($request->user);
         //dd($membership);
-        return view('memberships.historialpagos');
+        return view('networktransaction.index');
 
     }
 
@@ -279,16 +280,16 @@ class UserMembershipController extends Controller
         $user = \Auth::user();
         $id = $user->id;
 
-        $membership = UserMembership::findOrFail($id);
+        $membershippadre = UserMembership::findOrFail($id);
         $membership->hash;
         */
 
         //dd($request);
 
-
+        /*
         //Validacion del formulario
         $validate = $this->validate($request, [
-            //'membership' => 'required|string|min:4',        
+            'membership' => 'required|string|min:4',        
             //'hash' => 'required|max:255|unique:user_memberships', 
             'typeHash' => 'required|max:255',  
             //'detail' => 'required|max:255',     
@@ -297,17 +298,95 @@ class UserMembershipController extends Controller
 
 
         $membership = UserMembership::findOrFail($id);
-        //$membership->membership = $request->input('membership');
+        $membership->membership = $request->input('membership');
+        $membership->membresiaPadre = $id;
         $membership->typeHash = $request->input('typeHash');
         //$membership->detail = $request->input('detail');
         $membership->detail = 'Pendiente';
         $membership->status = 'X Renovar';
+
+        //dd($membership);
 
         $membership->save(); //INSERT BD
 
         return redirect()->route('home')->with([
                     'message' => 'Membership editado correctamente!'
         ]);
+        */
+
+
+        /*
+
+        //Conseguir usuario identificado
+        $user = \Auth::user();
+        $id = $user->id;
+        $name = $user->name;
+        $email = $user->email;
+
+                
+        $rules = ([
+            
+            //'id_membresia' => 'exists:App\Models\UserMembership',
+            'id_membresia' => 'required|string',  //|unique:user_memberships|min:4
+            //'membership' => 'required|string',  //|unique:user_memberships|min:4      
+            'hash' => 'required|max:255|unique:user_memberships', //|unique:user_memberships
+            'typeHash' => 'required|max:255',       
+            'image' => 'file',             
+            
+        ]);
+
+       $this->validate($request, $rules);
+
+       //dd($request);
+
+       $id_membresia = Membresia::find($id);
+
+       $membresia = Membresia::find($request->input('id_membresia'));
+       $namemembresia =$membresia->name;
+       
+        //dd($namemembresia);
+
+              
+        $fecha_actual = date("Y-m-d H:i:s");
+        
+
+        $membership = new UserMembership();
+        $membership->id_membresia = $request->input('id_membresia');
+        $membership->membresiaPadre = '';
+        $membership->membership = $namemembresia;
+        $membership->user_email = $email;
+        $membership->user = $id;
+        $membership->user_name = $name;
+        $membership->hash = $request->input('hash');
+        $membership->typeHash = $request->input('typeHash');     
+        $membership->detail = 'Pendiente';
+        $membership->status = 'Pendiente';
+        $membership->closedAt = $fecha_actual; //imagehash
+
+        //Subir la imagen imagehash
+        $image_photo = $request->file('image');
+        if ($image_photo) {
+
+          //Poner nombre unico
+          $image_photo_name = time() . $image_photo->getClientOriginalName();
+
+          //Guardarla en la carpeta storage (storage/app/imagehash)
+          Storage::disk('imagehash')->put($image_photo_name, File::get($image_photo));
+
+          //Seteo el nombre de la imagen en el objeto
+          $membership->image = $image_photo_name;
+        }
+       
+
+        $membership->save();// INSERT BD
+
+        //return redirect('home');
+
+        return redirect()->route('home')->with([
+                    'message' => 'Hash enviado correctamente!'
+        ]);
+
+        */
 
     }
 

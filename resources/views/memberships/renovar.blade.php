@@ -30,7 +30,7 @@
       @endif
 
 
-      <form class="row g-3" action="{{ url('membershiprenovar/'.$memberships->id) }}" enctype="multipart/form-data" method="post">
+      <form class="row g-3" action="" enctype="multipart/form-data" method="post">
         @csrf
         @method('PUT')
 
@@ -59,13 +59,21 @@
               </select>
           </div>
         </div>        
-        <div class="col-md-12">
+        <div class="col-md-6">
+          Membership padre
+          <div class="input-group input-group-alternative mb-3">
+              
+            <label class="form-control">{{ $memberships->id }}</label>                     
+                         
+          </div>
+        </div>
+        <div class="col-md-6">
+          Nuevo hash
           <div class="input-group input-group-alternative mb-3">
             <div class="input-group-prepend">
               <span class="input-group-text"><i class="ni ni-key-25"></i></span>
-            </div>  
-            <label class="form-control">{{ $memberships->hash }}</label>                     
-                         
+            </div>                        
+            <input class="form-control" placeholder="hash" type="text" name="hash" value="" autocomplete="hash" autofocus>             
           </div>
         </div>
         <div class="col-md-4">

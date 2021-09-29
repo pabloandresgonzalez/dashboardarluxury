@@ -47,7 +47,7 @@
 
                     @else                        
 
-                    <iframe width="560" height="315" src="{{ $new->url_video }}" frameborder="0" allowfullscreen></iframe>
+                    <iframe width="280" height="220" src="{{ $new->url_video }}" frameborder="0" allowfullscreen></iframe>
 
                     @endif
 

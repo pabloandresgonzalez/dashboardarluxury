@@ -54,6 +54,9 @@ Route::get('/newsuser', [App\Http\Controllers\NewsController::class, 'indexuser'
 Route::get('/news/avatar/{filename?}', [App\Http\Controllers\NewsController::class, 'getImagevideo'])->name('new.avatar');
 
 
+//NetworkTransaction
+Route::get('/networktransaction', [App\Http\Controllers\NetworkTransactionController::class, 'index'])->name('networktransaction');
+
 
 
 Route::middleware(['auth', 'admin'])->group(function () {
