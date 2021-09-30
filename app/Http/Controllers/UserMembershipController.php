@@ -273,7 +273,7 @@ class UserMembershipController extends Controller
 
     public function renovar(Request $request, $id)
     {
-
+        /*
 
         //Conseguir usuario identificado
         $user = \Auth::user();
@@ -329,6 +329,7 @@ class UserMembershipController extends Controller
         return redirect()->route('home')->with([
                     'message' => 'Hash enviado correctamente!'
         ]);
+        */
         
     }
 
