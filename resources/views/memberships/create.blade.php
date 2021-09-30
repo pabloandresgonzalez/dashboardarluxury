@@ -30,13 +30,8 @@
       @endif
 
 
-
-
       <form class="row g-3" action="{{ url('membership') }}" enctype="multipart/form-data" method="post">
-        @csrf
-
-
-       
+        @csrf      
 
         
         

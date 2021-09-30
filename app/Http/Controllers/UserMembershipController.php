@@ -51,7 +51,7 @@ class UserMembershipController extends Controller
 
     }
 
-    public function create(Request $request)
+    public function create()
     {       
 
 
@@ -273,49 +273,7 @@ class UserMembershipController extends Controller
 
     public function renovar(Request $request, $id)
     {
-        
 
-        /*
-        //Conseguir usuario identificado
-        $user = \Auth::user();
-        $id = $user->id;
-
-        $membershippadre = UserMembership::findOrFail($id);
-        $membership->hash;
-        */
-
-        //dd($request);
-
-        /*
-        //Validacion del formulario
-        $validate = $this->validate($request, [
-            'membership' => 'required|string|min:4',        
-            //'hash' => 'required|max:255|unique:user_memberships', 
-            'typeHash' => 'required|max:255',  
-            //'detail' => 'required|max:255',     
-            //'image' => 'file',
-        ]);
-
-
-        $membership = UserMembership::findOrFail($id);
-        $membership->membership = $request->input('membership');
-        $membership->membresiaPadre = $id;
-        $membership->typeHash = $request->input('typeHash');
-        //$membership->detail = $request->input('detail');
-        $membership->detail = 'Pendiente';
-        $membership->status = 'X Renovar';
-
-        //dd($membership);
-
-        $membership->save(); //INSERT BD
-
-        return redirect()->route('home')->with([
-                    'message' => 'Membership editado correctamente!'
-        ]);
-        */
-
-
-        /*
 
         //Conseguir usuario identificado
         $user = \Auth::user();
@@ -323,43 +281,27 @@ class UserMembershipController extends Controller
         $name = $user->name;
         $email = $user->email;
 
-                
-        $rules = ([
-            
-            //'id_membresia' => 'exists:App\Models\UserMembership',
-            'id_membresia' => 'required|string',  //|unique:user_memberships|min:4
-            //'membership' => 'required|string',  //|unique:user_memberships|min:4      
-            'hash' => 'required|max:255|unique:user_memberships', //|unique:user_memberships
-            'typeHash' => 'required|max:255',       
-            'image' => 'file',             
-            
-        ]);
+        //dd($request);
 
-       $this->validate($request, $rules);
+        $membershippadre = UserMembership::findOrFail($id);
+        $id_membresia = $membershippadre->id_membresia;
 
-       //dd($request);
-
-       $id_membresia = Membresia::find($id);
-
-       $membresia = Membresia::find($request->input('id_membresia'));
-       $namemembresia =$membresia->name;
        
-        //dd($namemembresia);
+        dd($id_membresia);
 
-              
         $fecha_actual = date("Y-m-d H:i:s");
         
 
         $membership = new UserMembership();
         $membership->id_membresia = $request->input('id_membresia');
-        $membership->membresiaPadre = '';
-        $membership->membership = $namemembresia;
+        $membership->membresiaPadre = $$request->input('id_membresia');
+        $membership->membership = $request->input('membresiaPadre');
         $membership->user_email = $email;
         $membership->user = $id;
         $membership->user_name = $name;
         $membership->hash = $request->input('hash');
         $membership->typeHash = $request->input('typeHash');     
-        $membership->detail = 'Pendiente';
+        $membership->detail = 'X renovar';
         $membership->status = 'Pendiente';
         $membership->closedAt = $fecha_actual; //imagehash
 
@@ -376,6 +318,8 @@ class UserMembershipController extends Controller
           //Seteo el nombre de la imagen en el objeto
           $membership->image = $image_photo_name;
         }
+
+        dd($membership);
        
 
         $membership->save();// INSERT BD
@@ -385,9 +329,7 @@ class UserMembershipController extends Controller
         return redirect()->route('home')->with([
                     'message' => 'Hash enviado correctamente!'
         ]);
-
-        */
-
+        
     }
 
     public function detail($id) {

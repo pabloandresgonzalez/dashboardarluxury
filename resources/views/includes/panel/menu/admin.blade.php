@@ -44,7 +44,7 @@
   </a>
 </li>
 <li class="nav-item">
-  <a class="nav-link" href="#">
+  <a class="nav-link" href="/traslado">
     <i class="ni ni-credit-card text-primary"></i> Traslados
   </a>
 </li>

@@ -74,8 +74,9 @@
                  @endforeach
             </table>
 
-            <br>
-            
+            <br>     
+
+            {{ $networktransactions->links() }}       
                  
 
           <div class="col-md-4">

@@ -57,6 +57,10 @@ Route::get('/news/avatar/{filename?}', [App\Http\Controllers\NewsController::cla
 //NetworkTransaction
 Route::get('/networktransaction', [App\Http\Controllers\NetworkTransactionController::class, 'index'])->name('networktransaction');
 
+//traslados
+Route::get('traslado', [App\Http\Controllers\admin\UserController::class, 'indextraslado'])->name('traslado');
+
+
 
 
 Route::middleware(['auth', 'admin'])->group(function () {

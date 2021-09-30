@@ -26,7 +26,7 @@ class NetworkTransactionController extends Controller
         //$users = User::orderBy('id', 'desc')->get();
         //$memberships = UserMembership::where('id', $user->id)->orderBy('id', 'desc')->get();
         $id = $request->id;
-        $networktransactions = NetworkTransaction::where('userMembership', $id)->orderBy('id', 'desc')->get();
+        $networktransactions = NetworkTransaction::where('userMembership', $id)->orderBy('id', 'desc')->paginate(25);
             //->paginate(5);
 
         //dd($networktransactions);

@@ -300,5 +300,9 @@ class UserController extends Controller
       ]);
     } 
 
+    public function indextraslado()
+    {
+      return view('traslados.index');
+    }
 
 }
