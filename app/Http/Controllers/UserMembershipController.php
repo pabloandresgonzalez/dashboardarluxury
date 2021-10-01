@@ -11,7 +11,6 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
 use App\Models\User;
 use App\Models\Membresia;
-use App\Models\NetworkTransaction;
 use DB;
 use Illuminate\Support\Arr;
 
@@ -68,7 +67,6 @@ class UserMembershipController extends Controller
         $membresias = Membresia::orderBy('id', 'Desc')->get();
 
         //dd($membresias); 
-
 
 
         return view('memberships.create', compact('membresias'));
@@ -133,7 +131,8 @@ class UserMembershipController extends Controller
         $membership->typeHash = $request->input('typeHash');     
         $membership->detail = 'Pendiente';
         $membership->status = 'Pendiente';
-        $membership->closedAt = $fecha_actual; //imagehash
+        $membership->closedAt = null;
+        $membership->activedAt = null;
 
         //Subir la imagen imagehash
         $image_photo = $request->file('image');
@@ -179,7 +178,8 @@ class UserMembershipController extends Controller
             //'hash' => 'required|max:255|unique:user_memberships', 
             'typeHash' => 'required|max:255',  
             'detail' => 'required|max:255', 
-            'closedAt' => 'required|max:255',    
+            //'activedAt' => 'required|max:255',
+            //'closedAt' => 'required|max:255',    
             'image' => 'file',
         ]);
 
@@ -188,6 +188,7 @@ class UserMembershipController extends Controller
         $membership->membership = $request->input('membership');
         $membership->typeHash = $request->input('typeHash');
         $membership->detail = $request->input('detail');
+        $membership->activedAt = $request->input('activedAt');
         $membership->closedAt = $request->input('closedAt');
         $membership->status = $request->input('status');
 

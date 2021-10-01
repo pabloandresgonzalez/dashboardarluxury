@@ -71,7 +71,11 @@
               <li class="list-inline-item"><h4>{{ $membership->detail }}</h4></li>
             </ul>
             <ul>
-              Fecha de cierre:  &nbsp
+              Fecha activada :  &nbsp
+              <li class="list-inline-item"><h4>{{ $membership->activedAt }}</h4></li>
+            </ul>
+            <ul>
+              Fecha cierre:  &nbsp
               <li class="list-inline-item"><h4>{{ $membership->closedAt }}</h4></li>
             </ul>
                      

@@ -58,7 +58,7 @@
               </select>
           </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-12">
           <div class="input-group input-group-alternative mb-3">
             <div class="input-group-prepend">
               <span class="input-group-text"><i class="ni ni-key-25"></i></span>
@@ -93,9 +93,17 @@
             <div class="input-group-prepend">
               <span class="input-group-text"><i class="ni ni-paper-diploma"></i></span>
             </div>                    
-            <input class="form-control" placeholder="closedAt" type="text" name="closedAt" value="{{ $memberships->closedAt}}" autocomplete="hash" autofocus>             
+            <input class="form-control" placeholder="Ej. 2021-10-01" type="text" name="activedAt" value="{{ $memberships->activedAt}}" autocomplete="activedAt" autofocus>             
           </div>
         </div>
+        <div class="col-md-6">
+          <div class="input-group input-group-alternative mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><i class="ni ni-paper-diploma"></i></span>
+            </div>                    
+            <input class="form-control" placeholder="Ej. 2021-10-01" type="text" name="closedAt" value="{{ $memberships->closedAt}}" autocomplete="closedAt" autofocus>             
+          </div>
+        </div>        
         <div class="col-md-6">
           <div class="input-group input-group-alternative mb-3">
             <div class="input-group-prepend">

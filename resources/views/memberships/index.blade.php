@@ -56,7 +56,8 @@
                   <th scope="col">Hash</th>
                   <th scope="col">Tipo de Hash</th>
                   <th scope="col">Estado</th>
-                  <th scope="col">Fecha Cierre</th>
+                  <th scope="col">Fecha activada</th>
+                  <th scope="col">Fecha cierre</th>                  
                   <th scope="col">Soporte de pago</th>
                   <th scope="col">Detalle</th>
                   <th scope="col">+ Detalles</th>
@@ -86,6 +87,9 @@
                   </td>
                   <td>
                     {{ $membership->status }}
+                  </td>
+                  <td>
+                    {{ $membership->activedAt }}
                   </td>
                   <td>
                     {{ $membership->closedAt }}

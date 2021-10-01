@@ -43,7 +43,8 @@
                   <th scope="col" class="sort">Membresia</th>
                   <th scope="col">Hash</th>
                   <th scope="col">Estado</th>
-                  <th scope="col">Fecha Cierre</th>
+                  <th scope="col">Fecha activada</th>
+                  <th scope="col">Fecha cierre</th>
                   <th scope="col">Detalle</th>
                   <th scope="col">Historial de pagos</th>
                 </tr>
@@ -66,6 +67,9 @@
                     @endif  
 
                     
+                  </td>
+                  <td>
+                    {{ $membership->activedAt }}
                   </td>
                   <td>
                     {{ $membership->closedAt }}

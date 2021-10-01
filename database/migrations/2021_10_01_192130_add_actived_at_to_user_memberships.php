@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddMembresiaPadreToUserMemberships extends Migration
+class AddActivedAtToUserMemberships extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,7 @@ class AddMembresiaPadreToUserMemberships extends Migration
     public function up()
     {
         Schema::table('user_memberships', function (Blueprint $table) {
-            $table->unsignedBigInteger('membresiaPadre')->nullable()->after('id_membresia');
+            $table->timestamp('activedAt')->nullable()->after('status');
         });
     }
 
@@ -26,7 +26,7 @@ class AddMembresiaPadreToUserMemberships extends Migration
     public function down()
     {
         Schema::table('user_memberships', function (Blueprint $table) {
-            $table->dropColumn('membresiaPadre');
+            $table->dropColumn('activedAt');
         });
     }
 }
