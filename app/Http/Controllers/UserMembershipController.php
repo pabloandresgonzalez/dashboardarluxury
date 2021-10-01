@@ -76,10 +76,12 @@ class UserMembershipController extends Controller
     public function edit($id) {
         
         $memberships = UserMembership::find($id);
+        $fecha_actual = date("Y-m-d H:i:s");
 
 
         return view('memberships.edit', [
-          'memberships' => $memberships
+          'memberships' => $memberships,
+          'fecha_actual' => $fecha_actual
       ]);
 
     }
