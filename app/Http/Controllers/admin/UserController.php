@@ -305,10 +305,10 @@ class UserController extends Controller
       //Conseguir usuario identificado
       $user = \Auth::user();
 
-      //$id = $user->id;
+      $id = $user->id;
 
 
-      $id = 'b3361710-4e21-4fe1-a86e-a29fbecb15f2';
+      //$id = 'b3361710-4e21-4fe1-a86e-a29fbecb15f2';
 
       $data = [
       'userId' => $id, //'b3361710-4e21-4fe1-a86e-a29fbecb15f2',
@@ -349,9 +349,7 @@ class UserController extends Controller
         'respuestaDecodificada' => $respuestaDecodificada,
         'user' => $user
 
-      ]);          
-
-
+      ]);         
 
     }
 
