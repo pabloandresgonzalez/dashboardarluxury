@@ -119,7 +119,7 @@ class WalletTransactionsController extends Controller
         $Wallet = new wallet_transactions();
         $Wallet->user = $id;
         $Wallet->value = $request->input('value');
-        $Wallet->fee = 0;
+        $Wallet->fee = 5;
         $Wallet->type = $request->input('type');
         $Wallet->hash = '';
         $Wallet->currency = '';
@@ -168,6 +168,7 @@ class WalletTransactionsController extends Controller
       $value = $Wallet->value;
       $detail = $Wallet->detail;
       $type = $Wallet->type;
+      $fee = $Wallet->fee;
 
 
                 
@@ -185,7 +186,7 @@ class WalletTransactionsController extends Controller
         $Wallet = wallet_transactions::findOrFail($id);
         $Wallet->user = $user;
         $Wallet->value = $value;
-        $Wallet->fee = 0;
+        $Wallet->fee = $fee;
         $Wallet->type = $type;
         $Wallet->hash = $request->input('hash');
         $Wallet->currency = '';
