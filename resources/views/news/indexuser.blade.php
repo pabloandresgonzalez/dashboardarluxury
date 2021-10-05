@@ -46,8 +46,11 @@
                     </div>
 
                     @else                        
-
-                    <iframe width="280" height="220" src="{{ $new->url_video }}" frameborder="0" allowfullscreen></iframe>
+                    <div class="card shadow">
+                  <div class="row justify-content-center">  
+                        <iframe width="400px" height="300px" src="{{ $new->url_video }}" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                </div>
 
                     @endif
 

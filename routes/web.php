@@ -18,7 +18,6 @@ Route::get('/', function () {
 });
 
 Route::get('/consulta', [App\Http\Controllers\ConsultId::class, 'index'])->name('consulta');
-Route::post('/consultasuser', [App\Http\Controllers\ConsultId::class, 'consuluser'])->name('consultasuser');
 
 
 
@@ -60,6 +59,10 @@ Route::get('/networktransaction', [App\Http\Controllers\NetworkTransactionContro
 //traslados
 Route::get('traslado', [App\Http\Controllers\admin\UserController::class, 'indextraslado'])->name('traslado');
 
+//Wallet_Transactions
+Route::get('/wallet', [App\Http\Controllers\WalletTransactionsController::class, 'index'])->name('wallet');
+Route::post('/wallet', [App\Http\Controllers\WalletTransactionsController::class, 'store']);
+
 
 
 
@@ -87,9 +90,8 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/membership/{membership}/edit', [App\Http\Controllers\UserMembershipController::class, 'edit']);       
     Route::put('/membership/{membership}', [App\Http\Controllers\UserMembershipController::class, 'update']);    
     Route::get('/orden/{id}', [App\Http\Controllers\UserMembershipController::class, 'orden'])->name('prestamo.orden');
-    Route::get('/membership/avatar/{filename?}', [App\Http\Controllers\UserMembershipController::class, 'getImage'])->name('prestamo.avatar');    
- 
-    
+    Route::get('/membership/avatar/{filename?}', [App\Http\Controllers\UserMembershipController::class, 'getImage'])->name('prestamo.avatar');
+
 
     //News
     Route::get('/news', [App\Http\Controllers\NewsController::class, 'index']);
@@ -97,6 +99,12 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/news/{new}/edit', [App\Http\Controllers\NewsController::class, 'edit']);
     Route::post('/news', [App\Http\Controllers\NewsController::class, 'store']); // envio form    
     Route::put('/news/{new}', [App\Http\Controllers\NewsController::class, 'update']);
+    
+
+    //Wallets
+    Route::get('/walletadmin', [App\Http\Controllers\WalletTransactionsController::class, 'indexAdmin'])->name('walletadmin');     
+    Route::get('/wallet/{wallet}/edit', [App\Http\Controllers\WalletTransactionsController::class, 'edit']);
+    Route::put('/wallet/{wallet}', [App\Http\Controllers\WalletTransactionsController::class, 'update']);
     
     
 });

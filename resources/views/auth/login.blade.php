@@ -40,12 +40,21 @@
                   </div>
                 </div>
                 <div class="custom-control custom-control-alternative custom-checkbox">
+                  <input class="custom-control-input" type="checkbox" name="" value="1" id="flexCheckDefault" onchange="javascript:showContent()">
+                  <label class="custom-control-label" for="flexCheckDefault">
+                     <a href="{{ route('consulta') }}" class="text-muted" target="_blank">
+                    Terminos y condiciones</a>
+                  </label>
+                </div>
+
+                <div class="custom-control custom-control-alternative custom-checkbox">
                   <input name="remember" class="custom-control-input" id=" remember" type="checkbox" {{ old('remember') ? 'checked' : '' }}>
                   <label class="custom-control-label" for=" remember">
                     <span class="text-muted">Recordar sesión</span>
                   </label>
                 </div>
-                <div class="text-center"><br>
+
+                <div class="text-center" id="content" style="display: none;"><br>
                   <button type="submit" class="btn btn-outline-default">Ingresar</button>
                 </div>
               </form>

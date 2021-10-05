@@ -25,6 +25,20 @@
           });
       });
   </script>
+
+  <script type="text/javascript">
+    function showContent() {
+        element = document.getElementById("content");
+        check = document.getElementById("flexCheckDefault");
+        if (check.checked) {
+            element.style.display='block';
+        }
+        else {
+            element.style.display='none';
+        }
+    }
+  </script>
+
 </head>
 
 <body class="bg-default">

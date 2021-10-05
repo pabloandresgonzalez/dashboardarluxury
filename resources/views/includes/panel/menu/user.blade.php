@@ -10,7 +10,7 @@
 </li>
 <li class="nav-item">
   <a class="nav-link" href="/membresiasuser">
-    <i class="ni ni-shop text-danger"></i> Tienda
+    <i class="ni ni-shop text-info"></i> Tienda
   </a>
 </li>
 <li class="nav-item">
@@ -20,12 +20,12 @@
 </li>
 <li class="nav-item">
   <a class="nav-link" href="#">
-    <i class="ni ni-satisfied text-info"></i> Red
+    <i class="ni ni-satisfied text-yellow"></i> Red
   </a>
 </li>
 <li class="nav-item">
-  <a class="nav-link" href="/traslado">
-    <i class="ni ni-credit-card text-primary"></i> Traslados
+  <a class="nav-link" href="/wallet">
+    <i class="ni ni-bag-17 text-primary"></i> Billetera
   </a>
 </li>
 

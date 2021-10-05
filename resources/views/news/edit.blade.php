@@ -99,7 +99,7 @@
 
 
         <div class="col-md-4">
-          <button type="submit" class="btn btn-outline-default" ><i class="ni ni-satisfied"></i> &nbsp;Editar nocia</button>
+          <button type="submit" class="btn btn-outline-default" ><i class="ni ni-satisfied"></i> &nbsp;Editar noticia</button>
         </div>
 
 

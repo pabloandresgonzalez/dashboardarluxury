@@ -15,7 +15,7 @@
 </li>
 <li class="nav-item">
   <a class="nav-link" href="/news">
-    <i class="ni ni-spaceship text-blue"></i> Gestión Noticias
+    <i class="ni ni-spaceship text-yellow"></i> Gestión Noticias 
   </a>
 </li>
 <li class="nav-item">
@@ -25,27 +25,32 @@
 </li>
 <li class="nav-item">
   <a class="nav-link" href="/membresias">
-    <i class="ni ni-trophy text-info"></i> Gestión Vitrina
+    <i class="ni ni-trophy "></i> Gestión Vitrina
   </a>
 </li>
 <li class="nav-item">
   <a class="nav-link" href="/membership">
-    <i class="ni ni-atom text-danger"></i> Gestión Memberships
+    <i class="ni ni-atom text-info"></i> Gestión Memberships
   </a>
 </li>
 <li class="nav-item">
   <a class="nav-link" href="{{ route('mismembership') }}">
-    <i class="ni ni-box-2 "></i> Mis membresías
+    <i class="ni ni-box-2 text-blue"></i> Mis membresías
   </a>
 </li>
 <li class="nav-item">
   <a class="nav-link" href="#">
-    <i class="ni ni-satisfied text-info"></i> Red
+    <i class="ni ni-satisfied text-yellow"></i> Red
   </a>
 </li>
 <li class="nav-item">
-  <a class="nav-link" href="/traslado">
-    <i class="ni ni-credit-card text-primary"></i> Traslados
+  <a class="nav-link" href="/wallet">
+    <i class="ni ni-credit-card text-danger"></i> Billetera
+  </a>
+</li>
+<li class="nav-item">
+  <a class="nav-link" href="/walletadmin">
+    <i class="ni ni-bag-17 "></i> Gestión billetera
   </a>
 </li>
 

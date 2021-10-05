@@ -35,30 +35,30 @@
         </div>
 
         
-        <div class="card-body">
+          <div class="card-body">
           
-          <div class="list-inline-item">
-            <ul>
-              Balance:  &nbsp;
-              <li class="list-inline-item"><h4><?php echo $respuestaDecodificada->balance;?></h4></li>
-            </ul>
-            <ul>
-              En canje: &nbsp;
-              <li class="list-inline-item"><h4><?php echo $respuestaDecodificada->exhange;?></h4></li>
-            </ul>
-            <ul>
-              Total:  &nbsp;
-              <li class="list-inline-item"><h4><?php echo $respuestaDecodificada->total;?></h4>
-              </li>
-            </ul>
+            <div class="list-inline-item">
+              <ul>
+                Balance:  &nbsp;
+                <li class="list-inline-item"><h4><?php echo $respuestaDecodificada->balance;?></h4></li>
+              </ul>
+              <ul>
+                En canje: &nbsp;
+                <li class="list-inline-item"><h4><?php echo $respuestaDecodificada->exhange;?></h4></li>
+              </ul>
+              <ul>
+                Total:  &nbsp;
+                <li class="list-inline-item"><h4><?php echo $respuestaDecodificada->total;?></h4>
+                </li>
+              </ul>
             
 
             </div>
           
-    </div>
-  </div>
+          </div>
+        </div>
   
-  </div>
+      </div>
   
 
         <hr class="my-3"> 
