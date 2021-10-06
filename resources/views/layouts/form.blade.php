@@ -30,13 +30,23 @@
     function showContent() {
         element = document.getElementById("content");
         check = document.getElementById("flexCheckDefault");
-        if (check.checked) {
+        if (check.checked) {            
             element.style.display='block';
         }
         else {
             element.style.display='none';
         }
     }
+  </script>
+
+  <script type="text/javascript">
+    $(document).ready(function() {
+        $("form").keypress(function(e) {
+            if (e.which == 13) {
+                return false;
+            }
+        });
+    });
   </script>
 
 </head>
@@ -111,12 +121,7 @@
            </div>
           </div>
         </div>
-      </div> <!--
-      <div class="separator separator-bottom separator-skew zindex-100">
-        <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg">
-          <polygon class="fill-default" points="2560 0 2560 100 0 100"></polygon>
-        </svg>
-      </div> -->
+      </div> 
     </div>
     <!-- Page content -->
     @yield('content')

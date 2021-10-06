@@ -19,6 +19,7 @@
                     </div>
                 @endif
 
+
               <form role="form" method="POST" action="{{ route('login') }}">
                 @csrf
 
@@ -55,7 +56,7 @@
                 </div>
 
                 <div class="text-center" id="content" style="display: none;"><br>
-                  <button type="submit" class="btn btn-outline-default">Ingresar</button>
+                  <button type="submit" id="btn" class="btn btn-outline-default">Ingresar</button>
                 </div>
               </form>
             </div>
