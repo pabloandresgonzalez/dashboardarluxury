@@ -37,42 +37,34 @@
               <div class="col-xl-4 order-xl-2 mb-5 mb-xl-0">
                 <div class="card pub-prestamo">
                   <div class="card-header">
-                    <h3 class="mb-0"><i class="ni ni-single-02"></i> &nbsp;Balance - {{ $user->name }}</h3>
+                    <h3 class="mb-0"><i class="ni ni-single-02"></i> &nbsp;Balance - {{ $user->name }} </h3>
                   </div>
 
                   
                     <div class="card-body">
                     
-                      <div class="list-inline-item">                        
+                      <div class="list-inline-item">
                         <ul>
                           Balance:  &nbsp;
-                          <?php
-                          if (isset($respuestaDecodificada->balance)) {
-                            echo $respuestaDecodificada->balance;
-                          } else {
-                            echo "null";
-                          }
-                          ?>
+                          
+                          <li class="list-inline-item"><h4></h4></li>
+                         
                         </ul>
                         <ul>
                           En canje: &nbsp;
-                          <?php
-                          if (isset($respuestaDecodificada->exhange)) {
-                            echo $respuestaDecodificada->exhange;
-                          } else {
-                            echo "null";
-                          }
-                          ?>
+                            @if($respuestaDecodificada)
+                          <li class="list-inline-item"><h4>Sin saldo </h4></li>
+                            @else
+                          <li class="list-inline-item"><h4></h4></li>
+                            @endif
                         </ul>
                         <ul>
                           Total:  &nbsp;
-                          <?php
-                          if (isset($respuestaDecodificada->total)) {
-                            echo $respuestaDecodificada->total;
-                          } else {
-                            echo "null";
-                          }
-                          ?>
+                            @if($respuestaDecodificada)
+                          <li class="list-inline-item"><h4>Sin saldo </h4></li>
+                            @else
+                          <li class="list-inline-item"><h4></h4></li>
+                            @endif
                           </li>
                         </ul>          
 
@@ -83,39 +75,27 @@
 
               </div>
 
-              <?php
-                if (isset($respuestaDecodificada->balance) ) {
-                  if ($respuestaDecodificada->balance <= 56) {
-                    echo '
-
-                  <div class="col-xl-8 order-xl-2 mb-5 mb-xl-0">
-                    <div class="card pub-prestamo">
-                      <div class="card-header">
-                        <h3 class="mb-0"><i class="ni ni-money-coins"></i> &nbsp;Retiro de billetera</h3>
-                      </div>
-
-                    
-                      <div class="card-body">
-                      
-                        <h5>No tienes saldo para retirar </h5>
-
-                      
-                      </div>
-                    </div> 
-                  </div>
-
-                  ';
-                  }
-                  
-                } else {
-
-                  
-                  
-                }
-
-              ?>
+              
 
               <div class="col-xl-8 order-xl-2 mb-5 mb-xl-0">
+                <div class="card pub-prestamo">
+                  <div class="card-header">
+                    <h3 class="mb-0"><i class="ni ni-money-coins"></i> &nbsp;Retiro de billetera</h3>
+                  </div>
+
+                  
+                    <div class="card-body">
+                    
+                      <h5>No tienes saldo para retirar </h5>
+
+                    
+                    </div>
+                  </div> 
+                </div>
+
+             
+
+            <div class="col-xl-8 order-xl-2 mb-5 mb-xl-0">
                 <div class="card pub-prestamo">
                   <div class="card-header">
                     <h3 class="mb-0"><i class="ni ni-money-coins"></i> &nbsp;Retiro de billetera</h3>
@@ -127,16 +107,8 @@
                       <form class="row g-3" action="{{ url('wallet') }}" enctype="multipart/form-data" method="post">
                         @csrf
 
-                        <?php
-                          if (isset($respuestaDecodificada->total)) {
-                            if ($respuestaDecodificada->balance <= 56) {
 
-                              
-                            }
-
-                            echo '
-
-                                <div class="col-md-6">
+                            <div class="col-md-6">
                               <div class="input-group input-group-alternative mb-3">
                                 <div class="input-group-prepend">
                                   <span class="input-group-text"><i class="ni ni-money-coins"></i></span>
@@ -169,16 +141,6 @@
                             <div class="col-md-4">
                               <button type="submit" class="btn btn-outline-default" ><i class="ni ni-satisfied"></i> Enviar retiro</button>
                             </div>
-
-                              ';
-
-                          } else {
-                            echo "<h5>No tienes saldo para retirar </h5>";
-                          }
-                          ?>
-
-
-                            
                     </div>
 
                   <div class="col-md-4">
@@ -191,6 +153,7 @@
                   </div> 
                 </div>
 
+           
 
               </div>
             </div>
@@ -266,3 +229,8 @@
         <hr class="my-3"> 
 
 @endsection
+
+
+
+
+

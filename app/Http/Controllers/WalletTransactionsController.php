@@ -33,64 +33,69 @@ class WalletTransactionsController extends Controller
 
     public function index(Request $request)
     {
-      //return view('wallets.index');
-
-      //Conseguir usuario identificado
-      $user = \Auth::user();
-
-      $id = $user->id;
 
 
-      //$id = 'b3361710-4e21-4fe1-a86e-a29fbecb15f2';
+          //return view('wallets.index');
 
-      $data = [
-      'userId' => $id, //'b3361710-4e21-4fe1-a86e-a29fbecb15f2',
-      'token' => 'AcjAa76AHxGRdyTemDb2jcCzRmqpWN'
-      ];
+          //Conseguir usuario identificado
+          $user = \Auth::user();
 
-      $curl = curl_init();
+          $id = $user->id;
 
-      curl_setopt_array($curl, array(
-          CURLOPT_URL => "https://ekgra7pfqh.execute-api.us-east-2.amazonaws.com/Prod_getBalanceByUser",
-          CURLOPT_RETURNTRANSFER => true,
-          CURLOPT_ENCODING => "",
-          CURLOPT_MAXREDIRS => 10,
-          CURLOPT_TIMEOUT => 30000,
-          CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-          CURLOPT_CUSTOMREQUEST => "POST",
-          CURLOPT_POSTFIELDS => json_encode($data),        
-          CURLOPT_HTTPHEADER => array(
-            // Set here requred headers
-              "accept: */*",
-              "accept-language: en-US,en;q=0.8",
-              "content-type: application/json",
-          ),
-      ));
 
-      $result = curl_exec($curl);
-      $err = curl_error($curl);
+          //$id = 'b3361710-4e21-4fe1-a86e-a29fbecb15f2';
 
-      //dd($result);
-      curl_close($curl);
-      //$data1 = print_r($result);
+          $data = [
+          'userId' => $id, //'b3361710-4e21-4fe1-a86e-a29fbecb15f2',
+          'token' => 'AcjAa76AHxGRdyTemDb2jcCzRmqpWN'
+          ];
 
-      //decodificar JSON porque esa es la respuesta
-      $respuestaDecodificada = json_decode($result);  
+          $curl = curl_init();
 
-      //dd($databalance);
+          curl_setopt_array($curl, array(
+              CURLOPT_URL => "https://ekgra7pfqh.execute-api.us-east-2.amazonaws.com/Prod_getBalanceByUser",
+              CURLOPT_RETURNTRANSFER => true,
+              CURLOPT_ENCODING => "",
+              CURLOPT_MAXREDIRS => 10,
+              CURLOPT_TIMEOUT => 30000,
+              CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+              CURLOPT_CUSTOMREQUEST => "POST",
+              CURLOPT_POSTFIELDS => json_encode($data),        
+              CURLOPT_HTTPHEADER => array(
+                // Set here requred headers
+                  "accept: */*",
+                  "accept-language: en-US,en;q=0.8",
+                  "content-type: application/json",
+              ),
+          ));
 
-      $Wallets = wallet_transactions::where('user', $user->id)->orderBy('id', 'desc')
+          $result = curl_exec($curl);
+          $err = curl_error($curl);
+
+          //dd($err);
+
+          //dd($result);
+          curl_close($curl);
+          //$data1 = print_r($result);
+
+          //decodificar JSON porque esa es la respuesta
+          $respuestaDecodificada = json_decode($result);  
+
+          //dd($databalance);
+
+          //dd($respuestaDecodificada);
+
+          $Wallets = wallet_transactions::where('user', $user->id)->orderBy('id', 'desc')
             ->paginate(4);
 
+            
+            return view('wallets.index', [
+              'respuestaDecodificada' => $respuestaDecodificada,
+              'user' => $user,
+              'Wallets' => $Wallets
 
-        return view('wallets.index', [
-          'respuestaDecodificada' => $respuestaDecodificada,
-          'user' => $user,
-          'Wallets' => $Wallets
-
-        ]);       
-
-      
+            ]); 
+            
 
     }
 
@@ -120,9 +125,9 @@ class WalletTransactionsController extends Controller
         $Wallet->user = $id;
         $Wallet->value = $request->input('value');
         $Wallet->fee = 5;
-        $Wallet->type = $request->input('type');
+        $Wallet->type = 0;
         $Wallet->hash = '';
-        $Wallet->currency = '';
+        $Wallet->currency = $request->input('type');;
         $Wallet->approvedBy = '';
         $Wallet->inOut = 0;
         $Wallet->status = 'change';     
