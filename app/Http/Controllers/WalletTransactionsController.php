@@ -181,6 +181,7 @@ class WalletTransactionsController extends Controller
           
           //'value' => 'required|string|max:255',
           //'detail' => 'required|string', 
+          'hash' => 'required|max:255|unique:wallet_transactions',
           'status' => 'required|string|max:50',
 
           

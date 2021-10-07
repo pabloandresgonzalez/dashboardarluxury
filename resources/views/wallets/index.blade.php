@@ -244,7 +244,15 @@
                     {{ $Wallet->detail }}
                   </td>
                   <td>
-                    {{ $Wallet->type }}
+                    <?php
+                      if($Wallet->type == 0 )                      
+                      {
+                        echo 'Retiro';
+                      }else
+                      {
+                        echo 'Abono';
+                      } 
+                    ?>
                   </td>
                   <td>
                     {{ $Wallet->currency }}

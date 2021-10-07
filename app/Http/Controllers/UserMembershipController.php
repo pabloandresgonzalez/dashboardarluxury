@@ -264,7 +264,7 @@ class UserMembershipController extends Controller
     }
 
     public function editrenovar($id) {
-        
+
         $memberships = UserMembership::find($id);
         //dd($memberships);
 
@@ -276,37 +276,45 @@ class UserMembershipController extends Controller
 
     public function renovar(Request $request, $id)
     {
-        /*
+
+        //dd($id);
 
         //Conseguir usuario identificado
         $user = \Auth::user();
-        $id = $user->id;
+        $iduser = $user->id;
         $name = $user->name;
         $email = $user->email;
-
-        //dd($request);
 
         $membershippadre = UserMembership::findOrFail($id);
         $id_membresia = $membershippadre->id_membresia;
 
        
-        dd($id_membresia);
+        //dd($id_membresia);
 
-        $fecha_actual = date("Y-m-d H:i:s");
-        
+        //Validacion del formulario
+        $validate = $this->validate($request, [
+            'membership' => 'required|string|min:4',        
+            'hash' => 'required|max:255|unique:user_memberships', 
+            'typeHash' => 'required|max:255',  
+            //'detail' => 'required|max:255', 
+            //'activedAt' => 'required|max:255',
+            //'closedAt' => 'required|max:255',    
+            'image' => 'file',
+        ]);      
 
         $membership = new UserMembership();
-        $membership->id_membresia = $request->input('id_membresia');
-        $membership->membresiaPadre = $$request->input('id_membresia');
-        $membership->membership = $request->input('membresiaPadre');
+        $membership->id_membresia = $id_membresia;
+        $membership->membresiaPadre = $id;
+        $membership->membership = $request->input('membership');
         $membership->user_email = $email;
-        $membership->user = $id;
+        $membership->user = $iduser;
         $membership->user_name = $name;
         $membership->hash = $request->input('hash');
         $membership->typeHash = $request->input('typeHash');     
         $membership->detail = 'X renovar';
         $membership->status = 'Pendiente';
-        $membership->closedAt = $fecha_actual; //imagehash
+        $membership->closedAt = null;
+        $membership->activedAt = null;
 
         //Subir la imagen imagehash
         $image_photo = $request->file('image');
@@ -322,17 +330,18 @@ class UserMembershipController extends Controller
           $membership->image = $image_photo_name;
         }
 
-        dd($membership);
-       
+        //dd($membership);
+
+        $membershipInicial = UserMembership::findOrFail($id);
+        $membershipInicial->status = 'Terminada';
 
         $membership->save();// INSERT BD
-
-        //return redirect('home');
+        $membershipInicial->save();
+        
 
         return redirect()->route('home')->with([
-                    'message' => 'Hash enviado correctamente!'
+                    'message' => 'Hash de renovación enviado correctamente!'
         ]);
-        */
         
     }
 
@@ -344,9 +353,5 @@ class UserMembershipController extends Controller
           'membership' => $membership
       ]);
     }
-
-
-
-
     
 }

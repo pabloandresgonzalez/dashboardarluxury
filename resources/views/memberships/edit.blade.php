@@ -101,7 +101,7 @@
             <div class="input-group-prepend">
               <span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
             </div>                    
-            <input class="form-control" placeholder="Fecha de cierre, ej. <?php echo $fecha_actual; ?>" type="text" name="closedAt" value="{{ $memberships->closedAt}}" autocomplete="closedAt" autofocus>             
+            <input class="form-control" placeholder="Fecha de cierre, ej. <?php echo $fecha_actual; ?>" type="text" name="closedAt" value="" autocomplete="closedAt" autofocus>             
           </div>
         </div>        
         <div class="col-md-6">

@@ -60,7 +60,7 @@
           </div>
         </div>        
         <div class="col-md-6">
-          Membership padre
+          Id membresía padre
           <div class="input-group input-group-alternative mb-3">
               
             <label class="form-control">{{ $memberships->id }}</label>  
@@ -86,6 +86,7 @@
 
           </div>          
         </div>
+        
         <div class="col-md-4">
           <button type="" class="btn btn-outline-default" ><i class="ni ni-satisfied"></i> Enviar Solicitud</button>
         </div>

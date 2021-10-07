@@ -79,8 +79,16 @@
                   <td>
                     {{ $Wallet->fee }}
                   </td>
-                  <td>
-                    {{ $Wallet->type }}
+                  <td>                    
+                    <?php
+                      if($Wallet->type == 0 )                      
+                      {
+                        echo 'Retiro';
+                      }else
+                      {
+                        echo 'Abono';
+                      } 
+                    ?>
                   </td>
                   <td>
                     {{ $Wallet->currency }}
