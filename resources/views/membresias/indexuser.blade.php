@@ -75,7 +75,7 @@
                     <div class="card-body px-lg-5 py-lg-5">                        
 
                             <div class="text-center">
-                                <a type="button" href="/membership/create/" class="btn btn-outline-success btn-lg btn-block"><i class="ni ni-check-bold"></i>&nbsp; Registrar Hash de pago</a>
+                                <a type="button" href="/membership/create" class="btn btn-outline-success btn-lg btn-block"><i class="ni ni-check-bold"></i>&nbsp; Registrar Hash de pago</a>
                             </div>                                    
 
                     </div>

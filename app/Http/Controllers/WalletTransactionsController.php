@@ -81,9 +81,15 @@ class WalletTransactionsController extends Controller
           //decodificar JSON porque esa es la respuesta
           $respuestaDecodificada = json_decode($result);  
 
-          //dd($databalance);
-
           //dd($respuestaDecodificada);
+
+          //$balance = $respuestaDecodificada->balance;
+
+          //dd($balance);
+
+          //$d = $balance + 100 ;
+
+          //dd($d);
 
           $Wallets = wallet_transactions::where('user', $user->id)->orderBy('id', 'desc')
             ->paginate(4);

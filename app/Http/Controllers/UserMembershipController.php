@@ -189,7 +189,7 @@ class UserMembershipController extends Controller
         $membership = UserMembership::findOrFail($id);
         $membership->membership = $request->input('membership');
         $membership->typeHash = $request->input('typeHash');
-        $membership->detail = $request->input('detail');
+        $membership->detail = $request->input('status');
         $membership->activedAt = $request->input('activedAt');
         $membership->closedAt = $request->input('closedAt');
         $membership->status = $request->input('status');
