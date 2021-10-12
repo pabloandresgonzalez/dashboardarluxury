@@ -61,7 +61,7 @@
                                 <select id="status" name="status" class="form-control" required>                             	
                                 		
                                 	<option value="{{ $Wallets->status }}">Selecione un estado</option>
-      					                  <option value="change"  >En proceso</option>
+      					                  <option value="exhange"  >En proceso</option>
       					                  <option value="Rechazada"  >Rechazada</option>
       					                  <option value="Aprobada"  >Aprobada</option>
 					                       </select>

@@ -166,7 +166,7 @@
                                 <div class="input-group-prepend">
                                   <span class="input-group-text"><i class="ni ni-credit-card"></i></span>
                                 </div>
-                                  <select id="type" name="type" class="form-control" required>
+                                  <select id="currency" name="currency" class="form-control" required>
                                       <option value=""  >Tipo</option>
                                       <option value="USDT"  >USDT</option>
                                       <option value="BTC"  >BTC</option>
@@ -212,8 +212,6 @@
                           }
 
                           ?>
-
-
                             
                     </div>
 
