@@ -46,32 +46,77 @@
                       <div class="list-inline-item">                        
                         <ul>
                           Balance:  &nbsp;
-                          <?php
-                          if (isset($respuestaDecodificada->balance)) {
-                            echo $respuestaDecodificada->balance;
-                          } else {
-                            echo "null";
-                          }
+                          <?php 
+
+                            if ($result) {
+                              $url = ($result);
+
+                                    $data = json_decode($url, true);
+
+                              if (isset($data['balance'])) {
+                                
+                                  $balancecho = $data['balance']; 
+
+                                  echo $balancecho;
+                              }else {
+
+                                echo 'null';
+
+                              } 
+
+                            }    
+
                           ?>
                         </ul>
                         <ul>
                           En canje: &nbsp;
-                          <?php
-                          if (isset($respuestaDecodificada->exhange)) {
-                            echo $respuestaDecodificada->exhange;
-                          } else {
-                            echo "null";
-                          }
+                          <?php 
+
+                            if ($result) {
+                              $url = ($result);
+
+                                    $data = json_decode($url, true);
+
+                              if (isset($data['exhange'])) {
+                                
+                                  $balancecho = $data['exhange']; 
+
+                                  echo $balancecho;
+                              }else {
+
+                                echo 'null';
+
+                              } 
+
+                            }    
+
                           ?>
                         </ul>
                         <ul>
                           Total:  &nbsp;
-                          <?php
-                          if (isset($respuestaDecodificada->total)) {
-                            echo $respuestaDecodificada->total;
-                          } else {
-                            echo "null";
-                          }
+                          <?php 
+
+                            if ($result) {
+                              $url = ($result);
+
+                                    $data = json_decode($url, true);
+
+                              if (isset($data['total'])) {
+                                
+                                  $balancecho = $data['balance']; 
+                                  $exhange = $data['exhange']; 
+
+                                  $total = $balancecho - $exhange;
+
+                                  echo $total;
+                              }else {
+
+                                echo 'null';
+
+                              } 
+
+                            }    
+
                           ?>
                           </li>
                         </ul>          
@@ -82,38 +127,6 @@
                 </div> 
 
               </div>
-
-              <?php
-                if (isset($respuestaDecodificada->balance) ) {
-                  if ($respuestaDecodificada->balance <= 56) {
-                    echo '
-
-                  <div class="col-xl-8 order-xl-2 mb-5 mb-xl-0">
-                    <div class="card pub-prestamo">
-                      <div class="card-header">
-                        <h3 class="mb-0"><i class="ni ni-money-coins"></i> &nbsp;Retiro de billetera</h3>
-                      </div>
-
-                    
-                      <div class="card-body">
-                      
-                        <h5>No tienes saldo para retirar </h5>
-
-                      
-                      </div>
-                    </div> 
-                  </div>
-
-                  ';
-                  }
-                  
-                } else {
-
-                  
-                  
-                }
-
-              ?>
 
               <div class="col-xl-8 order-xl-2 mb-5 mb-xl-0">
                 <div class="card pub-prestamo">
@@ -128,15 +141,19 @@
                         @csrf
 
                         <?php
-                          if (isset($respuestaDecodificada->total)) {
-                            if ($respuestaDecodificada->balance <= 56) {
+                          if (isset($result)) {
+                  
+                            if (isset($data['total'])) {
 
-                              
-                            }
+                                $balancecho = $data['balance']; 
+                                $exhange = $data['exhange']; 
 
-                            echo '
+                                  $total = $balancecho - $exhange;
 
-                                <div class="col-md-6">
+                              if ($total >= 62.460) {
+                                echo '
+
+                            <div class="col-md-6">
                               <div class="input-group input-group-alternative mb-3">
                                 <div class="input-group-prepend">
                                   <span class="input-group-text"><i class="ni ni-money-coins"></i></span>
@@ -171,10 +188,29 @@
                             </div>
 
                               ';
+                              }else {
 
-                          } else {
-                            echo "<h5>No tienes saldo para retirar </h5>";
+                                echo '                                
+                                  <div class="card-body">                                  
+                                    <h5>No tienes saldo suficiente para retirar </h5>                                 
+                                  </div>
+                              ';
+                              
+                              }                                
+                                                                                       
+                              
+                            }else {
+
+                              echo '                                
+                                  <div class="card-body">                                  
+                                    <h5>No tienes saldo para retirar </h5>                                 
+                                  </div>
+                              ';
+
+                            }
+
                           }
+
                           ?>
 
 

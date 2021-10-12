@@ -96,7 +96,8 @@ class WalletTransactionsController extends Controller
 
             
             return view('wallets.index', [
-              'respuestaDecodificada' => $respuestaDecodificada,
+              //'respuestaDecodificada' => $respuestaDecodificada,
+              'result' => $result,
               'user' => $user,
               'Wallets' => $Wallets
 
@@ -217,4 +218,6 @@ class WalletTransactionsController extends Controller
         ]);
 
     }
+
+
 }
