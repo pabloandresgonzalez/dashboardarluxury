@@ -29,7 +29,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/user/indexperfil', [App\Http\Controllers\admin\UserController::class, 'indexperfil']);
 Route::put('/user/{user}/editperfil', [App\Http\Controllers\admin\UserController::class, 'editperfil']);//form edit
 // Route::post('/user', [App\Http\Controllers\admin\UserController::class, 'storeperfil']);// envio form
-Route::put('/user/{user}', [App\Http\Controllers\admin\UserController::class, 'update']);//envio form
+Route::put('/user/updateuser/{user}', [App\Http\Controllers\admin\UserController::class, 'updateuser'])->name('updateuser');//envio form
 Route::get('/user/avatar/{filename?}', [App\Http\Controllers\admin\UserController::class, 'getImage'])->name('user.avatar');
 Route::get('/user/avatardoc/{filename?}', [App\Http\Controllers\admin\UserController::class, 'getImageDoc'])->name('user.avatardoc');
 Route::get('/user/{user}/detail', [App\Http\Controllers\admin\UserController::class, 'detail']);//detalle 
@@ -71,8 +71,9 @@ Route::middleware(['auth', 'admin'])->group(function () {
     //Users
     Route::get('/user', [App\Http\Controllers\admin\UserController::class, 'index']);
     Route::get('/user/create', [App\Http\Controllers\admin\UserController::class, 'create']);//form create
-    Route::post('/user', [App\Http\Controllers\admin\UserController::class, 'store']);// envio form
+    Route::post('/user', [App\Http\Controllers\admin\UserController::class, 'store']);// envio form    
     Route::get('/user/{user}/edit', [App\Http\Controllers\admin\UserController::class, 'edit']); //form edit
+    Route::put('/user/{user}', [App\Http\Controllers\admin\UserController::class, 'update']);//envio form
      
 
 

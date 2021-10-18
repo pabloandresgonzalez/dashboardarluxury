@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\wallet_transactions;
+use App\Mail\TransactionSentMessage;
+use Illuminate\Support\Facades\Mail;
+use App\Models\User;
+use App\Mail\TransactionMessageCreated;
 
 class WalletTransactionsController extends Controller
 {
@@ -89,7 +93,7 @@ class WalletTransactionsController extends Controller
 
           //$d = $balance + 100 ;
 
-          //dd($d);
+          //dd($result);
 
           $Wallets = wallet_transactions::where('user', $user->id)->orderBy('id', 'desc')
             ->paginate(4);
@@ -142,6 +146,15 @@ class WalletTransactionsController extends Controller
        
 
         $Wallet->save();// INSERT BD
+
+        //enviar email
+        $user_email = User::where('role', 'admin')->first();
+        //$user_email_admin = $user_email->email;
+        $useremail = 'pabloandres6@gmail.com';
+
+        Mail::to($email)->send(new TransactionSentMessage($Wallet));
+
+        Mail::to($useremail)->send(new TransactionMessageCreated($Wallet));
 
         //return redirect('home');
 

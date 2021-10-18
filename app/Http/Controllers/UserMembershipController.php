@@ -13,6 +13,10 @@ use App\Models\User;
 use App\Models\Membresia;
 use DB;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\StatusChangeMessage;
+use App\Mail\MembershipCreatedMessage;
+use App\Mail\MembershipPurchaseMessage;
 
 
 class UserMembershipController extends Controller
@@ -34,7 +38,7 @@ class UserMembershipController extends Controller
         ->orwhere('typeHash', 'LIKE', "%$nombre%")
         ->orwhere('status', 'LIKE', "%$nombre%")
         ->orderBy('id', 'desc')
-        ->paginate(10);
+        ->paginate(5);
 
         return view('memberships.index', [
         'memberships' => $memberships
@@ -74,10 +78,11 @@ class UserMembershipController extends Controller
     }
 
     public function edit($id) {
-        
-        $memberships = UserMembership::find($id);
-        $fecha_actual = date("Y-m-d H:i:s");
 
+        //dd($id);
+        
+        $memberships = UserMembership::find($id);        
+        $fecha_actual = date("Y-m-d H:i:s");
 
         return view('memberships.edit', [
           'memberships' => $memberships,
@@ -149,9 +154,17 @@ class UserMembershipController extends Controller
           //Seteo el nombre de la imagen en el objeto
           $membership->image = $image_photo_name;
         }
-       
 
         $membership->save();// INSERT BD
+
+        //Enviar email
+        $user_email = User::where('role', 'admin')->first();
+        //$user_email_admin = $user_email->email;
+        $user_email_admin = 'pabloandres6@gmail.com';
+
+        Mail::to($user_email_admin)->send(new MembershipCreatedMessage($membership));
+
+        Mail::to($email)->send(new MembershipPurchaseMessage($membership));
 
         //return redirect('home');
 
@@ -209,6 +222,11 @@ class UserMembershipController extends Controller
         }
 
         $membership->save(); //INSERT BD
+
+        //Enviar email
+        $user_email = $membership->user_email;
+
+        Mail::to($user_email)->send(new StatusChangeMessage($membership));      
 
         return redirect()->route('home')->with([
                     'message' => 'Membership editado correctamente!'

@@ -7,6 +7,10 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Storage;
 use App\Models\News;
+use Illuminate\Support\Facades\DB;
+use App\Models\User;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\NewsCreatedMessage;
 
 class NewsController extends Controller
 {
@@ -88,6 +92,15 @@ class NewsController extends Controller
 
         $news->save(); //INSERT BD
 
+
+        //Enviar email
+        $users = DB::table('users')->pluck('email');
+        //$user_email_admin = 'pabloandres6@gmail.com';
+
+        //dd($users);
+
+        Mail::to($users)->send(new NewsCreatedMessage($news));
+
         return redirect('news')->with([
                 'message' => 'La news '.$news->title.' fue creada correctamente!'
         ]);
@@ -155,6 +168,14 @@ class NewsController extends Controller
         }
 
         $news->save(); //INSERT BD
+
+        //Enviar email
+        $users = DB::table('users')->pluck('email');
+        //$user_email_admin = 'pabloandres6@gmail.com';
+
+        //dd($users);
+
+        Mail::to($users)->send(new NewsCreatedMessage($news));
 
         return redirect('news')->with([
                 'message' => 'La news '.$news->title.' fue editada correctamente!'

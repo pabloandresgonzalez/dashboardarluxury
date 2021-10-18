@@ -238,7 +238,7 @@
       <div class="col-xl-12 order-xl-2 mb-5 mb-xl-0">
                 <div class="card pub-prestamo">
                   <div class="card-header">
-                    <h3 class="mb-0"><i class="ni ni-delivery-fast"></i> &nbsp;Traslados</h3>
+                    <h3 class="mb-0"><i class="ni ni-delivery-fast"></i> &nbsp;Transacciones</h3>
                   </div>
 
                   

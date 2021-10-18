@@ -44,7 +44,7 @@
                   <input class="custom-control-input" type="checkbox" name="" value="1" id="flexCheckDefault" onchange="javascript:showContent()">
                   <label class="custom-control-label" for="flexCheckDefault">
                      <a href="{{ route('consulta') }}" class="text-muted" target="_blank">
-                    Terminos y condiciones</a>
+                    Acepto los Términos y condiciones</a>
                   </label>
                 </div>
 
