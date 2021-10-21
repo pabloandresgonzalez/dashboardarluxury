@@ -103,10 +103,10 @@
 
                               if (isset($data['total'])) {
                                 
-                                  $balancecho = $data['balance']; 
-                                  $exhange = $data['exhange']; 
+                                  //$balancecho = $data['balance']; 
+                                  //$exhange = $data['exhange']; 
 
-                                  $total = $balancecho - $exhange;
+                                  $total = $data['total'];
 
                                   echo $total;
                               }else {
@@ -145,10 +145,11 @@
                   
                             if (isset($data['total'])) {
 
-                                $balancecho = $data['balance']; 
-                                $exhange = $data['exhange']; 
+                                //$balancecho = $data['balance']; 
+                                //$exhange = $data['exhange']; 
 
-                                  $total = $balancecho - $exhange;
+                                  //$total = $balancecho - $exhange;
+                                  $total = $data['total'];
 
                               if ($total >= 56) {
                                 echo '

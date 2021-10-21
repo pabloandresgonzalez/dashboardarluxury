@@ -6,7 +6,7 @@
     <div class="card-header border-0">
       <div class="row align-items-center">
         <div class="col">
-          <h3 class="mb-0"><i class="ni ni-bullet-list-67"></i> &nbsp;Historial de pagos</h3>
+          <h3 class="mb-0"><i class="ni ni-bullet-list-67"></i> &nbsp;Historial de pagos </h3>
         </div>
         <div class="col-md-6">
           <a href="{{ route('mismembership') }}" class="btn btn-outline-default">
@@ -32,7 +32,7 @@
 
       <div class="card pub-prestamo">
         <div class="card-header">
-          <i class="ni ni-money-coins"></i> &nbsp;Detalle de pagos por días</h3>
+          <i class="ni ni-money-coins"></i> &nbsp;Detalle de pagos x activacion </h3>
         </div>
        
           <div class="table-responsive">
@@ -43,8 +43,6 @@
                   <th scope="col">Fecha de pago</th>
                   <th scope="col">$ Monto</th>
                   <th scope="col">Detalle</th>
-                  <th scope="col">Estado</th>
-                  <th scope="col">Tipo</th>
                 </tr>
               </thead>
 
@@ -63,21 +61,13 @@
                   </td>
                   <td>
                     {{ $networktransaction->detail }}                    
-                  </td>  
-                  <td>
-                    {{ $networktransaction->status}}                    
-                  </td> 
-                  <td>
-                    {{ $networktransaction->type }}                    
-                  </td>           
+                  </td>       
                  </tr>
                  @endforeach
-                </tbody>
             </table>
-            <br>
+            <br>            
+                 
 
-     
-            
     </div>
   </div> 
 

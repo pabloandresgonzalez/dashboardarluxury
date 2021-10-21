@@ -46,7 +46,8 @@
                   <th scope="col">Fecha activada</th>
                   <th scope="col">Fecha cierre</th>
                   <th scope="col">Detalle</th>
-                  <th scope="col">Historial de pagos</th>
+                  <th scope="col">Pagos diarios</th>
+                  <th scope="col">Pagos x activación</th>
                 </tr>
               </thead>
               <tbody>
@@ -79,7 +80,10 @@
                   </td>  
                   <td>
                     <a href="{{ route('networktransaction', ['id' =>$membership->id]) }}" class="btn btn-outline-secondary"><i class="ni ni-archive-2"></i> Historial pagos</a>
-                  </td>             
+                  </td> 
+                  <td>
+                    <a href="{{ route('networktransactionactivacion', ['id' =>$membership->id]) }}" class="btn btn-outline-secondary"><i class="ni ni-archive-2"></i> Historial pagos</a>
+                  </td>            
                  </tr>
                  @endforeach
               </tbody>
@@ -88,19 +92,13 @@
             <br>
             {{ $memberships->links() }}
 
-                 
-
-          <div class="col-md-4">
         </div>
+      </div>
+
+
+      </div>
     </div>
-
-    <hr>
-
-
-
   </div>
-
-        <hr class="my-3">
 @endsection
 
 

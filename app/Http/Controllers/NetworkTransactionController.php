@@ -26,12 +26,43 @@ class NetworkTransactionController extends Controller
         //$users = User::orderBy('id', 'desc')->get();
         //$memberships = UserMembership::where('id', $user->id)->orderBy('id', 'desc')->get();
         $id = $request->id;
-        $networktransactions = NetworkTransaction::where('userMembership', $id)->orderBy('id', 'desc')->paginate(25);
+        $networktransactions = NetworkTransaction::where('userMembership', $id)
+                                ->where('type', 'Daily')
+                                ->orderBy('id', 'desc')->paginate(40);
             //->paginate(5);
+
 
         //dd($networktransactions);
 
         return view('networktransaction.index', compact('networktransactions'));        
+
+    }
+
+    public function indexactivacion(Request $request)
+    {
+
+        //Conseguir usuario identificado
+        $user = \Auth::user();
+        $iduser = $user->id;
+        //$name = $user->name;
+        //$image = $user->image;
+        //$users = User::orderBy('id', 'desc')->get();
+        //$memberships = UserMembership::where('id', $user->id)->orderBy('id', 'desc')->get();
+        $id = $request->id;
+        //$networktransactions = NetworkTransaction::where('user', $iduser)->orderBy('id', 'desc')->paginate(40);
+        //dd($networktransactions);
+        $networktransactions = NetworkTransaction::where('userMembership', $id)
+                                ->where( 'user', $iduser)
+                                ->where('type', 'Activation')
+                                ->orderBy('id', 'desc')->paginate(40);
+
+        //dd($networktransactions);
+
+            //->paginate(5);
+
+        //dd($networktransactions);
+
+        return view('networktransaction.indexactivacion', compact('networktransactions'));        
 
     }
 
