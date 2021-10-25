@@ -20,7 +20,7 @@ class UserController extends Controller
 
     public function index(Request $request)
     {
-      
+            
       $nombre = $request->get('buscarpor');
       
 
@@ -29,7 +29,7 @@ class UserController extends Controller
       ->orwhere('role', 'LIKE', "%$nombre%")
       ->orwhere('email', 'LIKE', "%$nombre%")
       ->orderBy('id', 'desc')
-      ->paginate(10);
+      ->paginate(3);
 
       return view('users.index', [
       'users' => $users

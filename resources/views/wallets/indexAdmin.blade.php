@@ -110,8 +110,7 @@
 
             <br>
 
-            {{ $Wallets->links() }}
-
+            {{ $Wallets->appends(request()->input())->links() }}
 
         </div>
 

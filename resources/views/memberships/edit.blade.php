@@ -58,7 +58,7 @@
               </select>
           </div>
         </div>
-        <div class="col-md-12">
+        <div class="col-md-6">
           <div class="input-group input-group-alternative mb-3">
             <div class="input-group-prepend">
               <span class="input-group-text"><i class="ni ni-key-25"></i></span>
@@ -78,14 +78,6 @@
                   <option value="Cerrado"  >Cerrado</option>
                   
               </select>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="input-group input-group-alternative mb-3">
-            <div class="input-group-prepend">
-              <span class="input-group-text"><i class="ni ni-bullet-list-67"></i></span>
-            </div>                     
-            <input class="form-control" placeholder="Detalle" type="text" name="detail" value="{{ $memberships->detail}}" autocomplete="detail" autofocus>             
           </div>
         </div>
         <div class="col-md-6">
@@ -111,8 +103,6 @@
             </div>
             <input class="form-control" placeholder="image"  type="file" name="image"  autocomplete="image" autofocus>
           </div>
-        </div>
-        <div class="col-md-6">
         </div>
 
         <div class="col-md-4">

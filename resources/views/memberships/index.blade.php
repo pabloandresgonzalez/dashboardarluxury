@@ -119,7 +119,7 @@
 
             <br>
 
-            {{ $memberships->links() }}
+            {{ $memberships->appends(request()->input())->links() }}
 
 
         </div>

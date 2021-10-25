@@ -66,9 +66,7 @@
             </table>
             <br>
 
-            {{ $news->links() }}
-
-            
+            {{ $news->appends(request()->input())->links() }}           
 
 
           <div class="col-md-4">

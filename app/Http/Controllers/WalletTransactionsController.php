@@ -8,6 +8,7 @@ use App\Mail\TransactionSentMessage;
 use Illuminate\Support\Facades\Mail;
 use App\Models\User;
 use App\Mail\TransactionMessageCreated;
+use DB;
 
 class WalletTransactionsController extends Controller
 {
@@ -21,12 +22,37 @@ class WalletTransactionsController extends Controller
 
       $nombre = $request->get('buscarpor');
 
-        $Wallets = wallet_transactions::where('fee', 'LIKE', "%$nombre%")
-        ->orwhere('user', 'LIKE', "%$nombre%")
-        ->orwhere('status', 'LIKE', "%$nombre%")
+        $Wallets = wallet_transactions::where('user', 'LIKE', "%$nombre%")
         ->orwhere('currency', 'LIKE', "%$nombre%")
+        ->orwhere('type', 'LIKE', "%$nombre%")
+        ->orwhere('status', 'LIKE', "%$nombre%")
+        ->orwhere('created_at', 'LIKE', "%$nombre%")
         ->orderBy('id', 'desc')
         ->paginate(10);
+
+        //$actualStock = DB::table('wallet_transactions')->where('id')->first();
+        $useremails = DB::table('wallet_transactions')->select(DB::raw('user'))->get()->pluck('user');
+
+        //$useremails = $tienda;
+
+        //dd($Wallets);
+
+        foreach($Wallets as $Wallet)
+          $wallets1 = $Wallets;
+
+        foreach($useremails as $useremail)
+          $useremail = DB::table('users')->select(DB::raw('email'))->get()->pluck('email')->toArray();
+
+          //dd($useremail);
+
+        //$resultados = array_merge($wallets1, $useremail);
+
+
+
+
+
+        //dd($useremail);
+
 
         return view('wallets.indexAdmin', [
         'Wallets' => $Wallets

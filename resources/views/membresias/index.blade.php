@@ -66,7 +66,7 @@
             </table>
             <br>
 
-            {{ $membresias->links() }}
+            {{ $membresias->appends(request()->input())->links() }}
 
 
           <div class="col-md-4">

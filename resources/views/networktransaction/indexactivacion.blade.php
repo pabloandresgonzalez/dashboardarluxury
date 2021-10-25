@@ -65,8 +65,9 @@
                  </tr>
                  @endforeach
             </table>
-            <br>            
-                 
+            <br>     
+
+            {{ $networktransactions->appends(request()->input())->links() }}
 
     </div>
   </div> 
