@@ -51,8 +51,7 @@ class NetworkTransactionController extends Controller
         $id = $request->id;
         //$networktransactions = NetworkTransaction::where('user', $iduser)->orderBy('id', 'desc')->paginate(40);
         //dd($networktransactions);
-        $networktransactions = NetworkTransaction::where('userMembership', $id)
-                                ->where( 'user', $iduser)
+        $networktransactions = NetworkTransaction::where( 'user', $iduser)
                                 ->where('type', 'Activation')
                                 ->orderBy('id', 'desc')->paginate(40);
 
