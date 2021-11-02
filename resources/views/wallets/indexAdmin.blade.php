@@ -48,6 +48,7 @@
                 <tr>
                   <th scope="col" class="sort">id</th>
                   <th scope="col">Usuario</th>
+                  <th scope="col">Email</th>
                   <th scope="col">Fecha</th>
                   <th scope="col">Estado</th>
                   <th scope="col">$ Valor</th>
@@ -66,6 +67,9 @@
                   </td>
                   <td>
                     {{ $Wallet->user }}
+                  </td>
+                  <td>
+                    {{ $Wallet->email }}
                   </td>
                   <td>
                     {{ $Wallet->created_at }}
@@ -107,18 +111,16 @@
                  @endforeach
               </tbody>
             </table>
-
             <br>
+
+            <a href="{{ url('wallets/export-excel') }}" class="btn btn-outline-secondary"><i class="ni ni-single-copy-04"></i> Exportar</a>
+
+
+            <br><br>
 
             {{ $Wallets->appends(request()->input())->links() }}
 
         </div>
-
-    
-
-
-
-
 
       </div>
     </div>

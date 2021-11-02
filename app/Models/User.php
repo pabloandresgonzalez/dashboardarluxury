@@ -77,4 +77,8 @@ class User extends Authenticatable
         return$this->belongsTo(Membresia::class);
     }
 
+    public function wallet_transactions() {
+        return $this->hasMany(wallet_transactions::class);
+    }
+
 }

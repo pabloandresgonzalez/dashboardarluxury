@@ -22,7 +22,7 @@ class NewsController extends Controller
     public function index()
     {
         //$membresias = Membresia::all();
-        $news = News::orderBy('id', 'Desc')->paginate(10);
+        $news = News::orderBy('id', 'Desc')->paginate(30);
         $data = ['news' => $news];
 
         return view('news.index', compact('news'));
@@ -110,7 +110,7 @@ class NewsController extends Controller
     public function indexuser()
     {
         //$news = News::all();
-        $news = News::where('isActive', '1')->orderBy('id', 'Desc')->paginate(10);
+        $news = News::where('isActive', '1')->orderBy('id', 'Desc')->paginate(15);
         $data = ['news' => $news];
 
 

@@ -9,6 +9,10 @@ use Illuminate\Support\Facades\Mail;
 use App\Models\User;
 use App\Mail\TransactionMessageCreated;
 use DB;
+use App\Exports\WalletTransactionsExport;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Mail\StatusChangeTransactionMessage;
+use App\Mail\StatusChangeTransactionMessageAdmin;
 
 class WalletTransactionsController extends Controller
 {
@@ -23,25 +27,40 @@ class WalletTransactionsController extends Controller
       $nombre = $request->get('buscarpor');
 
         $Wallets = wallet_transactions::where('user', 'LIKE', "%$nombre%")
+        ->orwhere('email', 'LIKE', "%$nombre%")
         ->orwhere('currency', 'LIKE', "%$nombre%")
         ->orwhere('type', 'LIKE', "%$nombre%")
         ->orwhere('status', 'LIKE', "%$nombre%")
         ->orwhere('created_at', 'LIKE', "%$nombre%")
         ->orderBy('id', 'desc')
-        ->paginate(10);
+        ->paginate(50);
+
+        /*
+        $users = DB::table('wallet_transactions')
+        ->join('users', 'users.id', '=' , 'wallet_transactions.user')
+        ->select('users.email')
+        ->get();
+
+        dd($users);
+        */
+
 
         //$actualStock = DB::table('wallet_transactions')->where('id')->first();
-        $useremails = DB::table('wallet_transactions')->select(DB::raw('user'))->get()->pluck('user');
+        //$useremails = DB::table('wallet_transactions')->select(DB::raw('user'))->get()->pluck('user');
 
         //$useremails = $tienda;
 
         //dd($Wallets);
+
+        /*
 
         foreach($Wallets as $Wallet)
           $wallets1 = $Wallets;
 
         foreach($useremails as $useremail)
           $useremail = DB::table('users')->select(DB::raw('email'))->get()->pluck('email')->toArray();
+
+        */
 
           //dd($useremail);
 
@@ -122,7 +141,7 @@ class WalletTransactionsController extends Controller
           //dd($result);
 
           $Wallets = wallet_transactions::where('user', $user->id)->orderBy('id', 'desc')
-            ->paginate(4);
+            ->paginate(30);
 
             
             return view('wallets.index', [
@@ -160,6 +179,7 @@ class WalletTransactionsController extends Controller
 
         $Wallet = new wallet_transactions();
         $Wallet->user = $id;
+        $Wallet->user = $email;
         $Wallet->value = $request->input('value');
         $Wallet->fee = 5;
         $Wallet->type = 0;
@@ -175,12 +195,12 @@ class WalletTransactionsController extends Controller
 
         //enviar email
         $user_email = User::where('role', 'admin')->first();
-        //$user_email_admin = $user_email->email;
-        $useremail = 'pabloandres6@gmail.com';
+        $user_email_admin = $user_email->email;
+        //$useremail = 'pabloandres6@gmail.com';
 
         Mail::to($email)->send(new TransactionSentMessage($Wallet));
 
-        Mail::to($useremail)->send(new TransactionMessageCreated($Wallet));
+        Mail::to($user_email_admin)->send(new TransactionMessageCreated($Wallet));
 
         //return redirect('home');
 
@@ -214,8 +234,11 @@ class WalletTransactionsController extends Controller
       //$name = $user->name;
       //$email = $user->email;
 
+      //dd($email);
+
       $Wallet = wallet_transactions::find($id);
       $user = $Wallet->user;
+      $email = $Wallet->email;
       $value = $Wallet->value;
       $detail = $Wallet->detail;
       $type = $Wallet->type;
@@ -238,6 +261,7 @@ class WalletTransactionsController extends Controller
 
         $Wallet = wallet_transactions::findOrFail($id);
         $Wallet->user = $user;
+        $email = $email;
         $Wallet->value = $value;
         $Wallet->fee = $fee;
         $Wallet->type = $type;
@@ -251,12 +275,27 @@ class WalletTransactionsController extends Controller
 
         $Wallet->save();// INSERT BD
 
+       
+        //enviar email
+        $user_email = User::where('role', 'admin')->first();
+        $user_email_admin = $user_email->email;
+        //$useremail = 'pabloandres6@gmail.com';
+
+        Mail::to($email)->send(new StatusChangeTransactionMessage($Wallet));
+
+        Mail::to($user_email_admin)->send(new StatusChangeTransactionMessageAdmin($Wallet));
+
         //return redirect('home');
 
         return redirect()->route('home')->with([
                     'message' => 'Solicitud de Retiro editada correctamente!'
         ]);
 
+    }
+
+    public function exportExcel()
+    {
+      return Excel::download(new WalletTransactionsExport, 'Wallets.xlsx');
     }
 
 

@@ -85,7 +85,7 @@
             <div class="input-group-prepend">
               <span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
             </div>                    
-            <input class="form-control" placeholder="Fecha activación, ej. <?php echo $fecha_actual; ?>" type="text" name="activedAt" value="{{ $memberships->activedAt}}" autocomplete="activedAt" autofocus>             
+            <input class="form-control" placeholder="Fecha activación, ej. <?php echo $fecha_actual; ?>" type="text" name="activedAt" value="<?php echo $fecha_actual; ?>" autocomplete="activedAt" autofocus>             
           </div>
         </div>
         <div class="col-md-6">

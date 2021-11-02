@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Storage;
 use App\Models\User;
 use App\Traits\UsesUuid;
 use App\Traits\AutoGenerateUuid;
+use App\Exports\UsersExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class UserController extends Controller
 {
@@ -29,7 +31,7 @@ class UserController extends Controller
       ->orwhere('role', 'LIKE', "%$nombre%")
       ->orwhere('email', 'LIKE', "%$nombre%")
       ->orderBy('id', 'desc')
-      ->paginate(3);
+      ->paginate(50);
 
       return view('users.index', [
       'users' => $users
@@ -393,6 +395,9 @@ class UserController extends Controller
       ]);
     } 
 
-
+    public function exportExcel()
+    {
+      return Excel::download(new UsersExport, 'users.xlsx');
+    }
 
 }

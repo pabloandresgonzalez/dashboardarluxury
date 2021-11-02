@@ -17,6 +17,8 @@ use Illuminate\Support\Facades\Mail;
 use App\Mail\StatusChangeMessage;
 use App\Mail\MembershipCreatedMessage;
 use App\Mail\MembershipPurchaseMessage;
+use App\Exports\UsersMembershipsExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 
 class UserMembershipController extends Controller
@@ -38,7 +40,7 @@ class UserMembershipController extends Controller
         ->orwhere('typeHash', 'LIKE', "%$nombre%")
         ->orwhere('status', 'LIKE', "%$nombre%")
         ->orderBy('id', 'desc')
-        ->paginate(5);
+        ->paginate(50);
 
         return view('memberships.index', [
         'memberships' => $memberships
@@ -193,7 +195,7 @@ class UserMembershipController extends Controller
             //'hash' => 'required|max:255|unique:user_memberships', 
             'typeHash' => 'required|max:255',  
             //'detail' => 'required|max:255', 
-            //'activedAt' => 'required|max:255',
+            'activedAt'=>'required|date_format:Y-m-d H:i:s',
             //'closedAt' => 'required|max:255',    
             'image' => 'file',
         ]);
@@ -370,6 +372,11 @@ class UserMembershipController extends Controller
       return view('memberships.detail', [
           'membership' => $membership
       ]);
+    }
+
+    public function exportExcel()
+    {
+      return Excel::download(new UsersMembershipsExport, 'memberships.xlsx');
     }
     
 }

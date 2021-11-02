@@ -24,7 +24,7 @@
               $(".alert").fadeOut(6000);
           });
       });
-  </script>
+    </script>
 
   <?php 
 

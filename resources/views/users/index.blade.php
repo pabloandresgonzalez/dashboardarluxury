@@ -37,7 +37,8 @@
           <i class="ni ni-single-02"></i> Nuevo usuario
           </a>
         </div>
-          </div>
+         <br>
+          
           <div class="table-responsive">
             <table class="table align-items-center table-dark">
               <thead class="thead-dark">
@@ -110,11 +111,17 @@
               </tbody>
             </table>
             <br>
+            <div>
+              <a href="{{ url('users/export-excel') }}" class="btn btn-outline-secondary"><i class="ni ni-single-copy-04"></i> Exportar</a>              
+            </div>
+            
+            <br>
            
             {{ $users->appends(request()->input())->links() }}
            
-          
+
     </div>
+  </div>
   </div>
 
   <br>
