@@ -46,6 +46,7 @@
                   <th scope="col" class="sort">Nombre</th>
                   <th scope="col">Apellido</th>
                   <th scope="col"># Identificación</th>
+                  <th scope="col">Email</th>
                   <th scope="col">Celular</th>
                   <th scope="col">Nivel</th>
                   <th scope="col">Estado</th>
@@ -66,6 +67,9 @@
                   </td>
                   <td>
                     {{ $user->numberDoc }}
+                  </td>
+                  <td>
+                    {{ $user->email }}
                   </td>
                   <td>
                     {{ $user->cellphone }}

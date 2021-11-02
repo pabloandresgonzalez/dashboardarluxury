@@ -110,7 +110,7 @@
                     </form>
                   </td>
                   <td>
-                      <a href="{{ url('memberships/export-excel') }}" class="btn btn-outline-secondary"><i class="ni ni-bullet-list-67"></i> Detalle</a>
+                      <a href="{{ url('/membership/'.$membership->id.'/detail') }}" class="btn btn-outline-secondary"><i class="ni ni-bullet-list-67"></i> Detalle</a>
                   </td>
                 </tr>
                  @endforeach
