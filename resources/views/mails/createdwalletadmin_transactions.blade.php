@@ -12,6 +12,7 @@
         <li>Divisa: {{ $Wallet->currency }}</li>
         <li>Detalle: {{ $Wallet->detail }}</li>
         <li>Id de  usuario: {{ $Wallet->user }}</li>
+        <li>Email de  usuario: {{ $Wallet->email }}</li>
         <li>Fecha: {{ $Wallet->created_at }}</li>
     </ul>
 

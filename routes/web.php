@@ -24,6 +24,7 @@ Route::get('/consulta', [App\Http\Controllers\ConsultId::class, 'index'])->name(
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/escritorio', [App\Http\Controllers\HomeController::class, 'indexEscritorio'])->name('escritorio');
 
 //Users perfil
 Route::get('/user/indexperfil', [App\Http\Controllers\admin\UserController::class, 'indexperfil']);
