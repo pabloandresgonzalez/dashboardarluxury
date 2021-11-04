@@ -179,7 +179,7 @@ class WalletTransactionsController extends Controller
 
         $Wallet = new wallet_transactions();
         $Wallet->user = $id;
-        $Wallet->user = $email;
+        $Wallet->email = $email;
         $Wallet->value = $request->input('value');
         $Wallet->fee = 5;
         $Wallet->type = 0;
@@ -189,9 +189,12 @@ class WalletTransactionsController extends Controller
         $Wallet->inOut = 0;
         $Wallet->status = 'exhange';     
         $Wallet->detail = $request->input('detail');
-       
+
+        //dd($Wallet);       
 
         $Wallet->save();// INSERT BD
+
+
 
         //enviar email
         $user_email = User::where('role', 'admin')->first();
@@ -288,7 +291,7 @@ class WalletTransactionsController extends Controller
         //return redirect('home');
 
         return redirect()->route('home')->with([
-                    'message' => 'Solicitud de Retiro editada correctamente!'
+                    'message' => 'Solicitud de retiro editada correctamente!'
         ]);
 
     }
