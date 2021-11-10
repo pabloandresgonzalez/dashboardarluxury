@@ -306,7 +306,6 @@ class WalletTransactionsController extends Controller
 
       $users = User::where('isActive', 1)
                ->orderBy('name')
-               ->take(10)
                ->get();
 
 
@@ -383,7 +382,7 @@ class WalletTransactionsController extends Controller
         $Wallet->email = $useremail;
         $Wallet->value = $request->input('value');
         $Wallet->fee = 5;
-        $Wallet->type = $request->input('type');;
+        $Wallet->type = $request->input('type');
         $Wallet->hash = 'Autoriza'." ".$name."-".$email;
         $Wallet->currency = $request->input('currency');
         $Wallet->approvedBy = $id;
