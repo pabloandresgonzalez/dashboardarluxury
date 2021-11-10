@@ -110,6 +110,8 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/wallet/{wallet}/edit', [App\Http\Controllers\WalletTransactionsController::class, 'edit']);
     Route::put('/wallet/{wallet}', [App\Http\Controllers\WalletTransactionsController::class, 'update']);
     Route::get('/wallets/export-excel', [App\Http\Controllers\WalletTransactionsController::class, 'exportExcel']);
+    Route::get('/walletsaldos', [App\Http\Controllers\WalletTransactionsController::class, 'editsaldos'])->name('walletsaldos'); 
+    Route::put('/wallets/asaldo', [App\Http\Controllers\WalletTransactionsController::class, 'storeAdmin']);
     
     
 });

@@ -41,6 +41,13 @@
         </div>
       @endif
 
+      @if(session('message'))
+          <div class="alert alert-danger">
+            {{ session('message') }}
+          </div>
+      @endif
+
+
 
           <div class="table-responsive">
             <table class="table align-items-center table-dark">
@@ -48,7 +55,6 @@
                 <tr>
                   <th scope="col" class="sort">id</th>
                   <th scope="col">Usuario</th>
-                  <th scope="col">Email</th>
                   <th scope="col">Fecha</th>
                   <th scope="col">Estado</th>
                   <th scope="col">$ Valor</th>
@@ -56,7 +62,7 @@
                   <th scope="col">Tipo</th>
                   <th scope="col">Divisa</th>
                   <th scope="col">Editar</th>
-                  <th scope="col">Detalle</th>
+                  <th scope="col">Asignar saldo</th>
                 </tr>
               </thead>
               <tbody>
@@ -64,9 +70,6 @@
                 <tr>
                   <td scope="row">
                     {{ $Wallet->id }}
-                  </td>
-                  <td>
-                    {{ $Wallet->user }}
                   </td>
                   <td>
                     {{ $Wallet->email }}
@@ -105,7 +108,7 @@
                     </form>
                   </td>
                   <td>
-                      <a href="" class="btn btn-outline-secondary"><i class="ni ni-bullet-list-67"></i> Detalle</a>
+                      <a href="{{ url('/walletsaldos') }}" class="btn btn-outline-secondary"><i class="ni ni-bullet-list-67"></i> Asignar saldos</a>
                   </td>
                 </tr>
                  @endforeach
@@ -114,7 +117,6 @@
             <br>
 
             <a href="{{ url('wallets/export-excel') }}" class="btn btn-outline-secondary"><i class="ni ni-single-copy-04"></i> Exportar</a>
-
 
             <br><br>
 

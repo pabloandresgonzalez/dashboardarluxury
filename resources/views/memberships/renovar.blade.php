@@ -15,6 +15,8 @@
         </div>
       </div>
     </div>
+
+
     <div class="table-responsive">
     <div class="card-body">
 
@@ -34,67 +36,53 @@
         @csrf
         @method('PUT')
 
-        
-         
-        <div class="col-md-6">
-          <div class="input-group input-group-alternative mb-3">
-            <div class="input-group-prepend">
-              <span class="input-group-text"><i class="ni ni-paper-diploma"></i></span>
-            </div>
-              <select id="membership" name="membership" class="form-control" >
-                <option value="{{ $memberships->membership}}">{{ $memberships->membership }}</option>
-                  
-              </select>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="input-group input-group-alternative mb-3">
-            <div class="input-group-prepend">
-              <span class="input-group-text"><i class="ni ni-credit-card"></i></span>
-            </div>
-              <select id="typeHash" name="typeHash" class="form-control" required>
-                  <option value=""  >Forma de pago del paquete</option>
-                  <option value="USDT"  >USDT</option>
-                  <option value="BTC"  >BTC</option>
-              </select>
-          </div>
-        </div>        
-        <div class="col-md-6">
-          Id membresía padre
-          <div class="input-group input-group-alternative mb-3">
-              
-            <label class="form-control">{{ $memberships->id }}</label>  
-            <input type="submit" name="id_membresia" value="{{ $memberships->id }}" hidden="true">                   
-                         
-          </div>
-        </div>
-        <div class="col-md-6">
-          Nuevo hash
-          <div class="input-group input-group-alternative mb-3">
-            <div class="input-group-prepend">
-              <span class="input-group-text"><i class="ni ni-key-25"></i></span>
-            </div>                        
-            <input class="form-control" placeholder="hash" type="text" name="hash" value="" autocomplete="hash" autofocus>             
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="input-group input-group-alternative mb-3">
-            <div class="input-group-prepend">
-              <span class="input-group-text"><i class="ni ni-image"></i>&nbsp;Solo archivo de imagen</span>
-            </div>
-            <input class="form-control" placeholder="image"  type="file" name="image"  autocomplete="image" autofocus>
+      <?php
+        if (isset($result)) {
+            $url = ($result);
+              $data = json_decode($url, true);
+          if (isset($data['total'])) {
+            $total = $data['total'];
+            if ($total >= 56) {
+              //echo "si";
+              echo '<div class="col-md-12"><h5> Saldo:'.' '.  $total .'</h5> <br></div>';
 
-          </div>          
-        </div>
-        
-        <div class="col-md-4">
-          <button type="" class="btn btn-outline-default" ><i class="ni ni-satisfied"></i> Enviar Solicitud</button>
-        </div>
+              echo '<br>
 
-      </form>
+                  <div class="col-md-6">
+                  <div class="input-group input-group-alternative mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="ni ni-paper-diploma"></i></span>
+                    </div>
+                      <select id="membership" name="membership" class="form-control" >
+                        <option value="'.$memberships->membership.'"> '.$memberships->membership.' </option>
+                          
+                      </select>
+                  </div>
+                </div>
 
+                
+                <div class="col-md-4">
+                  <button type="" class="btn btn-outline-default" ><i class="ni ni-satisfied"></i> Renovar</button>
+                </div>
+
+              ';
+
+            }else {
+              echo '<div class="col-md-12"><h5> No tiene saldo suficiente para renovar</h5> <br></div>';
+            }
+          }else {
+            echo '<div class="col-md-12"><h5> No tiene saldo suficiente para renovar</h5> <br></div>';
+          }
+        }
+      ?>
+
+    </form>
+
+      
+     
       </div>
     </div>
+
 
     
   </div>

@@ -19,6 +19,7 @@ use App\Mail\MembershipCreatedMessage;
 use App\Mail\MembershipPurchaseMessage;
 use App\Exports\UsersMembershipsExport;
 use Maatwebsite\Excel\Facades\Excel;
+use App\Models\wallet_transactions;
 
 
 class UserMembershipController extends Controller
@@ -244,7 +245,8 @@ class UserMembershipController extends Controller
     //$name = $user->name;
     //$image = $user->image;
     //$users = User::orderBy('id', 'desc')->get();
-    $memberships = UserMembership::where('user', $user->id)->orderBy('id', 'desc')
+    $memberships = UserMembership::where('user', $user->id)
+            ->orderBy('id', 'desc')
             ->paginate(30);
 
         //dd($memberships);
@@ -283,19 +285,246 @@ class UserMembershipController extends Controller
 
     }
 
-    public function editrenovar($id) {
+    public function editrenovar($id)
+    {
+
+        //Conseguir usuario identificado
+        $user = \Auth::user();
+        $iduser = $user->id;
+
+        $memberships = UserMembership::where('user', $iduser)
+        ->where('status', 'Activo')
+        ->paginate(50);
+       //$depositos = UserMembership::where('user', $userid);
+            //->where('status', 'Activo')
+            //->paginate(5);
+
+        //dd($memberships);
+
+        $cantmemberships = $memberships->count();
 
         $memberships = UserMembership::find($id);
         //dd($memberships);
 
-        return view('memberships.renovar', [
-          'memberships' => $memberships
-      ]);
+        //dd($cantmemberships);
+
+        if ($cantmemberships > 0) {
+            
+          //dd($cantmemberships);
+          //echo "con membresa activa";
+
+          //Conseguir usuario identificado
+          $user = \Auth::user();
+
+          $idd = $user->id;
+
+
+          //$id = 'b3361710-4e21-4fe1-a86e-a29fbecb15f2';
+
+          $data = [
+          'userId' => $idd, //'b3361710-4e21-4fe1-a86e-a29fbecb15f2',
+          'token' => 'AcjAa76AHxGRdyTemDb2jcCzRmqpWN'
+          ];
+
+          $curl = curl_init();
+
+          curl_setopt_array($curl, array(
+              CURLOPT_URL => "https://ekgra7pfqh.execute-api.us-east-2.amazonaws.com/Prod_getBalanceByUser",
+              CURLOPT_RETURNTRANSFER => true,
+              CURLOPT_ENCODING => "",
+              CURLOPT_MAXREDIRS => 10,
+              CURLOPT_TIMEOUT => 30000,
+              CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+              CURLOPT_CUSTOMREQUEST => "POST",
+              CURLOPT_POSTFIELDS => json_encode($data),        
+              CURLOPT_HTTPHEADER => array(
+                // Set here requred headers
+                  "accept: */*",
+                  "accept-language: en-US,en;q=0.8",
+                  "content-type: application/json",
+              ),
+          ));
+
+          $result = curl_exec($curl);
+          $err = curl_error($curl);
+
+          //dd($err);
+
+          //dd($result);
+          curl_close($curl);
+          //$data1 = print_r($result);
+
+          //decodificar JSON porque esa es la respuesta
+          $respuestaDecodificada = json_decode($result);  
+
+          //dd($respuestaDecodificada);
+          
+          return view('memberships.renovar', [
+                'memberships' => $memberships,
+                'user' => $user,
+                'result' => $result
+                ]);             
+
+        }
+
+            //echo "sin membresa activa";
+
+            return redirect()->route('home')->with([
+                    'message' => 'Debes tener saldo o una membresía activa para renovar!'
+                ]); 
 
     }
 
     public function renovar(Request $request, $id)
     {
+
+        //dd($id);
+
+        //Conseguir usuario identificado
+        $user = \Auth::user();
+        $iduser = $user->id;
+        $name = $user->name;
+        $email = $user->email;
+
+        $membershippadre = UserMembership::findOrFail($id);
+        $id_membresia = $membershippadre->id_membresia;
+        $typeHash =  $membershippadre->typeHash;
+
+        //dd($typeHash);
+
+        $membresia = Membresia::where('id', $id_membresia)->first();
+        $valor_membresia = $membresia->valor;
+
+        $data = [
+          'userId' => $iduser, //'b3361710-4e21-4fe1-a86e-a29fbecb15f2',
+          'token' => 'AcjAa76AHxGRdyTemDb2jcCzRmqpWN'
+          ];
+
+          $curl = curl_init();
+
+          curl_setopt_array($curl, array(
+              CURLOPT_URL => "https://ekgra7pfqh.execute-api.us-east-2.amazonaws.com/Prod_getBalanceByUser",
+              CURLOPT_RETURNTRANSFER => true,
+              CURLOPT_ENCODING => "",
+              CURLOPT_MAXREDIRS => 10,
+              CURLOPT_TIMEOUT => 30000,
+              CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+              CURLOPT_CUSTOMREQUEST => "POST",
+              CURLOPT_POSTFIELDS => json_encode($data),        
+              CURLOPT_HTTPHEADER => array(
+                // Set here requred headers
+                  "accept: */*",
+                  "accept-language: en-US,en;q=0.8",
+                  "content-type: application/json",
+              ),
+          ));
+
+          $result = curl_exec($curl);
+          $err = curl_error($curl);
+
+          //dd($err);
+
+          //dd($result);
+          curl_close($curl);
+          //$data1 = print_r($result);
+
+          //decodificar JSON porque esa es la respuesta
+          $respuestaDecodificada = json_decode($result);  
+
+          //dd($respuestaDecodificada->total);
+
+          $valor_saldo  = $respuestaDecodificada->total;
+             
+
+        //dd($valor_membresia);
+
+        if ($valor_membresia > $valor_saldo) {
+            
+            return redirect()->route('home')->with([
+                    'message' => 'Saldo insuficiente para renovar!'
+                ]); 
+
+        }
+
+     
+        //dd($id_membresia);
+
+        //Validacion del formulario
+        $validate = $this->validate($request, [
+            'membership' => 'required|string|min:4',        
+            //'hash' => 'required|max:255|unique:user_memberships', 
+            //'typeHash' => 'required|max:255',  
+            //'detail' => 'required|max:255', 
+            //'activedAt' => 'required|max:255',
+            //'closedAt' => 'required|max:255',    
+            //'image' => 'file',
+        ]);      
+
+        $membership = new UserMembership();
+        $membership->id_membresia = $id_membresia;
+        $membership->membresiaPadre = $id;
+        $membership->membership = $request->input('membership');
+        $membership->user_email = $email;
+        $membership->user = $iduser;
+        $membership->user_name = $name;
+        $membership->hash = 'Descuento de saldo '.bin2hex(random_bytes(20));
+        $membership->typeHash = $typeHash;     
+        $membership->detail = 'Activo';
+        $membership->status = 'Activo';
+        $membership->closedAt = null;
+        $fecha_actual = date("Y-m-d H:i:s");
+        $membership->activedAt = $fecha_actual;
+
+        //Subir la imagen imagehash
+        $image_photo = $request->file('image');
+        if ($image_photo) {
+
+          //Poner nombre unico
+          $image_photo_name = time() . $image_photo->getClientOriginalName();
+
+          //Guardarla en la carpeta storage (storage/app/imagehash)
+          Storage::disk('imagehash')->put($image_photo_name, File::get($image_photo));
+
+          //Seteo el nombre de la imagen en el objeto
+          $membership->image = $image_photo_name;
+        }
+
+        //dd($membership);
+
+        $membershipInicial = UserMembership::findOrFail($id);
+        $membershipInicial->status = 'Terminada';
+        $membershipInicial->detail = 'Terminada';
+
+        $membership->save();// INSERT BD
+        $membershipInicial->save();
+
+        $Wallet = new wallet_transactions();
+        $Wallet->user = $iduser;
+        $Wallet->email = $email;
+        $value = $valor_membresia + 5;
+        $Wallet->value = $value;
+        $Wallet->fee = 5;
+        $Wallet->type = 0;
+        $Wallet->hash = 'Descuento para renovar '.bin2hex(random_bytes(20));
+        $Wallet->currency = $typeHash;//$request->input('currency');
+        $Wallet->approvedBy = $email;
+        $Wallet->inOut = 0;
+        $Wallet->status = 'Aprobada';     
+        $Wallet->detail = 'Descuento para renovar membresia';
+
+        //dd($Wallet);       
+
+        $Wallet->save();// INSERT BD
+        
+
+        return redirect()->route('home')->with([
+                    'message' => 'Hash de renovación enviado correctamente!'
+                    
+        ]);
+
+        
+
+        /*
 
         //dd($id);
 
@@ -362,6 +591,8 @@ class UserMembershipController extends Controller
         return redirect()->route('home')->with([
                     'message' => 'Hash de renovación enviado correctamente!'
         ]);
+
+        */
         
     }
 

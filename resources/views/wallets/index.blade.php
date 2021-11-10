@@ -47,76 +47,51 @@
                         <ul>
                           Balance:  &nbsp;
                           <?php 
-
                             if ($result) {
                               $url = ($result);
-
                                     $data = json_decode($url, true);
-
                               if (isset($data['balance'])) {
                                 
                                   $balancecho = $data['balance']; 
-
                                   echo $balancecho;
                               }else {
-
                                 echo 'null';
-
                               } 
-
                             }    
-
                           ?>
                         </ul>
                         <ul>
                           En canje: &nbsp;
                           <?php 
-
                             if ($result) {
                               $url = ($result);
-
                                     $data = json_decode($url, true);
-
                               if (isset($data['exhange'])) {
                                 
                                   $balancecho = $data['exhange']; 
-
                                   echo $balancecho;
                               }else {
-
                                 echo 'null';
-
                               } 
-
                             }    
-
                           ?>
                         </ul>
                         <ul>
                           Total:  &nbsp;
                           <?php 
-
                             if ($result) {
                               $url = ($result);
-
                                     $data = json_decode($url, true);
-
                               if (isset($data['total'])) {
                                 
                                   //$balancecho = $data['balance']; 
                                   //$exhange = $data['exhange']; 
-
                                   $total = $data['total'];
-
                                   echo $total;
                               }else {
-
                                 echo 'null';
-
                               } 
-
                             }    
-
                           ?>
                           </li>
                         </ul>          
@@ -131,7 +106,7 @@
               <div class="col-xl-8 order-xl-2 mb-5 mb-xl-0">
                 <div class="card pub-prestamo">
                   <div class="card-header">
-                    <h3 class="mb-0"><i class="ni ni-money-coins"></i> &nbsp;Retiro de billetera</h3>
+                    <h3 class="mb-0"><i class="ni ni-money-coins"></i> &nbsp;Traslado de billetera</h3>
                   </div>
 
                   
@@ -239,7 +214,7 @@
       <div class="col-xl-12 order-xl-2 mb-5 mb-xl-0">
                 <div class="card pub-prestamo">
                   <div class="card-header">
-                    <h3 class="mb-0"><i class="ni ni-delivery-fast"></i> &nbsp;Transacciones</h3>
+                    <h3 class="mb-0"><i class="ni ni-delivery-fast"></i> &nbsp;Movimientos</h3>
                   </div>
 
                   

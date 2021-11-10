@@ -38,7 +38,7 @@
             <div class="col-xl-8 order-xl-2 mb-5 mb-xl-0">
                 <div class="card pub-prestamo">
                   <div class="card-header">
-                    <h3 class="mb-0"><i class="ni ni-credit-card"></i> &nbsp;Cambiar estado de retiro - {{ $Wallets->id }}</h3>
+                    <h3 class="mb-0"><i class="ni ni-credit-card"></i> &nbsp;Cambiar estado del traslado - {{ $Wallets->id }}</h3>
                   </div>
 
                   
