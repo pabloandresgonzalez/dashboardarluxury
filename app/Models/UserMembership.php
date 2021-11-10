@@ -15,7 +15,7 @@ class UserMembership extends Model
    }
 
    public function asuser(){
-      return$this->belongsTo(User::class);
+      return $this->belongsTo(User::class);
    }
 
    //Relacion
@@ -24,7 +24,7 @@ class UserMembership extends Model
    }
 
    public function amembresia(){
-      return$this->belongsTo(Membresia::class);
+      return $this->belongsTo(Membresia::class);
    }
 
 }
