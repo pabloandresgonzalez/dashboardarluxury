@@ -22,7 +22,7 @@ class UserController extends Controller
 
     public function index(Request $request)
     {
-            
+      $totalusers = User::count();            
       $nombre = $request->get('buscarpor');
       
 
@@ -34,7 +34,8 @@ class UserController extends Controller
       ->paginate(50);
 
       return view('users.index', [
-      'users' => $users
+      'users' => $users,
+      'totalusers' => $totalusers
       ]);
 
       /*
@@ -63,20 +64,21 @@ class UserController extends Controller
 
     public function create()
     {
-      //$totalusers = User::count();
+      $totalusers = User::count();
 
-      return view('users.create');
+      return view('users.create', compact('totalusers'));
 
     }
 
     public function edit($id)
     {
       
-      //$totalusers = User::count(); 
+      $totalusers = User::count(); 
       $user = User::find($id);
 
       return view('users.edit', [
-        'user' => $user
+        'user' => $user,
+        'totalusers' => $totalusers
       ]);
     }
 
@@ -133,7 +135,7 @@ class UserController extends Controller
     public function store(Request $request)
     {
                   
-      //$totalusers = User::count();
+      $totalusers = User::count();
 
       $this->perfomrValidationCreate($request);
 
@@ -187,7 +189,8 @@ class UserController extends Controller
 
 
       return redirect('user')->with([
-                'message' => 'El usuario '.$user->name.' fue creado correctamente!'
+                'message' => 'El usuario '.$user->name.' fue creado correctamente!',
+                'totalusers' => $totalusers
         ]);
 
     }
@@ -195,7 +198,7 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
 
-      //$totalusers = User::count();
+      $totalusers = User::count();
       $user = User::findOrFail($id);
       
 
@@ -276,7 +279,8 @@ class UserController extends Controller
 
 
         return redirect('user')->with([
-                'message' => 'La informacion de '.$user->name.', fue actualizada correctamente!'
+                'message' => 'La informacion de '.$user->name.', fue actualizada correctamente!',
+                'totalusers' => $totalusers
         ]);
 
     }
@@ -284,7 +288,7 @@ class UserController extends Controller
     public function updateUser(Request $request, $id)
     {
 
-      //$totalusers = User::count();
+      $totalusers = User::count();
       $user = User::findOrFail($id);
       $name = $user->name;
       $lastname = $user->lastname;
@@ -368,7 +372,8 @@ class UserController extends Controller
 
 
         return redirect('home')->with([
-                'message' => $user->name.', tu informacion fue actualizada correctamente!'
+                'message' => $user->name.', tu informacion fue actualizada correctamente!',
+                'totalusers' => $totalusers
         ]);
 
     }
@@ -378,20 +383,23 @@ class UserController extends Controller
     {
       //Conseguir usuario identificado
         $user = \Auth::user();
-      //$totalusers = User::count();
+        $totalusers = User::count();
 
       return Response()->view('users.indexperfil', [
-        'user' => $user
+        'user' => $user,
+        'totalusers' => $totalusers
       ]);
 
     }
 
     public function detail($id) {
 
+      $totalusers = User::count();
       $user = User::find($id);
 
       return view('users.detail', [
-          'user' => $user
+          'user' => $user,
+          'totalusers' => $totalusers
       ]);
     } 
 

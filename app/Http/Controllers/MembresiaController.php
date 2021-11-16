@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Response;
 use App\Models\Membership;
+use App\Models\User;
 
 class MembresiaController extends Controller
 {
@@ -19,16 +20,18 @@ class MembresiaController extends Controller
     public function index()
     {
         //$membresias = Membresia::all();
+        $totalusers = User::count(); 
         $membresias = Membresia::orderBy('id', 'Desc')->paginate(20);
         $data = ['membresias' => $membresias];
 
-        return view('membresias.index', compact('membresias'));
+        return view('membresias.index', compact('membresias', 'totalusers'));
 
     }
 
     public function create()
     {
-        return view('membresias.create');
+        $totalusers = User::count();
+        return view('membresias.create', compact('totalusers'));
 
     }
 
@@ -85,8 +88,11 @@ class MembresiaController extends Controller
 
         $membresia->save(); //INSERT BD
 
+        $totalusers = User::count();
+
         return redirect('membresias')->with([
-                'message' => 'La membresía '.$membresia->name.' fue creada correctamente!'
+                'message' => 'La membresía '.$membresia->name.' fue creada correctamente!',
+                'totalusers' => $totalusers
         ]);
 
     }
@@ -97,20 +103,23 @@ class MembresiaController extends Controller
         //$membresias = Membresia::all();
         $membresias = Membresia::orderBy('id', 'Desc')->paginate(10);
         $data = ['membresias' => $membresias];
+        $totalusers = User::count();
 
         
-        return view('membresias.indexuser', compact('membresias'));
+        return view('membresias.indexuser', compact('membresias', 'totalusers'));
 
     }
 
     public function edit($id) {
         
         $membresias = Membresia::find($id);
+        $totalusers = User::count();
 
         //return view('membresias.create');
 
         return view('membresias.edit', [
-          'membresias' => $membresias
+          'membresias' => $membresias,
+          'totalusers' => $totalusers
       ]);
 
   }
@@ -149,26 +158,31 @@ class MembresiaController extends Controller
         }
 
         $membresia->save(); //INSERT BD
+        $totalusers = User::count();
 
         return redirect('membresias')->with([
-                'message' => 'La membresía '.$membresia->name.' fue actualizada correctamente!'
+                'message' => 'La membresía '.$membresia->name.' fue actualizada correctamente!',
+                'totalusers' => $totalusers
         ]);
 
     }
 
     public function createMemberchip()
     {  
-        
-        return view('memberchip.index');        
+        $totalusers = User::count();
+
+        return view('memberchip.index', compact('totalusers'));        
 
     }
 
     public function detail($id) {
 
       $membresia = Membresia::find($id);
+      $totalusers = User::count();
 
       return view('membresias.detail', [
-          'membresia' => $membresia
+          'membresia' => $membresia,
+          'totalusers' => $totalusers
       ]);
     }
 

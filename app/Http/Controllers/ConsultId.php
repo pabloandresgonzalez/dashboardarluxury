@@ -9,7 +9,9 @@ class ConsultId extends Controller
 {
     public function index()
     {
-        return view('users.ConsultId');
+    	$totalusers = User::count(); 
+
+        return view('users.ConsultId', compact('totalusers'));
 
     }    
 

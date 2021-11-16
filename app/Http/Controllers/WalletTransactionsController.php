@@ -72,10 +72,12 @@ class WalletTransactionsController extends Controller
 
 
         //dd($useremail);
+        $totalusers = User::count(); 
 
 
         return view('wallets.indexAdmin', [
-        'Wallets' => $Wallets
+        'Wallets' => $Wallets,
+        'totalusers' => $totalusers
         ]);
 
 
@@ -144,12 +146,15 @@ class WalletTransactionsController extends Controller
           $Wallets = wallet_transactions::where('user', $user->id)->orderBy('id', 'desc')
             ->paginate(30);
 
+          $totalusers = User::count(); 
+
             
             return view('wallets.index', [
               //'respuestaDecodificada' => $respuestaDecodificada,
               'result' => $result,
               'user' => $user,
-              'Wallets' => $Wallets
+              'Wallets' => $Wallets,
+              'totalusers' => $totalusers
 
             ]);             
 
@@ -206,9 +211,11 @@ class WalletTransactionsController extends Controller
         Mail::to($user_email_admin)->send(new TransactionMessageCreated($Wallet));
 
         //return redirect('home');
+        $totalusers = User::count(); 
 
         return redirect()->route('home')->with([
-                    'message' => 'Solicitud de Retiro enviado correctamente!'
+                    'message' => 'Solicitud de Retiro enviado correctamente!',
+                    'totalusers' => $totalusers
         ]);
 
     }
@@ -217,10 +224,12 @@ class WalletTransactionsController extends Controller
         
         $Wallets = wallet_transactions::find($id);
         //$fecha_actual = date("Y-m-d H:i:s");
+        $totalusers = User::count(); 
 
 
         return view('wallets.edit', [
-          'Wallets' => $Wallets
+          'Wallets' => $Wallets,
+          'totalusers' => $totalusers
       ]);
 
     }
@@ -289,9 +298,11 @@ class WalletTransactionsController extends Controller
         Mail::to($user_email_admin)->send(new StatusChangeTransactionMessageAdmin($Wallet));
 
         //return redirect('home');
+        $totalusers = User::count(); 
 
         return redirect()->route('home')->with([
-                    'message' => 'Solicitud de retiro editada correctamente!'
+                    'message' => 'Solicitud de retiro editada correctamente!',
+                    'totalusers' => $totalusers
         ]);
 
     }
@@ -314,11 +325,13 @@ class WalletTransactionsController extends Controller
       $fecha_actual = date("Y-m-d H:i:s");
 
       //$Wallets = wallet_transactions::find($id);
-        //$fecha_actual = date("Y-m-d H:i:s");
+      //$fecha_actual = date("Y-m-d H:i:s");
+      $totalusers = User::count(); 
 
         return view('wallets.gsaldosadmin', [
           'users' => $users,
-          'fecha_actual' => $fecha_actual
+          'fecha_actual' => $fecha_actual,
+          'totalusers' => $totalusers
       ]);
 
     }
@@ -394,8 +407,11 @@ class WalletTransactionsController extends Controller
 
         $Wallet->save();// INSERT BD
 
+        $totalusers = User::count(); 
+
         return redirect()->route('home')->with([
-                    'message' => 'Asignación de saldo enviada correctamente!'
+                    'message' => 'Asignación de saldo enviada correctamente!',
+                    'totalusers' => $totalusers
         ]);
 
         }
@@ -403,9 +419,11 @@ class WalletTransactionsController extends Controller
         //dd($memberships);
 
         //No tiene ninguna membresia activa
+        $totalusers = User::count(); 
 
         return redirect()->route('walletadmin')->with([
-                    'message' => 'El usuario no tine una membresia activa!'
+                    'message' => 'El usuario no tine una membresia activa!',
+                    'totalusers' => $totalusers
         ]);
 
 

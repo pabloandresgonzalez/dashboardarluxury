@@ -70,7 +70,7 @@
 
                     <div class="card-body">
 
-                      {{ $news->appends(request()->input())->links() }} 
+                      {{ $new->detail }}
                       
                     </div>
                     

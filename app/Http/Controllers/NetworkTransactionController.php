@@ -33,8 +33,9 @@ class NetworkTransactionController extends Controller
 
 
         //dd($networktransactions);
+        $totalusers = User::count(); 
 
-        return view('networktransaction.index', compact('networktransactions'));        
+        return view('networktransaction.index', compact('networktransactions', 'totalusers'));        
 
     }
 
@@ -60,8 +61,9 @@ class NetworkTransactionController extends Controller
             //->paginate(5);
 
         //dd($networktransactions);
+        $totalusers = User::count(); 
 
-        return view('networktransaction.indexactivacion', compact('networktransactions'));        
+        return view('networktransaction.indexactivacion', compact('networktransactions', 'totalusers'));        
 
     }
 
