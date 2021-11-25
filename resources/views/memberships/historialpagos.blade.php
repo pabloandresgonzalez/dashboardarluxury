@@ -50,8 +50,7 @@
               </tbody>
             </table>
 
-            <br>
-            
+            <br>            
                  
 
           <div class="col-md-4">
@@ -59,7 +58,6 @@
     </div>
 
     <hr>
-
 
 
   </div>

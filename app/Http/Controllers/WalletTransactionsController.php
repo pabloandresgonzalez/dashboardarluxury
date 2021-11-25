@@ -36,42 +36,7 @@ class WalletTransactionsController extends Controller
         ->orderBy('id', 'desc')
         ->paginate(50);
 
-        /*
-        $users = DB::table('wallet_transactions')
-        ->join('users', 'users.id', '=' , 'wallet_transactions.user')
-        ->select('users.email')
-        ->get();
-
-        dd($users);
-        */
-
-
-        //$actualStock = DB::table('wallet_transactions')->where('id')->first();
-        //$useremails = DB::table('wallet_transactions')->select(DB::raw('user'))->get()->pluck('user');
-
-        //$useremails = $tienda;
-
-        //dd($Wallets);
-
-        /*
-
-        foreach($Wallets as $Wallet)
-          $wallets1 = $Wallets;
-
-        foreach($useremails as $useremail)
-          $useremail = DB::table('users')->select(DB::raw('email'))->get()->pluck('email')->toArray();
-
-        */
-
-          //dd($useremail);
-
-        //$resultados = array_merge($wallets1, $useremail);
-
-
-
-
-
-        //dd($useremail);
+        // Cantidad de usuarios
         $totalusers = User::count(); 
 
 
@@ -86,83 +51,63 @@ class WalletTransactionsController extends Controller
     public function index(Request $request)
     {
 
+      //Conseguir usuario identificado
+      $user = \Auth::user();
 
-          //return view('wallets.index');
-
-          //Conseguir usuario identificado
-          $user = \Auth::user();
-
-          $id = $user->id;
+      $id = $user->id;
 
 
-          //$id = 'b3361710-4e21-4fe1-a86e-a29fbecb15f2';
+      $data = [
+      'userId' => $id,
+      'token' => 'AcjAa76AHxGRdyTemDb2jcCzRmqpWN'
+      ];
 
-          $data = [
-          'userId' => $id, //'b3361710-4e21-4fe1-a86e-a29fbecb15f2',
-          'token' => 'AcjAa76AHxGRdyTemDb2jcCzRmqpWN'
-          ];
+      $curl = curl_init();
 
-          $curl = curl_init();
+      curl_setopt_array($curl, array(
+          CURLOPT_URL => "https://ekgra7pfqh.execute-api.us-east-2.amazonaws.com/Prod_getBalanceByUser",
+          CURLOPT_RETURNTRANSFER => true,
+          CURLOPT_ENCODING => "",
+          CURLOPT_MAXREDIRS => 10,
+          CURLOPT_TIMEOUT => 30000,
+          CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+          CURLOPT_CUSTOMREQUEST => "POST",
+          CURLOPT_POSTFIELDS => json_encode($data),        
+          CURLOPT_HTTPHEADER => array(
+            // Set here requred headers
+              "accept: */*",
+              "accept-language: en-US,en;q=0.8",
+              "content-type: application/json",
+          ),
+      ));
 
-          curl_setopt_array($curl, array(
-              CURLOPT_URL => "https://ekgra7pfqh.execute-api.us-east-2.amazonaws.com/Prod_getBalanceByUser",
-              CURLOPT_RETURNTRANSFER => true,
-              CURLOPT_ENCODING => "",
-              CURLOPT_MAXREDIRS => 10,
-              CURLOPT_TIMEOUT => 30000,
-              CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-              CURLOPT_CUSTOMREQUEST => "POST",
-              CURLOPT_POSTFIELDS => json_encode($data),        
-              CURLOPT_HTTPHEADER => array(
-                // Set here requred headers
-                  "accept: */*",
-                  "accept-language: en-US,en;q=0.8",
-                  "content-type: application/json",
-              ),
-          ));
+      $result = curl_exec($curl);
+      $err = curl_error($curl);
 
-          $result = curl_exec($curl);
-          $err = curl_error($curl);
+      curl_close($curl);
 
-          //dd($err);
+      //decodificar JSON porque esa es la respuesta
+      $respuestaDecodificada = json_decode($result);  
 
-          //dd($result);
-          curl_close($curl);
-          //$data1 = print_r($result);
+      $Wallets = wallet_transactions::where('user', $user->id)->orderBy('id', 'desc')
+        ->paginate(50);
 
-          //decodificar JSON porque esa es la respuesta
-          $respuestaDecodificada = json_decode($result);  
+      // Cantidad de usuarios
+      $totalusers = User::count(); 
 
-          //dd($respuestaDecodificada);
+        
+        return view('wallets.index', [
+          'result' => $result,
+          'user' => $user,
+          'Wallets' => $Wallets,
+          'totalusers' => $totalusers
 
-          //$balance = $respuestaDecodificada->balance;
-
-          //dd($balance);
-
-          //$d = $balance + 100 ;
-
-          //dd($result);
-
-          $Wallets = wallet_transactions::where('user', $user->id)->orderBy('id', 'desc')
-            ->paginate(30);
-
-          $totalusers = User::count(); 
-
-            
-            return view('wallets.index', [
-              //'respuestaDecodificada' => $respuestaDecodificada,
-              'result' => $result,
-              'user' => $user,
-              'Wallets' => $Wallets,
-              'totalusers' => $totalusers
-
-            ]);             
+        ]);             
 
     }
 
     public function store(Request $request)
     {
-
 
       //Conseguir usuario identificado
       $user = \Auth::user();
@@ -195,22 +140,19 @@ class WalletTransactionsController extends Controller
         $Wallet->status = 'exhange';     
         $Wallet->detail = $request->input('detail');
 
-        //dd($Wallet);       
 
         $Wallet->save();// INSERT BD
-
 
 
         //enviar email
         $user_email = User::where('role', 'admin')->first();
         $user_email_admin = $user_email->email;
-        //$useremail = 'pabloandres6@gmail.com';
 
         Mail::to($email)->send(new TransactionSentMessage($Wallet));
 
         Mail::to($user_email_admin)->send(new TransactionMessageCreated($Wallet));
 
-        //return redirect('home');
+        // Cantidad de usuarios
         $totalusers = User::count(); 
 
         return redirect()->route('home')->with([
@@ -223,9 +165,9 @@ class WalletTransactionsController extends Controller
     public function edit($id) {
         
         $Wallets = wallet_transactions::find($id);
-        //$fecha_actual = date("Y-m-d H:i:s");
-        $totalusers = User::count(); 
 
+        // Cantidad de usuarios
+        $totalusers = User::count(); 
 
         return view('wallets.edit', [
           'Wallets' => $Wallets,
@@ -237,16 +179,10 @@ class WalletTransactionsController extends Controller
     public function update(Request $request, $id)
     {
 
-      //dd($result);
-
       //Conseguir usuario identificado
       $user = \Auth::user();
       $iduser = $user->id;
-      //dd($id);
-      //$name = $user->name;
-      //$email = $user->email;
 
-      //dd($email);
 
       $Wallet = wallet_transactions::find($id);
       $user = $Wallet->user;
@@ -256,7 +192,6 @@ class WalletTransactionsController extends Controller
       $type = $Wallet->type;
       $currency = $Wallet->currency;
       $fee = $Wallet->fee;
-
 
                 
       $rules = ([
@@ -297,7 +232,7 @@ class WalletTransactionsController extends Controller
 
         Mail::to($user_email_admin)->send(new StatusChangeTransactionMessageAdmin($Wallet));
 
-        //return redirect('home');
+        // Cantidad de usuarios
         $totalusers = User::count(); 
 
         return redirect()->route('home')->with([
@@ -320,12 +255,9 @@ class WalletTransactionsController extends Controller
                ->get();
 
 
-      //dd($users);
-
       $fecha_actual = date("Y-m-d H:i:s");
 
-      //$Wallets = wallet_transactions::find($id);
-      //$fecha_actual = date("Y-m-d H:i:s");
+      // Cantidad de usuarios
       $totalusers = User::count(); 
 
         return view('wallets.gsaldosadmin', [
@@ -339,14 +271,14 @@ class WalletTransactionsController extends Controller
     public function storeAdmin(Request $request)
     {
 
-      //dd($request);
-
-
       //Conseguir usuario identificado
       $user = \Auth::user();
       $id = $user->id;
       $name = $user->name;
       $email = $user->email;
+
+      // Cantidad de usuarios
+      $totalusers = User::count();
 
 
       $rules = ([
@@ -370,21 +302,11 @@ class WalletTransactionsController extends Controller
        $userid = $idmovimiento->id;
        $useremail = $idmovimiento->email;
 
-       //dd($userid);
-
 
        $memberships = UserMembership::where('user', $userid)
-        ->where('status', 'Activo')
-        ->paginate();
-       //$depositos = UserMembership::where('user', $userid);
-            //->where('status', 'Activo')
-            //->paginate(5);
-
-        //dd($memberships);
+        ->where('status', 'Activo')->get();
 
         $cantmemberships = $memberships->count();
-
-        //dd($cantmemberships);
 
         // Si tiene almenos una membresia activa
         if ($cantmemberships > 0) {
@@ -403,11 +325,9 @@ class WalletTransactionsController extends Controller
         $Wallet->status = 'Aprobada';     
         $Wallet->detail = $request->input('detail');
 
-        //dd($Wallet);        
 
         $Wallet->save();// INSERT BD
 
-        $totalusers = User::count(); 
 
         return redirect()->route('home')->with([
                     'message' => 'Asignación de saldo enviada correctamente!',
@@ -416,98 +336,9 @@ class WalletTransactionsController extends Controller
 
         }
 
-        //dd($memberships);
-
-        //No tiene ninguna membresia activa
-        $totalusers = User::count(); 
-
         return redirect()->route('walletadmin')->with([
                     'message' => 'El usuario no tine una membresia activa!',
                     'totalusers' => $totalusers
-        ]);
-
-
-        /*
-        $idsumar = $request->input('idsumar');
-
-       $idsumar = User::where('id', $idsumar)->first();
-       $idsumaemail = $idsumar->email;
-
-        //wallet_transactions de retiro para cuando se implemente traslados entre usuarios
-        $Walletsuma = new wallet_transactions();
-        $Walletsuma->user = $request->input('idsumar');
-        $Walletsuma->email = $idsumaemail;
-        $Walletsuma->value = $request->input('value');
-        $Walletsuma->fee = 0;
-        $Walletsuma->type = 1;
-        $Walletsuma->hash = 'Autoriza'. $name. $email;
-        $Walletsuma->currency = $request->input('currencysuma');
-        $Walletsuma->approvedBy = $id;
-        $Walletsuma->inOut = 0;
-        $Walletsuma->status = 'Aprobada';     
-        $Walletsuma->detail = $request->input('detail')." de ".$idrestaemail;
-
-        //dd($Walletsuma);
-       
-
-        $Walletsuma->save();// INSERT BD
-
-        */
-
-
-        
-
-      /*
-                
-      $rules = ([
-          
-          'value' => 'required|string|max:255',
-          'detail' => 'required|string', 
-          'currency' => 'required|string', 
-          'wallet' => 'required|string',         
-          
-      ]);
-
-       $this->validate($request, $rules);
-
-
-        $Wallet = new wallet_transactions();
-        $Wallet->user = $id;
-        $Wallet->email = $email;
-        $Wallet->value = $request->input('value');
-        $Wallet->fee = 5;
-        $Wallet->type = 0;
-        $Wallet->hash = '';
-        $Wallet->currency = $request->input('currency');
-        $Wallet->approvedBy = '';
-        $Wallet->wallet = $request->input('wallet');
-        $Wallet->inOut = 0;
-        $Wallet->status = 'exhange';     
-        $Wallet->detail = $request->input('detail');
-
-        //dd($Wallet);
-       
-
-        $Wallet->save();// INSERT BD
-
-
-        //enviar email
-        $user_email = User::where('role', 'admin')->first();
-        $user_email_admin = $user_email->email;
-        //$useremail = 'pabloandres6@gmail.com';
-
-        Mail::to($email)->send(new TransactionSentMessage($Wallet));
-
-        Mail::to($user_email_admin)->send(new TransactionMessageCreated($Wallet));
-
-        //return redirect('home');
-
-        return redirect()->route('home')->with([
-                    'message' => 'Solicitud de retiro enviado correctamente!'
-        ]);
-        */
-
+        ]);       
     }
-
-
 }

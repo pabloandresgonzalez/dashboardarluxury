@@ -60,7 +60,7 @@
                     {{ $networktransaction->value }}
                   </td>
                   <td>
-                    {{ $networktransaction->detail }}                    
+                    {{ $networktransaction->detail }}                   
                   </td>       
                  </tr>
                  @endforeach

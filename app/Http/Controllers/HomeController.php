@@ -24,11 +24,10 @@ class HomeController extends Controller
      */
     public function index()
     {     
+        // Total de usuarios
         $totalusers = User::count();
 
-        //dd($totalusers);
        return view('home', compact('totalusers'));
         
     }
-
 }

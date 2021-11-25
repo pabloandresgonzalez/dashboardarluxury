@@ -27,6 +27,7 @@
             </form>
       </div>
     </div>
+
     <div class="table-responsive">
     <div class="card-body">
 
@@ -42,8 +43,7 @@
       @endif
 
 
-
-            
+  
 
           <div class="table-responsive">
             <table class="table align-items-center table-dark">

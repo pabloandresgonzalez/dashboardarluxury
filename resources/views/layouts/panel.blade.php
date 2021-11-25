@@ -41,11 +41,8 @@
 
           $id = $user->id;
 
-
-          //$id = 'b3361710-4e21-4fe1-a86e-a29fbecb15f2';
-
           $datacurl = [
-          'userId' => $id, //'b3361710-4e21-4fe1-a86e-a29fbecb15f2',
+          'userId' => $id,
           'token' => 'AcjAa76AHxGRdyTemDb2jcCzRmqpWN'
           ];
 
@@ -80,24 +77,14 @@
           //decodificar JSON porque esa es la respuesta
           $respuestaDecodificada = json_decode($result); 
 
-    if ($result) {
-      $url = ($result);
-            $datacurl = json_decode($url, true);
-      if (isset($data['balance'])) {
-        
-          $balancecho = $datacurl['balance']; 
-          echo $balancecho;
-      }else {
-        echo 'null';
-      } 
-    }    
+  
   ?>
 
 
   @yield('styles')
 </head>
 
-<body>
+<body>  
   <!-- Sidenav -->
   <nav class="navbar navbar-vertical fixed-left navbar-expand-md navbar-light bg-white" id="sidenav-main">
     <div class="container-fluid">

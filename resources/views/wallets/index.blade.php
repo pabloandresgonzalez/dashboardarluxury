@@ -55,7 +55,7 @@
                                   $balancecho = $data['balance']; 
                                   echo $balancecho;
                               }else {
-                                echo 'null';
+                                echo '*';
                               } 
                             }    
                           ?>
@@ -71,7 +71,7 @@
                                   $balancecho = $data['exhange']; 
                                   echo $balancecho;
                               }else {
-                                echo 'null';
+                                echo '*';
                               } 
                             }    
                           ?>
@@ -89,7 +89,7 @@
                                   $total = $data['total'];
                                   echo $total;
                               }else {
-                                echo 'null';
+                                echo '*';
                               } 
                             }    
                           ?>

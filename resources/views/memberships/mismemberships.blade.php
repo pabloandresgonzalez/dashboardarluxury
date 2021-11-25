@@ -34,7 +34,7 @@
         <div class="card-header">
           <i class="ni ni-box-2 "></i> &nbsp;Mis Membresias </h3>
         </div>
-       
+
 
           <div class="table-responsive">
             <table class="table align-items-center table-dark">

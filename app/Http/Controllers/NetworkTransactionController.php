@@ -20,19 +20,12 @@ class NetworkTransactionController extends Controller
 
         //Conseguir usuario identificado
         $user = \Auth::user();
-        //$id = $user->id;
-        //$name = $user->name;
-        //$image = $user->image;
-        //$users = User::orderBy('id', 'desc')->get();
-        //$memberships = UserMembership::where('id', $user->id)->orderBy('id', 'desc')->get();
+
         $id = $request->id;
         $networktransactions = NetworkTransaction::where('userMembership', $id)
                                 ->where('type', 'Daily')
-                                ->orderBy('id', 'desc')->paginate(40);
-            //->paginate(5);
+                                ->orderBy('id', 'desc')->paginate(50);
 
-
-        //dd($networktransactions);
         $totalusers = User::count(); 
 
         return view('networktransaction.index', compact('networktransactions', 'totalusers'));        
@@ -45,28 +38,26 @@ class NetworkTransactionController extends Controller
         //Conseguir usuario identificado
         $user = \Auth::user();
         $iduser = $user->id;
-        //$name = $user->name;
-        //$image = $user->image;
-        //$users = User::orderBy('id', 'desc')->get();
-        //$memberships = UserMembership::where('id', $user->id)->orderBy('id', 'desc')->get();
+
         $id = $request->id;
         //$networktransactions = NetworkTransaction::where('user', $iduser)->orderBy('id', 'desc')->paginate(40);
         //dd($networktransactions);
         $networktransactions = NetworkTransaction::where( 'user', $iduser)
                                 ->where('type', 'Activation')
-                                ->orderBy('id', 'desc')->paginate(40);
+                                ->orderBy('id', 'desc')->paginate(50);
 
-        //dd($networktransactions);
 
-            //->paginate(5);
+        $totalusers = User::count();
 
-        //dd($networktransactions);
-        $totalusers = User::count(); 
+        // get your main collection with all the attributes...
+        //$emailuser = NetworkTransaction::get();
+
+        // build your second collection with a subset of attributes. this new
+        // collection will be a collection of plain arrays, not Users models.
+        //$subset = $emailuser->map->only(['userMembership'])->toArray(); 
+
 
         return view('networktransaction.indexactivacion', compact('networktransactions', 'totalusers'));        
 
     }
-
-
-
 }

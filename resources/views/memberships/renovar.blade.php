@@ -32,6 +32,7 @@
       @endif
 
 
+
       <form class="row g-3" action="{{ url('/membershiprenovar/'.$memberships->id) }}" enctype="multipart/form-data" method="post">
         @csrf
         @method('PUT')
@@ -42,7 +43,7 @@
               $data = json_decode($url, true);
           if (isset($data['total'])) {
             $total = $data['total'];
-            if ($total >= 56) {
+            if ($total > $valor_membresia) {
               //echo "si";
               echo '<div class="col-md-12"><h5> Saldo:'.' '.  $total .'</h5> <br></div>';
 
@@ -77,12 +78,10 @@
       ?>
 
     </form>
-
       
      
       </div>
     </div>
-
 
     
   </div>
