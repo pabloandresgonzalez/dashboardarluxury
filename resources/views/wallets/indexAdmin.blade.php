@@ -62,7 +62,6 @@
                   <th scope="col">Tipo</th>
                   <th scope="col">Divisa</th>
                   <th scope="col">Editar</th>
-                  <th scope="col">Asignar saldo</th>
                 </tr>
               </thead>
               <tbody>
@@ -106,9 +105,6 @@
                       @method('DELETE')
                       <a href="{{ url('/wallet/'.$Wallet->id.'/edit') }}" class="btn btn-outline-secondary"><i class="ni ni-settings"></i> Editar</a>
                     </form>
-                  </td>
-                  <td>
-                      <a href="{{ url('/walletsaldos') }}" class="btn btn-outline-secondary"><i class="ni ni-bullet-list-67"></i> Asignar saldos</a>
                   </td>
                 </tr>
                  @endforeach

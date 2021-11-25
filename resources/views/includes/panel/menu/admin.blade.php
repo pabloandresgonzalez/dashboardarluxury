@@ -53,4 +53,9 @@
     <i class="ni ni-bag-17 "></i> Gestión billetera
   </a>
 </li>
+<li class="nav-item">
+  <a class="nav-link" href="{{ url('/walletsaldos') }}">
+    <i class="ni ni-money-coins text-blue"></i> Asignar saldo
+  </a>
+</li>
 
