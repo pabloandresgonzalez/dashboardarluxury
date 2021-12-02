@@ -155,7 +155,7 @@ class WalletTransactionsController extends Controller
         $dia1 = date('Y-m-01');
         $fecha_actual = date("Y-m-d");
 
-        $dias_habiles = bussiness_days($dia1, $fecha_actual);
+        //$dias_habiles = bussiness_days($dia1, $fecha_actual);
 
         //dd($dias_habiles);
 
