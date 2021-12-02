@@ -47,7 +47,7 @@ class UserMembershipController extends Controller
         ->orwhere('typeHash', 'LIKE', "%$nombre%")
         ->orwhere('status', 'LIKE', "%$nombre%")
         ->orderBy('id', 'desc')
-        ->paginate(50);
+        ->paginate(100);
 
         // total de usuarios
         $totalusers = User::count();
@@ -249,6 +249,7 @@ class UserMembershipController extends Controller
 
       //Conseguir usuario identificado
       $user = \Auth::user();
+      $username = $user->name;
 
       $memberships = UserMembership::where('user', $user->id)
         ->orderBy('id', 'desc')
@@ -260,7 +261,8 @@ class UserMembershipController extends Controller
       return view('memberships.mismemberships', [
           'memberships' => $memberships,
           'user' => $user,
-          'totalusers' => $totalusers
+          'totalusers' => $totalusers,
+          'username' => $username
       ]);
 
     }
@@ -303,30 +305,8 @@ class UserMembershipController extends Controller
         $user = \Auth::user();
         $iduser = $user->id;
 
-        $totalusers = User::count();
-
-        $memberships = UserMembership::where('user', $iduser)
-        ->where('status', 'Activo')
-        ->paginate(50);
-
-        $cantmemberships = $memberships->count();
-
-        $memberships = UserMembership::find($id);
-        $id_membresia = $memberships->id_membresia;
-
-        $membresia = Membresia::where('id', $id_membresia)->first();
-        $valor_membresia = $membresia->valor;
-
-
-        if ($cantmemberships > 0) {
-
-          $user = \Auth::user();
-
-          $idd = $user->id;
-
-
-          $data = [
-          'userId' => $idd,
+        $data = [
+          'userId' => $iduser,
           'token' => 'AcjAa76AHxGRdyTemDb2jcCzRmqpWN'
           ];
 
@@ -349,15 +329,46 @@ class UserMembershipController extends Controller
               ),
           ));
 
-          $result = curl_exec($curl);
-          $err = curl_error($curl);
+        $result = curl_exec($curl);
+        $err = curl_error($curl);
 
-          curl_close($curl);
+        curl_close($curl);
 
-          //decodificar JSON porque esa es la respuesta
-          $respuestaDecodificada = json_decode($result);  
-          
-          
+        //decodificar JSON porque esa es la respuesta
+        $respuestaDecodificada = json_decode($result);  
+
+        if ($result) {
+          $url = ($result);
+                $data = json_decode($url, true);
+          if (isset($data['total'])) {
+            
+              $total = $data['total']; 
+              //echo $balancecho;
+          }else {
+            
+          } 
+        } 
+
+        //dd($total);
+
+        $totalusers = User::count();
+
+        $memberships = UserMembership::where('user', $iduser)
+        ->where('status', 'Activo')
+        ->paginate(50);
+
+        $cantmemberships = $memberships->count();
+
+        $memberships = UserMembership::find($id);
+        $id_membresia = $memberships->id_membresia;
+
+        $membresia = Membresia::where('id', $id_membresia)->first();
+        $valor_membresia = $membresia->valor;
+
+
+        if ($total > $valor_membresia || $cantmemberships > 0) {
+
+                    
           return view('memberships.renovar', [
                 'memberships' => $memberships,
                 'user' => $user,
@@ -370,7 +381,7 @@ class UserMembershipController extends Controller
 
 
           return redirect()->route('home')->with([
-                  'message' => 'Debes tener saldo y al menos una membresía activa para renovar!',
+                  'message' => 'Debes tener saldo suficiente o al menos una membresía activa para renovar!',
                   'totalusers' => $totalusers
               ]); 
 
@@ -419,16 +430,21 @@ class UserMembershipController extends Controller
               ),
           ));
 
-          $result = curl_exec($curl);
-          $err = curl_error($curl);
+        $result = curl_exec($curl);
+        $err = curl_error($curl);
 
-          curl_close($curl);
+        curl_close($curl);
 
-          //decodificar JSON porque esa es la respuesta
-          $respuestaDecodificada = json_decode($result);  
+        //decodificar JSON porque esa es la respuesta
+        $respuestaDecodificada = json_decode($result);  
 
 
-          $valor_saldo  = $respuestaDecodificada->total;
+        $valor_saldo  = $respuestaDecodificada->total;
+
+        $percentage = 3;
+        $valmembresia = $valor_membresia;
+
+        $toPorcMemberschip = ($percentage / 100) * $valmembresia;
 
 
         if ($valor_membresia > $valor_saldo) {
@@ -489,10 +505,12 @@ class UserMembershipController extends Controller
         $membership->save();// INSERT BD
         $membershipInicial->save();
 
+
+
         $Wallet = new wallet_transactions();
         $Wallet->user = $iduser;
         $Wallet->email = $email;
-        $value = $valor_membresia + 5;
+        $value = $valor_membresia + $toPorcMemberschip;
         $Wallet->value = $value;
         $Wallet->fee = 5;
         $Wallet->type = 0;
