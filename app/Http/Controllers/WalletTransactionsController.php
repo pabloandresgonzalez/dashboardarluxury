@@ -155,18 +155,15 @@ class WalletTransactionsController extends Controller
         $dia1 = date('Y-m-01');
         $fecha_actual = date("Y-m-d");
 
+        //$dias_habiles = bussiness_days($dia1, $fecha_actual);
+
+        //dd($dias_habiles);
+
 
         $fecha1= new DateTime($dia1);
         $fecha2= new DateTime($fecha_actual);
         $diff = $fecha1->diff($fecha2);
-
-        // El resultado es de 3 dias
-        //echo $diff->days .' dias';
-
-        // Si desea comprobar si hay menos
-        //echo ($diff->invert == 1) ? ' - ' . $diff->days .' dias'  : $diff->days .' dias';
-
-        
+       
 
         $percentageda = 12;
         $percentagedp = 8;
@@ -232,22 +229,14 @@ class WalletTransactionsController extends Controller
         $Wallet->inOut = 0;
         $Wallet->status = 'exhange';     
         $Wallet->detail = $request->input('detail');
-
-
         $Wallet->save();// INSERT BD
-
-
         //enviar email
         $user_email = User::where('role', 'admin')->first();
         $user_email_admin = $user_email->email;
-
         Mail::to($email)->send(new TransactionSentMessage($Wallet));
-
         Mail::to($user_email_admin)->send(new TransactionMessageCreated($Wallet));
-
         // Cantidad de usuarios
         $totalusers = User::count(); 
-
         return redirect()->route('home')->with([
                     'message' => 'Solicitud de Retiro enviado correctamente!',
                     'totalusers' => $totalusers
@@ -416,7 +405,6 @@ class WalletTransactionsController extends Controller
         } else {
           $Wallet->type = 1;
         }
-        
 
         $Wallet->hash = 'Autoriza'." ".$name."-".$email;
         $Wallet->currency = $request->input('currency');
@@ -438,7 +426,6 @@ class WalletTransactionsController extends Controller
         /*
         // Si tiene almenos una membresia activa
         if ($cantmemberships > 0) {
-
         //wallet_transactions de retiro
         $Wallet = new wallet_transactions();
         $Wallet->user = $userid;
@@ -452,18 +439,12 @@ class WalletTransactionsController extends Controller
         $Wallet->inOut = 0;
         $Wallet->status = 'Aprobada';     
         $Wallet->detail = $request->input('detail');
-
-
         $Wallet->save();// INSERT BD
-
-
         return redirect()->route('home')->with([
                     'message' => 'Asignación de saldo enviada correctamente!',
                     'totalusers' => $totalusers
         ]);
-
         }
-
         return redirect()->route('walletadmin')->with([
                     'message' => 'El usuario no tine una membresia activa!',
                     'totalusers' => $totalusers
