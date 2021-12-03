@@ -77,7 +77,26 @@
                           ?>
                         </ul>
                         <ul>
-                          Total:  &nbsp;
+                          Retiros :  &nbsp;
+                          <?php 
+                            if ($result) {
+                              $url = ($result);
+                                    $data = json_decode($url, true);
+                              if (isset($data['withdrawals'])) {
+                                
+                                  //$balancecho = $data['balance']; 
+                                  //$exhange = $data['exhange']; 
+                                  $withdrawals = $data['withdrawals'];
+                                  echo $withdrawals;
+                              }else {
+                                echo '*';
+                              } 
+                            }    
+                          ?>
+                          </li>
+                        </ul> 
+                        <ul>
+                          Saldo :  &nbsp;
                           <?php 
                             if ($result) {
                               $url = ($result);
@@ -86,8 +105,8 @@
                                 
                                   //$balancecho = $data['balance']; 
                                   //$exhange = $data['exhange']; 
-                                  $total = $data['total'];
-                                  echo $total;
+                                  $saldo = $data['total'];
+                                  echo $saldo;
                               }else {
                                 echo '*';
                               } 

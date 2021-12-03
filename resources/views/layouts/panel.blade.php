@@ -16,6 +16,7 @@
   <link href="{{ asset('vendor/@fortawesome/fontawesome-free/css/all.min.css') }}" rel="stylesheet">
   <!-- Argon CSS -->
   <link href="{{ asset('css/argon.css?v=1.0.0') }}" rel="stylesheet">
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
   <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
     <script type="text/javascript">
@@ -256,16 +257,16 @@
                 <div class="card-body">
                   <div class="row">
                     <div class="col">
-                      <h5 class="card-title text-uppercase text-muted mb-0">Balance</h5>
+                      <h5 class="card-title text-uppercase text-muted mb-0">Saldo</h5>
                       <span class="h2 font-weight-bold mb-0">
                       <?php
                         if ($result) {
                           $url = ($result);
                                 $data = json_decode($url, true);
-                          if (isset($data['balance'])) {
+                          if (isset($data['total'])) {
                             
-                              $balancecho = $data['balance']; 
-                              echo "$ " . $balancecho;
+                              $saldo = $data['total']; 
+                              echo "$ " . $saldo;
                           }else {
                             echo '$ ';
                           } 
@@ -295,7 +296,7 @@
                         } 
                       ?>
                     </span>
-                    <span class="text-nowrap">Wallet</span>
+                    <span class="text-nowrap">Balance</span>
                   </p>
                 </div>
               </div>

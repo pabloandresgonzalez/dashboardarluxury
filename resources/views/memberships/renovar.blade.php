@@ -46,9 +46,7 @@
             if ($total > $valor_membresia) {
               //echo "si";
               echo '<div class="col-md-12"><h5> Saldo:'.' '.  $total .'</h5> <br></div>';
-
               echo '<br>
-
                   <div class="col-md-6">
                   <div class="input-group input-group-alternative mb-3">
                     <div class="input-group-prepend">
@@ -60,14 +58,11 @@
                       </select>
                   </div>
                 </div>
-
                 
                 <div class="col-md-4">
                   <button type="" class="btn btn-outline-default" ><i class="ni ni-satisfied"></i> Renovar</button>
                 </div>
-
               ';
-
             }else {
               echo '<div class="col-md-12"><h5> No tiene saldo suficiente para renovar</h5> <br></div>';
             }
@@ -86,8 +81,3 @@
     
   </div>
 @endsection
-
-
-
-
-

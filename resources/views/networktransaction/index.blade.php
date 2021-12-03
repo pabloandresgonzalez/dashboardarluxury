@@ -42,6 +42,7 @@
                   <th scope="col" class="sort">Membresia</th>
                   <th scope="col">Fecha de pago</th>
                   <th scope="col">$ Monto</th>
+                  <th scope="col">BILLETERA</th>
                   <th scope="col">Detalle</th>
                   <th scope="col">Estado</th>
                   <th scope="col">Tipo</th>
@@ -60,6 +61,9 @@
                   </td>
                   <td>
                     {{ $networktransaction->value }}
+                  </td>
+                  <td>
+                    {{ $networktransaction->currency }}
                   </td>
                   <td>
                     {{ $networktransaction->detail }}                    
