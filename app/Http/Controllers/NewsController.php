@@ -23,7 +23,7 @@ class NewsController extends Controller
   {
     $totalusers = User::count(); 
 
-    $news = News::orderBy('id', 'Desc')->paginate(30);
+    $news = News::orderBy('created_at', 'Desc')->paginate(30);
     $data = ['news' => $news];
 
     return view('news.index', compact('news', 'totalusers'));

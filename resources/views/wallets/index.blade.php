@@ -77,7 +77,7 @@
                           ?>
                         </ul>
                         <ul>
-                          Retiros :  &nbsp;
+                          Traslados:  &nbsp;
                           <?php 
                             if ($result) {
                               $url = ($result);
@@ -162,7 +162,7 @@
                                   <span class="input-group-text"><i class="ni ni-credit-card"></i></span>
                                 </div>
                                   <select id="currency" name="currency" class="form-control" required>
-                                      <option value=""  >Tipo</option>
+                                      <option value=""  >Tipo de divisa</option>
                                       <option value="USDT"  >USDT</option>
                                       <option value="BTC"  >BTC</option>
                                   </select>
@@ -248,7 +248,7 @@
                   <th scope="col">$ Valor</th>
                   <th scope="col">Tarifa</th>
                   <th scope="col">Detalle</th>
-                  <th scope="col">Tipo</th>
+                  <th scope="col">Tipo movimiento</th>
                   <th scope="col">Divisa</th>
                 </tr>
               </thead>
@@ -273,15 +273,7 @@
                     {{ $Wallet->detail }}
                   </td>
                   <td>
-                    <?php
-                      if($Wallet->type == 0 )                      
-                      {
-                        echo 'Retiro';
-                      }else
-                      {
-                        echo 'Abono';
-                      } 
-                    ?>
+                    {{ $Wallet->type }}
                   </td>
                   <td>
                     {{ $Wallet->currency }}

@@ -31,7 +31,7 @@ class UserController extends Controller
       ->orwhere('lastname', 'LIKE', "%$nombre%")
       ->orwhere('role', 'LIKE', "%$nombre%")
       ->orwhere('email', 'LIKE', "%$nombre%")
-      ->orderBy('id', 'desc')
+      ->orderBy('created_at', 'desc')
       ->paginate(50);
 
       return view('users.index', [

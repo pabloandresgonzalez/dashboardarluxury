@@ -59,7 +59,7 @@
                   <th scope="col">Estado</th>
                   <th scope="col">$ Valor</th>
                   <th scope="col">Tarifa</th>
-                  <th scope="col">Tipo</th>
+                  <th scope="col">Tipo movimiento</th>
                   <th scope="col">Divisa</th>
                   <th scope="col">Editar</th>
                 </tr>
@@ -86,15 +86,7 @@
                     {{ $Wallet->fee }}
                   </td>
                   <td>                    
-                    <?php
-                      if($Wallet->type == 0 )                      
-                      {
-                        echo 'Retiro';
-                      }else
-                      {
-                        echo 'Abono';
-                      } 
-                    ?>
+                    {{ $Wallet->type }}
                   </td>
                   <td>
                     {{ $Wallet->currency }}

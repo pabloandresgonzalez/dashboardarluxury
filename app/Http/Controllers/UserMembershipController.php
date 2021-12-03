@@ -46,7 +46,7 @@ class UserMembershipController extends Controller
         ->orwhere('hash', 'LIKE', "%$nombre%")
         ->orwhere('typeHash', 'LIKE', "%$nombre%")
         ->orwhere('status', 'LIKE', "%$nombre%")
-        ->orderBy('id', 'desc')
+        ->orderBy('created_at', 'desc')
         ->paginate(100);
 
         // total de usuarios
@@ -252,7 +252,7 @@ class UserMembershipController extends Controller
       $username = $user->name;
 
       $memberships = UserMembership::where('user', $user->id)
-        ->orderBy('id', 'desc')
+        ->orderBy('created_at', 'desc')
         ->paginate(30);
 
       // total de usuarios

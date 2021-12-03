@@ -21,7 +21,7 @@ class MembresiaController extends Controller
     {
         //$membresias = Membresia::all();
         $totalusers = User::count(); 
-        $membresias = Membresia::orderBy('id', 'Desc')->paginate(20);
+        $membresias = Membresia::orderBy('created_at', 'asc')->paginate(20);
         $data = ['membresias' => $membresias];
 
         return view('membresias.index', compact('membresias', 'totalusers'));
@@ -103,7 +103,7 @@ class MembresiaController extends Controller
     public function indexuser()
     {
       
-      $membresias = Membresia::orderBy('id', 'Desc')->paginate(10);
+      $membresias = Membresia::orderBy('created_at', 'asc')->paginate(10);
       $data = ['membresias' => $membresias];
 
       // Total de usuarios

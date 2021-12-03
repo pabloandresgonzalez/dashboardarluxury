@@ -81,8 +81,8 @@
                             </div>
                               <select id="type" name="type" class="form-control" required>
                                   <option value=""  >Tipo de movimiento</option>
-                                  <option value="0"  >Retiro</option>
-                                  <option value="1"  >Abono</option>
+                                  <option value="Retiro"  >Retiro</option>
+                                  <option value="Abono"  >Abono</option>
                               </select>
                           </div>
                         </div>
@@ -105,7 +105,7 @@
                             <div class="input-group-prepend">
                               <span class="input-group-text"><i class="ni ni-bullet-list-67"></i></span>
                             </div>
-                            <input class="form-control" placeholder="Observación movimiento" type="text" name="detail" value="" required autocomplete="detail" autofocus>
+                            <input class="form-control" placeholder="Justificación del movimiento" type="text" name="detail" value="" required autocomplete="detail" autofocus>
                           </div>
                         </div>                        
 
