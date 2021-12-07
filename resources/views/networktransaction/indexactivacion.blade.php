@@ -41,33 +41,41 @@
                 <tr>
                   <th scope="col" class="sort">Membresia</th>
                   <th scope="col">Fecha de pago</th>
+                  <th scope="col">Usuario</th>
                   <th scope="col">$ Monto</th>
+                  <th scope="col">Tipo</th>
                   <th scope="col">Detalle</th>
                 </tr>
               </thead>
 
 
               <tbody>
-                @foreach ($networktransactions as $networktransaction)
-                <tr>
+                @foreach ($misusers as $misuser)
+                <tr>                  
                   <td scope="row">
-                    {{ $networktransaction->userMembership }}
-                  <td>
-                    {{ $networktransaction->created_at }}
-                  </td>
+                    {{ $misuser->userMembership }}
                   </td>
                   <td>
-                    {{ $networktransaction->value }}
+                    {{ $misuser->created_at }}
                   </td>
                   <td>
-                    {{ $networktransaction->detail }}                   
-                  </td>       
+                    {{ $misuser->email  }}
+                  </td>
+                  <td>
+                    {{ $misuser->value }}
+                  </td>
+                  <td>
+                    {{ $misuser->type }}
+                  </td>
+                  <td>
+                    {{ $misuser->detail }}                   
+                  </td> 
                  </tr>
-                 @endforeach
+                  @endforeach
             </table>
             <br>     
 
-            {{ $networktransactions->appends(request()->input())->links() }}
+            
 
     </div>
   </div> 

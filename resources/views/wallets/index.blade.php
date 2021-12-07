@@ -145,7 +145,7 @@
                                   //$total = $balancecho - $exhange;
                                   $total = $data['total'];
 
-                              if ($total >= 56) {
+                              if ($total > 50) {
                                 echo '
 
                             <div class="col-md-6">
@@ -187,7 +187,7 @@
 
                                 echo '                                
                                   <div class="card-body">                                  
-                                    <h5>No tienes saldo suficiente para retirar </h5>                                 
+                                    <h5>Es necesario tener una membresia activa y saldo suficiente para retirar. </h5>                                 
                                   </div>
                               ';
                               
@@ -198,7 +198,7 @@
 
                               echo '                                
                                   <div class="card-body">                                  
-                                    <h5>No tienes saldo para retirar </h5>                                 
+                                    <h5>Es necesario tener una membresia activa y saldo suficiente para retirar.</h5>                                 
                                   </div>
                               ';
 

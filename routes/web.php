@@ -33,7 +33,9 @@ Route::put('/user/{user}/editperfil', [App\Http\Controllers\admin\UserController
 Route::put('/user/updateuser/{user}', [App\Http\Controllers\admin\UserController::class, 'updateuser'])->name('updateuser');//envio form
 Route::get('/user/avatar/{filename?}', [App\Http\Controllers\admin\UserController::class, 'getImage'])->name('user.avatar');
 Route::get('/user/avatardoc/{filename?}', [App\Http\Controllers\admin\UserController::class, 'getImageDoc'])->name('user.avatardoc');
-Route::get('/user/{user}/detail', [App\Http\Controllers\admin\UserController::class, 'detail']);//detalle 
+Route::get('/user/{user}/detail', [App\Http\Controllers\admin\UserController::class, 'detail']);//detalle
+Route::get('/user/indexRed', [App\Http\Controllers\admin\UserController::class, 'indexRed'])->name('indexRed'); 
+
 
 //Membresias
 Route::get('/membresiasuser', [App\Http\Controllers\MembresiaController::class, 'indexuser'])->name('membresiasuser');

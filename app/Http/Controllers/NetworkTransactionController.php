@@ -7,6 +7,7 @@ use App\Models\NetworkTransaction;
 use App\Models\UserMembership;
 use App\Models\User;
 use App\Models\Membresia;
+use DB;
 
 class NetworkTransactionController extends Controller
 {
@@ -40,24 +41,23 @@ class NetworkTransactionController extends Controller
         $iduser = $user->id;
 
         $id = $request->id;
-        //$networktransactions = NetworkTransaction::where('user', $iduser)->orderBy('id', 'desc')->paginate(40);
-        //dd($networktransactions);
-        $networktransactions = NetworkTransaction::where( 'user', $iduser)
-                                ->where('type', 'Activation')
-                                ->orderBy('id', 'desc')->paginate(50);
 
+        $networktransactions = NetworkTransaction::where('user', $iduser)
+                                ->where('type', 'Activation')    
+                                ->orderBy('id', 'desc')->paginate(50);
+        
+        $misusers = DB::table('network_transactions')            
+            ->where('user', $iduser) 
+            //->orwhere('type', 'Activation') 
+            ->join('users', 'users.id', '=', 'network_transactions.user')
+            //->select('users.*', 'contacts.phone', 'orders.price')
+            ->get();
+
+        //dd($misusers);
 
         $totalusers = User::count();
 
-        // get your main collection with all the attributes...
-        //$emailuser = NetworkTransaction::get();
-
-        // build your second collection with a subset of attributes. this new
-        // collection will be a collection of plain arrays, not Users models.
-        //$subset = $emailuser->map->only(['userMembership'])->toArray(); 
-
-
-        return view('networktransaction.indexactivacion', compact('networktransactions', 'totalusers'));        
+        return view('networktransaction.indexactivacion', compact( 'totalusers', 'misusers'));        
 
     }
 }

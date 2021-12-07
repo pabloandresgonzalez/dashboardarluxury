@@ -19,7 +19,7 @@
   </a>
 </li>
 <li class="nav-item">
-  <a class="nav-link" href="#">
+  <a class="nav-link" href="{{ route('indexRed') }}">
     <i class="ni ni-satisfied text-yellow"></i> Red
   </a>
 </li>

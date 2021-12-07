@@ -12,6 +12,8 @@ use App\Traits\UsesUuid;
 use App\Traits\AutoGenerateUuid;
 use App\Exports\UsersExport;
 use Maatwebsite\Excel\Facades\Excel;
+use DB;
+use App\Models\UserMembership;
 
 class UserController extends Controller
 {
@@ -383,5 +385,45 @@ class UserController extends Controller
       // Exportar tabla user a excel
       return Excel::download(new UsersExport, 'users.xlsx');
     }
+
+    public function indexRed()
+    {
+
+      // Conseguir usuario identificado
+      $user = \Auth::user();
+      $id = $user->id;
+
+
+      $misusers = DB::table('users')
+            ->where('ownerId', $id)
+            ->get();
+
+      //dd($misusers);
+
+
+      
+      $misusers1 = DB::table('users')
+            ->where('ownerId', $id)
+            ->join('user_memberships', 'user_memberships.user', '=', 'users.id')
+            //->join('orders', 'users.id', '=', 'orders.user_id')
+            //->select('users.*', 'contacts.phone', 'orders.price')
+            ->get();
+
+      //dd($misusers1);
+      
+      /*$membresias = UserMembership::join("user_memberships","user_memberships.user", "=", "users.id")
+                  ->select("status")
+                  ->get();*/
+
+      // Total usuarios
+      $totalusers = User::count();
+
+      return view('users.detailred', [
+          'user' => $user,
+          'misusers' => $misusers,
+          'totalusers' => $totalusers,
+          
+      ]);
+    } 
 
 }
