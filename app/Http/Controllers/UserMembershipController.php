@@ -396,6 +396,7 @@ class UserMembershipController extends Controller
         $name = $user->name;
         $email = $user->email;
 
+
         $totalusers = User::count();
 
         $membershippadre = UserMembership::findOrFail($id);
@@ -441,10 +442,14 @@ class UserMembershipController extends Controller
 
         $valor_saldo  = $respuestaDecodificada->total;
 
-        $percentage = 3;
+        $percentage = 5;
         $valmembresia = $valor_membresia;
 
         $toPorcMemberschip = ($percentage / 100) * $valmembresia;
+
+        $percentageuser = 2;
+
+        $toPorcMemberschiprefe = ($percentageuser / 100) * $valmembresia;
 
 
         if ($valor_membresia > $valor_saldo) {
@@ -506,13 +511,12 @@ class UserMembershipController extends Controller
         $membershipInicial->save();
 
 
-
+        //Se registra el descuento por renovar 
         $Wallet = new wallet_transactions();
         $Wallet->user = $iduser;
         $Wallet->email = $email;
-        $value = $valor_membresia + $toPorcMemberschip;
-        $Wallet->value = $value;
-        $Wallet->fee = 5;
+        $Wallet->value = $valor_membresia + $toPorcMemberschip;
+        $Wallet->fee = $toPorcMemberschip;
         $Wallet->type = 0;
         $Wallet->hash = 'Descuento para renovar '.bin2hex(random_bytes(20));
         $Wallet->currency = $typeHash;//$request->input('currency');
@@ -523,7 +527,7 @@ class UserMembershipController extends Controller
 
 
         $Wallet->save();// INSERT BD
-        
+       
 
         return redirect()->route('home')->with([
                     'message' => 'Hash de renovación enviado correctamente!',
