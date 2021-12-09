@@ -214,7 +214,7 @@
                 <div class="card-body">
                   <div class="row">
                     <div class="col">
-                      <h5 class="card-title text-uppercase text-muted mb-0">Users</h5>
+                      <h5 class="card-title text-uppercase text-muted mb-0">My Users</h5>
                       <span class="h2 font-weight-bold mb-0"><?php echo $totalusers;  ?></span>
                        
                     </div>
@@ -225,8 +225,8 @@
                     </div>
                   </div>
                   <p class="mt-3 mb-0 text-muted text-sm">
-                    <span class="text-danger mr-2"><i class="fas fa-arrow-up"></i> 3.48%</span>
-                    <span class="text-nowrap">more users</span>
+                    <span class="text-danger mr-2"><i class="fas fa-arrow-up"> Registered Users</i> </span>
+                    <span class="text-nowrap"></span>
                   </p>
                 </div>
               </div>
@@ -237,17 +237,17 @@
                   <div class="row">
                     <div class="col">
                       <h5 class="card-title text-uppercase text-muted mb-0">Comisión</h5>
-                      <span class="h2 font-weight-bold mb-0">5%</span>
+                      <span class="h2 font-weight-bold mb-0"><?php echo "$ " . $totalCommission;  ?></span>
                     </div>
                     <div class="col-auto">
                       <div class="icon icon-shape bg-yellow text-white rounded-circle shadow">
-                        <i class="fas fa-percent"></i>
+                        <i class="fas fa-coins"></i>
                       </div>
                     </div>
                   </div>
                   <p class="mt-3 mb-0 text-muted text-sm">
-                    <span class="text-warning mr-2"><i class="fas fa-dollar-sign"></i> 5.0%</span>
-                    <span class="text-nowrap">Comisión de nivel</span>
+                    <span class="text-warning mr-2"><i class="fas fa-dollar-sign"></i> <?php echo $totalCommission;  ?></span>
+                    <span class="text-nowrap">Commission</span>
                   </p>
                 </div>
               </div>

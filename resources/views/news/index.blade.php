@@ -30,8 +30,9 @@
                   <th scope="col" class="sort">Titulo</th>
                   <th scope="col">Intro</th>
                   <th scope="col">Estado</th>
+                  <th scope="col">Fecha</th>
                   <th scope="col">Editar</th>
-                  <th scope="col">Detalles</th>
+                  <!--<th scope="col">Detalles</th>-->
                 </tr>
               </thead>
               <tbody>
@@ -51,15 +52,18 @@
                   @endif
                   </td>
                   <td>
+                    {{ $new->created_at }}
+                  </td>
+                  <td>
                     <form action="" method="POST">
                       @csrf
                       @method('DELETE')
                       <a href="{{ url('/news/'.$new->id.'/edit') }}" class="btn btn-outline-secondary"><i class="ni ni-settings"></i> Editar</a>
                     </form>
                   </td>
-                  <td>
-                      <a href="" class="btn btn-outline-secondary"><i class="ni ni-bullet-list-67"></i> Detalle</a>
-                  </td>
+                  <!--<td>
+                    <a href="" class="btn btn-outline-secondary"><i class="ni ni-bullet-list-67"></i> Detalle</a>
+                  </td>-->
                 </tr>
                 @endforeach
               </tbody>

@@ -67,7 +67,7 @@
                 <div class="col">
                   <div class="card-profile-stats d-flex justify-content-center mt-md-5">
                     <div>
-                      <span class="heading">x</span>
+                      <span class="heading"><?php echo $totalusers;  ?></span>
                       <span class="description">Referidos</span>
                     </div>
                   </div>
@@ -85,7 +85,7 @@
                 </div>
                 <hr class="my-4" />
 
-                <a href="/home">Noticias</a>
+                <a href="/newsuser">Noticias</a>
               </div>
             </div>
           </div>
@@ -98,7 +98,7 @@
                   <h3 class="mb-0">{{ Auth::user()->name }}</h3>
                 </div>
                 <div class="col-4 text-right">
-                  <a href="#" class="btn btn-outline-secondary"><i class="ni ni-money-coins"></i> Billetera</a>
+                  <a href="/wallet" class="btn btn-outline-secondary"><i class="ni ni-money-coins"></i> Billetera</a>
                 </div>
               </div>
             </div>

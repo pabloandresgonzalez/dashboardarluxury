@@ -50,25 +50,25 @@
 
 
               <tbody>
-                @foreach ($misusers as $misuser)
+                @foreach ($networktransactions as $networktransaction)
                 <tr>                  
                   <td scope="row">
-                    {{ $misuser->userMembership }}
+                    {{ $networktransaction->userMembership }}
                   </td>
                   <td>
-                    {{ $misuser->created_at }}
+                    {{ $networktransaction->created_at }}
                   </td>
                   <td>
-                    {{ $misuser->email  }}
+                    {{ $networktransaction->email  }}
                   </td>
                   <td>
-                    {{ $misuser->value }}
+                    {{ $networktransaction->value }}
                   </td>
                   <td>
-                    {{ $misuser->type }}
+                    {{ $networktransaction->type }}
                   </td>
                   <td>
-                    {{ $misuser->detail }}                   
+                    {{ $networktransaction->detail }}                   
                   </td> 
                  </tr>
                   @endforeach

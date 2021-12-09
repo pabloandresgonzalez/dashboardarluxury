@@ -24,8 +24,12 @@ class UserController extends Controller
 
     public function index(Request $request)
     {
-      // Total de usuarios
-      $totalusers = User::count();            
+      // Total comission del usuario 
+      $totalCommission = $this->totalCommission();
+
+      // Total usuarios
+      $totalusers = $totalusers = $this->countUsers();
+
       $nombre = $request->get('buscarpor');
       
       // Buscador
@@ -38,29 +42,38 @@ class UserController extends Controller
 
       return view('users.index', [
       'users' => $users,
-      'totalusers' => $totalusers
+      'totalusers' => $totalusers,
+      'totalCommission' => $totalCommission
       ]);            
 
     }
 
     public function create()
     {
-      // Total de usuarios
-      $totalusers = User::count();
+      // Total comission del usuario 
+      $totalCommission = $this->totalCommission();
 
-      return view('users.create', compact('totalusers'));
+      // Total usuarios
+      $totalusers = $totalusers = $this->countUsers();
+
+      return view('users.create', compact('totalusers', 'totalCommission'));
 
     }
 
     public function edit($id)
     {
-      // Total de usuarios
-      $totalusers = User::count(); 
+      // Total comission del usuario 
+      $totalCommission = $this->totalCommission();
+
+      // Total usuarios
+      $totalusers = $totalusers = $this->countUsers();
+
       $user = User::find($id);
 
       return view('users.edit', [
         'user' => $user,
-        'totalusers' => $totalusers
+        'totalusers' => $totalusers,
+        'totalCommission' => $totalCommission
       ]);
     }
 
@@ -76,6 +89,33 @@ class UserController extends Controller
       // Obtener imagen de soporte de pago
       $file = Storage::disk('photoDocusers')->get($filename);
       return new Response($file, 200);
+    }
+
+    private function countUsers()
+    {
+      // Conseguir usuario identificado
+      $user = \Auth::user();
+      $id = $user->id;
+
+      // Total usuarios
+      $totalusers = DB::table('users')
+            ->where('ownerId', $id)->count();
+
+      return $totalusers;
+    }
+
+    private function totalCommission()
+    {
+      // Conseguir usuario identificado
+      $user = \Auth::user();
+      $id = $user->id;
+
+      // Total usuarios
+      $totalCommission = DB::table("network_transactions")
+      ->where('user', $id)
+      ->get()->sum("value");
+
+      return $totalCommission;
     }
 
     private function perfomrValidationCreate(Request $request)
@@ -118,8 +158,11 @@ class UserController extends Controller
 
     public function store(Request $request)
     {
-      // Total de usuarios      
-      $totalusers = User::count();
+      // Total comission del usuario 
+      $totalCommission = $this->totalCommission();
+
+      // Total usuarios
+      $totalusers = $totalusers = $this->countUsers();
 
       $this->perfomrValidationCreate($request);
 
@@ -174,7 +217,8 @@ class UserController extends Controller
 
       return redirect('user')->with([
                 'message' => 'El usuario '.$user->name.' fue creado correctamente!',
-                'totalusers' => $totalusers
+                'totalusers' => $totalusers,
+                'totalCommission' => $totalCommission
         ]);
 
     }
@@ -182,8 +226,11 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
 
-      // Total de usuarios   
-      $totalusers = User::count();
+      // Total comission del usuario 
+      $totalCommission = $this->totalCommission();
+
+      // Total usuarios
+      $totalusers = $totalusers = $this->countUsers();
 
       $user = User::findOrFail($id);
       
@@ -258,7 +305,8 @@ class UserController extends Controller
 
         return redirect('user')->with([
                 'message' => 'La informacion de '.$user->name.', fue actualizada correctamente!',
-                'totalusers' => $totalusers
+                'totalusers' => $totalusers,
+                'totalCommission' => $totalCommission
         ]);
 
     }
@@ -266,8 +314,11 @@ class UserController extends Controller
     public function updateUser(Request $request, $id)
     {
       
-      // Total usuarios 
-      $totalusers = User::count();
+      // Total comission del usuario 
+      $totalCommission = $this->totalCommission();
+
+      // Total usuarios
+      $totalusers = $totalusers = $this->countUsers();
 
       $user = User::findOrFail($id);
       $name = $user->name;
@@ -345,7 +396,8 @@ class UserController extends Controller
 
         return redirect('home')->with([
                 'message' => $user->name.', tu informacion fue actualizada correctamente!',
-                'totalusers' => $totalusers
+                'totalusers' => $totalusers,
+                'totalCommission' => $totalCommission
         ]);
 
     }
@@ -355,28 +407,37 @@ class UserController extends Controller
     {
       // Conseguir usuario identificado
       $user = \Auth::user();
+      $id = $user->id;
+
+      // Total comission del usuario 
+      $totalCommission = $this->totalCommission();
 
       // Total usuarios
-      $totalusers = User::count();
+      $totalusers = $totalusers = $this->countUsers();
 
       return Response()->view('users.indexperfil', [
         'user' => $user,
-        'totalusers' => $totalusers
+        'totalusers' => $totalusers,
+        'totalCommission' => $totalCommission
       ]);
 
     }
 
     public function detail($id)
     {
+      
+      // Total comission del usuario 
+      $totalCommission = $this->totalCommission();
 
       // Total usuarios
-      $totalusers = User::count();
+      $totalusers = $totalusers = $this->countUsers();
       
       $user = User::find($id);
 
       return view('users.detail', [
           'user' => $user,
-          'totalusers' => $totalusers
+          'totalusers' => $totalusers,
+          'totalCommission' => $totalCommission
       ]);
     } 
 
@@ -393,14 +454,18 @@ class UserController extends Controller
       $user = \Auth::user();
       $id = $user->id;
 
+      // Total comission del usuario 
+      $totalCommission = $this->totalCommission();
 
+      // Total usuarios
+      $totalusers = $totalusers = $this->countUsers();
+
+      /*
       $misusers = DB::table('users')
-            ->where('ownerId', $id)
-            ->get();
+            ->where('ownerId', $id)->count();
+      */
 
       //dd($misusers);
-
-
       
       $misusers1 = DB::table('users')
             ->where('ownerId', $id)
@@ -410,19 +475,25 @@ class UserController extends Controller
             ->get();
 
       //dd($misusers1);
+
+      $networktransactions = DB::table('network_transactions')            
+            ->where('user', $id) 
+            //->orwhere('type', 'Activation') 
+            ->join('users', 'users.id', '=', 'network_transactions.user')
+            //->select('users.*', 'contacts.phone', 'orders.price')
+            ->get();
       
       /*$membresias = UserMembership::join("user_memberships","user_memberships.user", "=", "users.id")
                   ->select("status")
                   ->get();*/
 
-      // Total usuarios
-      $totalusers = User::count();
-
       return view('users.detailred', [
           'user' => $user,
-          'misusers' => $misusers,
+          //'misusers' => $misusers,
           'totalusers' => $totalusers,
-          
+          'misusers1' => $misusers1,
+          'networktransactions' => $networktransactions,
+          'totalCommission' => $totalCommission
       ]);
     } 
 

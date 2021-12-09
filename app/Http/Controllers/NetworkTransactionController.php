@@ -21,15 +21,20 @@ class NetworkTransactionController extends Controller
 
         //Conseguir usuario identificado
         $user = \Auth::user();
+        $id = $user->id;
 
         $id = $request->id;
         $networktransactions = NetworkTransaction::where('userMembership', $id)
                                 ->where('type', 'Daily')
                                 ->orderBy('id', 'desc')->paginate(50);
 
-        $totalusers = User::count(); 
+        // Total comission del usuario 
+        $totalCommission = $this->totalCommission();
 
-        return view('networktransaction.index', compact('networktransactions', 'totalusers'));        
+        // Total usuarios
+        $totalusers = $totalusers = $this->countUsers();
+
+        return view('networktransaction.index', compact('networktransactions', 'totalusers', 'totalCommission'));        
 
     }
 
@@ -42,11 +47,11 @@ class NetworkTransactionController extends Controller
 
         $id = $request->id;
 
-        $networktransactions = NetworkTransaction::where('user', $iduser)
+        $networktransactions1 = NetworkTransaction::where('user', $iduser)
                                 ->where('type', 'Activation')    
                                 ->orderBy('id', 'desc')->paginate(50);
         
-        $misusers = DB::table('network_transactions')            
+        $networktransactions = DB::table('network_transactions')            
             ->where('user', $iduser) 
             //->orwhere('type', 'Activation') 
             ->join('users', 'users.id', '=', 'network_transactions.user')
@@ -55,9 +60,40 @@ class NetworkTransactionController extends Controller
 
         //dd($misusers);
 
-        $totalusers = User::count();
+        // Total comission del usuario 
+        $totalCommission = $this->totalCommission();
 
-        return view('networktransaction.indexactivacion', compact( 'totalusers', 'misusers'));        
+        // Total usuarios
+        $totalusers = $totalusers = $this->countUsers();
 
+        return view('networktransaction.indexactivacion', compact( 'totalusers', 'networktransactions', 'totalCommission'));        
+
+    }
+
+    private function countUsers()
+    {
+      // Conseguir usuario identificado
+      $user = \Auth::user();
+      $id = $user->id;
+
+      // Total usuarios
+      $totalusers = DB::table('users')
+            ->where('ownerId', $id)->count();
+
+      return $totalusers;
+    }
+
+    private function totalCommission()
+    {
+      // Conseguir usuario identificado
+      $user = \Auth::user();
+      $id = $user->id;
+
+      // Total usuarios
+      $totalCommission = DB::table("network_transactions")
+      ->where('user', $id)
+      ->get()->sum("value");
+
+      return $totalCommission;
     }
 }

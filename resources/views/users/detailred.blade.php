@@ -8,7 +8,7 @@
             <div class="row align-items-center">
               <div class="col">
                 <h1 class="mb-0">Mi red</h1>
-              </div>
+              </div>             
               
 
               @if(session('message'))
@@ -18,9 +18,9 @@
               @endif
 
 
-
             </div>
           </div>
+          <br><br>
 
 
       <div class="container-fluid">
@@ -28,7 +28,7 @@
             <div class="row-fluid ">
               <div class="row">
 
-              @foreach($misusers as $misuser)
+              @foreach($misusers1 as $misuser)
 
 
                 <div class="col-xl-4 order-xl-2 mb-5 mb-xl-0">
@@ -36,7 +36,7 @@
 			            <div class="row justify-content-center">
 			              <div class="col-lg-3 order-lg-2">
 			                <div class="card-profile-image">
-			                  <a href="#" data-toggle="modal" data-target="#exampleModal">
+			                  <a href="#" data-toggle="modal" >
 			                    <img src="{{ route('user.avatar',['filename'=>$misuser->photo ]) }}"/>
 			                  </a>			                  
 			                </div>
@@ -44,41 +44,8 @@
 			            </div>
 			            <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
 			            	<div class="d-flex justify-content-between">
-                <a href="#" class="btn btn-sm btn-info mr-4" data-toggle="modal" data-target="#exampleModal"><i class="ni ni-tag"></i> + Detalles</a>
-
-                <!-- Modal -->
-
-                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                  <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">&#128512; Información de colaborador</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                          <span aria-hidden="true">&times;</span>
-                        </button>
-                      </div>
-                      <div class="modal-body">
-
-			            <div class="list-inline-item">
-			            <ul>
-			              <li class="list-inline-item"><h4></h4></li>
-			            </ul> 
-			            <ul>
-			              <li class="list-inline-item"><h4></h4></li>
-			            </ul>
-			            </div>
-                      </div>
-                      <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-
-
-                
+                <a href="#" data-toggle="modal" class="btn btn-sm btn-info mr-4" >{{ $misuser->user_email }}</a>
+              
               </div>
 			            	<br><br>
 			            </div>
@@ -88,17 +55,19 @@
 			                  <div class="card-profile-stats d-flex justify-content-center mt-md-5">
 			                    <div>
 			                      <span class="heading">{{ $misuser->name }}  {{ $misuser->lastname }}</span>
-			                      <span class="description">{{ $misuser->created_at }}</span>
+			                      <span class="description">Valor membresia: {{ $misuser->membership }}</span>
+
 			                    </div>
 			                  </div>
 			                </div>
 			              </div>
 			              <div class="text-center">
 			                <h3>
-			                  <span class="font-weight-light">{{ $misuser->email }}</span>
+			                  <span class="font-weight-light">Estado: {{ $misuser->status }}</span>
 			                </h3>
 			                <div class="h5 font-weight-300">
-			                  <i class="ni location_pin mr-2"></i>{{ $misuser->cellphone }}
+			                  <i class="ni location_pin mr-2"></i>Activada desde: {{ $misuser->activedAt }}
+                        <div></div>
 			                </div>	
 
 			              </div>
@@ -117,6 +86,60 @@
         </div>
       </div>
     </div>
+    <br> <br>
+
+    <div class="card-header">
+          <i class="ni ni-money-coins"></i> &nbsp;Historial de pagos</h3>
+        </div> 
+
+
+          <div class="table-responsive">
+            <table class="table align-items-center table-dark">
+              <thead class="thead-dark">
+                <tr>
+                  <th scope="col" class="sort">Membresia</th>
+                  <th scope="col">Fecha de pago</th>
+                  <th scope="col">Usuario</th>
+                  <th scope="col">$ Monto</th>
+                  <th scope="col">Tipo</th>
+                  <th scope="col">Detalle</th>
+                </tr>
+              </thead>
+
+
+              <tbody>
+                @foreach ($networktransactions as $networktransaction)
+                <tr>                  
+                  <td scope="row">
+                    {{ $networktransaction->userMembership }}
+                  </td>
+                  <td>
+                    {{ $networktransaction->created_at }}
+                  </td>
+                  <td>
+                    {{ $networktransaction->email  }}
+                  </td>
+                  <td>
+                    {{ $networktransaction->value }}
+                  </td>
+                  <td>
+                    {{ $networktransaction->type }}
+                  </td>
+                  <td>
+                    {{ $networktransaction->detail }}                   
+                  </td> 
+                 </tr>
+                  @endforeach
+            </table>
+            <br>     
+
+            
+
+    </div>
+  </div>
+
+
+
 
 
 

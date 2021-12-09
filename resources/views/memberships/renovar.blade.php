@@ -9,7 +9,7 @@
           <h3 class="mb-0"><i class="ni ni-single-02"></i> Renovar membresia </h3>
         </div>
         <div class="col-md-6">
-          <a href="/membership" class="btn btn-outline-default">
+          <a href="{{ route('mismembership') }}" class="btn btn-outline-default">
           <i class="ni ni-bold-left"></i> Cancelar y volver
           </a>
         </div>
