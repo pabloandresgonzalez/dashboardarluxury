@@ -478,7 +478,7 @@ class UserController extends Controller
 
       $networktransactions = DB::table('network_transactions')            
             ->where('user', $id) 
-            //->orwhere('type', 'Activation') 
+            ->where('type', 'Activation') 
             ->join('users', 'users.id', '=', 'network_transactions.user')
             //->select('users.*', 'contacts.phone', 'orders.price')
             ->get();
