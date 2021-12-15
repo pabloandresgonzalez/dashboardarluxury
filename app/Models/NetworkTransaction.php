@@ -14,6 +14,11 @@ class NetworkTransaction extends Model
       return $this->belongsTo('App\User', 'id');
    }
 
+   //Relacion
+   public function usersownerId(){
+      return $this->belongsTo('App\User', 'ownerId');
+   }
+
    public function asuser(){
       return$this->belongsTo(User::class);
    }
@@ -26,4 +31,5 @@ class NetworkTransaction extends Model
     public function asUserMembership() {
         return $this->hasMany(UserMembership::class, 'user')->orderBy('id', 'desc');
     }
+    
 }

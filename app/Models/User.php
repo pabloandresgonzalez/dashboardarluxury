@@ -81,4 +81,8 @@ class User extends Authenticatable
         return $this->hasMany(wallet_transactions::class);
     }
 
+    public function asNetworkTransaction() {
+        return $this->hasMany(NetworkTransaction::class, 'user')->orderBy('id', 'desc');
+    }
+
 }

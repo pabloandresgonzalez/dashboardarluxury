@@ -54,7 +54,7 @@
 			                <div class="col">
 			                  <div class="card-profile-stats d-flex justify-content-center mt-md-5">
 			                    <div>
-			                      <h5>{{ $misuser->user_email }}</h5>
+			                      <h6>{{ $misuser->user_email }}</h6>
 			                      <span class="description">Membresia: {{ $misuser->membership }}</span>
 			                    </div>                          
 			                  </div>

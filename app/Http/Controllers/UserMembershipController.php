@@ -585,9 +585,9 @@ class UserMembershipController extends Controller
         $Wallet = new wallet_transactions();
         $Wallet->user = $iduser;
         $Wallet->email = $email;
-        $Wallet->value = $valor_membresia + $toPorcMemberschip;
+        $Wallet->value = $valor_membresia;// + $toPorcMemberschip;
         $Wallet->fee = $toPorcMemberschip;
-        $Wallet->type = 0;
+        $Wallet->type = "Retiro";
         $Wallet->hash = 'Descuento para renovar '.bin2hex(random_bytes(20));
         $Wallet->currency = $typeHash;//$request->input('currency');
         $Wallet->approvedBy = $email;

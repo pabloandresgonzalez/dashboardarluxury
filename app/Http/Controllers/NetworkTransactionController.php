@@ -41,35 +41,27 @@ class NetworkTransactionController extends Controller
     public function indexactivacion(Request $request)
     {
 
-        //Conseguir usuario identificado
-        $user = \Auth::user();
-        $iduser = $user->id;
+      //Conseguir usuario identificado
+      $user = \Auth::user();
+      $iduser = $user->id;
 
-        $id = $request->id;
+      $networktransactions = DB::select('SELECT u.*, nt.*   
+        FROM network_transactions as nt
+        INNER JOIN user_memberships as um ON nt.userMembership = um.id
+        INNER JOIN users as u ON um.user = u.id
+        WHERE nt.type="Activation" AND
+        nt.user = ?', [$iduser]);
 
-        $networktransactions1 = NetworkTransaction::where('user', $iduser)
-                                ->where('type', 'Activation')    
-                                ->orderBy('id', 'desc')->paginate(50);
-        
-        $networktransactions = DB::table('network_transactions')            
-            ->where('user', $iduser) 
-            ->where('type', 'Activation') 
-            ->join('users', 'users.id', '=', 'network_transactions.user')
-            //->select('users.*', 'contacts.phone', 'orders.price')
-            ->get();
 
-        //dd($misusers);
+      // Total comission del usuario 
+      $totalCommission = $this->totalCommission();
 
-        // Total comission del usuario 
-        $totalCommission = $this->totalCommission();
+      // Total usuarios
+      $totalusers = $totalusers = $this->countUsers();
 
-        // Total usuarios
-        $totalusers = $totalusers = $this->countUsers();
-
-        return view('networktransaction.indexactivacion', compact( 'totalusers', 'networktransactions', 'totalCommission'));        
+      return view('networktransaction.indexactivacion', compact('networktransactions', 'totalusers', 'totalCommission'));        
 
     }
-
     private function countUsers()
     {
       // Conseguir usuario identificado
@@ -96,4 +88,18 @@ class NetworkTransactionController extends Controller
 
       return $totalCommission;
     }
+
+    function super_unique($array,$key)
+    {
+       $temp_array = [];
+       foreach ($array as &$v) {
+           if (!isset($temp_array[$v[$key]]))
+           $temp_array[$v[$key]] =& $v;
+       }
+       $array = array_values($temp_array);
+       return $array;
+
+    }
 }
+
+
