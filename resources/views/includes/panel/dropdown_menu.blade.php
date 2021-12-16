@@ -14,7 +14,7 @@
       <i class="ni ni-box-2 "></i>
       <span>Mis membresías</span>
     </a>
-    <a href="https://wa.me/573144534311?text=%20Hola! %20Requiero%20de%20su%20ayuda%20para%20un%20soporte%20en%20AR_LUXURY,%20Gracias" class="dropdown-item">
+    <a href="https://wa.me/573143625063?text=%20Hola! %20Requiero%20de%20su%20ayuda%20para%20un%20soporte%20en%20AR_LUXURY,%20Gracias" class="dropdown-item">
       <i class="ni ni-support-16"></i>
       <span>Ayuda</span>
     </a>

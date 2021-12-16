@@ -24,12 +24,12 @@
   <h6 class="navbar-heading text-muted">Soporte</h6>
   <ul class="navbar-nav mb-md-3">
     <li class="nav-item">
-      <a class="nav-link" href="https://wa.me/573144534311?text=%20Hola! %20Requiero%20de%20su%20ayuda%20para%20un%20soporte%20en%20AR_LUXURY,%20Gracias">
+      <a class="nav-link" href="https://wa.me/573143625063?text=%20Hola! %20Requiero%20de%20su%20ayuda%20para%20un%20soporte%20en%20AR_LUXURY,%20Gracias">
         <i class="ni ni-support-16 text-info"></i> Ayuda
       </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="https://wa.me/573144534311?text=%20Hola! %20quiero%20ponerme%20en%20contacto%20con%20en%20AR_LUXURY,%20Gracias">
+      <a class="nav-link" href="https://wa.me/573143625063?text=%20Hola! %20quiero%20ponerme%20en%20contacto%20con%20en%20AR_LUXURY,%20Gracias">
         <i class="ni ni-chat-round text-primary"></i> Contacto
       </a>
     </li>
@@ -52,12 +52,12 @@
   <h6 class="navbar-heading text-muted">Soporte</h6>
   <ul class="navbar-nav mb-md-3">
     <li class="nav-item">
-      <a class="nav-link" href="https://wa.me/573144534311?text=%20Hola! %20Requiero%20de%20su%20ayuda%20para%20un%20soporte%20en%20AR_LUXURY,%20Gracias">
+      <a class="nav-link" href="https://wa.me/573143625063?text=%20Hola! %20Requiero%20de%20su%20ayuda%20para%20un%20soporte%20en%20AR_LUXURY,%20Gracias">
         <i class="ni ni-support-16 text-info"></i> Ayuda
       </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="https://wa.me/573144534311?text=%20Hola! %20quiero%20ponerme%20en%20contacto%20con%20en%20AR_LUXURY,%20Gracias">
+      <a class="nav-link" href="https://wa.me/573143625063?text=%20Hola! %20quiero%20ponerme%20en%20contacto%20con%20en%20AR_LUXURY,%20Gracias">
         <i class="ni ni-chat-round text-primary"></i> Contacto
       </a>
     </li>

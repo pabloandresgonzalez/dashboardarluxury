@@ -15,10 +15,10 @@
 
                 <div class="card shadow">
                   <div class="row justify-content-center">    
-                  <object data="https://drive.google.com/file/d/1iIxJ_vRIQB7uHCk5wYmi7G8zbEsYak_J/preview" type="application/pdf" width="600" height="500">
-                      <embed src="https://drive.google.com/file/d/1iIxJ_vRIQB7uHCk5wYmi7G8zbEsYak_J/preview" width="300px" height="400px" />
+                  <object data="https://drive.google.com/file/d/1FtscjFnA9PajP3ZZZt6hMWNBnKxj6XNd/preview" type="application/pdf" width="600" height="500">
+                      <embed src="https://drive.google.com/file/d/1FtscjFnA9PajP3ZZZt6hMWNBnKxj6XNd/preview" width="300px" height="400px" />
                         <p>&nbsp;This browser does not support PDF files. Download the PDF to view: 
-                        <a href="https://drive.google.com/file/d/1iIxJ_vRIQB7uHCk5wYmi7G8zbEsYak_J/preview">Download PDF</a>.</p>
+                        <a href="https://drive.google.com/file/d/1FtscjFnA9PajP3ZZZt6hMWNBnKxj6XNd/preview">Download PDF</a>.</p>
                     </embed></object>
                   </div>
                 </div>
