@@ -81,7 +81,7 @@
                             </div>
                               <select id="type" name="type" class="form-control" required>
                                   <option value=""  >Tipo de movimiento</option>
-                                  <option value="Retiro"  >Retiro</option>
+                                  <option value="Resta saldo">Resta saldo</option>
                                   <option value="Abono"  >Abono</option>
                               </select>
                           </div>

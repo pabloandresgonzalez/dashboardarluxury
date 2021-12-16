@@ -455,7 +455,7 @@ class WalletTransactionsController extends Controller
         $Wallet->currency = $request->input('currency');
         $Wallet->approvedBy = $id;        
 
-        if ($type === "Retiro") {
+        if ($type === "Resta saldo") {
           $Wallet->inOut = 0;
         } else {
           $Wallet->inOut = 1;
