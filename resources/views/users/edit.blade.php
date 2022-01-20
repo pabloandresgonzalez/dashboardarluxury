@@ -438,12 +438,22 @@
 
 
         <div class="col-md-12" >
-          <p>Ingrese un valor sólo si desea cambiar el código de referido.</p>
+          <p>Ingrese un nuevo codigo, sólo si desea cambiar el código de referido.</p>
           <div class="input-group input-group-alternative mb-3">
             <div class="input-group-prepend">
               <span class="input-group-text"><i class="ni ni-pin-3"></i></span>
             </div>
             <input class="form-control" placeholder="Código de referido" type="text" name="ownerId" value="{{ $user->ownerId }}"  autocomplete="ownerId" autofocus>
+          </div>
+        </div>
+
+        <div class="col-md-12">
+          <p>Ingrese una nueva contraseña, sólo si desea cambiar la contraseña del usuario.</p>
+          <div class="input-group input-group-alternative mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
+            </div>
+            <input class="form-control" placeholder="Contraseña" type="password" name="password" autocomplete="new-password" value="" autofocus >
           </div>
         </div>
 

@@ -79,6 +79,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/user/{user}/edit', [App\Http\Controllers\admin\UserController::class, 'edit']); //form edit
     Route::put('/user/{user}', [App\Http\Controllers\admin\UserController::class, 'update']);//envio form
     Route::get('/users/export-excel', [App\Http\Controllers\admin\UserController::class, 'exportExcel']);
+    Route::get('/users/export-excel/movimientos', [App\Http\Controllers\admin\UserController::class, 'exportExcelMovimientos']);
 
 
     //Membresias

@@ -54,7 +54,7 @@
                                  
                                 @if($Wallets->status === 'Aprobada')
                                 <label>&nbsp; El estado es <strong>{{ $Wallets->status }}</strong>, ya no es &nbsp;posible hacer mas cambios &nbsp; &nbsp; </label>
-                            @else 
+                                @else 
                             <div class="input-group-prepend">
                                   <span class="input-group-text"><i class="ni ni-bullet-list-67"></i></span>
                                 </div>                             

@@ -162,7 +162,7 @@ class UserMembershipController extends Controller
        $id_membresia = Membresia::find($id);
 
        $membresia = Membresia::find($request->input('id_membresia'));
-       $namemembresia =$membresia->name;
+       $namemembresia = $membresia->name;
 
        $membershipsuser = UserMembership::where('user', $user->id)
         ->Where('membership', $namemembresia)
@@ -172,7 +172,7 @@ class UserMembershipController extends Controller
         if ($membershipsuser) {
 
           return redirect()->route('home')->with([
-                    'message' => 'Ya cuentas con una membresia de este valor activa!'
+                    'message' => '¡' . $name . '¡Ya cuentas con una membresia de este valor activa!'
           ]);
           
         }
@@ -212,7 +212,8 @@ class UserMembershipController extends Controller
 
         //Enviar email
         $user_email = User::where('role', 'admin')->first();
-        $user_email_admin = $user_email->email;
+        //$user_email_admin = $user_email->email;
+        $user_email_admin = 'pabloandres6@gmail.com';
 
         Mail::to($user_email_admin)->send(new MembershipCreatedMessage($membership));
 
@@ -225,7 +226,7 @@ class UserMembershipController extends Controller
         $totalusers = $totalusers = $this->countUsers();
 
         return redirect()->route('home')->with([
-                    'message' => 'Hash enviado correctamente!',
+                    'message' => '¡' . $name . '¡hash enviado correctamente!',
                     'totalusers' => $totalusers,
                     'totalCommission' => $totalCommission
         ]);
@@ -283,7 +284,7 @@ class UserMembershipController extends Controller
         $totalusers = $totalusers = $this->countUsers();
 
         return redirect()->route('home')->with([
-                    'message' => 'Membership editado correctamente!',
+                    'message' => 'Membresía editada correctamente!',
                     'totalusers' => $totalusers,
                     'totalCommission' => $totalCommission
         ]);
@@ -404,7 +405,8 @@ class UserMembershipController extends Controller
               $total = $data['total']; 
               //echo $balancecho;
           }else {
-            
+
+            $total = null;            
           } 
         } 
 
@@ -427,9 +429,16 @@ class UserMembershipController extends Controller
 
         $membresia = Membresia::where('id', $id_membresia)->first();
         $valor_membresia = $membresia->valor;
+        $valmembresia = $valor_membresia;
+
+        $percentageMembership = 5;
+
+        $valuetoPorcMemberschip = ($percentageMembership / 100) * $valmembresia;
+        
+        $totalMembershiAndPercentage = $valor_membresia + $valuetoPorcMemberschip;
 
 
-        if ($total > $valor_membresia || $cantmemberships > 0) {
+        if ($total > $totalMembershiAndPercentage) {
 
                     
           return view('memberships.renovar', [
@@ -445,7 +454,7 @@ class UserMembershipController extends Controller
 
 
           return redirect()->route('home')->with([
-                  'message' => 'Debes tener saldo suficiente o al menos una membresía activa para renovar!',
+                  'message' => '¡Ups ¡El saldo es insuficiente para renovar!',
                   'totalusers' => $totalusers,
                   'totalCommission' => $totalCommission
               ]); 
@@ -524,7 +533,7 @@ class UserMembershipController extends Controller
         if ($valor_membresia > $valor_saldo) {
             
             return redirect()->route('home')->with([
-                    'message' => 'Saldo insuficiente para renovar!',
+                    'message' => '¡Ups ¡El saldo es insuficiente para renovar!',
                     'totalusers' => $totalusers,
                     'valor_membresia' => $valor_membresia,
                     'totalCommission' => $totalCommission
@@ -600,7 +609,7 @@ class UserMembershipController extends Controller
        
 
         return redirect()->route('home')->with([
-                    'message' => 'Hash de renovación enviado correctamente!',
+                    'message' => '¡' . $name . 'hash de renovación enviado correctamente!',
                     'totalusers' => $totalusers,
                     'totalCommission' => $totalCommission
                     

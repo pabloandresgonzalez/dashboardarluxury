@@ -2,11 +2,11 @@
     {{-- Header --}}
     @slot('header')
         @component('mail::header', ['url' => config('app.url')])
-            ¡Solicitud de transaccion!
+            ¡Solicitud de Traslado!
         @endcomponent
     @endslot
 {{-- Body --}}
-    <p>Hola! Admin,<br> Se realizo una solicitud de transaccion en {{ config('app.name') }}.</p>
+    <p>Hola! Admin,<br> Se realizo una solicitud de traslado en {{ config('app.name') }}.</p>
     <ul style="list-style-type: none;">
         <li>Valor: {{ $Wallet->value }}</li>
         <li>Divisa: {{ $Wallet->currency }}</li>

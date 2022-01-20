@@ -179,7 +179,7 @@
 
 
                             <div class="col-md-4">
-                              <button type="submit" class="btn btn-outline-default" ><i class="ni ni-satisfied"></i> Enviar retiro</button>
+                              <button type="submit" class="btn btn-outline-default" ><i class="ni ni-satisfied"></i> Enviar Traslado</button>
                             </div>
 
                               ';
@@ -187,7 +187,7 @@
 
                                 echo '                                
                                   <div class="card-body">                                  
-                                    <h5>Es necesario tener una membresia activa y saldo suficiente para retirar. </h5>                                 
+                                    <h5>Es necesario tener como minimo 50 en saldo y una membresia activa para retirar.</h5>                                 
                                   </div>
                               ';
                               

@@ -2,11 +2,11 @@
     {{-- Header --}}
     @slot('header')
         @component('mail::header', ['url' => config('app.url')])
-            ¡Transaccion actualizada!
+            ¡Traslado actualizado!
         @endcomponent
     @endslot
 {{-- Body --}}
-    <p>Hola! Admin<br> La transacción cambio de estado en {{ config('app.name') }}.</p>
+    <p>Hola! Admin<br> El traslado cambio de estado en {{ config('app.name') }}.</p>
     <ul style="list-style-type: none;">
         <li>Estado: {{ $Wallet->status }}</li>
         <li>Valor: {{ $Wallet->value }}</li>
