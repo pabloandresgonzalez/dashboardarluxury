@@ -212,8 +212,8 @@ class UserMembershipController extends Controller
 
         //Enviar email
         $user_email = User::where('role', 'admin')->first();
-        //$user_email_admin = $user_email->email;
-        $user_email_admin = 'pabloandres6@gmail.com';
+        $user_email_admin = $user_email->email;
+        //$user_email_admin = 'pabloandres6@gmail.com';
 
         Mail::to($user_email_admin)->send(new MembershipCreatedMessage($membership));
 
