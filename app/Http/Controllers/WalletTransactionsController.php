@@ -216,7 +216,7 @@ class WalletTransactionsController extends Controller
         
 
         //$Wallet->fee = 5;
-        $Wallet->type = 'Retiro';
+        $Wallet->type = 'Traslado';
         $Wallet->hash = '';
         $Wallet->currency = $request->input('currency');
         $Wallet->approvedBy = '';

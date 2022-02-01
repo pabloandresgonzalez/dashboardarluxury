@@ -596,7 +596,7 @@ class UserMembershipController extends Controller
         $Wallet->email = $email;
         $Wallet->value = $valor_membresia;// + $toPorcMemberschip;
         $Wallet->fee = $toPorcMemberschip;
-        $Wallet->type = "Retiro";
+        $Wallet->type = "Renovar";
         $Wallet->hash = 'Descuento para renovar '.bin2hex(random_bytes(20));
         $Wallet->currency = $typeHash;//$request->input('currency');
         $Wallet->approvedBy = $email;
