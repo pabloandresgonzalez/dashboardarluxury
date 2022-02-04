@@ -43,6 +43,13 @@
 
                   
                     <div class="card-body">
+
+                      <div>
+                        <h5> &nbsp;Billetera - {{ $Wallets->currency }}</h5>
+                        <h5> &nbsp;Hash - {{ $Wallets->hash }}</h5>
+                        <h5> &nbsp;Email usuario - {{ $Wallets->email }}</h5>
+                        <h5> &nbsp;Detalle - {{ $Wallets->detail }}</h5>
+                      </div>
                     
                       <form class="row g-3" action="{{ url('/wallet/'.$Wallets->id) }}" enctype="multipart/form-data" method="post">
                         @csrf
