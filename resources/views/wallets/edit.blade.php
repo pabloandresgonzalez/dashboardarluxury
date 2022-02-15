@@ -69,7 +69,6 @@
                                 		
                                 	<option value="{{ $Wallets->status }}">Selecione un estado</option>
       					                  <option value="exhange"  >En proceso</option>
-      					                  <option value="Rechazada"  >Rechazada</option>
       					                  <option value="Aprobada"  >Aprobada</option>
 					                       </select>
                             </div>

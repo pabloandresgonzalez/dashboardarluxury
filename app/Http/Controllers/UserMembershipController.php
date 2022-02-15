@@ -252,7 +252,48 @@ class UserMembershipController extends Controller
         $membership->typeHash = $request->input('typeHash');
         $membership->detail = $request->input('status');
         $membership->activedAt = $request->input('activedAt');
-        $membership->closedAt = $request->input('closedAt');
+
+        // Se crea una fecha sin sabados ni domingos  
+        $fechaInicial = date("Y-m-d H:i:s"); //obtenemos la fecha actual, solo para usar como referencia al usuario  
+    
+        $MaxDias = 30; //Cantidad de dias maximo, este sera util para crear el for  
+        
+        $Segundos = 0;
+          
+          //Creamos un for desde 0 hasta 3  
+          for ($i=0; $i<$MaxDias; $i++)  
+          {  
+            //Acumulamos la cantidad de segundos que tiene un dia en cada vuelta del for  
+            $Segundos = $Segundos + 86400;  
+              
+            //Obtenemos el dia de la fecha, aumentando el tiempo en N cantidad de dias, segun la vuelta en la que estemos  
+            $caduca = date("D",time()+$Segundos);  
+              
+            //Comparamos si estamos en sabado o domingo, si es asi restamos una vuelta al for, para brincarnos el o los dias...  
+            if ($caduca == "Sat")  
+            {  
+               $i--;  
+            }  
+            else if ($caduca == "Sun")  
+            {  
+               $i--;  
+            }  
+            else  
+            {  
+               //Si no es sabado o domingo, y el for termina y nos muestra la nueva fecha  
+              $FechaFinal = date("Y-m-d H:i:s",time()+$Segundos);  
+            }  
+          } 
+
+        //dd($FechaFinal);
+
+        $date= Carbon::now();
+        $date->addDay(30);
+
+        $now = $date->format('Y-m-d H:i:s');
+        $membership->closedAt = $FechaFinal;//$request->input('closedAt');
+
+        //$membership->closedAt = $request->input('closedAt');
         $membership->status = $request->input('status');
      
 
@@ -563,7 +604,48 @@ class UserMembershipController extends Controller
         $membership->typeHash = $typeHash;     
         $membership->detail = 'Activo';
         $membership->status = 'Activo';
-        $membership->closedAt = null;
+
+        // Se crea una fecha sin sabados ni domingos  
+        $fechaInicial = date("Y-m-d H:i:s"); //obtenemos la fecha actual, solo para usar como referencia al usuario  
+    
+        $MaxDias = 30; //Cantidad de dias maximo, este sera util para crear el for  
+        
+        $Segundos = 0;
+          
+          //Creamos un for desde 0 hasta 3  
+          for ($i=0; $i<$MaxDias; $i++)  
+          {  
+            //Acumulamos la cantidad de segundos que tiene un dia en cada vuelta del for  
+            $Segundos = $Segundos + 86400;  
+              
+            //Obtenemos el dia de la fecha, aumentando el tiempo en N cantidad de dias, segun la vuelta en la que estemos  
+            $caduca = date("D",time()+$Segundos);  
+              
+            //Comparamos si estamos en sabado o domingo, si es asi restamos una vuelta al for, para brincarnos el o los dias...  
+            if ($caduca == "Sat")  
+            {  
+               $i--;  
+            }  
+            else if ($caduca == "Sun")  
+            {  
+               $i--;  
+            }  
+            else  
+            {  
+               //Si no es sabado o domingo, y el for termina y nos muestra la nueva fecha  
+              $FechaFinal = date("Y-m-d H:i:s",time()+$Segundos);  
+            }  
+          } 
+
+        //dd($FechaFinal);
+
+        $date= Carbon::now();
+        $date->addDay(30);
+
+        $now = $date->format('Y-m-d H:i:s');
+        $membership->closedAt = $FechaFinal;//$request->input('closedAt');
+
+        //$membership->closedAt = null;
         $fecha_actual = date("Y-m-d H:i:s");
         $membership->activedAt = $fecha_actual;
 

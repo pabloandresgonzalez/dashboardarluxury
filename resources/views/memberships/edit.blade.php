@@ -82,17 +82,6 @@
         </div>
         
         <div class="col-md-6">
-          <?php
-
-        if ($memberships->status === 'Pendiente') {
-          echo '
-            <small>Fecha de activación</small>
-          ';
-        } else {
-          
-        }     
-        
-        ?>           
           <div class="input-group input-group-alternative mb-3">
             <div class="input-group-prepend">
               <span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
@@ -100,24 +89,7 @@
             <input class="form-control" placeholder="Fecha activación, ej. <?php echo $fecha_actual; ?>" type="text" name="activedAt" value="<?php echo $fecha_actual; ?>" autocomplete="activedAt" autofocus>             
           </div>
         </div>
-        <div class="col-md-6">  
-          <?php
-          if ($memberships->status === 'Pendiente') {
-            echo '
-              <small>La fecha de cierre la asigna el sistema, ingrese una fecha solo si es un caso especial.</small>
-            ';
-          } else {
-            
-          }
-          ?>                 
-          <div class="input-group input-group-alternative mb-3">
-            <div class="input-group-prepend">             
-              <span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
-            </div>                    
-            <input class="form-control" placeholder="Fecha de cierre, ej. <?php echo $fecha_actual; ?>" type="text" name="closedAt" value="" autocomplete="closedAt" autofocus>             
-          </div>
-
-        </div>        
+       
         <div class="col-md-6">
           <div class="input-group input-group-alternative mb-3">
             <div class="input-group-prepend">
