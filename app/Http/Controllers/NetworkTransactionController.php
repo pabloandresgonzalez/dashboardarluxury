@@ -26,7 +26,7 @@ class NetworkTransactionController extends Controller
         $id = $request->id;
         $networktransactions = NetworkTransaction::where('userMembership', $id)
                                 ->where('type', 'Daily')
-                                ->orderBy('id', 'desc')->paginate(50);
+                                ->orderBy('id', 'desc')->paginate(100);
 
         // Total comission del usuario 
         $totalCommission = $this->totalCommission();

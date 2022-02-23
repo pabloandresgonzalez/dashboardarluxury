@@ -132,7 +132,7 @@ class MembresiaController extends Controller
         $totalusers = $totalusers = $this->countUsers();
 
         return redirect('membresias')->with([
-                'message' => 'La membresía '.$membresia->name.' fue creada correctamente!',
+                'message' => 'La tarjeta de membresía '.$membresia->name.' fue creada correctamente!',
                 'totalusers' => $totalusers,
                 'totalCommission' => $totalCommission
         ]);
@@ -216,7 +216,7 @@ class MembresiaController extends Controller
       $totalusers = $totalusers = $this->countUsers();
 
       return redirect('membresias')->with([
-              'message' => 'La membresía '.$membresia->name.' fue actualizada correctamente!',
+              'message' => 'La tarjeta de membresía '.$membresia->name.' fue actualizada correctamente!',
               'totalusers' => $totalusers,
               'totalCommission' => $totalCommission
       ]);
