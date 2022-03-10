@@ -133,11 +133,8 @@
 
   <br>
         <hr class="my-3">
-           <h5 style="text-align: center;"> &nbsp; De la misma forma que pagues tu paquete, así mismo será tu pago. Ejemplo: si compras con BTC tus pagos serán en BTC<br><h5/>
+           <h5 style="text-align: center;"> &nbsp; De la misma forma que pagues tu paquete, así mismo será tu pago. Ejemplo: si compras con BTC tus pagos serán en BTC<h5/>
 
-        <main class="py-4">
-            @yield('content')
-        </main>
 
 
 @endsection

@@ -41,6 +41,9 @@ class WalletTransactionsController extends Controller
         // Total comission del usuario 
         $totalCommission = $this->totalCommission();
 
+        // Total produccion del usuario 
+        $totalProduction = $this->totalProduction();
+
         // Total usuarios
         $totalusers = $totalusers = $this->countUsers();
 
@@ -48,7 +51,8 @@ class WalletTransactionsController extends Controller
         return view('wallets.indexAdmin', [
         'Wallets' => $Wallets,
         'totalusers' => $totalusers,
-        'totalCommission' => $totalCommission
+        'totalCommission' => $totalCommission,
+        'totalProduction' => $totalProduction
         ]);
 
 
@@ -103,6 +107,9 @@ class WalletTransactionsController extends Controller
       // Total comission del usuario 
       $totalCommission = $this->totalCommission();
 
+      // Total produccion del usuario 
+      $totalProduction = $this->totalProduction();
+
       // Total usuarios
       $totalusers = $totalusers = $this->countUsers();
 
@@ -112,7 +119,8 @@ class WalletTransactionsController extends Controller
           'user' => $user,
           'Wallets' => $Wallets,
           'totalusers' => $totalusers,
-          'totalCommission' => $totalCommission
+          'totalCommission' => $totalCommission,
+          'totalProduction' => $totalProduction
 
         ]);             
 
@@ -140,9 +148,25 @@ class WalletTransactionsController extends Controller
       // Total usuarios
       $totalCommission = DB::table("network_transactions")
       ->where('user', $id)
+      ->where('type', 'Activation')
       ->get()->sum("value");
 
       return $totalCommission;
+    }
+
+    private function totalProduction()
+    {
+      // Conseguir usuario identificado
+      $user = \Auth::user();
+      $id = $user->id;
+
+      // Total usuarios
+      $totalProduction = DB::table("network_transactions")
+      ->where('user', $id)
+      ->where('type', 'Daily')
+      ->get()->sum("value");
+
+      return $totalProduction;
     }
 
     public function store(Request $request)
@@ -239,13 +263,17 @@ class WalletTransactionsController extends Controller
         // Total comission del usuario 
         $totalCommission = $this->totalCommission();
 
+        // Total produccion del usuario 
+        $totalProduction = $this->totalProduction();
+
         // Total usuarios
         $totalusers = $totalusers = $this->countUsers();
 
         return redirect()->route('home')->with([
                     'message' => '¡' . $name .' ' . '¡solicitud de traslado enviada correctamente!',
                     'totalusers' => $totalusers,
-                    'totalCommission' => $totalCommission
+                    'totalCommission' => $totalCommission,
+                    'totalProduction' => $totalProduction
         ]);
 
         }
@@ -290,13 +318,17 @@ class WalletTransactionsController extends Controller
         // Total comission del usuario 
         $totalCommission = $this->totalCommission();
 
+        // Total produccion del usuario 
+        $totalProduction = $this->totalProduction();
+
         // Total usuarios
         $totalusers = $totalusers = $this->countUsers();
 
         return view('wallets.edit', [
           'Wallets' => $Wallets,
           'totalusers' => $totalusers,
-          'totalCommission' => $totalCommission
+          'totalCommission' => $totalCommission,
+          'totalProduction' => $totalProduction
       ]);
 
     }
@@ -334,15 +366,22 @@ class WalletTransactionsController extends Controller
         $Wallet = wallet_transactions::findOrFail($id);
         $Wallet->user = $user;
         $email = $email;
-        $Wallet->value = $value;
-        $Wallet->fee = $fee;
+
+        if ($request->input('status') === 'Rechazado') {
+          $Wallet->value = 0;
+          $Wallet->fee = 0;
+        } else {
+          $Wallet->value = $value;
+          $Wallet->fee = $fee;
+        } 
+
         $Wallet->type = $type;
         $Wallet->hash = $request->input('hash');
         $Wallet->currency = $currency;
         $Wallet->approvedBy = $iduser;
         $Wallet->inOut = 0;
         $Wallet->status = $request->input('status');     
-        $Wallet->detail = $detail;
+        $Wallet->detail = $detail . ', ' . $request->input('hash');
        
 
         $Wallet->save();// INSERT BD
@@ -360,13 +399,17 @@ class WalletTransactionsController extends Controller
         // Total comission del usuario 
         $totalCommission = $this->totalCommission();
 
+        // Total produccion del usuario 
+        $totalProduction = $this->totalProduction();
+
         // Total usuarios
         $totalusers = $totalusers = $this->countUsers();
 
         return redirect()->route('home')->with([
                     'message' => 'Solicitud de traslado editada correctamente!',
                     'totalusers' => $totalusers,
-                    'totalCommission' => $totalCommission
+                    'totalCommission' => $totalCommission,
+                    'totalProduction' => $totalProduction
         ]);
 
     }
@@ -389,6 +432,9 @@ class WalletTransactionsController extends Controller
       // Total comission del usuario 
       $totalCommission = $this->totalCommission();
 
+      // Total produccion del usuario 
+      $totalProduction = $this->totalProduction();
+
       // Total usuarios
       $totalusers = $totalusers = $this->countUsers();
 
@@ -396,7 +442,8 @@ class WalletTransactionsController extends Controller
           'users' => $users,
           'fecha_actual' => $fecha_actual,
           'totalusers' => $totalusers,
-          'totalCommission' => $totalCommission
+          'totalCommission' => $totalCommission,
+          'totalProduction' => $totalProduction
       ]);
 
     }
@@ -412,6 +459,9 @@ class WalletTransactionsController extends Controller
 
       // Total comission del usuario 
       $totalCommission = $this->totalCommission();
+
+      // Total produccion del usuario 
+      $totalProduction = $this->totalProduction();
 
       // Total usuarios
       $totalusers = $totalusers = $this->countUsers();
@@ -470,7 +520,8 @@ class WalletTransactionsController extends Controller
         return redirect()->route('home')->with([
                     'message' => 'Asignación de saldo enviada correctamente!',
                     'totalusers' => $totalusers,
-                    'totalCommission' => $totalCommission
+                    'totalCommission' => $totalCommission,
+                    'totalProduction' => $totalProduction
         ]);
 
 

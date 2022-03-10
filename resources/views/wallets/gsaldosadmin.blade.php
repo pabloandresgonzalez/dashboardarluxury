@@ -113,31 +113,22 @@
 
                         <div class="col-md-4">
                           <button type="submit" class="btn btn-outline-default" ><i class="ni ni-satisfied"></i> Hacer traslado</button>
-                        </div>
-
-                         
+                        </div>                         
                     </div>
-
-                  <div class="col-md-4">
-                                
+                           
 
                       </form>
-
                     
                     </div>
                   </div> 
                 </div>
-
-
               </div>
             </div>
-        </div>    
+          </div>
+        </div>   
       </div>
+    </div>
 
-
-
-
-
-        <hr class="my-3"> 
+  <hr class="my-3"> 
 
 @endsection

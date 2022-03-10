@@ -235,6 +235,7 @@
                   </td>                            
                  </tr>
                  @endforeach
+                 </tbody>
             </table>
 
                     
@@ -242,16 +243,15 @@
                     <div>
               <a href="{{ url('users/export-excel/movimientos') }}" class="btn btn-outline-secondary"><i class="ni ni-single-copy-04"></i> Exportar</a>              
             </div>                  
-                  </div> 
-                </div>
-                
 
-            {{ $Wallets->links() }}
-
-            
- 
-
-        <hr class="my-3"> 
+                {{ $Wallets->links() }}  
+              </div> 
+            </div>  
+          </div>  
+        </div>  
+      </div>    
+    </div>   
+    <hr class="my-3"> 
 
 @endsection
 

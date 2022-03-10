@@ -29,8 +29,12 @@
       </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="https://wa.me/573143625063?text=%20Hola! %20quiero%20ponerme%20en%20contacto%20con%20en%20AR_LUXURY,%20Gracias">
-        <i class="ni ni-chat-round text-primary"></i> Contacto
+      <a class="nav-link" href="{{ route('contacto.index') }}"><i class="ni ni-email-83 text-green"></i> Contacto
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="{{ route('guia.index') }}">
+        <i class="ni ni-hat-3 text-danger"></i> Centro de apoyo
       </a>
     </li>
   </ul>
@@ -57,8 +61,13 @@
       </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="https://wa.me/573143625063?text=%20Hola! %20quiero%20ponerme%20en%20contacto%20con%20en%20AR_LUXURY,%20Gracias">
+      <a class="nav-link" href="{{ route('contacto.index') }}">
         <i class="ni ni-chat-round text-primary"></i> Contacto
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="{{ route('guia.index') }}">
+        <i class="ni ni-hat-3 text-danger"></i> Centro de apoyo
       </a>
     </li>
   </ul>

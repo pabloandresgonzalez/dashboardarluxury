@@ -32,7 +32,7 @@
 
       <div class="card pub-prestamo">
         <div class="card-header">
-          <i class="ni ni-money-coins"></i> &nbsp;Detalle de pagos por días</h3>
+          <i class="ni ni-money-coins"></i> &nbsp;Detalle pagos de producción </h3>
         </div>
        
           <div class="table-responsive">
@@ -80,16 +80,10 @@
             </table>
             <br>
 
-            
-
-     
-            
-    </div>
-  </div> 
-
-    <hr>
-
+        </div>
+      </div>
     </div>
   </div>
 </div>
+<hr class="my-3">
 @endsection

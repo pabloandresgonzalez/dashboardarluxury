@@ -23,13 +23,16 @@ class MembresiaController extends Controller
       // Total comission del usuario 
       $totalCommission = $this->totalCommission();
 
+      // Total produccion del usuario 
+      $totalProduction = $this->totalProduction();
+
       // Total usuarios
       $totalusers = $totalusers = $this->countUsers();
 
       $membresias = Membresia::orderBy('created_at', 'asc')->paginate(20);
       $data = ['membresias' => $membresias];
 
-      return view('membresias.index', compact('membresias', 'totalusers', 'totalCommission'));
+      return view('membresias.index', compact('membresias', 'totalusers', 'totalCommission', 'totalProduction'));
 
     }
 
@@ -38,10 +41,13 @@ class MembresiaController extends Controller
       // Total comission del usuario 
       $totalCommission = $this->totalCommission();
 
+      // Total produccion del usuario 
+      $totalProduction = $this->totalProduction();
+
       // Total usuarios
       $totalusers = $totalusers = $this->countUsers();
 
-      return view('membresias.create', compact('totalusers', 'totalCommission'));
+      return view('membresias.create', compact('totalusers', 'totalCommission', 'totalProduction'));
 
     }
 
@@ -67,9 +73,25 @@ class MembresiaController extends Controller
       // Total usuarios
       $totalCommission = DB::table("network_transactions")
       ->where('user', $id)
+      ->where('type', 'Activation')
       ->get()->sum("value");
 
       return $totalCommission;
+    }
+
+    private function totalProduction()
+    {
+      // Conseguir usuario identificado
+      $user = \Auth::user();
+      $id = $user->id;
+
+      // Total usuarios
+      $totalProduction = DB::table("network_transactions")
+      ->where('user', $id)
+      ->where('type', 'Daily')
+      ->get()->sum("value");
+
+      return $totalProduction;
     }
 
     public function perfomrValidationCreate(Request $request)
@@ -128,13 +150,17 @@ class MembresiaController extends Controller
         // Total comission del usuario 
         $totalCommission = $this->totalCommission();
 
+        // Total produccion del usuario 
+        $totalProduction = $this->totalProduction();
+
         // Total usuarios
         $totalusers = $totalusers = $this->countUsers();
 
         return redirect('membresias')->with([
                 'message' => 'La tarjeta de membresía '.$membresia->name.' fue creada correctamente!',
                 'totalusers' => $totalusers,
-                'totalCommission' => $totalCommission
+                'totalCommission' => $totalCommission,
+                'totalProduction' => $totalProduction
         ]);
 
     }
@@ -148,10 +174,13 @@ class MembresiaController extends Controller
       // Total comission del usuario 
       $totalCommission = $this->totalCommission();
 
+      // Total produccion del usuario 
+      $totalProduction = $this->totalProduction();
+
       // Total usuarios
       $totalusers = $totalusers = $this->countUsers();
 
-      return view('membresias.indexuser', compact('membresias', 'totalusers', 'totalCommission'));
+      return view('membresias.indexuser', compact('membresias', 'totalusers', 'totalCommission', 'totalProduction'));
 
     }
 
@@ -163,13 +192,17 @@ class MembresiaController extends Controller
       // Total comission del usuario 
       $totalCommission = $this->totalCommission();
 
+      // Total produccion del usuario 
+      $totalProduction = $this->totalProduction();
+
       // Total usuarios
       $totalusers = $totalusers = $this->countUsers();
 
       return view('membresias.edit', [
         'membresias' => $membresias,
         'totalusers' => $totalusers,
-        'totalCommission' => $totalCommission
+        'totalCommission' => $totalCommission,
+        'totalProduction' => $totalProduction
       ]);
 
   }
@@ -212,13 +245,17 @@ class MembresiaController extends Controller
       // Total comission del usuario 
       $totalCommission = $this->totalCommission();
 
+      // Total produccion del usuario 
+      $totalProduction = $this->totalProduction();
+
       // Total usuarios
       $totalusers = $totalusers = $this->countUsers();
 
       return redirect('membresias')->with([
               'message' => 'La tarjeta de membresía '.$membresia->name.' fue actualizada correctamente!',
               'totalusers' => $totalusers,
-              'totalCommission' => $totalCommission
+              'totalCommission' => $totalCommission,
+              'totalProduction' => $totalProduction
       ]);
 
     }
@@ -228,10 +265,13 @@ class MembresiaController extends Controller
       // Total comission del usuario 
       $totalCommission = $this->totalCommission();
 
+      // Total produccion del usuario 
+      $totalProduction = $this->totalProduction();
+
       // Total usuarios
       $totalusers = $totalusers = $this->countUsers();
 
-        return view('memberchip.index', compact('totalusers', 'totalCommission'));        
+        return view('memberchip.index', compact('totalusers', 'totalCommission', 'totalProduction'));        
 
     }
 
@@ -243,13 +283,17 @@ class MembresiaController extends Controller
       // Total comission del usuario 
       $totalCommission = $this->totalCommission();
 
+      // Total produccion del usuario 
+      $totalProduction = $this->totalProduction();
+
       // Total usuarios
       $totalusers = $totalusers = $this->countUsers();
 
       return view('membresias.detail', [
           'membresia' => $membresia,
           'totalusers' => $totalusers,
-          'totalCommission' => $totalCommission
+          'totalCommission' => $totalCommission,
+          'totalProduction' => $totalProduction
       ]);
     }
 

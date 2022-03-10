@@ -278,20 +278,20 @@
                   <td>
                     {{ $Wallet->currency }}
                   </td>                            
-                 </tr>
+                 </tr>                 
                  @endforeach
+                 </tbody>
             </table>
 
                     
                     </div>
                   </div> 
-                </div>
-                <hr style="width:50%;" />
+                </div> 
+              </div>
+                    </div>
+                  </div> 
+                  {{ $Wallets->links() }}
+                </div> 
 
-            {{ $Wallets->links() }}
-
-
-
-        <hr class="my-3"> 
-
+                 <hr class="my-3">           
 @endsection

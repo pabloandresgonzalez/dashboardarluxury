@@ -55,9 +55,12 @@
               <li class="list-inline-item"><h4>{{ $membresia->detail }}</h4></li>
             </ul>
                      
+          </div>
+        </div>
+      </div>
     </div>
-     </div>
   </div>
+</div>
 
         <hr class="my-3">
 @endsection

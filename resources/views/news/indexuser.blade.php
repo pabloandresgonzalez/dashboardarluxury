@@ -23,9 +23,6 @@
           @foreach($news as $new)
 
 
-
-
-      
           <div class="row mt-5">
             <div class="col-xl-8 mb-5 mb-xl-0">
                 <div class="card shadow">
@@ -83,17 +80,9 @@
           @endforeach
 
 
-          </div>
-
-
-        </div>
-
-        <br>
+  </div>
+</div>
         <hr class="my-3">
-           
 
-        <main class="py-4">
-            @yield('content')
-        </main>
 
 @endsection

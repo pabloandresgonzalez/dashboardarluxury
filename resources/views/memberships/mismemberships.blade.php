@@ -124,6 +124,7 @@
       </div>
     </div>
   </div>
+  <hr class="my-3">
 @endsection
 
 

@@ -35,7 +35,7 @@
 
 
 
-            <div class="col-xl-8 order-xl-2 mb-5 mb-xl-0">
+            <div class="col-xl-10 order-xl-2 mb-5 mb-xl-0">
                 <div class="card pub-prestamo">
                   <div class="card-header">
                     <h3 class="mb-0"><i class="ni ni-credit-card"></i> &nbsp;Cambiar estado del traslado - {{ $Wallets->id }}</h3>
@@ -69,6 +69,7 @@
                                 		
                                 	<option value="{{ $Wallets->status }}">Selecione un estado</option>
       					                  <option value="exhange"  >En proceso</option>
+                                  <option value="Rechazado"  >Rechazado</option>
       					                  <option value="Aprobada"  >Aprobada</option>
 					                       </select>
                             </div>
@@ -78,7 +79,7 @@
                                   <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="ni ni-key-25"></i></span>
                                   </div>                        
-                                  <input class="form-control" placeholder="hash" type="text" name="hash" value="" autocomplete="hash" autofocus>             
+                                  <input class="form-control" placeholder="hash de aprobación o motivo del rechazo" type="text" name="hash" value="" autocomplete="hash" autofocus>             
                                 </div>
                               </div>
 

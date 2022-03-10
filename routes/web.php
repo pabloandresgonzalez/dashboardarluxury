@@ -67,7 +67,9 @@ Route::get('traslado', [App\Http\Controllers\admin\UserController::class, 'index
 Route::get('/wallet', [App\Http\Controllers\WalletTransactionsController::class, 'index'])->name('wallet');
 Route::post('/wallet', [App\Http\Controllers\WalletTransactionsController::class, 'store']);
 
-
+Route::get('/contacto', [App\Http\Controllers\ContactoController::class, 'index'])->name('contacto.index');
+Route::post('/contacto', [App\Http\Controllers\ContactoController::class, 'store'])->name('contacto.store');
+Route::get('/guia', [App\Http\Controllers\GuiaController::class, 'index'])->name('guia.index');
 
 
 Route::middleware(['auth', 'admin'])->group(function () {
