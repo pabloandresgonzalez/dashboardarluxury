@@ -104,17 +104,18 @@
             <i class="ni ni-bell-55"></i>
           </a>
           <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right" aria-labelledby="navbar-default_dropdown_1">
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Something else here</a>
+            <a class="dropdown-item" href="#">Notificaciones</a>
           </div>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <div class="media align-items-center">
               <span class="avatar avatar-sm rounded-circle">
-                 @include('includes.avatar')
+                @if(auth()->user()->photo)
+                  @include('includes.avatar')
+                @else                    
+                  <img src="{{ asset('img/brand/settings3.PNG') }}"/>                    
+                @endif
               </span>
             </div>
           </a>
@@ -167,10 +168,22 @@
         <!-- User -->
         <ul class="navbar-nav align-items-center d-none d-md-flex">
           <li class="nav-item dropdown">
+            <a class="nav-link nav-link-icon" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="ni ni-bell-55"></i>
+            </a>
+            <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right" aria-labelledby="navbar-default_dropdown_1">
+              <a class="dropdown-item" href="#">Notificaciones</a>
+            </div>
+          </li>
+          <li class="nav-item dropdown">
             <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <div class="media align-items-center">
-                <span class="avatar avatar-sm rounded-circle">
-                  @include('includes.avatar')
+                <span class="avatar avatar-sm rounded-circle">                  
+                  @if(auth()->user()->photo)
+                    @include('includes.avatar')
+                  @else                    
+                    <img src="{{ asset('img/brand/settings3.PNG') }}"/>                    
+                  @endif
                 </span>
                 <div class="media-body ml-2 d-none d-lg-block">
                   <span class="mb-0 text-sm  font-weight-bold">{{ auth()->user()->name }}</span>
@@ -215,8 +228,7 @@
                   <div class="row">
                     <div class="col">
                       <h5 class="card-title text-uppercase text-muted mb-0">My Users</h5>
-                      <span class="h2 font-weight-bold mb-0"><?php echo $totalusers;  ?></span>
-                       
+                      <span class="h2 font-weight-bold mb-0"><?php echo $totalusers;  ?></span>                       
                     </div>
                     <div class="col-auto">
                       <div class="icon icon-shape bg-primary text-white rounded-circle shadow">
@@ -236,18 +248,81 @@
                 <div class="card-body">
                   <div class="row">
                     <div class="col">
-                      <h5 class="card-title text-uppercase text-muted mb-0">Historical commissions</h5>
-                      <span class="h2 font-weight-bold mb-0"><?php echo "$ " . $totalCommission;  ?></span>
+                      <h5 class="card-title text-uppercase text-muted mb-0">Histórico de producción</h5>
+                      <span class="h2 font-weight-bold mb-0"><?php echo "$ " . $totalProduction;  ?></span>
                     </div>
                     <div class="col-auto">
                       <div class="icon icon-shape bg-yellow text-white rounded-circle shadow">
-                        <i class="fas fa-coins"></i>
+                        <i class="ni ni-calendar-grid-58"></i>
                       </div>
                     </div>
                   </div>
                   <p class="mt-3 mb-0 text-muted text-sm">
-                    <span class="text-warning mr-2"><i class="fas fa-dollar-sign"></i> <?php echo $totalProduction;  ?></span>
-                    <span class="text-nowrap">Historical production</span>
+                    <span class="text-success mr-2"><i class="ni ni-calendar-grid-58 text-info"></i></span>
+                    <span class="text-nowrap"> Durante su permanencia </span>
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-3 col-lg-6">
+              <div class="card card-stats mb-4 mb-xl-0">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col">
+                      <h5 class="card-title text-uppercase text-muted mb-0">Comisión Venta directa y renovación</h5>
+                      <span class="h2 font-weight-bold mb-0"><?php echo "$ " . $totalCommission;  ?></span>                      
+                    </div>
+                    <div class="col-auto">
+                      <div class="icon icon-shape bg-info text-white rounded-circle shadow">
+                        <i class="ni ni-chart-bar-32"></i>
+                      </div>
+                    </div>
+                  </div>
+                  <p class="mt-3 mb-0 text-muted text-sm">
+                    <span class="text-warning mr-2"><i class="ni ni-chart-bar-32 text-yellow"></i></span>
+                    <span class="text-nowrap">Ganancias mes en curso </span>
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-3 col-lg-6">
+              <div class="card card-stats mb-4 mb-xl-0">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col">
+                      <h5 class="card-title text-uppercase text-muted mb-0">Balance</h5>
+                      <span class="h2 font-weight-bold mb-0"><?php echo "$ " . $totalProductionMes;  ?></span>                      
+                    </div>
+                    <div class="col-auto">
+                      <div class="icon icon-shape bg-green text-white rounded-circle shadow">
+                        <i class="ni ni-box-2"></i>
+                      </div>
+                    </div>
+                  </div>
+                  <p class="mt-3 mb-0 text-muted text-sm">
+                    <span class="text-warning mr-2"><i class="ni ni-box-2 text-danger"></i></span>
+                    <span class="text-nowrap">Producción mes en curso</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-3 col-lg-6">
+              <div class="card card-stats mb-4 mb-xl-0">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col">
+                      <h5 class="card-title text-uppercase text-muted mb-0">Total Producción</h5>
+                      <span class="h2 font-weight-bold mb-0"><?php echo "$ " . $totalProductionMes + $totalCommission;  ?></span>                      
+                    </div>
+                    <div class="col-auto">
+                      <div class="icon icon-shape bg-yellow text-white rounded-circle shadow">
+                        <i class="ni ni-building"></i>
+                      </div>
+                    </div>
+                  </div>
+                  <p class="mt-3 mb-0 text-muted text-sm">
+                    <span class="text-warning mr-2"><i class="ni ni-building text-blue"></i></span>
+                    <span class="text-nowrap">Producción + Comisiones</span>
                   </p>
                 </div>
               </div>
@@ -281,22 +356,8 @@
                     </div>
                   </div>
                   <p class="mt-3 mb-0 text-muted text-sm">
-                    <span class="text-success mr-2">
-                      <?php
-                        if ($result) {
-                          $url = ($result);
-                                $data = json_decode($url, true);
-                          if (isset($data['balance'])) {
-                            
-                              $balancecho = $data['balance']; 
-                              echo "$ " . $balancecho;
-                          }else {
-                            echo '$ ';
-                          } 
-                        } 
-                      ?>
-                    </span>
-                    <span class="text-nowrap">Balance</span>
+                    <span class="text-success mr-2"></span>
+                    <span class="text-nowrap"></span>
                   </p>
                 </div>
               </div>

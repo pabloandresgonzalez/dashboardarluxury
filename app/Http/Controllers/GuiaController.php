@@ -21,16 +21,19 @@ class GuiaController extends Controller
 		$user = \Auth::user();
 		$id = $user->id;
 
-    	// Total comission del usuario 
-		$totalCommission = $this->totalCommission();
+    // Total comission del usuario mes en curso
+    $totalCommission = $this->totalCommission();
 
-		// Total produccion del usuario 
-      	$totalProduction = $this->totalProduction();
+    // Hitorial de produccion 
+    $totalProduction = $this->totalProduction();
+
+    // Total produccion del usuario mes en curso
+    $totalProductionMes = $this->totalProductionMes();
 
 		// Total usuarios
 		$totalusers = $totalusers = $this->countUsers();
 
-		return view('guias.index', compact('user', 'totalusers', 'totalCommission', 'totalProduction'));
+		return view('guias.index', compact('user', 'totalusers', 'totalCommission', 'totalProduction', 'totalProductionMes'));
 	}
 
 	private function countUsers()
@@ -48,17 +51,27 @@ class GuiaController extends Controller
 
 	private function totalCommission()
 	{
-      // Conseguir usuario identificado
-		$user = \Auth::user();
-		$id = $user->id;
+    // Conseguir usuario identificado
+      $user = \Auth::user();
+      $id = $user->id;
 
-      // Total usuarios
-		$totalCommission = DB::table("network_transactions")
-		->where('user', $id)
-		->where('type', 'Activation')
-		->get()->sum("value");
+      /*// Total, de comisión por activación de membresías de usuarios referidos 
+      $totalCommission = DB::table("network_transactions")
+      ->where('user', $id)
+      ->where('type', 'Activation')      
+      ->get()->sum("value");*/
 
-		return $totalCommission;
+      $totalCommission1 = DB::select("SELECT * FROM network_transactions 
+        WHERE YEAR(created_at) = YEAR(CURRENT_DATE()) 
+        AND MONTH(created_at)  = MONTH(CURRENT_DATE())
+        AND type = 'Activation'
+        AND status = 'Activo'
+        AND user = ?", [$id]);
+
+      $valores = array_column($totalCommission1, 'value');
+      $totalCommission = array_sum($valores);
+
+      return $totalCommission;
 	}
 
 	private function totalProduction()
@@ -74,5 +87,24 @@ class GuiaController extends Controller
       ->get()->sum("value");
 
       return $totalProduction;
+    }
+
+    private function totalProductionMes()
+    {
+      // Conseguir usuario identificado
+      $user = \Auth::user();
+      $id = $user->id;
+
+      $totalProductionMes1 = DB::select("SELECT * FROM network_transactions 
+        WHERE YEAR(created_at) = YEAR(CURRENT_DATE()) 
+        AND MONTH(created_at)  = MONTH(CURRENT_DATE())
+        AND type = 'Daily'
+        AND status = 'Activo'
+        AND user = ?", [$id]);
+
+      $valores = array_column($totalProductionMes1, 'value');
+      $totalProductionMes = array_sum($valores);
+
+      return $totalProductionMes;
     }
 }

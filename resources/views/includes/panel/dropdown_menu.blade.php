@@ -6,7 +6,7 @@
       <i class="ni ni-single-02"></i>
       <span>Mi perfil</span>
     </a>
-    <a href="#" class="dropdown-item">
+    <a href="/user/indexperfil/configuracion" class="dropdown-item">
       <i class="ni ni-settings-gear-65"></i>
       <span>Configuración</span>
     </a>

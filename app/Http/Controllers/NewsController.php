@@ -21,79 +21,114 @@ class NewsController extends Controller
 
   public function index()
   {
-    // Total comission del usuario 
-      $totalCommission = $this->totalCommission();
+    // Total comission del usuario mes en curso
+    $totalCommission = $this->totalCommission();
 
-      // Total produccion del usuario 
-      $totalProduction = $this->totalProduction();
+    // Hitorial de produccion 
+    $totalProduction = $this->totalProduction();
 
-      // Total usuarios
-      $totalusers = $totalusers = $this->countUsers();
+    // Total produccion del usuario mes en curso
+    $totalProductionMes = $this->totalProductionMes();
+
+    // Total usuarios
+    $totalusers = $totalusers = $this->countUsers();
 
     $news = News::orderBy('created_at', 'Desc')->paginate(30);
     $data = ['news' => $news];
 
-    return view('news.index', compact('news', 'totalusers', 'totalCommission', 'totalProduction'));
+    return view('news.index', compact('news', 'totalusers', 'totalCommission', 'totalProduction', 'totalProductionMes'));
 
   }
 
   public function create()
   {   
-    // Total comission del usuario 
+    // Total comission del usuario mes en curso
     $totalCommission = $this->totalCommission();
 
-    // Total produccion del usuario 
+    // Hitorial de produccion 
     $totalProduction = $this->totalProduction();
+
+    // Total produccion del usuario mes en curso
+    $totalProductionMes = $this->totalProductionMes();
 
     // Total usuarios
     $totalusers = $totalusers = $this->countUsers();
 
-    return view('news.create', compact('totalusers', 'totalCommission', 'totalProduction'));
+    return view('news.create', compact('totalusers', 'totalCommission', 'totalProduction', 'totalProductionMes'));
 
   }
 
   private function countUsers()
-    {
-      // Conseguir usuario identificado
-      $user = \Auth::user();
-      $id = $user->id;
+  {
+    // Conseguir usuario identificado
+    $user = \Auth::user();
+    $id = $user->id;
 
-      // Total usuarios
-      $totalusers = DB::table('users')
-            ->where('ownerId', $id)->count();
+    // Total usuarios
+    $totalusers = DB::table('users')
+          ->where('ownerId', $id)->count();
 
-      return $totalusers;
-    }
+    return $totalusers;
+  }
 
-    private function totalCommission()
-    {
-      // Conseguir usuario identificado
-      $user = \Auth::user();
-      $id = $user->id;
+  private function totalCommission()
+  {
+    // Conseguir usuario identificado
+    $user = \Auth::user();
+    $id = $user->id;
 
-      // Total usuarios
-      $totalCommission = DB::table("network_transactions")
-      ->where('user', $id)
-      ->where('type', 'Activation')
-      ->get()->sum("value");
+    /*// Total, de comisión por activación de membresías de usuarios referidos 
+    $totalCommission = DB::table("network_transactions")
+    ->where('user', $id)
+    ->where('type', 'Activation')      
+    ->get()->sum("value");*/
 
-      return $totalCommission;
-    }
+    $totalCommission1 = DB::select("SELECT * FROM network_transactions 
+      WHERE YEAR(created_at) = YEAR(CURRENT_DATE()) 
+      AND MONTH(created_at)  = MONTH(CURRENT_DATE())
+      AND type = 'Activation'
+      AND status = 'Activo'
+      AND user = ?", [$id]);
 
-    private function totalProduction()
-    {
-      // Conseguir usuario identificado
-      $user = \Auth::user();
-      $id = $user->id;
+    $valores = array_column($totalCommission1, 'value');
+    $totalCommission = array_sum($valores);
 
-      // Total usuarios
-      $totalProduction = DB::table("network_transactions")
-      ->where('user', $id)
-      ->where('type', 'Daily')
-      ->get()->sum("value");
+    return $totalCommission;
+  }
 
-      return $totalProduction;
-    }
+  private function totalProduction()
+  {
+    // Conseguir usuario identificado
+    $user = \Auth::user();
+    $id = $user->id;
+
+    // Total usuarios
+    $totalProduction = DB::table("network_transactions")
+    ->where('user', $id)
+    ->where('type', 'Daily')
+    ->get()->sum("value");
+
+    return $totalProduction;
+  }
+
+  private function totalProductionMes()
+  {
+    // Conseguir usuario identificado
+    $user = \Auth::user();
+    $id = $user->id;
+
+    $totalProductionMes1 = DB::select("SELECT * FROM network_transactions 
+      WHERE YEAR(created_at) = YEAR(CURRENT_DATE()) 
+      AND MONTH(created_at)  = MONTH(CURRENT_DATE())
+      AND type = 'Daily'
+      AND status = 'Activo'
+      AND user = ?", [$id]);
+
+    $valores = array_column($totalProductionMes1, 'value');
+    $totalProductionMes = array_sum($valores);
+
+    return $totalProductionMes;
+  }
 
   public function perfomrValidationCreate(Request $request)
   {
@@ -125,8 +160,14 @@ class NewsController extends Controller
 
     $this->perfomrValidationCreate($request);
 
-    // Total comission del usuario 
+    // Total comission del usuario mes en curso
     $totalCommission = $this->totalCommission();
+
+    // Hitorial de produccion 
+    $totalProduction = $this->totalProduction();
+
+    // Total produccion del usuario mes en curso
+    $totalProductionMes = $this->totalProductionMes();
 
     // Total usuarios
     $totalusers = $totalusers = $this->countUsers();
@@ -162,19 +203,24 @@ class NewsController extends Controller
     return redirect('news')->with([
             'message' => 'La news '.$news->title.' fue creada correctamente!',
             'totalusers' => $totalusers,
-            'totalCommission' => $totalCommission
+            'totalCommission' => $totalCommission,
+            'totalProduction' => $totalProduction,
+            'totalProductionMes' => $totalProductionMes
+
     ]);
 
   }
 
   public function indexuser()
   {
-
-    // Total comission del usuario 
+    // Total comission del usuario mes en curso
     $totalCommission = $this->totalCommission();
 
-    // Total produccion del usuario 
+    // Hitorial de produccion 
     $totalProduction = $this->totalProduction();
+
+    // Total produccion del usuario mes en curso
+    $totalProductionMes = $this->totalProductionMes();
 
     // Total usuarios
     $totalusers = $totalusers = $this->countUsers();
@@ -182,7 +228,7 @@ class NewsController extends Controller
     $news = News::where('isActive', '1')->orderBy('id', 'Desc')->paginate(15);
     $data = ['news' => $news];        
 
-    return view('news.indexuser', compact('news', 'totalusers', 'totalCommission', 'totalProduction'));
+    return view('news.indexuser', compact('news', 'totalusers', 'totalCommission', 'totalProduction', 'totalProductionMes'));
 
   }
 
@@ -191,11 +237,14 @@ class NewsController extends Controller
       
     $news = News::find($id);
 
-    // Total comission del usuario 
+    // Total comission del usuario mes en curso
     $totalCommission = $this->totalCommission();
 
-    // Total produccion del usuario 
+    // Hitorial de produccion 
     $totalProduction = $this->totalProduction();
+
+    // Total produccion del usuario mes en curso
+    $totalProductionMes = $this->totalProductionMes();
 
     // Total usuarios
     $totalusers = $totalusers = $this->countUsers();
@@ -204,7 +253,8 @@ class NewsController extends Controller
       'news' => $news,
       'totalusers' => $totalusers,
       'totalCommission' => $totalCommission,
-      'totalProduction' => $totalProduction
+      'totalProduction' => $totalProduction,
+      'totalProductionMes' => $totalProductionMes
     ]);
 
   }
@@ -251,11 +301,14 @@ class NewsController extends Controller
 
     Mail::to($users)->send(new NewsCreatedMessage($news));
 
-    // Total comission del usuario 
+    // Total comission del usuario mes en curso
     $totalCommission = $this->totalCommission();
 
-    // Total produccion del usuario 
+    // Hitorial de produccion 
     $totalProduction = $this->totalProduction();
+
+    // Total produccion del usuario mes en curso
+    $totalProductionMes = $this->totalProductionMes();
 
     // Total usuarios
     $totalusers = $totalusers = $this->countUsers();
@@ -264,7 +317,8 @@ class NewsController extends Controller
             'message' => 'La news '.$news->title.' fue editada correctamente!',
             'totalusers' => $totalusers,
             'totalCommission' => $totalCommission,
-            'totalProduction' => $totalProduction
+            'totalProduction' => $totalProduction,
+            'totalProductionMes' => $totalProductionMes
     ]);
 
   }
@@ -274,11 +328,14 @@ class NewsController extends Controller
 
     $news = News::find($id);
 
-    // Total comission del usuario 
+    // Total comission del usuario mes en curso
     $totalCommission = $this->totalCommission();
 
-    // Total produccion del usuario 
+    // Hitorial de produccion 
     $totalProduction = $this->totalProduction();
+
+    // Total produccion del usuario mes en curso
+    $totalProductionMes = $this->totalProductionMes();
 
     // Total usuarios
     $totalusers = $totalusers = $this->countUsers();
@@ -287,7 +344,8 @@ class NewsController extends Controller
         'news' => $news,
         'totalusers' => $totalusers,
         'totalCommission' => $totalCommission,
-        'totalProduction' => $totalProduction
+        'totalProduction' => $totalProduction,
+        'totalProductionMes' => $totalProductionMes
     ]);
   }
 

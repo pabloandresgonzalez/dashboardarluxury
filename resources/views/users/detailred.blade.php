@@ -88,52 +88,53 @@
 
 
 <div class="table-responsive">
-  <table class="table align-items-center table-dark">
-    <thead class="thead-dark">
-      <tr>
-        <th scope="col" class="sort">Membresia</th>
-        <th scope="col">Fecha de pago</th>
-        <th scope="col">Usuario</th>
-        <th scope="col">$ Monto</th>
-        <th scope="col">Tipo</th>
-        <th scope="col">Detalle</th>
-      </tr>
-    </thead>
+            <table class="table align-items-center table-dark">
+              <thead class="thead-dark">
+                <tr>
+                  <th scope="col" class="sort">Membresia</th>
+                  <th scope="col">Fecha de pago</th>
+                  <th scope="col">Usuario</th>
+                  <th scope="col">$ Monto</th>
+                  <th scope="col">Tipo</th>
+                  <th scope="col">Detalle</th>
+                </tr>
+              </thead>
 
 
-    <tbody>
-      @foreach ($networktransactions as $networktransaction)
-      <tr>                  
-        <td scope="row">
-          {{ $networktransaction->userMembership }}
-        </td>
-        <td>
-          {{ $networktransaction->created_at }}
-        </td>
-        <td>
-          {{ $networktransaction->email  }}
-        </td>
-        <td>
-          {{ $networktransaction->value }}
-        </td>
-        <td>
-          {{ $networktransaction->type }}
-        </td>
-        <td>
-          {{ $networktransaction->detail }}                   
-        </td> 
-      </tr>
-    </tbody>
-    @endforeach
-  </table>
-  <br>  
-
+              <tbody>
+                @foreach ($networktransactions as $networktransaction)
+                <tr>                  
+                  <td scope="row">
+                    {{ $networktransaction->userMembership }}
+                  </td>
+                  <td>
+                    {{ $networktransaction->created_at }}
+                  </td>
+                  <td>
+                    {{ $networktransaction->email  }}
+                  </td>
+                  <td>
+                    {{ $networktransaction->value }}
+                  </td>
+                  <td>
+                    {{ $networktransaction->type }}
+                  </td>
+                  <td>
+                    {{ $networktransaction->detail }}                   
+                  </td> 
+                 </tr>
+                  @endforeach
+              </tbody>
+            </table>            
+            <br>  
+      </div>
+  </div>
 </div>
-</div>
 
-<br>
+    <hr class="my-3">
+       <h5 style="text-align: center;"> &nbsp; Red de miembros <h5/>
 
-</div>
-<hr class="my-3">
-
+    <main class="py-4">
+        @yield('content')
+    </main>
 @endsection

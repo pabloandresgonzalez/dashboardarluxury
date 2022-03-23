@@ -28,9 +28,11 @@ Route::get('/escritorio', [App\Http\Controllers\HomeController::class, 'indexEsc
 
 //Users perfil
 Route::get('/user/indexperfil', [App\Http\Controllers\admin\UserController::class, 'indexperfil']);
+Route::get('/user/indexperfil/configuracion', [App\Http\Controllers\admin\UserController::class, 'indexperfilconfiguracion']);
 Route::put('/user/{user}/editperfil', [App\Http\Controllers\admin\UserController::class, 'editperfil']);//form edit
 // Route::post('/user', [App\Http\Controllers\admin\UserController::class, 'storeperfil']);// envio form
 Route::put('/user/updateuser/{user}', [App\Http\Controllers\admin\UserController::class, 'updateuser'])->name('updateuser');//envio form
+Route::put('/user/updateuserconfiguracion/{user}', [App\Http\Controllers\admin\UserController::class, 'updateUserconfiguracion'])->name('updateuserconfiguracion');//envio form
 Route::get('/user/avatar/{filename?}', [App\Http\Controllers\admin\UserController::class, 'getImage'])->name('user.avatar');
 Route::get('/user/avatardoc/{filename?}', [App\Http\Controllers\admin\UserController::class, 'getImageDoc'])->name('user.avatardoc');
 Route::get('/user/{user}/detail', [App\Http\Controllers\admin\UserController::class, 'detail']);//detalle

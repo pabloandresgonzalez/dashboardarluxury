@@ -66,13 +66,20 @@
                   <td>
                     <?php 
                       if ($membership->status === 'Activo') {
-                        $fecha_actual = date("Y-m-d H:i:s");
+                        $fecha_actual = date("Y-m-d");
                         $fecha_final = $membership->closedAt;
-                        $fecha1= new DateTime($fecha_final);
-                        $fecha2= new DateTime($fecha_actual);
-                        $diff = $fecha1->diff($fecha2);
+                        
+                        $fecha11 = strtotime($fecha_actual); 
+                        $fecha22 = strtotime($fecha_final);
 
-                        echo $diff->days . ' dias';
+                        // Obtiene los dias faltantes sin sabados ni domingos 
+                        for($fecha11;$fecha11<=$fecha22;$fecha11=strtotime('+1 day ' . date('Y-m-d',$fecha11))){ 
+                            if((strcmp(date('D',$fecha11),'Sun')!=0) and (strcmp(date('D',$fecha11),'Sat')!=0)){
+                                //echo date('Y-m-d ',$fecha11). '<br>';
+                                $datos[] = date('Y-m-d ',$fecha11);
+                            }
+                        }
+                        echo count($datos). ' Dias';
                           
                       }else {
                         echo $membership->status;
