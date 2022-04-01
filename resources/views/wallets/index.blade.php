@@ -260,8 +260,8 @@
                   <td scope="row">
                     {{ $Wallet->created_at }}
                   </td>
-                  <td>
-                    {{ $Wallet->status }}
+                  <td>                    
+                    {{ $Wallet->status }} 
                   </td>
                   <td>
                     {{ $Wallet->value }}

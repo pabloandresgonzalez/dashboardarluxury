@@ -103,7 +103,7 @@ class WalletTransactionsController extends Controller
       //decodificar JSON porque esa es la respuesta
       $respuestaDecodificada = json_decode($result); 
 
-      //dd($respuestaDecodificada); 
+      //dd($respuestaDecodificada);
 
       $Wallets = wallet_transactions::where('user', $user->id)->orderBy('id', 'desc')
         ->paginate(50);
@@ -215,6 +215,41 @@ class WalletTransactionsController extends Controller
       $name = $user->name;
       $email = $user->email;
 
+      $data = [
+      'userId' => $id,
+      'token' => 'AcjAa76AHxGRdyTemDb2jcCzRmqpWN'
+      ];
+
+      $curl = curl_init();
+
+      curl_setopt_array($curl, array(
+          CURLOPT_URL => "https://ekgra7pfqh.execute-api.us-east-2.amazonaws.com/Prod_getBalanceByUser",
+          CURLOPT_RETURNTRANSFER => true,
+          CURLOPT_ENCODING => "",
+          CURLOPT_MAXREDIRS => 10,
+          CURLOPT_TIMEOUT => 30000,
+          CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+          CURLOPT_CUSTOMREQUEST => "POST",
+          CURLOPT_POSTFIELDS => json_encode($data),        
+          CURLOPT_HTTPHEADER => array(
+            // Set here requred headers
+              "accept: */*",
+              "accept-language: en-US,en;q=0.8",
+              "content-type: application/json",
+          ),
+      ));
+
+      $result = curl_exec($curl);
+      $err = curl_error($curl);
+
+      curl_close($curl);
+
+      //decodificar JSON porque esa es la respuesta
+      $respuestaDecodificada = json_decode($result); 
+
+      $url = ($result);
+      $data = json_decode($url, true);
+      $total = $data['total'];
                 
       $rules = ([
           
@@ -239,8 +274,9 @@ class WalletTransactionsController extends Controller
 
         $cantmemberships = $memberships->count();
 
+
         // Si tiene almenos una membresia activa
-        if ($cantmemberships > 0) {
+        if ($cantmemberships > 0 ) {
 
         //wallet_transactions de retiro
         $Wallet = new wallet_transactions();
@@ -262,20 +298,27 @@ class WalletTransactionsController extends Controller
 
         $percentageda = 12;
         $percentagedp = 8;
-        $valretiro = $request->input('value'); 
+        $valretiro = $request->input('value');
 
-        $toPorretiroda = ($percentageda / 100) * $valretiro;
-        $toPorretirodp = ($percentagedp / 100) * $valretiro;
+        if ($valretiro > $total) {
 
+          return redirect()->route('home')->with([
+                    'message' => '¡' . $name . ' ' . '¡El valor del traslado no puede ser mayor al saldo disponible!'
+                    //'totalusers' => $totalusers
+          ]);  
+
+        } else {
+
+          $toPorretiroda = ($percentageda * $valretiro) / 100;
+          $toPorretirodp = ($percentagedp * $valretiro) / 100;
 
         if ($diff->days < 15) {
           $Wallet->fee = $toPorretiroda;
-          $Wallet->value = $request->input('value') - $toPorretiroda;
+          $Wallet->value = $valretiro - $toPorretiroda;
         } else {
           $Wallet->fee = $toPorretirodp;
-          $Wallet->value = $request->input('value') - $toPorretiroda;
-        }
-        
+          $Wallet->value = $valretiro - $toPorretirodp;
+        }       
 
         //$Wallet->fee = 5;
         $Wallet->type = 'Traslado';
@@ -318,7 +361,9 @@ class WalletTransactionsController extends Controller
                     'totalProductionMes' => $totalProductionMes
         ]);
 
-        }
+        }        
+
+      }
 
         return redirect()->route('home')->with([
                     'message' => '¡' . $name . ' ' . '¡es necesario tener mínimo una membresía activa para poder hacer traslados!'
@@ -327,7 +372,8 @@ class WalletTransactionsController extends Controller
 
     }
 
-    public function edit($id) {
+    public function edit($id)
+    {
         
         $Wallets = wallet_transactions::find($id);
 
@@ -385,22 +431,13 @@ class WalletTransactionsController extends Controller
 
         $Wallet = wallet_transactions::findOrFail($id);
         $Wallet->user = $user;
-        $email = $email;
-
-        if ($request->input('status') === 'Rechazado') {
-          $Wallet->value = 0;
-          $Wallet->fee = 0;
-        } else {
-          $Wallet->value = $value;
-          $Wallet->fee = $fee;
-        } 
-
+        $email = $email; 
+        $Wallet->status = $request->input('status');
         $Wallet->type = $type;
         $Wallet->hash = $request->input('hash');
         $Wallet->currency = $currency;
         $Wallet->approvedBy = $iduser;
-        $Wallet->inOut = 0;
-        $Wallet->status = $request->input('status');     
+        $Wallet->inOut = 0;    
         $Wallet->detail = $detail . ', ' . $request->input('hash');
        
 
