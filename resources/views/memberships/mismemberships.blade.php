@@ -79,8 +79,11 @@
                                 $datos[] = date('Y-m-d ',$fecha11);
                             }
                         }
-                        echo count($datos). ' Dias';
-                          
+
+                        if ($datos) {
+                          echo count($datos). ' Dias';
+                        }                          
+                          echo ' ';                          
                       }else {
                         echo $membership->status;
                       }
