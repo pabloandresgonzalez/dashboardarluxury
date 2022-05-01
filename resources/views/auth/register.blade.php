@@ -27,20 +27,8 @@
                   <div class="input-group input-group-alternative mb-3">
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="ni ni-pin-3"></i></span>
-                    </div>
-
-                    <?php
-                      if( isset($_GET["ownerId"]) ){
-                        $consulta = ($_GET['ownerId']);
-                        
-                        echo('<input class="form-control" placeholder="Código referido" id="ownerId" type="text" name="ownerId" value="'.$consulta.'" autocomplete="ownerId" autofocus>');
-                      }else{
-
-                        echo('<input class="form-control" placeholder="Código referido" id="ownerId" type="text" name="ownerId" value="Código referido" autocomplete="ownerId" autofocus>');
-                      }
-
-                    ?> 
-                  
+                    </div> 
+                      <input class="form-control" placeholder="b3361710-4e21-4fe1-a86e-a29fbecb15f2" id="ownerId" type="text" name="ownerId" value="" autocomplete="ownerId" autofocus>
                   </div>
                 </div>
 

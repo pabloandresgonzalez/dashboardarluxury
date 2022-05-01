@@ -67,7 +67,7 @@ class RegisterController extends Controller
             //'photo' => ['required', 'string', 'max:255'],
             //'photoDoc' => ['required', 'string', 'max:255'],
             //'isActive' => ['required', 'Boolean', 'max:255'],
-            'ownerId' => ['string', 'max:255'],
+            //'ownerId' => ['string', 'max:255'],
             //'role' => ['required', 'string', 'max:255'],
             ]);
 
@@ -82,13 +82,20 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        $urlphoto = asset('img/theme/avatar.png');
-        $urlphotoDoc = asset('img/theme/avatar.png');
+        $urlphoto = null;
+        $urlphotoDoc = null;
         $role = 'user';
+        $data1 = $data['ownerId'];
 
+        if (empty($data1)) 
+        {
+            $ownerId = 'b3361710-4e21-4fe1-a86e-a29fbecb15f2';
+        } else {
+            $ownerId = $data['ownerId'];
+        }
 
         return User::create([
-            'ownerId' => $data['ownerId'],
+            'ownerId' => $ownerId,
             'role' => $role,
             'name' => $data['name'],
             'lastname' => $data['lastname'],

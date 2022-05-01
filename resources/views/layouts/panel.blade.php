@@ -111,11 +111,9 @@
           <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <div class="media align-items-center">
               <span class="avatar avatar-sm rounded-circle">
-                @if(auth()->user()->photo)
+                
                   @include('includes.avatar')
-                @else                    
-                  <img src="{{ asset('img/brand/settings3.PNG') }}"/>                    
-                @endif
+                
               </span>
             </div>
           </a>
@@ -178,12 +176,10 @@
           <li class="nav-item dropdown">
             <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <div class="media align-items-center">
-                <span class="avatar avatar-sm rounded-circle">                  
-                  @if(auth()->user()->photo)
-                    @include('includes.avatar')
-                  @else                    
-                    <img src="{{ asset('img/brand/settings3.PNG') }}"/>                    
-                  @endif
+                <span class="avatar avatar-sm rounded-circle">
+                  
+                  @include('includes.avatar')
+                
                 </span>
                 <div class="media-body ml-2 d-none d-lg-block">
                   <span class="mb-0 text-sm  font-weight-bold">{{ auth()->user()->name }}</span>
@@ -269,7 +265,7 @@
                 <div class="card-body">
                   <div class="row">
                     <div class="col">
-                      <h5 class="card-title text-uppercase text-muted mb-0">Comisión Venta directa y renovación</h5>
+                      <h5 class="card-title text-uppercase text-muted mb-0">Histórico comisiones venta directa y renovación</h5>
                       <span class="h2 font-weight-bold mb-0"><?php echo "$ " . $totalCommission;  ?></span>                      
                     </div>
                     <div class="col-auto">
@@ -280,11 +276,11 @@
                   </div>
                   <p class="mt-3 mb-0 text-muted text-sm">
                     <span class="text-warning mr-2"><i class="ni ni-chart-bar-32 text-yellow"></i></span>
-                    <span class="text-nowrap">Ganancias mes en curso </span>
+                    <span class="text-nowrap"> Durante su permanencia </span>
                   </p>
                 </div>
               </div>
-            </div>
+            </div><!--
             <div class="col-xl-3 col-lg-6">
               <div class="card card-stats mb-4 mb-xl-0">
                 <div class="card-body">
@@ -326,7 +322,7 @@
                   </p>
                 </div>
               </div>
-            </div>
+            </div>-->
             <div class="col-xl-3 col-lg-6">
               <div class="card card-stats mb-4 mb-xl-0">
                 <div class="card-body">

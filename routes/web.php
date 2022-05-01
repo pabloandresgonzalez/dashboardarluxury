@@ -52,7 +52,6 @@ Route::get('/membership/{membership}', [App\Http\Controllers\UserMembershipContr
 Route::put('/membershiprenovar/{membership}', [App\Http\Controllers\UserMembershipController::class, 'renovar']);
 Route::get('/membership/{membership}/detail', [App\Http\Controllers\UserMembershipController::class, 'detail']);//detalle
 
-
 //News
 Route::get('/newsuser', [App\Http\Controllers\NewsController::class, 'indexuser']);
 Route::get('/news/avatar/{filename?}', [App\Http\Controllers\NewsController::class, 'getImagevideo'])->name('new.avatar');
@@ -61,6 +60,7 @@ Route::get('/news/avatar/{filename?}', [App\Http\Controllers\NewsController::cla
 //NetworkTransaction
 Route::get('/networktransaction', [App\Http\Controllers\NetworkTransactionController::class, 'index'])->name('networktransaction');
 Route::get('/networktransactionactivacion', [App\Http\Controllers\NetworkTransactionController::class, 'indexactivacion'])->name('networktransactionactivacion');
+
 
 //traslados
 Route::get('traslado', [App\Http\Controllers\admin\UserController::class, 'indextraslado'])->name('traslado');
@@ -72,6 +72,8 @@ Route::post('/wallet', [App\Http\Controllers\WalletTransactionsController::class
 Route::get('/contacto', [App\Http\Controllers\ContactoController::class, 'index'])->name('contacto.index');
 Route::post('/contacto', [App\Http\Controllers\ContactoController::class, 'store'])->name('contacto.store');
 Route::get('/guia', [App\Http\Controllers\GuiaController::class, 'index'])->name('guia.index');
+Route::get('/walletsaldouser', [App\Http\Controllers\WalletTransactionsController::class, 'editsaldouser'])->name('walletsaldouser');
+Route::put('/wallets/asaldototal', [App\Http\Controllers\WalletTransactionsController::class, 'storeUser']);
 
 
 Route::middleware(['auth', 'admin'])->group(function () {

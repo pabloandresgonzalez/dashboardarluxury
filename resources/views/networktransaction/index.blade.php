@@ -30,9 +30,13 @@
       @endif
 
 
+
+        
+      
       <div class="card pub-prestamo">
         <div class="card-header">
-          <i class="ni ni-money-coins"></i> &nbsp;Detalle pagos de producción </h3>
+          <i class="ni ni-money-coins"></i> &nbsp;Detalle pagos de producción 
+          <p style="text-align: right;">Producción: <strong><?php echo $totalProdMember ?></strong></p>      
         </div>
        
           <div class="table-responsive">

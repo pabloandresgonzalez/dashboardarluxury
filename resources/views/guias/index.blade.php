@@ -35,7 +35,7 @@
           <div class="row">              
 
            
-            <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">  
+        <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">  
 			  <div class="card-body">
 			    <h1 class="card-title text-white">¿ Como registrarse en el portal ?</h1>
 			    <p class="card-text">Inicialmente los más recomendable es solicitarle el enlace de registro la persona que lo contacto, ponerlo en el su buscador de confianza y hacer el registro desde ese enlace, esto debido a que este enlace ya trae automáticamente el id de la persona que lo refiere, campo muy importante para un registro exitoso en el portal.</p>	    

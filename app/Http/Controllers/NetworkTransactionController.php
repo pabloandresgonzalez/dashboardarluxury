@@ -28,6 +28,12 @@ class NetworkTransactionController extends Controller
                                 ->where('type', 'Daily')
                                 ->orderBy('id', 'desc')->paginate(100);
 
+        $totalProdMember = NetworkTransaction::where('userMembership', $id)
+                                ->where('type', 'Daily')
+                                ->sum('value');
+
+        //dd($totalProdMember);
+
         // Total comission del usuario mes en curso
         $totalCommission = $this->totalCommission();
 
@@ -40,7 +46,7 @@ class NetworkTransactionController extends Controller
         // Total usuarios
         $totalusers = $totalusers = $this->countUsers();
 
-        return view('networktransaction.index', compact('networktransactions', 'totalusers', 'totalCommission', 'totalProduction', 'totalProductionMes'));        
+        return view('networktransaction.index', compact('networktransactions', 'totalusers', 'totalCommission', 'totalProduction', 'totalProductionMes', 'totalProdMember'));        
 
     }
 
@@ -58,6 +64,12 @@ class NetworkTransactionController extends Controller
         WHERE nt.type="Activation" AND
         nt.user = ?', [$iduser]);
 
+      // Total, de comisión por activación de membresías de usuarios referidos 
+          $totalComiMember = DB::table("network_transactions")
+          ->where('user', $iduser)
+          ->where('type', 'Activation')      
+          ->sum("value");
+
       // Total comission del usuario mes en curso
       $totalCommission = $this->totalCommission();
 
@@ -70,7 +82,7 @@ class NetworkTransactionController extends Controller
       // Total usuarios
       $totalusers = $totalusers = $this->countUsers();
 
-      return view('networktransaction.indexactivacion', compact('networktransactions', 'totalusers', 'totalCommission', 'totalProduction', 'totalProductionMes'));        
+      return view('networktransaction.indexactivacion', compact('networktransactions', 'totalusers', 'totalCommission', 'totalProduction', 'totalProductionMes', 'totalComiMember'));        
 
     }
     private function countUsers()
@@ -92,21 +104,21 @@ class NetworkTransactionController extends Controller
       $user = \Auth::user();
       $id = $user->id;
 
-      /*// Total, de comisión por activación de membresías de usuarios referidos 
+      // Total, de comisión por activación de membresías de usuarios referidos 
       $totalCommission = DB::table("network_transactions")
       ->where('user', $id)
       ->where('type', 'Activation')      
-      ->get()->sum("value");*/
+      ->get()->sum("value");
 
-      $totalCommission1 = DB::select("SELECT * FROM network_transactions 
+      /*$totalCommission1 = DB::select("SELECT * FROM network_transactions 
         WHERE YEAR(created_at) = YEAR(CURRENT_DATE()) 
         AND MONTH(created_at)  = MONTH(CURRENT_DATE())
         AND type = 'Activation'
         AND status = 'Activo'
-        AND user = ?", [$id]);
+        AND user = ?", [$id]);*/
 
-      $valores = array_column($totalCommission1, 'value');
-      $totalCommission = array_sum($valores);
+      //$valores = array_column($totalCommission1, 'value');
+      //$totalCommission = array_sum($valores);
 
       return $totalCommission;
     }

@@ -98,7 +98,7 @@
                 <i class="ni ni-circle-08"></i>
                 <span class="nav-link-inner--text">Register</span>
               </a>
-            </li>            
+            </li>          
           </ul>
         </div>
       </div>

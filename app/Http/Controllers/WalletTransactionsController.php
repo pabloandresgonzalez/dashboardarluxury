@@ -15,6 +15,9 @@ use App\Mail\StatusChangeTransactionMessage;
 use App\Mail\StatusChangeTransactionMessageAdmin;
 use App\Models\UserMembership;
 use DateTime;
+use App\Mail\CreateContact;
+use App\Mail\createTraTotalUser;
+use App\Mail\notifiTraTotalUser;
 
 
 class WalletTransactionsController extends Controller
@@ -70,40 +73,38 @@ class WalletTransactionsController extends Controller
 
       $id = $user->id;
 
-
       $data = [
-      'userId' => $id,
-      'token' => 'AcjAa76AHxGRdyTemDb2jcCzRmqpWN'
-      ];
+          'userId' => $id,
+          'token' => 'AcjAa76AHxGRdyTemDb2jcCzRmqpWN'
+          ];
 
-      $curl = curl_init();
+          $curl = curl_init();
 
-      curl_setopt_array($curl, array(
-          CURLOPT_URL => "https://ekgra7pfqh.execute-api.us-east-2.amazonaws.com/Prod_getBalanceByUser",
-          CURLOPT_RETURNTRANSFER => true,
-          CURLOPT_ENCODING => "",
-          CURLOPT_MAXREDIRS => 10,
-          CURLOPT_TIMEOUT => 30000,
-          CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-          CURLOPT_CUSTOMREQUEST => "POST",
-          CURLOPT_POSTFIELDS => json_encode($data),        
-          CURLOPT_HTTPHEADER => array(
-            // Set here requred headers
-              "accept: */*",
-              "accept-language: en-US,en;q=0.8",
-              "content-type: application/json",
-          ),
-      ));
+          curl_setopt_array($curl, array(
+              CURLOPT_URL => "https://ekgra7pfqh.execute-api.us-east-2.amazonaws.com/Prod_getBalanceByUser",
+              CURLOPT_RETURNTRANSFER => true,
+              CURLOPT_ENCODING => "",
+              CURLOPT_MAXREDIRS => 10,
+              CURLOPT_TIMEOUT => 30000,
+              CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+              CURLOPT_CUSTOMREQUEST => "POST",
+              CURLOPT_POSTFIELDS => json_encode($data),        
+              CURLOPT_HTTPHEADER => array(
+                // Set here requred headers
+                  "accept: */*",
+                  "accept-language: en-US,en;q=0.8",
+                  "content-type: application/json",
+              ),
+          ));
 
-      $result = curl_exec($curl);
-      $err = curl_error($curl);
+        $result = curl_exec($curl);
+        $err = curl_error($curl);
 
-      curl_close($curl);
+        curl_close($curl);
 
-      //decodificar JSON porque esa es la respuesta
-      $respuestaDecodificada = json_decode($result); 
-
-      //dd($respuestaDecodificada);
+        //decodificar JSON porque esa es la respuesta
+        $respuestaDecodificada = json_decode($result); 
+        //dd($respuestaDecodificada);
 
       $Wallets = wallet_transactions::where('user', $user->id)->orderBy('id', 'desc')
         ->paginate(50);
@@ -153,21 +154,21 @@ class WalletTransactionsController extends Controller
       $user = \Auth::user();
       $id = $user->id;
 
-      /*// Total, de comisión por activación de membresías de usuarios referidos 
+      // Total, de comisión por activación de membresías de usuarios referidos 
       $totalCommission = DB::table("network_transactions")
       ->where('user', $id)
       ->where('type', 'Activation')      
-      ->get()->sum("value");*/
+      ->get()->sum("value");
 
-      $totalCommission1 = DB::select("SELECT * FROM network_transactions 
+      /*$totalCommission1 = DB::select("SELECT * FROM network_transactions 
         WHERE YEAR(created_at) = YEAR(CURRENT_DATE()) 
         AND MONTH(created_at)  = MONTH(CURRENT_DATE())
         AND type = 'Activation'
         AND status = 'Activo'
-        AND user = ?", [$id]);
+        AND user = ?", [$id]);*/
 
-      $valores = array_column($totalCommission1, 'value');
-      $totalCommission = array_sum($valores);
+      //$valores = array_column($totalCommission1, 'value');
+      //$totalCommission = array_sum($valores);
 
       return $totalCommission;
     }
@@ -296,7 +297,7 @@ class WalletTransactionsController extends Controller
         $diff = $fecha1->diff($fecha2);
        
 
-        $percentageda = 12;
+        //$percentageda = 12;
         $percentagedp = 8;
         $valretiro = $request->input('value');
 
@@ -309,8 +310,9 @@ class WalletTransactionsController extends Controller
 
         } else {
 
-          $toPorretiroda = ($percentageda * $valretiro) / 100;
-          $toPorretirodp = ($percentagedp * $valretiro) / 100;
+        /*
+        $toPorretiroda = ($percentageda * $valretiro) / 100;
+        $toPorretirodp = ($percentagedp * $valretiro) / 100;
 
         if ($diff->days < 15) {
           $Wallet->fee = $toPorretiroda;
@@ -318,9 +320,12 @@ class WalletTransactionsController extends Controller
         } else {
           $Wallet->fee = $toPorretirodp;
           $Wallet->value = $valretiro - $toPorretirodp;
-        }       
+        }  
+        */ 
+        $toPorretirodp = ($percentagedp * $valretiro) / 100;    
 
-        //$Wallet->fee = 5;
+        $Wallet->fee = $toPorretirodp;
+        $Wallet->value = $valretiro - $toPorretirodp;
         $Wallet->type = 'Traslado';
         $Wallet->hash = '';
         $Wallet->currency = $request->input('currency');
@@ -431,7 +436,7 @@ class WalletTransactionsController extends Controller
 
         $Wallet = wallet_transactions::findOrFail($id);
         $Wallet->user = $user;
-        $email = $email; 
+        $Wallet->email = $email; 
         $Wallet->status = $request->input('status');
         $Wallet->type = $type;
         $Wallet->hash = $request->input('hash');
@@ -593,5 +598,166 @@ class WalletTransactionsController extends Controller
                     'totalProductionMes' => $totalProductionMes
         ]);
    
+    }
+
+    public function editsaldouser(Request $request)
+    {
+
+      $fecha_actual = date("Y-m-d H:i:s");
+
+      // Total comission del usuario mes en curso
+      $totalCommission = $this->totalCommission();
+
+      // Hitorial de produccion 
+      $totalProduction = $this->totalProduction();
+
+      // Total produccion del usuario mes en curso
+      $totalProductionMes = $this->totalProductionMes();
+
+      // Total usuarios
+      $totalusers = $totalusers = $this->countUsers();
+
+        return view('wallets.tratotaluser', [
+          'fecha_actual' => $fecha_actual,
+          'totalusers' => $totalusers,
+          'totalCommission' => $totalCommission,
+          'totalProduction' => $totalProduction,
+          'totalProductionMes' => $totalProductionMes
+      ]);
+
+    }
+
+    public function storeUser(Request $request)
+    {
+
+      // Total comission del usuario mes en curso
+      $totalCommission = $this->totalCommission();
+
+      // Hitorial de produccion 
+      $totalProduction = $this->totalProduction();
+
+      // Total produccion del usuario mes en curso
+      $totalProductionMes = $this->totalProductionMes();
+
+      // Total usuarios
+      $totalusers = $totalusers = $this->countUsers();
+
+                
+      $rules = ([
+          
+          'type' => 'required|string|max:255',
+          'detail' => 'required|string', 
+      
+          
+      ]);
+
+       $this->validate($request, $rules);
+
+       // Conseguir usuario identificado
+      $user = \Auth::user();
+      $id = $user->id;
+      $email = $user->email;
+
+      $message = $request->input('detail');
+      $type = $request->input('type');
+
+      $data = [
+      'userId' => $id,
+      'token' => 'AcjAa76AHxGRdyTemDb2jcCzRmqpWN'
+      ];
+
+      $curl = curl_init();
+
+      curl_setopt_array($curl, array(
+          CURLOPT_URL => "https://ekgra7pfqh.execute-api.us-east-2.amazonaws.com/Prod_getBalanceByUser",
+          CURLOPT_RETURNTRANSFER => true,
+          CURLOPT_ENCODING => "",
+          CURLOPT_MAXREDIRS => 10,
+          CURLOPT_TIMEOUT => 30000,
+          CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+          CURLOPT_CUSTOMREQUEST => "POST",
+          CURLOPT_POSTFIELDS => json_encode($data),        
+          CURLOPT_HTTPHEADER => array(
+            // Set here requred headers
+              "accept: */*",
+              "accept-language: en-US,en;q=0.8",
+              "content-type: application/json",
+          ),
+      ));
+
+      $result = curl_exec($curl);
+      $err = curl_error($curl);
+
+      curl_close($curl);
+
+      //decodificar JSON porque esa es la respuesta
+      $respuestaDecodificada = json_decode($result); 
+
+      //dd($respuestaDecodificada);
+      
+      $url = ($result);
+      $data = json_decode($url, true);
+      //dd($data);
+      if ($result) {
+        if (isset($data)) {
+          $balance = $data['balance'];
+          $encanje = $data['exhange'];
+          $total = $data['total'];
+          $traslados = $data['withdrawals'];
+        } else {
+          $balance = '0';
+          $encanje = '0';
+          $total = '0';
+          $traslados = '0';
+        }  
+
+      } else {
+        $balance = '0';
+        $encanje = '0';
+        $total = '0';
+        $traslados = '0';
+      }      
+      
+
+      $valotTotal = $total;
+
+
+      //dd($type);
+
+      //$correo = new CreateContact();
+      //Mail::to('pabloandres6@gmail.com')->send($correo);
+
+      //Enviar email
+      $user_email = User::where('role', 'admin')->first();
+      //$user_email_admin = $user_email->email;
+      $user_email_admin = 'pabloandres6@gmail.com';
+
+      Mail::to($email)->send(new notifiTraTotalUser(
+        $message,
+        $user,
+        $type,
+        $total,
+        $balance,
+        $valotTotal,
+        $encanje,
+        $traslados,
+        ));
+
+      Mail::to($user_email_admin)->send(new createTraTotalUser(
+        $message,
+        $user,
+        $type,
+        $total,
+        $balance,
+        $valotTotal,
+        $encanje,
+        $traslados,
+        ));
+
+      
+      return redirect()->route('home')->with([
+                    'message' => 'Su solicitud de traslado total fue envida con éxito!'
+          ]);
+
     }
 }

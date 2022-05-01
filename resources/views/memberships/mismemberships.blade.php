@@ -72,22 +72,17 @@
                         $fecha11 = strtotime($fecha_actual); 
                         $fecha22 = strtotime($fecha_final);
 
-                        // Obtiene los dias faltantes sin sabados ni domingos 
-                        for($fecha11;$fecha11<=$fecha22;$fecha11=strtotime('+1 day ' . date('Y-m-d',$fecha11))){ 
+                          // Obtiene los dias faltantes sin sabados ni domingos 
+                          for($fecha11;$fecha11<=$fecha22;$fecha11=strtotime('+1 day ' . date('Y-m-d',$fecha11))){ 
                             if((strcmp(date('D',$fecha11),'Sun')!=0) and (strcmp(date('D',$fecha11),'Sat')!=0)){
-                                //echo date('Y-m-d ',$fecha11). '<br>';
+                                echo date('Y-m-d ',$fecha11). '<br>';
                                 $datos[] = date('Y-m-d ',$fecha11);
                             }
+                          }
+                        } else {
+                          echo $membership->status;
                         }
 
-                        if ($datos) {
-                          echo count($datos). ' Dias';
-                        }                          
-                          echo ' ';                          
-                      }else {
-                        echo $membership->status;
-                      }
-                      
                       ?>
                   </td>
                   <td>

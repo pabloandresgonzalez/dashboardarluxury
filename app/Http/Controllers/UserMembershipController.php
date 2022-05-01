@@ -149,21 +149,21 @@ class UserMembershipController extends Controller
       $user = \Auth::user();
       $id = $user->id;
 
-      /*// Total, de comisión por activación de membresías de usuarios referidos 
+      // Total, de comisión por activación de membresías de usuarios referidos 
       $totalCommission = DB::table("network_transactions")
       ->where('user', $id)
       ->where('type', 'Activation')      
-      ->get()->sum("value");*/
+      ->get()->sum("value");
 
-      $totalCommission1 = DB::select("SELECT * FROM network_transactions 
+      /*$totalCommission1 = DB::select("SELECT * FROM network_transactions 
         WHERE YEAR(created_at) = YEAR(CURRENT_DATE()) 
         AND MONTH(created_at)  = MONTH(CURRENT_DATE())
         AND type = 'Activation'
         AND status = 'Activo'
-        AND user = ?", [$id]);
+        AND user = ?", [$id]);*/
 
-      $valores = array_column($totalCommission1, 'value');
-      $totalCommission = array_sum($valores);
+      //$valores = array_column($totalCommission1, 'value');
+      //$totalCommission = array_sum($valores);
 
       return $totalCommission;
     }
@@ -239,7 +239,7 @@ class UserMembershipController extends Controller
         if ($membershipsuser) {
 
           return redirect()->route('home')->with([
-                    'message' => '¡' . $name . '¡Ya cuentas con una membresia de este valor activa!'
+                    'message' => '¡' . $name . ' ' .'¡Ya cuentas con una membresia de este valor activa!'
           ]);
           
         }
@@ -501,7 +501,6 @@ class UserMembershipController extends Controller
       //$networktransaction = NetworkTransaction::findOrFail($request->user);
       //dd($membership);
       return view('networktransaction.index', compact('totalusers', 'totalCommission', 'totalProduction', 'totalProductionMes'));
-
     }
 
     public function editrenovar($id)
@@ -850,6 +849,6 @@ class UserMembershipController extends Controller
     public function exportExcel()
     {
       return Excel::download(new UsersMembershipsExport, 'memberships.xlsx');
-    }
+    }    
     
 }
