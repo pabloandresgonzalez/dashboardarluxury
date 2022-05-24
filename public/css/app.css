@@ -10900,3 +10900,10 @@ a.text-dark:focus {
   }
 }
 
+.red-tooltip + .tooltip > .tooltip-inner {
+  background-color: #f00 !important;
+}
+.red-tooltip + .tooltip > .tooltip-arrow {
+ border-bottom-color:#f00 !important;
+}
+

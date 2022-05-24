@@ -426,6 +426,13 @@ class UserMembershipController extends Controller
         ->orderBy('created_at', 'desc')
         ->paginate(30);
 
+      $membreshipsactivas = UserMembership::where('user', $user->id)
+        ->where('status', 'Activo')->get();
+
+      $cantmemberships = $membreshipsactivas->count();
+
+      //dd($cantmemberships);
+
       // Total comission del usuario mes en curso
       $totalCommission = $this->totalCommission();
 
@@ -445,7 +452,8 @@ class UserMembershipController extends Controller
           'username' => $username,
           'totalCommission' => $totalCommission,
           'totalProduction' => $totalProduction,
-          'totalProductionMes' => $totalProductionMes
+          'totalProductionMes' => $totalProductionMes,
+          'cantmemberships' => $cantmemberships
       ]);
 
     }

@@ -45,8 +45,8 @@
                           <h4 class="card-title">{{ $membresia->detail }}</h4> 
                           <h5 class="card-title">{{ $membresia->isActive }}</h5>
                           <h5 class="card-title">Valor {{ $membresia->valor }}</h5>               
-                          <a data-toggle="modal" data-target="#modal-form1"  href="#" class="badge badge-warning"><i class="ni ni-cart"></i>&nbsp; Pago con USDT</a> |
-                          <a data-toggle="modal" data-target="#modal-form" href="#" class="badge badge-warning"><i class="ni ni-cart"></i>&nbsp; Pago con BTC</a> 
+                          <a data-toggle="modal" data-target="#modal-form1-{{$membresia->id}}"  href="#" class="badge badge-warning"><i class="ni ni-cart"></i>&nbsp; Pago con USDT</a> |
+                          <a data-toggle="modal" data-target="#modal-form-{{$membresia->id}}" href="#" class="badge badge-warning"><i class="ni ni-cart"></i>&nbsp; Pago con BTC</a> 
                         </div>
                       </div>
                       <hr>
@@ -56,7 +56,7 @@
 
 
 
-          <div class="modal fade" id="modal-form1" tabindex="-1" role="dialog" aria-labelledby="modal-form" aria-hidden="true">
+          <div class="modal fade" id="modal-form1-{{$membresia->id}}" tabindex="-1" role="dialog" aria-labelledby="modal-form" aria-hidden="true">
           <div class="modal-dialog modal- modal-dialog-centered modal-sm" role="document">
             <div class="modal-content">
               
@@ -65,18 +65,24 @@
                       
                 <div class="card bg-secondary shadow border-0">
                     <div class="card-header bg-transparent pb-5">
-                        <div class="text-muted text-center mt-2 mb-3"><small>Depósito USDT</small><br><br>
+                        <div class="text-muted text-center mt-2 mb-3"><small>Depósito USDT</small><br>
                           <img src="{{ asset('img/brand/qrusdt.PNG') }}">                      
                         </div> 
                         <div class="text-center text-muted mb-4">
-                            <small>TVDHJ4U95TJFBJng1kwPB9NxDsXCEQ4gV1</small>
-                        </div>                      
+                            <small>TVDHJ4U95TJFBJng1kwPB9NxDsXCEQ4gV1</small> 
+                            <br>
+                            <small>Valor {{ $membresia->valor }}</small>                           
+                        </div>                                              
+                    </div>
+                    <br>
+                    <div class="text-center text-muted mb-4">
+                        <strong>Valor membresía + administración <br><br><?php echo $membresia->valor + $membresia->valor * 5 / 100; ?></strong>                            
                     </div>
                     <div class="card-body px-lg-5 py-lg-5">                        
 
-                            <div class="text-center">
-                                <a type="button" href="/membership/create" class="btn btn-outline-success btn-lg btn-block"><i class="ni ni-check-bold"></i>&nbsp; Registrar Hash de pago</a>
-                            </div>                                    
+                      <div class="text-center">
+                          <a type="button" href="/membership/create" class="btn btn-outline-success btn-lg btn-block"><i class="ni ni-check-bold"></i>&nbsp; Registrar Hash de pago</a>
+                      </div>                                    
 
                     </div>
                   </div>
@@ -86,7 +92,7 @@
           </div>
 
 
-          <div class="modal fade" id="modal-form" tabindex="-1" role="dialog" aria-labelledby="modal-form" aria-hidden="true">
+          <div class="modal fade" id="modal-form-{{$membresia->id}}" tabindex="-1" role="dialog" aria-labelledby="modal-form" aria-hidden="true">
             <div class="modal-dialog modal- modal-dialog-centered modal-sm" role="document">
               <div class="modal-content">
                 
@@ -95,13 +101,19 @@
 
                   <div class="card bg-secondary shadow border-0">
                           <div class="card-header bg-transparent pb-5">
-                              <div class="text-muted text-center mt-2 mb-3"><small>Depósito BTC</small><br><br>
+                              <div class="text-muted text-center mt-2 mb-3"><small>Depósito BTC</small><br>
                                 <img src="{{ asset('img/brand/qrusdt.PNG') }}">                      
                               </div> 
                               <div class="text-center text-muted mb-4">
                                   <small>17r3QBum9gibzv12fsa21b1qA3kHL1Kksj</small>
+                                  <br>
+                                  <small>Valor {{ $membresia->valor }}</small> 
                               </div>                      
                           </div>
+                          <br>
+                    <div class="text-center text-muted mb-4">
+                            <strong>Valor membresía + administración <br><br><?php echo $membresia->valor + $membresia->valor * 5 / 100; ?></strong>                           
+                    </div>
                           <div class="card-body px-lg-5 py-lg-5">                        
 
                                   <div class="text-center">
