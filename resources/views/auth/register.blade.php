@@ -12,8 +12,11 @@
               <div class="text-center text-muted mb-4">
 
                 @if($errors->any())
-                    <div class="alert alert-danger" role="alert">
+                    <div class="alert alert-danger alert-dismissible" role="alert">
                         {{ $errors->first() }}
+                        <button type="button" class="close" data-dismiss="alert">
+                            <span>x</span>
+                        </button>
                     </div>
                 @endif
 

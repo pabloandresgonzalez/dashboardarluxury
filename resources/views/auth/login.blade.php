@@ -10,8 +10,11 @@
             <div class="card-body px-lg-5 py-lg-5">
 
                 @if($errors->any())
-                    <div class="alert alert-danger" role="alert">
+                    <div class="alert alert-danger alert-dismissible" role="alert">
                         {{ $errors->first() }}
+                        <button type="button" class="close" data-dismiss="alert">
+                            <span>x</span>
+                        </button>
                     </div>
                 @else
                     <div class="text-center text-muted mb-4">

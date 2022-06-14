@@ -19,10 +19,13 @@
     <div class="card-body">
 
       @if($errors->any())
-        <div class="alert alert-danger" role="alert">
+        <div class="alert alert-danger alert-dismissible" role="alert">
           <ul>
           @foreach ($errors->all() as $error)
           <li>{{ $error }}
+            <button type="button" class="close" data-dismiss="alert">
+                <span>x</span>
+            </button>
           </li>
           @endforeach
           <ul>
