@@ -9,7 +9,7 @@
           <h3 class="mb-0"><i class="ni ni-bullet-list-67"></i> &nbsp;Detalle</h3>
         </div>
         <div class="col-md-6">
-          <a href="{{ route('mismembership') }}" class="btn btn-outline-default">
+          <a href="/membership" class="btn btn-outline-default">
           <i class="ni ni-bold-left"></i> Volver
           </a>
         </div>
@@ -19,13 +19,10 @@
     <div class="card-body">
 
       @if($errors->any())
-        <div class="alert alert-danger alert-dismissible" role="alert">
+        <div class="alert alert-danger" role="alert">
           <ul>
           @foreach ($errors->all() as $error)
           <li>{{ $error }}
-            <button type="button" class="close" data-dismiss="alert">
-                <span>x</span>
-            </button>
           </li>
           @endforeach
           <ul>
@@ -96,10 +93,8 @@
               <li class="list-inline-item"><h4>{{ $membership->membership }}</h4></li><br>            
               Estado: &nbsp;
               <li class="list-inline-item"><h4>{{ $membership->status }}</h4></li><br>            
-              HashPSIV: &nbsp;
-              <li class="list-inline-item"><h4>{{ $membership->hashUSDT }}</h4></li><br>            
-              HashUSDT: &nbsp;
-              <li class="list-inline-item"><h4>{{ $membership->hashPSIV  }}</h4></li><br>            
+              Hash de pago: &nbsp;
+              <li class="list-inline-item"><h4>{{ $membership->hash }}</h4></li><br>          
               Creada: &nbsp;
               <li class="list-inline-item"><h4>{{ $membership->created_at }}</h4></li><br>            
               Detalle:  &nbsp
