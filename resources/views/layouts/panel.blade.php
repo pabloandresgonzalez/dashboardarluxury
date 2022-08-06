@@ -157,85 +157,85 @@
           <div class="slider">
           <div class="slide-track">
           <div class="slide">
-          ARS<?php echo $data ['ARS']['last'];?>
+          ARS<?php echo $data ['ARS']['last'];?> 
           </div>
           <div class="slide">
-          AUD<?php echo $data ['AUD']['last'];?>
+          AUD<?php echo $data ['AUD']['last'];?> 
           </div>
           <div class="slide">
-          BRL<?php echo $data ['BRL']['last'];?>
+          BRL<?php echo $data ['BRL']['last'];?> 
           </div>
           <div class="slide">
-          CAD<?php echo $data ['CAD']['last'];?>
+          CAD<?php echo $data ['CAD']['last'];?> 
           </div>
           <div class="slide">
-          CHF<?php echo $data ['CHF']['last'];?>
+          CHF<?php echo $data ['CHF']['last'];?> 
           </div>
           <div class="slide">
-          CLP<?php echo $data ['CLP']['last'];?>
+          CLP<?php echo $data ['CLP']['last'];?> 
           </div>
           <div class="slide">
-          CNY<?php echo $data ['CNY']['last'];?>
+          CNY<?php echo $data ['CNY']['last'];?> 
           </div>
           <div class="slide">
-          CZK<?php echo $data ['CZK']['last'];?>
+          CZK<?php echo $data ['CZK']['last'];?> 
           </div>
           <div class="slide">
-          DKK<?php echo $data ['DKK']['last'];?>
+          DKK<?php echo $data ['DKK']['last'];?> 
           </div>
           <div class="slide">
-          EUR<?php echo $data ['EUR']['last'];?>
+          EUR<?php echo $data ['EUR']['last'];?> 
           </div>
           <div class="slide">
-          GBP<?php echo $data ['GBP']['last'];?>
+          GBP<?php echo $data ['GBP']['last'];?> 
           </div>
           <div class="slide">
-          HKD<?php echo $data ['HKD']['last'];?>
+          HKD<?php echo $data ['HKD']['last'];?> 
           </div>
           <div class="slide">
-          HRK<?php echo $data ['HRK']['last'];?>
+          HRK<?php echo $data ['HRK']['last'];?> 
           </div>
           <div class="slide">
-          HUF<?php echo $data ['HUF']['last'];?>
+          HUF<?php echo $data ['HUF']['last'];?> 
           </div>
           <div class="slide">
-          TWD<?php echo $data ['TWD']['last'];?>
+          TWD<?php echo $data ['TWD']['last'];?> 
           </div>
           <div class="slide">
-          INR<?php echo $data ['INR']['last'];?>
+          INR<?php echo $data ['INR']['last'];?> 
           </div>
           <div class="slide">
-          ISK<?php echo $data ['ISK']['last'];?>
+          ISK<?php echo $data ['ISK']['last'];?> 
           </div>
           <div class="slide">
-          JPY<?php echo $data ['JPY']['last'];?>
+          JPY<?php echo $data ['JPY']['last'];?> 
           </div>
           <div class="slide">
-          KRW<?php echo $data ['KRW']['last'];?>
+          KRW<?php echo $data ['KRW']['last'];?> 
           </div>
           <div class="slide">
-          NZD<?php echo $data ['NZD']['last'];?>
+          NZD<?php echo $data ['NZD']['last'];?> 
           </div>
           <div class="slide">
-          PLN<?php echo $data ['PLN']['last'];?>
+          PLN<?php echo $data ['PLN']['last'];?> 
           </div> 
           <div class="slide">
-          RON<?php echo $data ['RON']['last'];?>
+          RON<?php echo $data ['RON']['last'];?> 
           </div>
           <div class="slide">
-          RUB<?php echo $data ['RUB']['last'];?>
+          RUB<?php echo $data ['RUB']['last'];?> 
           </div>
           <div class="slide">
-          SEK<?php echo $data ['SEK']['last'];?>
+          SEK<?php echo $data ['SEK']['last'];?> 
           </div>
           <div class="slide">
-          SGD<?php echo $data ['SGD']['last'];?>
+          SGD<?php echo $data ['SGD']['last'];?> 
           </div>
           <div class="slide">
-          THB<?php echo $data ['THB']['last'];?>
+          THB<?php echo $data ['THB']['last'];?> 
           </div>
           <div class="slide">
-          BTC<?php echo $data ['USD']['last'];?>
+          BTC<?php echo $data ['USD']['last'];?> 
           </div>
           
           </div>
@@ -268,9 +268,6 @@
           </ul>
         </div>
       </nav>
-
-
-
 
 <!-- partial -->
     <!-- Header -->
