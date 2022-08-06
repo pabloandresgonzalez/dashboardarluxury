@@ -28,14 +28,14 @@ transform: translateX(calc(-250px * 7));
 .slider {
 background: pr;
 box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.0);
-height: 25px;
+height: 20px;
 margin: auto;
 overflow: hidden;
 position: relative;
 width: 100%;
 }
 .slider::before, .slider::after {
-background: linear-gradient(to right, #26ed05 , rgba(255, 255, 255, 0) 100%);
+background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0) 100%);
 content: "";
 height: 50px;
 position: absolute;
@@ -51,6 +51,7 @@ transform: rotateZ(180deg);
 .slider::before {
 left: 0;
 top: 0;
+margin-right: 20px;
 }
 .slider .slide-track {
 -webkit-animation: scroll 40s linear infinite;
@@ -62,6 +63,6 @@ width: calc(200px * 13);
 font-size: 12px;
 height: 100px;
 width: 250px;
-color: #000000;
+color: #17202A;
 line-height: 2;
 }
