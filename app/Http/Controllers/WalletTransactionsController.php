@@ -81,7 +81,7 @@ class WalletTransactionsController extends Controller
           $curl = curl_init();
 
           curl_setopt_array($curl, array(
-              CURLOPT_URL => "https://ekgra7pfqh.execute-api.us-east-2.amazonaws.com/Prod_getBalanceByUser",
+              CURLOPT_URL => "https://0xm6zzgk6a.execute-api.us-east-2.amazonaws.com/prod",
               CURLOPT_RETURNTRANSFER => true,
               CURLOPT_ENCODING => "",
               CURLOPT_MAXREDIRS => 10,
@@ -224,7 +224,7 @@ class WalletTransactionsController extends Controller
       $curl = curl_init();
 
       curl_setopt_array($curl, array(
-          CURLOPT_URL => "https://ekgra7pfqh.execute-api.us-east-2.amazonaws.com/Prod_getBalanceByUser",
+          CURLOPT_URL => "https://0xm6zzgk6a.execute-api.us-east-2.amazonaws.com/prod",
           CURLOPT_RETURNTRANSFER => true,
           CURLOPT_ENCODING => "",
           CURLOPT_MAXREDIRS => 10,
@@ -669,7 +669,7 @@ class WalletTransactionsController extends Controller
       $curl = curl_init();
 
       curl_setopt_array($curl, array(
-          CURLOPT_URL => "https://ekgra7pfqh.execute-api.us-east-2.amazonaws.com/Prod_getBalanceByUser",
+          CURLOPT_URL => "https://0xm6zzgk6a.execute-api.us-east-2.amazonaws.com/prod",
           CURLOPT_RETURNTRANSFER => true,
           CURLOPT_ENCODING => "",
           CURLOPT_MAXREDIRS => 10,

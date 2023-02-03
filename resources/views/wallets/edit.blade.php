@@ -58,21 +58,21 @@
                         	
                             <div class="col-md-6" >
                               <div class="input-group input-group-alternative mb-3">
-                                 
-                                @if($Wallets->status === 'Aprobada')
-                                <label>&nbsp; El estado es <strong>{{ $Wallets->status }}</strong>, ya no es &nbsp;posible hacer mas cambios &nbsp; &nbsp; </label>
-                                @else 
-                            <div class="input-group-prepend">
-                                  <span class="input-group-text"><i class="ni ni-bullet-list-67"></i></span>
+                                   
+                                  @if($Wallets->status === 'Aprobada')
+                                  <label>&nbsp; El estado es <strong>{{ $Wallets->status }}</strong>, ya no es &nbsp;posible hacer mas cambios &nbsp; &nbsp; </label>
+                                  @else 
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="ni ni-bullet-list-67"></i></span>
                                 </div>                             
-                                <select id="status" name="status" class="form-control" required>                             	
-                                		
-                                	<option value="{{ $Wallets->status }}">Selecione un estado</option>
-      					                  <option value="exhange"  >En proceso</option>
-                                  <option value="Rechazada"  >Rechazada</option>
-      					                  <option value="Aprobada"  >Aprobada</option>
-					                       </select>
-                            </div>
+                                  <select id="status" name="status" class="form-control" required>                             	
+                                  		
+                                  	<option value="{{ $Wallets->status }}">Selecione un estado</option>
+        					                  <option value="exhange"  >En proceso</option>
+                                    <option value="Rechazada"  >Rechazada</option>
+        					                  <option value="Aprobada"  >Aprobada</option>
+  					                       </select>
+                              </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="input-group input-group-alternative mb-3">
