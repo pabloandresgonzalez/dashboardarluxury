@@ -31,7 +31,7 @@
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="ni ni-pin-3"></i></span>
                     </div> 
-                      <input class="form-control" placeholder="b3361710-4e21-4fe1-a86e-a29fbecb15f2" id="ownerId" type="text" name="ownerId" value="" autocomplete="ownerId" autofocus>
+                      <input class="form-control" placeholder="Id del usuario que le refiere" id="ownerId" type="text" name="ownerId" value="" autocomplete="ownerId" autofocus>
                   </div>
                 </div>
 
